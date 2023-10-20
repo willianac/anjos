@@ -1,0 +1,21 @@
+// Here you can add other styles
+
+//Fix Spinner
+ngx-loading {
+    .backdrop, .spinner-three-bounce {
+        position: relative !important;
+    }
+}
+
+* [padding-right] {
+    padding-right: 16px;
+}
+
+.table-hover tbody tr {
+    cursor: pointer;
+}
+
+.app-header.navbar .navbar-brand {
+    background-image: url('/assets/logo.png');
+    background-size: 100px auto;
+}

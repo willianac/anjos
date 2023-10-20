@@ -1,0 +1,7 @@
+<div>
+  <a class="lang-item" *ngFor="let lang of languageList" (click)="changeLanguage(lang)">
+    <img src="{{ lang.flag }}">
+  </a>
+
+  <span translate>CHANGE_LANGUAGE</span>
+</div>

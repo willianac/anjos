@@ -1,0 +1,70 @@
+<header class="app-header navbar">
+  <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>&#9776;</button>
+  <a class="navbar-brand" href="#"></a>
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item">
+      <a class="nav-link navbar-toggler" href="#" appSidebarToggler>&#9776;</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown padding-right *ngIf="currentLanguage">
+      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+        <img src="{{ currentLanguage.flag }}">
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" *ngFor="let lang of languageList" (click)="changeLanguage(lang)"><img src="{{ lang.flag }}"> {{ lang.name }}</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown" dropdown padding-right>
+      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+        <span class="d-md-down-none">{{displayName}}</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <!--<div class="dropdown-header text-center"><strong>Account</strong></div>-->
+        <!--<a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>-->
+        <a class="dropdown-item" (click)="doLogout()"><i class="fa fa-lock"></i> {{ 'LOGOUT' | translate }}</a>
+      </div>
+    </li>
+  </ul>
+</header>
+
+<div class="app-body">
+  <div class="sidebar">
+    <nav class="sidebar-nav">
+      <ul class="nav">
+        <li class="divider"></li>
+        <li class="nav-title" translate>MENU</li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/transfer']"><i class="icon-rocket"></i> {{ 'TRANSFER' | translate }} </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/accounts']"><i class="icon-wallet"></i> {{ 'SENDER_ACCOUNTS' | translate }} </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a disabled class="nav-link" routerLinkActive="active"><i class="icon-people"></i> {{ 'RECEIVERS' | translate }} </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/changePassword']"><i class="icon-lock"></i> {{ 'CHANGE_PASSWORD' | translate }} </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+      <app-breadcrumbs></app-breadcrumbs>
+    </ol>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.conainer-fluid -->
+  </main>
+</div>
+
+<footer class="app-footer">
+  C&D International &copy; 2001..2020
+  <span class="float-right">Powered by <a target="_blank" href="http://moneytransfersystem.com/">Xpresso MTS</a></span>
+</footer>

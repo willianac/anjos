@@ -1,0 +1,18 @@
+.item {
+    &:not(:last-child) {
+        margin-bottom: 5px;
+    }
+    &.total {
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 5px 0;
+    }
+}
+h3 {
+    font-size: 1.11rem;
+    font-weight: bold;
+    color: #20a8d8;
+}
+.ident {
+    padding-left: 1.5rem;
+}

@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-header" translate>ORDER_SUMMARY</div>
+  <div class="card-block">
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <h3 translate>SENDER_ACCOUNT</h3>
+      </div>
+      <div class="col-md-12 ident">
+        <div class="item"><strong translate>ABA</strong>: {{ senderAccount.aba }}</div>
+        <div class="item"><strong translate>ACCOUNT</strong>: {{ senderAccount.account }}</div>
+      </div>
+    </div>
+
+    <hr/> -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 translate>RECEIVER</h3>
+      </div>
+      <div *ngIf="receiverAccount.BankName !== 'PIX'; else PIX" class="col-md-12 ident">
+        <div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
+        <div class="item"><strong translate>BANK</strong>: {{receiverAccount.BankName }}</div>
+        <div class="item"><strong translate>BRANCH</strong>: {{ receiverAccount.BankBranch }}</div>
+        <div class="item"><strong translate>BANK_ACCOUNT_NUMBER</strong>: {{ receiverAccount.AccountNo }}</div>
+      </div>
+
+			<ng-template class="col-md-12 ident" #PIX>
+				<div class="col-md-12 ident">
+					<div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
+					<div class="item"><strong>PIX</strong></div>
+					<div class="item"><strong translate>PIX_KEY</strong>: {{ receiverAccount.AccountNo }}</div>
+				</div>
+			</ng-template>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 translate>PURPOSE_OF_TRANSFER</h3>
+      </div>
+      <div class="col-md-12 ident">
+        <div class="item" *ngIf="currentLang == 'pt'">{{ purpose.PurposeNamePT }}</div>
+        <div class="item" *ngIf="currentLang == 'en'">{{ purpose.PurposeNameUS }}</div>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 translate>VALUES</h3>
+      </div>
+      <div class="col-md-12 ident">
+        <div class="item"><strong translate>SEND</strong> ({{ linkInfo.BaseUnit }}): {{ amount.base }}</div>
+        <div class="item"><strong translate>RECEIVE</strong> ({{ linkInfo.SendUnit }}): {{ amount.send }}</div>
+        <div class="item"><strong translate>RATE</strong>: 1 {{ linkInfo.BaseUnit }} = {{ linkInfo.Rate }} {{ linkInfo.SendUnit }}</div>
+        <div class="item"><strong translate>SERVICE_FEE</strong> ({{ linkInfo.BaseUnit }}): {{ linkInfo.ServiceFee }}</div>
+        <div class="item total"><strong translate>TOTAL</strong> ({{ linkInfo.BaseUnit }}): {{ total }}</div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="col-12">
+          <ngx-loading [show]="isLoading"></ngx-loading>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="message">
+        {{ message }}
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary active mt-3" (click)="modalConfirm.show()" translate>BUTTON_DO_TRANSFER</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div bsModal #modalConfirm="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" translate>CONFIRM_DO_TRANSFER_TITLE</h4>
+        <button type="button" class="close" (click)="modalConfirm.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p translate>CONFIRM_DO_TRANSFER_TEXT</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalConfirm.hide()" translate>BUTTON_CANCEL</button>
+        <button type="button" class="btn btn-primary" (click)="modalConfirm.hide(); doTransfer()" translate>BUTTON_DO_TRANSFER</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

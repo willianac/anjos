@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header" translate>SELECT_PURPOSE</div>
+  <div class="card-block">
+    <table class="table table-striped table-hover table-clickable table-sm">
+      <thead>
+        <tr>
+          <th translate>PURPOSE_OF_TRANSFER</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="purposeList && purposeList.length > 0">
+          <tr *ngFor="let purpose of purposeList" (click)="select(purpose)">
+            <td *ngIf="currentLang == 'pt'">{{purpose.PurposeNamePT}}</td>
+            <td *ngIf="currentLang == 'en'">{{purpose.PurposeNameUS}}</td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="!purposeList || purposeList.length < 1">
+          <tr>
+            <td translate>NO_PURPOSE_FOUND</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

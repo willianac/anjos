@@ -1,8 +1,6 @@
 
 import { Routes, RouterModule } from '@angular/router';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { SenderAccountListComponent } from './pages/sender-account-list/sender-account-list.component';
-
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -31,13 +29,14 @@ export const routes: Routes = [
         path: 'transfer',
         loadChildren: './transfer/transfer.module#TransferModule'
       },
-      {
-        path: 'accounts',
-        component: SenderAccountListComponent,
-        data: {
-          title: 'SENDER_ACCOUNTS'
-        }
-      },
+			// REMOVENDO MODULO 'Minhas Contas' DAS ROTAS DA APLICAÇÃO
+      // {
+      //   path: 'accounts',
+      //   component: SenderAccountListComponent,
+      //   data: {
+      //     title: 'SENDER_ACCOUNTS'
+      //   }
+      // },
       {
         path: 'changePassword',
         component: ChangePasswordComponent,

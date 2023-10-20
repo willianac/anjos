@@ -13,7 +13,7 @@ export class FullLayoutComponent {
   public status: {isopen: boolean} = {isopen: false};
   public currentLanguage: LanguageItem;
   public languageList = LANGUAGE_LIST;
-  public clientLogo = window['ENVS'].CLIENT_LOGO;
+  
   public displayName
 
   constructor(

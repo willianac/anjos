@@ -5,13 +5,18 @@ import * as xml2js from 'xml2js';
 import 'rxjs/Observable';
 import * as Rx from 'rxjs/Rx';
 
+const setupData = require("../../../assets/setup/setup.json")
+import { AppSetup } from 'assets/setup/setup';
+
+
 @Injectable()
 export class ConnectionService {
 
   private serverUrl: string;
 
   constructor(public http: Http) {
-    this.serverUrl = window['ENVS'].API_URL;
+		const setup = setupData as AppSetup
+		this.serverUrl = setup.apiUrl
   }
 
   private makeUrl(url, data) {

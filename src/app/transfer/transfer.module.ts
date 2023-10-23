@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LanguageService } from '../services/language/language.service';
 
 import { ModalModule, ModalBackdropComponent, ModalDirective } from 'ngx-bootstrap/modal';
+import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ModalModule, ModalBackdropComponent, ModalDirective } from 'ngx-bootstr
     ReceiverAccountListComponent,
     AmountComponent,
     SummaryComponent,
+		Last4DigitsPipe
   ],
   entryComponents: [
   ],

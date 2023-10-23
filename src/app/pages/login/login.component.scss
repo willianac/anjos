@@ -14,3 +14,54 @@
 	background-color: #1d94c6;
 	padding: 0.6rem 1rem;
 }
+
+.mobile-brand-navbar {
+	position: fixed;
+	width: 100%;
+	background-color: #20a8d8;
+	padding: 8px;
+
+	@media screen and (min-width: 991px) {
+		display: none;
+	}
+}
+
+.mobile-text {
+	color: #ffffff;
+	font-size: 22px;
+	display: block;
+	text-align: center;
+}
+
+.mobile-label {
+	position: fixed;
+	width: 100%;
+	bottom: 60px;
+	
+	@media screen and (min-width: 991px) {
+		display: none;
+	}
+}
+
+.mobile-label a {
+	display: block;
+	text-align: center;
+	font-size: 12px;
+}
+
+.mobile-copyright {
+	position: fixed;
+	width: 100%;
+	bottom: 20px;
+
+	@media screen and (min-width: 991px) {
+		display: none;
+	}
+}
+
+.mobile-copyright span {
+	display: block;
+	text-align: center;
+	font-size: 11px;
+	color: #989fa1;
+}

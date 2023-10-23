@@ -14,12 +14,12 @@
           <tr *ngFor="let account of accountList" (click)="select(account)">
             <td>{{account.BankName}}</td>
             <td>{{account.BankName === "PIX" ? "" : account.BankBranch}}</td>
-            <td>{{account.BankName === "PIX" ? "" : account.AccountNo}}</td>
+            <td>{{account.BankName === "PIX" ? ('****' + (account.AccountNo | last4digits)) : (account.AccountNo)}}</td>
           </tr>
         </ng-container>
         <ng-container *ngIf="!accountList || accountList.length < 1">
           <tr>
-            <td translate>NO_ACCOUNTS_FOUND</td>
+            <td translate>NO_ACCOUNTS_FOUND</td>*
           </tr>
         </ng-container>
       </tbody>

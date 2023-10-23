@@ -1,6 +1,6 @@
 export type AppSetup = {
 	apiUrl: string
 	clientName: string
-	footerClientLabel: string
-	footerClientLabelYear: string
+	footerCopyright: string
+	footerCopyrightYear: string
 }

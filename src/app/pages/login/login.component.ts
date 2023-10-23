@@ -7,6 +7,8 @@ import { LanguageService } from '../../services/language/language.service';
 import { LoginService } from '../../services/login/login.service';
 import { SessionService } from '../../services/session/session.service';
 import { SenderAccountService } from '../../services/sender-account/sender-account.service';
+import { AppSetup } from 'assets/setup/setup';
+const setup = require("../../../assets/setup/setup.json")
 
 
 @Component({
@@ -20,8 +22,7 @@ export class LoginComponent {
     email: '',
     password: ''
   };
-
-	public isIFrameOpened = false;
+	public appSetup: AppSetup;
 
   constructor(
     public loginSvc: LoginService,
@@ -31,7 +32,9 @@ export class LoginComponent {
     public language: LanguageService,
     public toastr: ToastrService,
     public senderAccountSvc: SenderAccountService
-  ) { }
+  ) {
+		this.appSetup = setup
+	}
 
   doLogin() {
     this.isLoading = true;

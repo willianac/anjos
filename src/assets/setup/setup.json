@@ -1,6 +1,6 @@
 {
 	"apiUrl": "http://api.moneytransmittersystem.com/mts/ts/mobileApp/xpappstart.cfm",
-	"clientName": "Xpresso Money Transfer",
-	"footerClientLabel": "C&D International ©",
-	"footerClientLabelYear": "2001...2023"
+	"clientName": "Transamericas Services",
+	"copyright": "C&D International ©",
+	"copyrightYear": "2001-2023"
 }

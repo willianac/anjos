@@ -6,9 +6,7 @@ import "rxjs/add/operator/do"
 
 @Injectable()
 export class SetupService {
-	constructor(private http: Http) {
-		console.log("aqui")
-	}
+	constructor(private http: Http) { }
 
   getSettings(): Observable<any> {
     return this.http.get("../../../assets/setup/setup.json")

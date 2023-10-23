@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,6 +8,7 @@ import { LoginService } from '../../services/login/login.service';
 import { SessionService } from '../../services/session/session.service';
 import { SenderAccountService } from '../../services/sender-account/sender-account.service';
 import { AppSetup } from 'assets/setup/setup';
+import { SetupService } from 'app/services/setup/setup.service';
 const setup = require("../../../assets/setup/setup.json")
 
 
@@ -15,14 +16,14 @@ const setup = require("../../../assets/setup/setup.json")
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   public isLoading = false;
   public loginInputs = {
     email: '',
     password: ''
   };
-	public appSetup: AppSetup;
+	public appSetup;
 
   constructor(
     public loginSvc: LoginService,
@@ -31,10 +32,9 @@ export class LoginComponent {
     public router: Router,
     public language: LanguageService,
     public toastr: ToastrService,
-    public senderAccountSvc: SenderAccountService
-  ) {
-		this.appSetup = setup
-	}
+    public senderAccountSvc: SenderAccountService,
+		public setupService: SetupService
+  ) { }
 
   doLogin() {
     this.isLoading = true;
@@ -76,4 +76,9 @@ export class LoginComponent {
     });
   }
 
+	ngOnInit() {
+		this.setupService.getSettings().subscribe((setup) => {
+			this.appSetup = setup
+		})
+	}
 }

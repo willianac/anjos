@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../services/session/session.service';
 import { LanguageService, LANGUAGE_LIST, LanguageItem } from '../services/language/language.service';
 import { Router } from '@angular/router';
-import { AppSetup } from 'assets/setup/setup';
-const setup = require("../../assets/setup/setup.json")
+import { SetupService } from 'app/services/setup/setup.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './full-layout.component.html'
 })
-export class FullLayoutComponent {
+export class FullLayoutComponent implements OnInit {
 
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
@@ -17,17 +16,17 @@ export class FullLayoutComponent {
   public languageList = LANGUAGE_LIST;
 
   public displayName
-	public appSetup: AppSetup
+	public appSetup
 
   constructor(
     public session: SessionService,
     public language: LanguageService,
+		public setupService: SetupService,
     public router: Router,
   ) {
     const sender = this.session.get('moneySender')
     this.displayName = `${sender.SenderFirstName} ${sender.SenderLastName}`;
     this.getCurrentLanguage();
-		this.appSetup = setup;
   }
 
   public getCurrentLanguage() {
@@ -45,5 +44,11 @@ export class FullLayoutComponent {
     this.session.set('lastEmail', lastEmail);
     this.router.navigate(['login']);
   }
+
+	ngOnInit() {
+		this.setupService.getSettings().subscribe((setup) => {
+			this.appSetup = setup
+		})
+	}
 
 }

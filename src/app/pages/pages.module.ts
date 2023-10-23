@@ -15,7 +15,7 @@ import { LoginService } from '../services/login/login.service';
 import { LanguageService } from '../services/language/language.service';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { LanguageListComponent } from '../shared/language-list/language-list.component';
-
+import { SetupService } from 'app/services/setup/setup.service';
 
 @NgModule({
   imports: [ 
@@ -35,7 +35,8 @@ import { LanguageListComponent } from '../shared/language-list/language-list.com
   ],
   providers: [
     LoginService,
-    LanguageService
+    LanguageService,
+		SetupService
   ]
 })
 export class PagesModule { }

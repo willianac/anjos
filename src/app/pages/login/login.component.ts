@@ -7,9 +7,7 @@ import { LanguageService } from '../../services/language/language.service';
 import { LoginService } from '../../services/login/login.service';
 import { SessionService } from '../../services/session/session.service';
 import { SenderAccountService } from '../../services/sender-account/sender-account.service';
-import { AppSetup } from 'assets/setup/setup';
 import { SetupService } from 'app/services/setup/setup.service';
-const setup = require("../../../assets/setup/setup.json")
 
 
 @Component({

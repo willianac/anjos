@@ -6,6 +6,7 @@ import { P500Component } from './500.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RecoverPasswordComponent } from '../pages/recover-password/recover-password.component';
+import { PaymentStatusComponent } from './payment-status/payment-status.component';
 
 const routes: Routes = [
   {
@@ -46,9 +47,16 @@ const routes: Routes = [
         path: 'recover',
         component: RecoverPasswordComponent,
         data: {
-          title: 'Register Page'
+          title: 'Recover Page'
         }
-      }
+      },
+			{
+				path: 'payment-status',
+				component: PaymentStatusComponent,
+				data: {
+					title: 'Payment Status'
+				}
+			}
     ]
   }
 ];

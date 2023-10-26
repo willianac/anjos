@@ -1,0 +1,72 @@
+main {
+	min-width: 100%;
+	min-height: 100vh;
+}
+
+.status-container > .credit-card-icon {
+	max-width: 18rem;
+	margin-bottom: 2rem;
+}
+
+.status-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px 0px;
+
+	@media screen and (max-width: 480px) {
+		padding: 0;
+	}
+}
+
+.status-container > .check-icon {
+	color: #4BB543;
+
+	@media screen and (max-width: 480px) {
+		width: 3rem;
+	}
+}
+
+.status-container > .cancel-icon {
+	color: #ff3333;
+
+	@media screen and (max-width: 480px) {
+		width: 3rem;
+	}
+}
+
+.status-title {
+	font-weight: 700;
+	font-size: 4rem;
+
+	@media screen and (max-width: 480px) {
+		font-size: 3rem;
+	}
+}
+
+.ok {
+	color: #4BB543;
+}
+
+.fail {
+	color: #ff3333;
+}
+
+.status-container > .status-description {
+	font-size: 16px;
+	font-weight: 600;
+	color: #5f4d54;
+	margin-bottom: 2.5rem;
+}
+
+.status-container > button {
+	cursor: pointer;
+	width: 12rem;
+}
+
+.storyset-attribute {
+	color: #a5989e;
+	position: absolute;
+	bottom: 0.6rem;
+	right: 0.6rem;
+}

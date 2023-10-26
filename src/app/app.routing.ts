@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'payment-status',
     pathMatch: 'full',
   },
   {

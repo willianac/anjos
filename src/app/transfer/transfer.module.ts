@@ -7,6 +7,7 @@ import { PurposeListComponent } from './purpose-list/purpose-list.component';
 import { ReceiverAccountListComponent } from './receiver-account-list/receiver-account-list.component';
 import { AmountComponent } from './amount/amount.component';
 import { SummaryComponent } from './summary/summary.component';
+import { PaymentComponent } from './payment/payment.component';
 import { TransferRoutingModule } from './transfer-routing.module';
 import { TransferService } from '../services/transfer/transfer.service';
 
@@ -37,6 +38,7 @@ import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
     ReceiverAccountListComponent,
     AmountComponent,
     SummaryComponent,
+		PaymentComponent,
 		Last4DigitsPipe
   ],
   entryComponents: [

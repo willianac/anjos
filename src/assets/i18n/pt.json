@@ -23,6 +23,8 @@
   "SEND": "Enviar",
   "RECEIVE": "Receber",
   "ORDER_SUMMARY": "Resumo de Sua Ordem",
+	"PAYMENT": "Pagamento",
+	"MAKE_PAYMENT": "Efetue o Pagamento",
   "CONFIRM": "Confirmar",
   "TRANSACTION_COMPLETE": "Transação concluida",
   "UNDER_MAINTENANCE": "Em manutenção",

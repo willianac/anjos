@@ -6,6 +6,7 @@ import { PurposeListComponent } from './purpose-list/purpose-list.component';
 import { ReceiverAccountListComponent } from './receiver-account-list/receiver-account-list.component';
 import { AmountComponent } from './amount/amount.component';
 import { SummaryComponent } from './summary/summary.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -53,7 +54,14 @@ const routes: Routes = [
         data: {
           title: 'ORDER_SUMMARY'
         }
-      }
+      },
+			{
+				path: 'payment',
+				component: PaymentComponent,
+				data: {
+					title: 'PAYMENT'
+				}
+			}
     ]
   }
 ];

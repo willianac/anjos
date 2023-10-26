@@ -1,0 +1,11 @@
+#payment-form {
+	height: 60rem;
+
+	@media screen and (max-width: 480px) {
+		height: 80rem;
+	}
+}
+
+.card-block {
+	padding: 0;
+}

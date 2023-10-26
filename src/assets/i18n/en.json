@@ -24,6 +24,8 @@
   "RECEIVE": "Receive",
   "ORDER_SUMMARY": "Order Summary",
   "CONFIRM": "Confirm",
+	"PAYMENT": "Payment",
+	"MAKE_PAYMENT": "Make Payment",
   "TRANSACTION_COMPLETE": "Transaction Complete",
   "UNDER_MAINTENANCE": "Under Maintenace",
   "OUT_OF_SERVICE": "Out of Service",

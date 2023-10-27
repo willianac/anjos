@@ -37,7 +37,7 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							feeType: 'amount', 
 							returnURL: 'http://transamericas.moneytransmittersystem.com/maverick/', 
 							returnUrlNavigation: 'top', 
-							logo: 'off', 
+							useLogo: 'No', 
 							visibleNote: 'No', 
 							requestContactInfo: 'Yes', 
 							requestBillingInfo: 'No', 

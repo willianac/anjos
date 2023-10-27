@@ -9,11 +9,11 @@
 
 		<h1 class="status-title ok" *ngIf="status === 'Success'" translate>SUCCESS</h1>
 		<h1 class="status-title fail" *ngIf="status === 'Fail'">Ooops</h1>
-		<h1 class="status-title fail" *ngIf="status === 'Cancel'" translate>CANCELED</h1>
+		<h1 class="status-title fail" *ngIf="status === 'Cancelled'" translate>CANCELED</h1>
 
 		<p class="status-description" *ngIf="status === 'Success'" translate>PAYMENT_SUCCESS</p>
 		<p class="status-description" *ngIf="status === 'Fail'" translate>PAYMENT_FAIL</p>
-		<p class="status-description" *ngIf="status === 'Cancel'" translate>PAYMENT_CANCELED</p>
+		<p class="status-description" *ngIf="status === 'Cancelled'" translate>PAYMENT_CANCELED</p>
 
 		<button (click)="navigateToHome()" class="btn btn-primary px-4" translate>BACK</button>
 	</div>

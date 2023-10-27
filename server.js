@@ -20,8 +20,8 @@ const forceSSL = function() {
 // Instruct the app
 // to use the forceSSL
 // middleware
-app.use(forceSSL());
-
+//app.use(forceSSL());
+app.get("/teste", (req, res) => res.json("chegou"))
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 // app.get('/*', function(req, res) {

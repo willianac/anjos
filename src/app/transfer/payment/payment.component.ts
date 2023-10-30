@@ -35,7 +35,7 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							amount: ${Number(this.totalPayment)}, 
 							fee: '', 
 							feeType: 'amount', 
-							returnURL: 'http://transamericas.moneytransmittersystem.com/maverick/', 
+							returnURL: 'https://transamericas.moneytransmittersystem.com/maverick/', 
 							returnUrlNavigation: 'top', 
 							useLogo: 'No', 
 							visibleNote: 'No', 

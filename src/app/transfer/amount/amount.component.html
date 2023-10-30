@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
 		<span translate>TRANSFER_AMOUNT</span>
-		<button class="btn btn-primary px-4" (click)="select()" translate>NEXT</button>
+		<button class="btn btn-primary btn-mobile px-4" (click)="select()" translate>NEXT</button>
 	</div>
   <div class="card-block">
     <form action="" class="form-horizontal" method="post">
@@ -23,6 +23,11 @@
           <div class="alert alert-danger" role="alert">
             {{ message }}
           </div>
+        </div>
+      </div>
+			<div class="row">
+        <div class="col-6">
+          <button class="btn btn-primary btn-desktop px-4" (click)="select()" translate>NEXT</button>
         </div>
       </div>
     </form>

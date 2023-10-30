@@ -9,3 +9,15 @@
 .btn-primary {
 	margin-top: 0px !important;
 }
+
+.btn-desktop {
+	@media screen and (max-width: 480px) {
+		display: none;
+	}
+}
+
+.btn-mobile {
+	@media screen and (min-width: 481px) {
+		display: none;
+	}
+}

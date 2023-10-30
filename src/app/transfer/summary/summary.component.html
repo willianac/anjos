@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
 		<span translate>ORDER_SUMMARY</span>
-		<button type="button" class="btn btn-primary mt-3" (click)="modalConfirm.show()" translate>BUTTON_DO_TRANSFER</button>
+		<button type="button" class="btn btn-primary btn-mobile mt-3" (click)="modalConfirm.show()" translate>BUTTON_DO_TRANSFER</button>
 	</div>
   <div class="card-block">
     <!-- <div class="row">
@@ -68,6 +68,11 @@
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="message">
         {{ message }}
+      </div>
+    </div>
+		<div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary btn-desktop mt-3" (click)="modalConfirm.show()" translate>BUTTON_DO_TRANSFER</button>
       </div>
     </div>
   </div>

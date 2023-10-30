@@ -9,3 +9,9 @@
 .card-block {
 	padding: 0;
 }
+
+.card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

@@ -16,4 +16,9 @@
 	@media screen and (max-width: 480px) {
 		padding: 0 16px;
 	}
+
+	//Override for iPhone SE and Galaxy Fold
+	@media screen and (max-width: 375px) {
+		padding: 0 6px;
+	}
 }

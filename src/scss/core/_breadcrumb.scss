@@ -2,5 +2,9 @@
   position: relative;
   margin-bottom: 1.5 * $spacer;
 
+	@media screen and (max-width: 375px) {
+		margin-bottom: 0.6rem;
+	}
+
   @include borders($breadcrumb-borders);
 }

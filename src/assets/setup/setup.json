@@ -1,5 +1,5 @@
 {
-	"apiUrl": "http://api.moneytransmittersystem.com/mts/ts/mobileApp/xpappstart.cfm",
+	"apiUrl": "https://api.moneytransmittersystem.com/mts/ts/mobileApp/xpappstart.cfm",
 	"clientName": "Transamericas Services",
 	"copyright": "C&D International ©",
 	"copyrightYear": "2001-2023"

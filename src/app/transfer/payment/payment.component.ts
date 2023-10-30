@@ -59,22 +59,11 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 		this.renderer.appendChild(this._document.body, script);
 	}
 
-	private clearStorage() {
-		this.session.remove('currentReceiver');
-    this.session.remove('currentReceiverAccount');
-    this.session.remove('currentPurpose');
-    this.session.remove('currentBase');
-    this.session.remove('currentSend');
-		this.session.remove('total');
-		this.session.remove('externalID')
-	}
-
 	ngOnDestroy() {
 		(window as any).PaymentGateway = undefined
 		let script = document.getElementById("hosted-form-script")
 		if(script) {
 			script.parentNode.removeChild(script)
 		}
-		this.clearStorage()
 	}
 }

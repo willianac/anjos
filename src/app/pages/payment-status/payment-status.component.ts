@@ -26,6 +26,16 @@ export class PaymentStatusComponent implements OnInit {
 		if(!language) this.session.set("language", "en")
 	}
 
+	private clearStorage() {
+		this.session.remove('currentReceiver');
+    this.session.remove('currentReceiverAccount');
+    this.session.remove('currentPurpose');
+    this.session.remove('currentBase');
+    this.session.remove('currentSend');
+		this.session.remove('total');
+		this.session.remove('externalID')
+	}
+
 	ngOnInit(): void {
 		this.route.queryParams.subscribe(params => {
 			this.status = params["status"]
@@ -35,5 +45,6 @@ export class PaymentStatusComponent implements OnInit {
 			}
 		})
 		this.checkIfLanguageIsSelected()
+		this.clearStorage()
 	}
 }

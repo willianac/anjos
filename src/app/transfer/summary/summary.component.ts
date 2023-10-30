@@ -1,5 +1,4 @@
-import { Component, Renderer2, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { SessionService } from '../../services/session/session.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,9 +37,7 @@ export class SummaryComponent {
     public translate: TranslateService,
     public transfer: TransferService,
     public toastr: ToastrService,
-    public senderAccSvc: SenderAccountService,
-		public renderer: Renderer2,
-		@Inject(DOCUMENT) private _document: Document
+    public senderAccSvc: SenderAccountService
   ) {
     this.currentLang = this.translate.currentLang || this.translate.defaultLang;
     this.receiver = this.session.get('currentReceiver');

@@ -30,7 +30,7 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							dbaId: 108202, 
 							terminalId: 172601, 
 							threeds: 'Disabled', 
-							hash: '4b9b320f4b363ef823d9dd0dc2312b21', 
+							hash: '2e0c294c5a93e305b82296cb482a466b', 
 							externalId: ${this.externalID}, 
 							amount: ${Number(this.totalPayment)}, 
 							fee: '', 

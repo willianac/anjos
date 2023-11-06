@@ -116,7 +116,7 @@
   "BASE": "Base",
   "INVALID_AMOUNT": "Amount must be informed.",
   "INVALID_SEND": "Send Value is invalid",
-	"MAX_SEND_EXCEEDED": "The value must not exceed 500 USD.",
+	"MAX_SEND_EXCEEDED": "The value must not exceed 500 {{unit}}.",
   "INVALID_BASE": "Base Value is invalid",
   "TOTAL": "Total",
   "SENDER_ACCOUNT": "Sender Account",

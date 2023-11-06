@@ -17,7 +17,6 @@ export class AmountComponent {
   public transfer: Transfer = new Transfer();
   public linkInfo;
   public message;
-	private maxOrderAmount: number
 
   constructor(
     public session: SessionService,
@@ -30,8 +29,8 @@ export class AmountComponent {
    }
 
 	 checkMaxSend(value: any) {
-		if(Number(this.transfer.base) > this.maxOrderAmount) {
-			this.message = this.translate.instant("MAX_SEND_EXCEEDED")
+		if(Number(this.transfer.base) > this.linkInfo.MaxOrderAmount) {
+			this.message = this.translate.instant("MAX_SEND_EXCEEDED", {unit: this.linkInfo.BaseUnit})
 		}
 	 }
 
@@ -80,17 +79,12 @@ export class AmountComponent {
       this.message = this.translate.instant('INVALID_AMOUNT');
       return false;
     }
-		if(base > this.maxOrderAmount) {
-			this.message = this.translate.instant("MAX_SEND_EXCEEDED")
+		if(base > this.linkInfo.MaxOrderAmount) {
+			this.message = this.translate.instant("MAX_SEND_EXCEEDED", {unit: this.linkInfo.BaseUnit})
 			return
 		}
     this.session.set('currentBase', this.transfer.base);
     this.session.set('currentSend', this.transfer.send);
     this.router.navigate(['admin', 'transfer', 'summary']);
   }
-
-	ngOnInit() {
-		this.maxOrderAmount = Number(this.session.get("linkInfo").MaxOrderAmount)
-	}
-
 }

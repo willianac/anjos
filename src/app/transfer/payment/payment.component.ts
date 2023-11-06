@@ -39,8 +39,8 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							returnUrlNavigation: 'top', 
 							useLogo: 'No', 
 							visibleNote: 'No', 
-							requestContactInfo: 'Yes', 
-							requestBillingInfo: 'No', 
+							requestContactInfo: 'No', 
+							requestBillingInfo: 'Yes', 
 							sendReceipt: 'No', 
 							origin: 'HostedForm'
 						} 

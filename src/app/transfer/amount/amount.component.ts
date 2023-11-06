@@ -28,6 +28,12 @@ export class AmountComponent {
     this.transfer.send = this.session.get('currentSend') || 0;
    }
 
+	 checkMaxSend(value: any) {
+		if(Number(this.transfer.base) > 500) {
+			this.message = this.translate.instant("MAX_SEND_EXCEEDED")
+		}
+	 }
+
   convertBase() {
     try {
       this.message = null;
@@ -73,6 +79,10 @@ export class AmountComponent {
       this.message = this.translate.instant('INVALID_AMOUNT');
       return false;
     }
+		if(base > 500) {
+			this.message = this.translate.instant("MAX_SEND_EXCEEDED")
+			return
+		}
     this.session.set('currentBase', this.transfer.base);
     this.session.set('currentSend', this.transfer.send);
     this.router.navigate(['admin', 'transfer', 'summary']);

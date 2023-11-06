@@ -8,7 +8,7 @@
       <div class="form-group row">
         <label class="col-md-3 form-control-label" for="send">{{'SEND' | translate}} ({{ linkInfo.BaseUnit }})</label>
         <div class="col-md-3">
-          <input class="form-control" id="send" name="send" type="number" step="0.01" [(ngModel)]="transfer.base" (change)="convertBase()">
+          <input class="form-control" id="send" name="send" type="number" step="0.01" [(ngModel)]="transfer.base" (change)="convertBase()" (ngModelChange)="checkMaxSend($event)">
         </div>
       </div>
       <div class="form-group row">

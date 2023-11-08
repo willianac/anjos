@@ -1,0 +1,123 @@
+<div class="card">
+  <div class="card-header" translate>Fill in all the fields to add a new receiver.</div>
+  <div class="card-block">
+    <form [formGroup]="receiverForm" (ngSubmit)="teste()">
+
+			<label for="country">Country</label>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+				<select name="country" id="country" class="select" formControlName="country">
+					<option value="">Please select a country</option>
+					<option value="brazil">Brazil</option>
+					<option value="usa">United States</option>
+				</select>
+			</div>
+
+			<label for="fullName">Full Name</label>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input type="text" name="fullName" id="fullName" class="form-control" placeholder="Full Name" formControlName="fullName">
+			</div>
+
+			<label for="kinship">Who is the account holder?</label>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<select name="country" id="country" class="select" formControlName="kinship">
+					<option value="">Please select</option>
+					<option value="myself">Myself</option>
+					<option value="friend">Friend</option>
+					<option value="family">Family</option>
+					<option value="business">Business</option>
+					<option value="others">Others</option>
+				</select>
+			</div>
+
+			<label for="personType">Tipo de Pessoa</label>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<select name="personType" id="personType" class="select" formControlName="personType">
+					<option value="">Please select</option>
+					<option value="fisica">Fisica</option>
+					<option value="juridica">Jurídica</option>
+				</select>
+			</div>
+
+			<div *ngIf="receiverForm.get('country').value === 'brazil' && receiverForm.get('personType').value !== ''; else document">
+				<div *ngIf="receiverForm.get('personType').value === 'fisica'; else cnpj">
+					<label for="document">CPF</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="icon-doc"></i></span>
+						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF">
+					</div>
+				</div>
+
+				<ng-template #cnpj>
+					<label for="document">CNPJ</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="icon-doc"></i></span>
+						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ">
+					</div>
+				</ng-template>
+			</div>
+
+			<ng-template #document>
+				<label for="document">Nº Document</label>
+				<div class="input-group mb-3">
+					<span class="input-group-addon"><i class="icon-doc"></i></span>
+					<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="Document">
+				</div>
+			</ng-template>
+				
+
+			<label for="address">Address</label>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-home"></i></span>
+				<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="Address">
+			</div>
+
+			<div class="location-wrapper">
+				<div class="city-wrapper">
+					<label for="city">City</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+						<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="City">
+					</div>
+				</div>
+
+				<div class="state-wrapper">
+					<label for="state">State</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+						<input type="text" formControlName="state" name="state" id="state" class="form-control" placeholder="State">
+					</div>
+				</div>
+			</div>
+
+			<div class="zip-phone-wrapper">
+				<div class="zip-wrapper">
+					<label for="zip">Zip Code</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+						<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="Zip Code">
+					</div>
+				</div>
+
+				<div class="phone-wrapper">
+					<label for="phone">Phone</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="icon-phone"></i></span>
+						<input type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="Phone">
+					</div>
+				</div>
+			</div>
+
+			<label for="email">E-mail</label>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-envelope"></i></span>
+				<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="E-mail">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submeter</button>
+		</form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+form {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.select {
+	padding: 0.5rem;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background-color: #ffffff;
+	color: #607d8b;
+}
+
+.location-wrapper {
+	@media screen and (min-width: 768px) {
+		display: flex;
+		column-gap: 5rem;
+	
+		.city-wrapper {
+			width: 50%;
+		}
+	}
+}
+
+.zip-phone-wrapper {
+	@media screen and (min-width: 768px) {
+		display: flex;
+		gap: 5rem;
+
+		.zip-wrapper {
+			width: 50%;
+		}
+		
+		.phone-wrapper {
+			flex: 1;
+		}
+	}
+}

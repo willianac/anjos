@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { ReceiverListComponent } from './receiver-list/receiver-list.component';
 import { PurposeListComponent } from './purpose-list/purpose-list.component';
@@ -20,6 +20,7 @@ import { LanguageService } from '../services/language/language.service';
 
 import { ModalModule, ModalBackdropComponent, ModalDirective } from 'ngx-bootstrap/modal';
 import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
+import { NewReceiverComponent } from './new-receiver/new-receiver.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
     TranslateModule,
     FormsModule,
     LoadingModule,
+		ReactiveFormsModule,
     ToastrModule.forRoot(), // ToastrModule added
     ModalModule.forRoot()
   ],
@@ -39,6 +41,7 @@ import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
     AmountComponent,
     SummaryComponent,
 		PaymentComponent,
+		NewReceiverComponent,
 		Last4DigitsPipe
   ],
   entryComponents: [

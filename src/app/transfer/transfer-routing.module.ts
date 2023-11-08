@@ -7,6 +7,7 @@ import { ReceiverAccountListComponent } from './receiver-account-list/receiver-a
 import { AmountComponent } from './amount/amount.component';
 import { SummaryComponent } from './summary/summary.component';
 import { PaymentComponent } from './payment/payment.component';
+import { NewReceiverComponent } from './new-receiver/new-receiver.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,15 @@ const routes: Routes = [
 				data: {
 					title: 'PAYMENT'
 				}
+			},
+			{
+				path: 'new',
+				children: [
+					{
+						path: 'receiver',
+						component: NewReceiverComponent
+					}
+				]
 			}
     ]
   }

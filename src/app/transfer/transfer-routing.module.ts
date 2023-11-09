@@ -8,6 +8,7 @@ import { AmountComponent } from './amount/amount.component';
 import { SummaryComponent } from './summary/summary.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NewReceiverComponent } from './new-receiver/new-receiver.component';
+import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver-account.component';
 
 const routes: Routes = [
   {
@@ -68,7 +69,17 @@ const routes: Routes = [
 				children: [
 					{
 						path: 'receiver',
-						component: NewReceiverComponent
+						component: NewReceiverComponent,
+						data: {
+							title: 'NEW_RECEIVER'
+						}
+					},
+					{
+						path: 'receiver-account',
+						component: NewReceiverAccountComponent,
+						data: {
+							title: 'NEW_RECEIVER_ACCOUNT'
+						}
 					}
 				]
 			}

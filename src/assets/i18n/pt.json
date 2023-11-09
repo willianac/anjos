@@ -167,12 +167,30 @@
   "CELLPHONE": "Celular",
   "COUNTRY": "País",
   "STATE": "Estado",
-  "ZIPCODE": "Zipcode",
+  "ZIPCODE": "CEP",
   "MOTHER_NAME": "Nome da Mãe",
   "CREATE_ACCOUNT": "Criar Conta",
   "REGISTER_SUB": "Crie sua conta para efetuar remessas",
   "IDENTIFICATION_DOC": "Documento de Identidade",
   "IDENTIFICATION_DOC_TEXT": "Escaneie um dos seguintes documentos: carteira de identidade, CNH ou RG.",
 
-  "ACTIONS": "Ações"
+  "ACTIONS": "Ações",
+
+	"NEW_RECEIVER": "Novo Beneficiário",
+	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Preencha todos os campos para adicionar um novo beneficiário.",
+	"BRAZIL": "Brasil",
+	"USA": "Estados Unidos da América",
+	"FIRST_NAME": "Primeiro Nome",
+	"RELATIONSHIP": "Parentesco",
+	"PLEASE_SELECT": "Selecione",
+	"MYSELF": "Próprio",
+	"FRIEND": "Amigo",
+	"FAMILY": "Família",
+	"BUSINESS": "Negócios",
+	"OTHERS": "Outros",
+	"DOCUMENT": "Documento",
+	"CITY": "Cidade",
+	"CONTINUE": "Continuar",
+
+	"NEW_RECEIVER_ACCOUNT": "New Receiver Account"
 }

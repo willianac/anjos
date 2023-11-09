@@ -1,42 +1,57 @@
 <div class="card">
-  <div class="card-header" translate>Fill in all the fields to add a new receiver.</div>
+  <div class="card-header" translate>FILL_ALL_FIELDS_FOR_NEW_RECEIVER</div>
   <div class="card-block">
-    <form [formGroup]="receiverForm" (ngSubmit)="teste()">
+    <form [formGroup]="receiverForm" (ngSubmit)="submit()">
 
-			<label for="country">Country</label>
+			<label for="country" translate>COUNTRY</label>
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 				<select name="country" id="country" class="select" formControlName="country">
-					<option value="">Please select a country</option>
-					<option value="brazil">Brazil</option>
-					<option value="usa">United States</option>
+					<option value="" translate>PLEASE_SELECT</option>
+					<option value="brazil" translate>BRAZIL</option>
+					<option value="usa" translate>USA</option>
 				</select>
 			</div>
 
-			<label for="fullName">Full Name</label>
-			<div class="input-group mb-3">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<input type="text" name="fullName" id="fullName" class="form-control" placeholder="Full Name" formControlName="fullName">
+			<div class="name-wrapper">
+				<div class="first-name-wrapper">
+					<label for="firstName" translate>FIRST_NAME</label>
+					<div class="input-group mb-3">
+						<span class="input-group-addon"><i class="icon-user"></i></span>
+						<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName">
+					</div>
+				</div>
+
+				<div class="last-name-wrapper mb-3">
+					<label for="surname" translate>LASTNAME</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="icon-user"></i></span>
+						<input type="text" name="surname" id="surname" class="form-control" placeholder="{{'LASTNAME' | translate}}" formControlName="surname">
+					</div>
+					<app-input-fill-error
+						*ngIf="receiverForm.get('surname').hasError('pattern')"
+						description="Campo de Sobrenome deve ter apenas uma palavra."
+					></app-input-fill-error>
+				</div>
 			</div>
 
-			<label for="kinship">Who is the account holder?</label>
+			<label for="kinship" translate>RELATIONSHIP</label>
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
 				<select name="country" id="country" class="select" formControlName="kinship">
-					<option value="">Please select</option>
-					<option value="myself">Myself</option>
-					<option value="friend">Friend</option>
-					<option value="family">Family</option>
-					<option value="business">Business</option>
-					<option value="others">Others</option>
+					<option value="" translate>PLEASE_SELECT</option>
+					<option value="myself" translate>MYSELF</option>
+					<option value="friend" translate>FRIEND</option>
+					<option value="family" translate>FAMILY</option>
+					<option value="business" translate>BUSINESS</option>
+					<option value="others" translate>OTHERS</option>
 				</select>
 			</div>
 
-			<label for="personType">Tipo de Pessoa</label>
-			<div class="input-group mb-3">
+			<label *ngIf="receiverForm.get('country').value === 'brazil'" for="personType">Tipo de Pessoa</label>
+			<div *ngIf="receiverForm.get('country').value === 'brazil'" class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
 				<select name="personType" id="personType" class="select" formControlName="personType">
-					<option value="">Please select</option>
 					<option value="fisica">Fisica</option>
 					<option value="juridica">Jurídica</option>
 				</select>
@@ -47,7 +62,7 @@
 					<label for="document">CPF</label>
 					<div class="input-group mb-3">
 						<span class="input-group-addon"><i class="icon-doc"></i></span>
-						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF">
+						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF" maxlength="11">
 					</div>
 				</div>
 
@@ -55,69 +70,82 @@
 					<label for="document">CNPJ</label>
 					<div class="input-group mb-3">
 						<span class="input-group-addon"><i class="icon-doc"></i></span>
-						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ">
+						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ" maxlength="14">
 					</div>
 				</ng-template>
 			</div>
 
 			<ng-template #document>
-				<label for="document">Nº Document</label>
+				<label for="document" translate>DOCUMENT</label>
 				<div class="input-group mb-3">
 					<span class="input-group-addon"><i class="icon-doc"></i></span>
-					<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="Document">
+					<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}" maxlength="20">
 				</div>
 			</ng-template>
 				
 
-			<label for="address">Address</label>
+			<label for="address" translate>ADDRESS</label>
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-home"></i></span>
-				<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="Address">
+				<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
 			</div>
 
 			<div class="location-wrapper">
 				<div class="city-wrapper">
-					<label for="city">City</label>
+					<label for="city" translate>CITY</label>
 					<div class="input-group mb-3">
 						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-						<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="City">
+						<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
 					</div>
 				</div>
 
-				<div class="state-wrapper">
-					<label for="state">State</label>
-					<div class="input-group mb-3">
+				<div class="state-wrapper mb-3">
+					<label for="state" translate>STATE</label>
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-						<input type="text" formControlName="state" name="state" id="state" class="form-control" placeholder="State">
+						<input type="text" formControlName="state" name="state" id="state" class="form-control" placeholder="{{'STATE' | translate}}">
 					</div>
 				</div>
 			</div>
 
 			<div class="zip-phone-wrapper">
-				<div class="zip-wrapper">
-					<label for="zip">Zip Code</label>
-					<div class="input-group mb-3">
+				<div class="zip-wrapper mb-3">
+					<label for="zip" translate>ZIPCODE</label>
+					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
-						<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="Zip Code">
+						<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
 					</div>
 				</div>
 
-				<div class="phone-wrapper">
-					<label for="phone">Phone</label>
-					<div class="input-group mb-3">
+				<div class="phone-wrapper mb-3">
+					<label for="phone" translate>PHONE</label>
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-phone"></i></span>
-						<input type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="Phone">
+						<input (input)="maskPhone($event)" maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
 					</div>
+					<app-input-fill-error
+						*ngIf="receiverForm.get('phone').hasError('minlength') && receiverForm.get('phone').touched"
+						description="Insira um telefone válido"
+					></app-input-fill-error>
 				</div>
 			</div>
 
-			<label for="email">E-mail</label>
-			<div class="input-group mb-3">
-				<span class="input-group-addon"><i class="icon-envelope"></i></span>
-				<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="E-mail">
+			<div class="email-wrapper mb-3">
+				<label for="email" translate>EMAIL</label>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="icon-envelope"></i></span>
+					<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+				</div>
+				<app-input-fill-error
+					*ngIf="receiverForm.get('email').hasError('email') && receiverForm.get('email').touched"
+					description="Email inválido"
+				></app-input-fill-error>
 			</div>
 
-			<button type="submit" class="btn btn-primary">Submeter</button>
+			<div class="button-wrapper">
+				<button [routerLink]="['/admin']" type="button" class="btn btn-secondary" translate>Voltar</button>
+				<button type="submit" class="btn btn-primary" translate>CONTINUE</button>
+			</div>
 		</form>
   </div>
 </div>

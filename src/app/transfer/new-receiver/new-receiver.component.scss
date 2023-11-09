@@ -12,6 +12,22 @@ form {
 	color: #607d8b;
 }
 
+.name-wrapper {
+	.last-name-wrapper {
+		flex: 1;
+		position: relative;
+	}
+
+	@media screen and (min-width: 768px) {
+		display: flex;
+		column-gap: 5rem;
+	
+		.first-name-wrapper {
+			width: 50%;
+		}
+	}
+}
+
 .location-wrapper {
 	@media screen and (min-width: 768px) {
 		display: flex;
@@ -31,9 +47,27 @@ form {
 		.zip-wrapper {
 			width: 50%;
 		}
-		
-		.phone-wrapper {
-			flex: 1;
-		}
+	}
+	.phone-wrapper {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+}
+
+.email-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.button-wrapper {
+	display: flex;
+	gap: 1rem;
+	justify-content: right;
+
+	@media screen and (max-width: 480px) {
+		flex-direction: column-reverse;
 	}
 }

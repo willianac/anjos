@@ -175,9 +175,11 @@
   "IDENTIFICATION_DOC_TEXT": "Escaneie um dos seguintes documentos: carteira de identidade, CNH ou RG.",
 
   "ACTIONS": "Ações",
+	"ADD_RECEIVER": "Cadastrar Beneficiário",
 
 	"NEW_RECEIVER": "Novo Beneficiário",
 	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Preencha todos os campos para adicionar um novo beneficiário.",
+	"FILL_FIELDS": "Preencha os campos",
 	"BRAZIL": "Brasil",
 	"USA": "Estados Unidos da América",
 	"FIRST_NAME": "Primeiro Nome",
@@ -191,6 +193,9 @@
 	"DOCUMENT": "Documento",
 	"CITY": "Cidade",
 	"CONTINUE": "Continuar",
+	"INVALID_EMAIL": "Email inválido",
+	"INVALID_PHONE": "Insira um telefone válido",
+	"INVALID_SURNAME": "Campo de Sobrenome deve ter apenas uma palavra",
 
 	"NEW_RECEIVER_ACCOUNT": "New Receiver Account"
 }

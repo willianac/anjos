@@ -175,9 +175,11 @@
   "IDENTIFICATION_DOC_TEXT": "Scan one of those documents: Driver's License or ID Card.",
 
   "ACTIONS": "Actions",
+	"ADD_RECEIVER": "New Receiver",
 
 	"NEW_RECEIVER": "New Receiver",
 	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Fill in all the fields to add a new receiver.",
+	"FILL_FIELDS": "Fill in the fields",
 	"BRAZIL": "Brazil",
 	"USA": "United States of America",
 	"FIRST_NAME": "First Name",
@@ -191,6 +193,9 @@
 	"DOCUMENT": "Document",
 	"CITY": "City",
 	"CONTINUE": "Continue",
+	"INVALID_EMAIL": "Invalid Email",
+	"INVALID_PHONE": "Enter a valid phone number",
+	"INVALID_SURNAME": "Last name field must have only one word",
 
 	"NEW_RECEIVER_ACCOUNT": "New Receiver Account"
 }

@@ -1,6 +1,7 @@
 import { Component, HostListener } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
 
 @Component({
@@ -25,7 +26,12 @@ export class NewReceiverComponent {
 		kinship: ["", Validators.required]
 	})
 
-	constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router) {}
+	constructor(
+		private fb: FormBuilder, 
+		private toastr: ToastrService, 
+		private router: Router, 
+		private translate: TranslateService
+	) {}
 
 	@HostListener("keydown.backspace", ["$event"])
 	keyDownBackspace(event){
@@ -35,8 +41,9 @@ export class NewReceiverComponent {
 	}
 
 	public submit() {
-		if(!this.receiverForm.valid) return this.toastr.error("Por favor, preencha todos os campos", "Preencha os campos")
-
+		if(!this.receiverForm.valid) {
+			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
+		}
 		this.router.navigate(["admin", "transfer", "new", "receiver-account"])
 	}
 

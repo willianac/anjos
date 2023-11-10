@@ -196,6 +196,8 @@
 	"INVALID_EMAIL": "Invalid Email",
 	"INVALID_PHONE": "Enter a valid phone number",
 	"INVALID_SURNAME": "Last name field must have only one word",
+	"INVALID_CPF": "Invalid CPF",
+	"INVALID_CNPJ": "Invalid CNPJ",
 
 	"NEW_RECEIVER_ACCOUNT": "New Receiver Account"
 }

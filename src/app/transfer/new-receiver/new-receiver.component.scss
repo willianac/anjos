@@ -56,12 +56,6 @@ form {
 	}
 }
 
-.email-wrapper {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-}
-
 .button-wrapper {
 	display: flex;
 	gap: 1rem;
@@ -70,6 +64,12 @@ form {
 	@media screen and (max-width: 480px) {
 		flex-direction: column-reverse;
 	}
+}
+
+.field-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 .input-error {

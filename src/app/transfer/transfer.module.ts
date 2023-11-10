@@ -21,8 +21,8 @@ import { LanguageService } from '../services/language/language.service';
 import { ModalModule, ModalBackdropComponent, ModalDirective } from 'ngx-bootstrap/modal';
 import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
 import { NewReceiverComponent } from './new-receiver/new-receiver.component';
-import { InputFillErrorModule } from 'app/shared/input-fill-error/input-fill-error.module';
 import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver-account.component';
+import { NewReceiverService } from 'app/services/new-receiver/new-receiver.service';
 
 
 @NgModule({
@@ -33,7 +33,6 @@ import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver
     FormsModule,
     LoadingModule,
 		ReactiveFormsModule,
-		InputFillErrorModule,
     ToastrModule.forRoot(), // ToastrModule added
     ModalModule.forRoot()
   ],
@@ -53,6 +52,7 @@ import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver
   providers: [
     TransferService,
     LanguageService,
+		NewReceiverService
   ]
 })
 export class TransferModule { }

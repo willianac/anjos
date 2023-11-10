@@ -59,21 +59,35 @@
 				</select>
 			</div>
 
-			<div *ngIf="receiverForm.get('country').value === 'brazil' && receiverForm.get('personType').value !== ''; else document">
-				<div *ngIf="receiverForm.get('personType').value === 'fisica'; else cnpj">
+			<div *ngIf="receiverForm.get('country').value === 'brazil' && receiverForm.get('personType').value !== ''; else document" class="mb-3">
+				<div *ngIf="receiverForm.get('personType').value === 'fisica'; else cnpj" class="field-wrapper">
 					<label for="document">CPF</label>
-					<div class="input-group mb-3">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-doc"></i></span>
-						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF" maxlength="11">
+						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF">
 					</div>
+					<small 
+						*ngIf="!isCPFValid() && receiverForm.get('document').touched" 
+						class="input-error"
+						translate
+						>INVALID_CPF
+					</small>
 				</div>
 
 				<ng-template #cnpj>
-					<label for="document">CNPJ</label>
-					<div class="input-group mb-3">
-						<span class="input-group-addon"><i class="icon-doc"></i></span>
-						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ" maxlength="14">
-					</div>
+					<div class="field-wrapper mb-3">
+						<label for="document">CNPJ</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon-doc"></i></span>
+							<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ">
+						</div>
+						<small 
+							*ngIf="!isCNPJValid() && receiverForm.get('document').touched"
+							class="input-error"
+							translate
+							>INVALID_CNPJ
+						</small>
+				</div>
 				</ng-template>
 			</div>
 
@@ -81,7 +95,7 @@
 				<label for="document" translate>DOCUMENT</label>
 				<div class="input-group mb-3">
 					<span class="input-group-addon"><i class="icon-doc"></i></span>
-					<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}" maxlength="20">
+					<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
 				</div>
 			</ng-template>
 				
@@ -105,7 +119,7 @@
 					<label for="state" translate>STATE</label>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-						<input type="text" formControlName="state" name="state" id="state" class="form-control" placeholder="{{'STATE' | translate}}">
+						<input type="text" formControlName="state" name="state" id="state" class="form-control" placeholder="{{'STATE' | translate}}" maxlength="3">
 					</div>
 				</div>
 			</div>
@@ -134,7 +148,7 @@
 				</div>
 			</div>
 
-			<div class="email-wrapper mb-3">
+			<div class="field-wrapper mb-3">
 				<label for="email" translate>EMAIL</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon-envelope"></i></span>

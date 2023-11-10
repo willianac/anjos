@@ -41,7 +41,10 @@ export class NewReceiverComponent {
 	@HostListener("keydown.backspace", ["$event"])
 	keyDownBackspace(event){
 		if(event.target.id === "phone") {
-			this.maskPhone(event, true)
+			const phone = this.receiverForm.get("phone").value.replace(/\D/g, '') as string
+			if(phone.length <= 9) {
+				this.receiverForm.get("phone").setValue(phone.substring(0, phone.length - 1))
+			}
 		}
 	}
 
@@ -74,25 +77,6 @@ export class NewReceiverComponent {
 			return validCNPJ(cnpj)
 		}
 		return true
-	}
- 
-	public maskPhone(event: any, backspace: boolean) {
-		let newVal = event.target.value.replace(/\D/g, '') as string; // Remove non-digit characters
-
-		if (backspace && newVal.length <= 9) {
-      newVal = newVal.substring(0, newVal.length - 1);
-    }
-
-		if (newVal.length <= 2) {
-			newVal = `+ ${newVal}`;
-		} else if (newVal.length <= 4) {
-			newVal = `+ ${newVal.slice(0, 2)} (${newVal.slice(2)})`;
-		} else if (newVal.length <= 12) {
-			newVal = `+ ${newVal.slice(0, 2)} (${newVal.slice(2, 4)}) ${newVal.slice(4, 8)}-${newVal.slice(8)}`;
-		} else {
-			newVal = `+ ${newVal.slice(0, 2)} (${newVal.slice(2, 4)}) ${newVal.slice(4, 9)}-${newVal.slice(9)}`;
-		}
-		this.receiverForm.get("phone").setValue(newVal)
 	}
 
 	private sanitizePhone(phone: string) {

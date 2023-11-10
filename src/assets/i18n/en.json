@@ -188,6 +188,9 @@
 	"MYSELF": "Myself",
 	"FRIEND": "Friend",
 	"FAMILY": "Family",
+	"PERSON_TYPE": "Type",
+	"INDIVIDUAL": "Individual",
+	"CORPORATION": "Corporation",
 	"BUSINESS": "Business",
 	"OTHERS": "Others",
 	"DOCUMENT": "Document",
@@ -199,5 +202,5 @@
 	"INVALID_CPF": "Invalid CPF",
 	"INVALID_CNPJ": "Invalid CNPJ",
 
-	"NEW_RECEIVER_ACCOUNT": "New Receiver Account"
+	"NEW_RECEIVER_ACCOUNT": "New Account"
 }

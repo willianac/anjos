@@ -50,12 +50,12 @@
 				</select>
 			</div>
 
-			<label *ngIf="receiverForm.get('country').value === 'brazil'" for="personType">Tipo de Pessoa</label>
+			<label *ngIf="receiverForm.get('country').value === 'brazil'" for="personType" translate>PERSON_TYPE</label>
 			<div *ngIf="receiverForm.get('country').value === 'brazil'" class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
 				<select name="personType" id="personType" class="select" formControlName="personType">
-					<option value="fisica">Fisica</option>
-					<option value="juridica">Jurídica</option>
+					<option value="fisica" translate>INDIVIDUAL</option>
+					<option value="juridica" translate>CORPORATION</option>
 				</select>
 			</div>
 
@@ -137,7 +137,7 @@
 					<label for="phone" translate>PHONE</label>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-phone"></i></span>
-						<input (input)="maskPhone($event)" maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
+						<input appPhoneMask maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
 					</div>
 					<small 
 						*ngIf="receiverForm.get('phone').hasError('minlength') && receiverForm.get('phone').touched" 

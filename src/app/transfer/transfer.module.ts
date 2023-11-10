@@ -23,6 +23,7 @@ import { Last4DigitsPipe } from 'app/shared/last-4-digits.pipe';
 import { NewReceiverComponent } from './new-receiver/new-receiver.component';
 import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver-account.component';
 import { NewReceiverService } from 'app/services/new-receiver/new-receiver.service';
+import { PhoneMaskDirective } from 'app/shared/phone-mask.directive';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { NewReceiverService } from 'app/services/new-receiver/new-receiver.servi
 		PaymentComponent,
 		NewReceiverComponent,
 		NewReceiverAccountComponent,
-		Last4DigitsPipe
+		Last4DigitsPipe,
+		PhoneMaskDirective
   ],
   entryComponents: [
   ],

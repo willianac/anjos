@@ -188,6 +188,9 @@
 	"MYSELF": "Próprio",
 	"FRIEND": "Amigo",
 	"FAMILY": "Família",
+	"PERSON_TYPE": "Tipo de pessoa",
+	"INDIVIDUAL": "Física",
+	"CORPORATION": "Jurídica",
 	"BUSINESS": "Negócios",
 	"OTHERS": "Outros",
 	"DOCUMENT": "Documento",
@@ -199,5 +202,5 @@
 	"INVALID_CPF": "CPF Inválido",
 	"INVALID_CNPJ": "CNPJ Inválido",
 
-	"NEW_RECEIVER_ACCOUNT": "New Receiver Account"
+	"NEW_RECEIVER_ACCOUNT": "Adicionar Conta"
 }

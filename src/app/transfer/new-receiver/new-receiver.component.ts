@@ -1,4 +1,4 @@
-import { Component, HostListener } from "@angular/core";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
@@ -7,13 +7,16 @@ import { validate } from "gerador-validador-cpf"
 import { SessionService } from "app/services/session/session.service";
 import { NewReceiverService } from "app/services/new-receiver/new-receiver.service";
 import { validCNPJ } from "../../shared/cnpj-validator"
+import { Kinship, KinshipService } from "app/services/kinship/kinships.service";
+import { Bank, BankInfoService } from "app/services/bank-info/bank-info.service";
 
 @Component({
 	selector: "app-new-receiver",
 	templateUrl: "./new-receiver.component.html",
 	styleUrls: ["./new-receiver.component.scss"]
 })
-export class NewReceiverComponent {
+export class NewReceiverComponent implements OnInit {
+	kinshipList: Kinship[]
 	receiverForm = this.fb.group({
 		country: ["", Validators.required],
 		firstName: ["", [Validators.required, Validators.maxLength(40)]],
@@ -29,13 +32,23 @@ export class NewReceiverComponent {
 		kinship: ["", Validators.required]
 	})
 
+	bankList: Bank[]
+	receiverAccountForm = this.fb.group({
+		bankName: ["", Validators.required],
+		branch: ["", Validators.required],
+		account: ["", Validators.required],
+		pix: ["", Validators.required]
+	})
+
 	constructor(
 		private fb: FormBuilder, 
 		private toastr: ToastrService, 
 		private router: Router, 
 		private translate: TranslateService,
 		private session: SessionService,
-		private newReceiverService: NewReceiverService
+		private newReceiverService: NewReceiverService,
+		private kinshipService: KinshipService,
+		private bankService: BankInfoService
 	) {}
 
 	@HostListener("keydown.backspace", ["$event"])
@@ -49,18 +62,13 @@ export class NewReceiverComponent {
 	}
 
 	public submit() {
-		if(!this.receiverForm.valid || !this.isCPFValid() || !this.isCNPJValid()) {
+		if(!this.receiverForm.valid || !this.isCPFValid() || !this.isCNPJValid() || !this.receiverAccountForm.valid) {
 			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
 		}
 		
-		const xmlData = this.createXml()
-
-		// this.newReceiverService.addReceiver(xmlData).subscribe((res) => {
-		// 	console.log(res)
-		// })
+		const xmlData = this.createNewReceiverXml()
 
 		this.toastr.success("O formulário foi preenchido corretamente.", "Formulário válido!")
-		//this.router.navigate(["admin", "transfer", "new", "receiver-account"])
 	}
 
 	public isCPFValid(): boolean {
@@ -87,7 +95,7 @@ export class NewReceiverComponent {
 		return "#" + zip.replace(/[^\d]/g, '')
 	}
 
-	private createXml() {
+	private createNewReceiverXml() {
 		const sessionKey = this.session.get("linkInfo").SessionKey
 		const country = this.receiverForm.get("country").value;
 		const firstName = this.receiverForm.get("firstName").value;
@@ -103,7 +111,7 @@ export class NewReceiverComponent {
 		const flag = "BR"
 		const owner = this.session.get("linkInfo").BranchNo
 
-		const xmlData = `<?xml version='1.0'?>
+		return `<?xml version='1.0'?>
 		<?note XpAddReceiver?>
 
 		<XPRESSO>
@@ -127,6 +135,62 @@ export class NewReceiverComponent {
 			</RECEIVER>
 		</XPRESSO>
 		`
-		return xmlData
+	}
+
+	private createNewReceiverAccountXml() {
+		const sessionKey = this.session.get("linkInfo").SessionKey
+		const pix = this.receiverAccountForm.get("pix").value
+		const branch = this.receiverAccountForm.get("branch").value
+		const account = this.receiverAccountForm.get("account").value
+		const bank = this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME) as Bank
+
+		return `<?xml version='1.0'?>
+		<?note XpAddReceiverAccount?>
+			<XPRESSO>
+				<AUTHENTICATE>
+					<SESSIONKEY>${sessionKey}</SESSIONKEY>
+				</AUTHENTICATE>
+				<RECEIVERACCOUNT>
+						<ACCT>${pix ? pix : account}</ACCT>			
+						<BANKBRANCH>${branch}</BANKBRANCH>
+						<BANKNAME>${bank.BANKNAME}</BANKNAME>
+						<BANKNUMBER>${bank.BANKNUMBER}</BANKNUMBER>
+						<CITY></CITY>
+						<RECEIVERID>4437</RECEIVERID>
+						<STATE></STATE>
+						<TYPE>C</TYPE>
+				</RECEIVERACCOUNT>
+			</XPRESSO>
+		`
+	}
+
+
+
+	ngOnInit() {
+		this.kinshipService.getKinships().subscribe((res: Kinship[]) => {
+			this.kinshipList = res
+		})
+		this.bankService.getBanks().subscribe((res: Bank[]) => {
+			this.bankList = res
+		})
+
+		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
+			if(val === "PIX") {
+				this.receiverAccountForm.controls["branch"].clearValidators()
+				this.receiverAccountForm.controls["account"].clearValidators()
+				this.receiverAccountForm.controls["pix"].setValidators([Validators.required])
+				this.receiverAccountForm.controls["branch"].setValue("")
+				this.receiverAccountForm.controls["account"].setValue("")
+			} else {
+				this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
+				this.receiverAccountForm.controls["account"].setValidators([Validators.required])
+				this.receiverAccountForm.controls["pix"].clearValidators()
+				this.receiverAccountForm.controls["pix"].setValue("")
+			}
+			
+			this.receiverAccountForm.get("branch").updateValueAndValidity();
+			this.receiverAccountForm.get("account").updateValueAndValidity();
+			this.receiverAccountForm.get("pix").updateValueAndValidity();
+		})
 	}
 }

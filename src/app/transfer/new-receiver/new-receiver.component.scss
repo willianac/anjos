@@ -1,7 +1,15 @@
-form {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+.card-block {
+	padding: 1.25rem 4rem 1.25rem 4rem;
+
+	@media screen and (max-width: 480px) {
+		padding: 1.25rem 1.75rem 1.25rem 1.75rem;
+	}
+}
+
+.form-title {
+	font-size: 20px;
+	font-weight: 600;	
+	margin-bottom: 1.25rem;
 }
 
 .select {
@@ -10,50 +18,6 @@ form {
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	background-color: #ffffff;
 	color: #607d8b;
-}
-
-.name-wrapper {
-	.last-name-wrapper {
-		flex: 1;
-		position: relative;
-	}
-
-	@media screen and (min-width: 768px) {
-		display: flex;
-		column-gap: 5rem;
-	
-		.first-name-wrapper {
-			width: 50%;
-		}
-	}
-}
-
-.location-wrapper {
-	@media screen and (min-width: 768px) {
-		display: flex;
-		column-gap: 5rem;
-	
-		.city-wrapper {
-			width: 50%;
-		}
-	}
-}
-
-.zip-phone-wrapper {
-	@media screen and (min-width: 768px) {
-		display: flex;
-		gap: 5rem;
-
-		.zip-wrapper {
-			width: 50%;
-		}
-	}
-	.phone-wrapper {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		position: relative;
-	}
 }
 
 .button-wrapper {
@@ -74,4 +38,20 @@ form {
 
 .input-error {
 	color: red
+}
+
+.forms-divider {
+	margin: 2.25rem auto 2.25rem auto;
+}
+
+.inline-field-wrapper {
+
+	@media screen and (min-width: 768px) {
+		display: flex;
+		column-gap: 5rem;
+
+		div {
+			flex: 1;
+		}
+	}
 }

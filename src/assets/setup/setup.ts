@@ -3,4 +3,5 @@ export type AppSetup = {
 	clientName: string
 	footerCopyright: string
 	footerCopyrightYear: string
+	sampleApiCalls: string
 }

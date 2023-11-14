@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers } from "@angular/http";
-import * as xml2js from 'xml2js';
+import { Http } from "@angular/http";
 
 const setupData = require("../../../assets/setup/setup.json")
 import { AppSetup } from 'assets/setup/setup';
 import { Observable } from "rxjs";
 import { SessionService } from "../session/session.service";
+import { XmlParserService } from "../xml-parser/xml-parser.service";
 
 export type ReceiverResponse = {
 	RECEIVERID: string
@@ -21,44 +21,20 @@ export type ReceiverAccountResponse = {
 export class NewReceiverService {
 	private url = ""
 
-	constructor(private http: Http, private session: SessionService) {
+	constructor(private http: Http, private session: SessionService, private xmlParserService: XmlParserService) {
 		const setup = setupData as AppSetup
 		this.url = setup.sampleApiCalls
 	}
-	public addReceiver(xmlData: string) {
-		return this.http.post(this.url + "XpAddReceiver.cfm", xmlData).switchMap((res) => {
-			const body = res.text()
-			const parser = new xml2js.Parser({explicitArray: false})
 
-			return new Observable((observer) => {
-				parser.parseString(body, (err, result) => {
-					if(err) {
-						observer.error(err)
-					} else {
-						observer.next(result.RECEIVER as ReceiverResponse)
-						observer.complete()
-					}
-				})
-			})
+	public addReceiver(xmlData: string): Observable<any> {
+		return this.http.post(this.url + "XpAddReceiver.cfm", xmlData).switchMap((res) => {
+			return this.xmlParserService.parseXml(res, "RECEIVER")
 		})
 	}
 
-	public addReceiverAccount(xmlData: string) {
-
+	public addReceiverAccount(xmlData: string): Observable<any> {
 		return this.http.post(this.url + "XpAddReceiverAccount.cfm", xmlData).switchMap((res) => {
-			const body = res.text()
-			const parser = new xml2js.Parser({explicitArray: false})
-
-			return new Observable((observer) => {
-				parser.parseString(body, (err, result) => {
-					if(err) {
-						observer.error(err)
-					} else {
-						observer.next(result.RECEIVERACCOUNT as ReceiverAccountResponse)
-						observer.complete()
-					}
-				})
-			})
+			return this.xmlParserService.parseXml(res, "RECEIVERACCOUNT")
 		})
 	}
 }

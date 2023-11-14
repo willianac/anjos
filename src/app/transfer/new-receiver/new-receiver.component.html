@@ -182,36 +182,36 @@
 
 			<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'; else PixKey" class="inline-field-wrapper">
 				<div>
-					<label for="branch">Agência</label>
+					<label for="branch" translate>BRANCH</label>
 					<div class="input-group mb-3">
 						<span class="input-group-addon"><i class="icon-home"></i></span>
-						<input type="number" formControlName="branch" name="branch" id="branch" class="form-control" placeholder="Agência" autocomplete="off">
+						<input type="number" formControlName="branch" name="branch" id="branch" class="form-control" placeholder="{{'BRANCH' | translate}}" autocomplete="off">
 					</div>
 				</div>
 
 				<div>
-					<label for="account">Conta</label>
+					<label for="account" translate>ACCOUNT</label>
 					<div class="input-group mb-3">
 						<span class="input-group-addon"><i class="icon-home"></i></span>
-						<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="Conta" autocomplete="off">
+						<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="{{'ACCOUNT' | translate}}" autocomplete="off">
 					</div>
 				</div>
 			</div>
 
 			<ng-template #PixKey>
-				<label for="pix">Chave Pix</label>
+				<label for="pix" translate>PIX_KEY</label>
 				<div class="input-group mb-3">
 					<span class="input-group-addon"><i class="icon-home"></i></span>
-					<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="Pix" autocomplete="off">
+					<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="{{'PIX_KEY' | translate}}" autocomplete="off">
 				</div>
 			</ng-template>
 		</form>
-		<!-- <div class="loading-wrapper">
-			<ngx-loading show="true"></ngx-loading>
-		</div> -->
+		<div class="loading-wrapper">
+			<ngx-loading [show]="isLoading"></ngx-loading>
+		</div>
 		<div class="button-wrapper">
 			<button [routerLink]="['/admin']" type="button" class="btn btn-secondary" translate>BACK</button>
-			<button (click)="submit()" class="btn btn-primary" translate>CONTINUE</button>
+			<button (click)="submit()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>
 		</div>
   </div>
 </div>

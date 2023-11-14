@@ -48,6 +48,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 
 import { PagesModule } from './pages/pages.module';
 import { TransferModule } from './transfer/transfer.module';
+import { XmlParserService } from './services/xml-parser/xml-parser.service';
 
 @NgModule({
   imports: [
@@ -104,7 +105,8 @@ import { TransferModule } from './transfer/transfer.module';
     SessionService,
     LanguageService,
     LoginService,
-    SenderAccountService
+    SenderAccountService,
+		XmlParserService
   ],
   bootstrap: [ AppComponent ],
   exports: [

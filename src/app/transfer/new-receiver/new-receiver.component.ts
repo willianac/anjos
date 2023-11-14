@@ -7,8 +7,8 @@ import { validate } from "gerador-validador-cpf"
 import { SessionService } from "app/services/session/session.service";
 import { NewReceiverService, ReceiverAccountResponse, ReceiverResponse } from "app/services/new-receiver/new-receiver.service";
 import { validCNPJ } from "../../shared/cnpj-validator"
-import { AddSenderReceiverKinshipResponse, Kinship, KinshipService } from "app/services/kinship/kinships.service";
-import { Bank, BankInfoService } from "app/services/bank-info/bank-info.service";
+import { AddSenderReceiverKinshipResponse, Kinships, KinshipService } from "app/services/kinship/kinships.service";
+import { Banks, BankInfoService } from "app/services/bank-info/bank-info.service";
 
 @Component({
 	selector: "app-new-receiver",
@@ -16,7 +16,7 @@ import { Bank, BankInfoService } from "app/services/bank-info/bank-info.service"
 	styleUrls: ["./new-receiver.component.scss"]
 })
 export class NewReceiverComponent implements OnInit {
-	kinshipList: Kinship[]
+	kinshipList = []
 	receiverForm = this.fb.group({
 		country: ["", Validators.required],
 		firstName: ["", [Validators.required, Validators.maxLength(40)]],
@@ -32,13 +32,14 @@ export class NewReceiverComponent implements OnInit {
 		kinship: ["", Validators.required]
 	})
 
-	bankList: Bank[]
+	bankList = []
 	receiverAccountForm = this.fb.group({
 		bankName: ["", Validators.required],
 		branch: ["", Validators.required],
 		account: ["", Validators.required],
 		pix: ["", Validators.required]
 	})
+	isLoading = false;
 
 	constructor(
 		private fb: FormBuilder, 
@@ -65,29 +66,26 @@ export class NewReceiverComponent implements OnInit {
 		if(!this.receiverForm.valid || !this.isCPFValid() || !this.isCNPJValid() || !this.receiverAccountForm.valid) {
 			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
 		}
+		this.isLoading = true
 
 		const newReceiverXml = this.createNewReceiverXml()
-		let senderID = this.session.get("linkInfo").SenderId
+
+		const senderID = this.session.get("linkInfo").SenderId
 		let receiverID = ""
 		
 		this.newReceiverService.addReceiver(newReceiverXml)
 			.switchMap((res: ReceiverResponse) => {
 				receiverID = res.RECEIVERID
-				console.log("RESPOSTA ao adicionar um receiver")
-				console.log(res)
 				const receiverAccountXml = this.createNewReceiverAccountXml(res.RECEIVERID)
 				return this.newReceiverService.addReceiverAccount(receiverAccountXml)
 			})
 			.switchMap((res: ReceiverAccountResponse) => {
-				console.log("RESPOSTA ao adicionar um receiver account")
-				console.log(res)
 				const kinshipID = this.receiverForm.get("kinship").value;
 				return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
 			})
 			.subscribe((res: AddSenderReceiverKinshipResponse) => {
-				console.log("RESPOSTA ao adicionar um kinship")
-				console.log(res)
 				this.toastr.success("Parabéns! Um novo beneficiário foi adicionado!", "Formulário válido!")
+				this.isLoading = false
 			})
 	}
 
@@ -160,7 +158,7 @@ export class NewReceiverComponent implements OnInit {
 		const pix = this.receiverAccountForm.get("pix").value
 		const branch = this.receiverAccountForm.get("branch").value
 		const account = this.receiverAccountForm.get("account").value
-		const bank = this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME) as Bank
+		const bank = this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME)
 
 		return `<?xml version='1.0'?>
 		<?note XpAddReceiverAccount?>
@@ -181,13 +179,18 @@ export class NewReceiverComponent implements OnInit {
 			</XPRESSO>
 		`
 	}
-	
+
 	ngOnInit() {
-		this.kinshipService.getKinships().subscribe((res: Kinship[]) => {
-			this.kinshipList = res
+		this.kinshipService.getKinships().subscribe((res: Kinships) => {
+			for(let kinship of res.KINSHIP) {
+				this.kinshipList.push(kinship)
+			}
 		})
-		this.bankService.getBanks().subscribe((res: Bank[]) => {
-			this.bankList = res
+
+		this.bankService.getBanks().subscribe((res: Banks) => {
+			for(let bank of res.BANK) {
+				this.bankList.push(bank)
+			}
 		})
 
 		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {

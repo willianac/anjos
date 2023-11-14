@@ -1,26 +1,28 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { Observable } from "rxjs";
-import * as xml2js from 'xml2js';
 
 const setupData = require("../../../assets/setup/setup.json")
 import { AppSetup } from 'assets/setup/setup';
 import { SessionService } from "../session/session.service";
+import { XmlParserService } from "../xml-parser/xml-parser.service";
 
-export type Bank = {
-	$: {
-		index: string
-	}
-	BANKNAME: string
-	BANKNUMBER: string
-	UNIT: string
+export type Banks = {
+	BANK: {
+		$: {
+			index: string
+		}
+		BANKNAME: string
+		BANKNUMBER: string
+		UNIT: string
+	}[]
 }
 
 @Injectable()
 export class BankInfoService {
 	private url = "";
 
-	constructor(private http: Http, private session: SessionService) {
+	constructor(private http: Http, private session: SessionService, private xmlParserService: XmlParserService) {
 		const setup = setupData as AppSetup
 		this.url = setup.sampleApiCalls
 	}
@@ -39,19 +41,7 @@ export class BankInfoService {
 		`
 
 		return this.http.post(this.url + "XpGetBanks.cfm", xmlAuth).switchMap((res) => {
-			const body = res.text()
-			const parser = new xml2js.Parser({explicitArray: false})
-
-			return new Observable((observer) => {
-				parser.parseString(body, (err, result) => {
-					if(err) {
-						observer.error(err)
-					} else {
-						observer.next(result.BANKCODES.BANK as Bank[])
-						observer.complete()
-					}
-				})
-			})
+			return this.xmlParserService.parseXml(res, "BANKCODES")
 		})
 	}
 

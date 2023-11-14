@@ -1,18 +1,20 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { Observable } from "rxjs";
-import * as xml2js from 'xml2js';
 
 const setupData = require("../../../assets/setup/setup.json")
 import { AppSetup } from 'assets/setup/setup';
 import { SessionService } from "../session/session.service";
+import { XmlParserService } from "../xml-parser/xml-parser.service";
 
-export type Kinship = {
-	$: {
-		index: string
-	}
-	KINSHIPID: string
-	KINSHIPNAME: string
+export type Kinships = {
+	KINSHIP: {
+		$: {
+			index: string
+		}
+		KINSHIPID: string
+		KINSHIPNAME: string
+	}[]
 }
 
 export type AddSenderReceiverKinshipResponse = {
@@ -25,7 +27,7 @@ export type AddSenderReceiverKinshipResponse = {
 export class KinshipService {
 	private url = ""
 
-	constructor(private http: Http, private session: SessionService) {
+	constructor(private http: Http, private session: SessionService, private xmlParserService: XmlParserService) {
 		const setup = setupData as AppSetup
 		this.url = setup.sampleApiCalls
 	}
@@ -44,19 +46,7 @@ export class KinshipService {
 		`
 		
 		return this.http.post(this.url+ "XpGetKINSHIP.cfm", xmlAuth).switchMap((res) => {
-			const body = res.text()
-			const parser = new xml2js.Parser({explicitArray: false})
-
-			return new Observable((observer) => {
-				parser.parseString(body, (err, result) => {
-					if(err) {
-						observer.error(err)
-					} else {
-						observer.next(result.KINSHIPS.KINSHIP as Kinship)
-						observer.complete()
-					}
-				})
-			})
+			return this.xmlParserService.parseXml(res, "KINSHIPS")
 		})
 	}
 
@@ -77,21 +67,8 @@ export class KinshipService {
 				</SENDERRECEIVERKINSHIP>
 			</XPRESSO>
 		`
-
 		return this.http.post(this.url + "XpAddSenderReceiverKinship.cfm", xmlData).switchMap((res) => {
-			const body = res.text()
-			const parser = new xml2js.Parser({explicitArray: false})
-
-			return new Observable((observer) => {
-				parser.parseString(body, (err, result) => {
-					if(err) {
-						observer.error(err)
-					} else {
-						observer.next(result.SENDERRECEIVERKINSHIP as AddSenderReceiverKinshipResponse)
-						observer.complete()
-					}
-				})
-			})
+			return this.xmlParserService.parseXml(res, "SENDERRECEIVERKINSHIP")
 		})
 	}
 }

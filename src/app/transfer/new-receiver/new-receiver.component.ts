@@ -68,16 +68,30 @@ export class NewReceiverComponent implements OnInit {
 		}
 		this.isLoading = true
 
-		const newReceiverXml = this.createNewReceiverXml()
-
 		const senderID = this.session.get("linkInfo").SenderId
 		let receiverID = ""
 		
-		this.newReceiverService.addReceiver(newReceiverXml)
+		this.newReceiverService.addReceiver(
+			this.receiverForm.get("country").value,
+			this.receiverForm.get("firstName").value,
+			this.receiverForm.get("surname").value,
+			this.receiverForm.get("document").value,
+			this.receiverForm.get("address").value,
+			this.receiverForm.get("city").value,
+			this.receiverForm.get("state").value,
+			this.sanitizeZipCode(this.receiverForm.get("zip").value),
+			this.sanitizePhone(this.receiverForm.get("phone").value),
+			this.receiverForm.get("email").value
+		)
 			.switchMap((res: ReceiverResponse) => {
 				receiverID = res.RECEIVERID
-				const receiverAccountXml = this.createNewReceiverAccountXml(res.RECEIVERID)
-				return this.newReceiverService.addReceiverAccount(receiverAccountXml)
+				return this.newReceiverService.addReceiverAccount(
+					receiverID,
+					this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME),
+					this.receiverAccountForm.get("branch").value,
+					this.receiverAccountForm.get("account").value,
+					this.receiverAccountForm.get("pix").value
+				)
 			})
 			.switchMap((res: ReceiverAccountResponse) => {
 				const kinshipID = this.receiverForm.get("kinship").value;
@@ -111,73 +125,6 @@ export class NewReceiverComponent implements OnInit {
 
 	private sanitizeZipCode(zip: string) {
 		return "#" + zip.replace(/[^\d]/g, '')
-	}
-
-	private createNewReceiverXml() {
-		const sessionKey = this.session.get("linkInfo").SessionKey
-		const country = this.receiverForm.get("country").value;
-		const firstName = this.receiverForm.get("firstName").value;
-		const lastName = this.receiverForm.get("surname").value;
-		const document = this.receiverForm.get("document").value;
-		const address = this.receiverForm.get("address").value;
-		const city = this.receiverForm.get("city").value;
-		const state = this.receiverForm.get("state").value;
-		const zip = this.sanitizeZipCode(this.receiverForm.get("zip").value);
-		const phone = this.sanitizePhone(this.receiverForm.get("phone").value);
-		const email = this.receiverForm.get("email").value;
-		const flag = "BR"
-		const owner = this.session.get("linkInfo").BranchNo
-
-		return `<?xml version='1.0'?>
-		<?note XpAddReceiver?>
-		<XPRESSO>
-			<AUTHENTICATE>
-				<SESSIONKEY>${sessionKey}</SESSIONKEY>
-			</AUTHENTICATE>
-			<RECEIVER>
-				<ADDRESS>${address}</ADDRESS>
-				<CELLPHONE>${phone}</CELLPHONE>
-				<CITY>${city}</CITY>
-				<COUNTRY>${country}</COUNTRY>
-				<EMAIL>${email}</EMAIL>
-				<FLAG>${flag}</FLAG>
-				<OWNER>${owner}</OWNER>
-				<PHONE>${phone}</PHONE>
-				<RECEIVERDOC>${document}</RECEIVERDOC>
-				<RECEIVERLAST>${lastName}</RECEIVERLAST>
-				<RECEIVERNAME>${firstName}</RECEIVERNAME>
-				<STATE>${state}</STATE>
-				<ZIP>${zip}</ZIP>
-			</RECEIVER>
-		</XPRESSO>
-		`
-	}
-
-	private createNewReceiverAccountXml(receiverId: string) {
-		const sessionKey = this.session.get("linkInfo").SessionKey
-		const pix = this.receiverAccountForm.get("pix").value
-		const branch = this.receiverAccountForm.get("branch").value
-		const account = this.receiverAccountForm.get("account").value
-		const bank = this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME)
-
-		return `<?xml version='1.0'?>
-		<?note XpAddReceiverAccount?>
-			<XPRESSO>
-				<AUTHENTICATE>
-					<SESSIONKEY>${sessionKey}</SESSIONKEY>
-				</AUTHENTICATE>
-				<RECEIVERACCOUNT>
-						<ACCT>${pix ? pix : account}</ACCT>			
-						<BANKBRANCH>${branch}</BANKBRANCH>
-						<BANKNAME>${bank.BANKNAME}</BANKNAME>
-						<BANKNUMBER>${bank.BANKNUMBER}</BANKNUMBER>
-						<CITY></CITY>
-						<RECEIVERID>${receiverId}</RECEIVERID>
-						<STATE></STATE>
-						<TYPE>C</TYPE>
-				</RECEIVERACCOUNT>
-			</XPRESSO>
-		`
 	}
 
 	ngOnInit() {

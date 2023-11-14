@@ -26,13 +26,77 @@ export class NewReceiverService {
 		this.url = setup.sampleApiCalls
 	}
 
-	public addReceiver(xmlData: string): Observable<any> {
+	public addReceiver(
+		country: string,
+		firstName: string,
+		lastName: string,
+		document: string,
+		address: string,
+		city: string,
+		state: string,
+		zip: string,
+		phone: string,
+		email: string,
+	): Observable<any> {
+		const flag = "BR"
+		const owner = this.session.get("linkInfo").BranchNo
+		const sessionKey = this.session.get("linkInfo").SessionKey
+
+		const xmlData = `<?xml version='1.0'?>
+		<?note XpAddReceiver?>
+		<XPRESSO>
+			<AUTHENTICATE>
+				<SESSIONKEY>${sessionKey}</SESSIONKEY>
+			</AUTHENTICATE>
+			<RECEIVER>
+				<ADDRESS>${address}</ADDRESS>
+				<CELLPHONE>${phone}</CELLPHONE>
+				<CITY>${city}</CITY>
+				<COUNTRY>${country}</COUNTRY>
+				<EMAIL>${email}</EMAIL>
+				<FLAG>${flag}</FLAG>
+				<OWNER>${owner}</OWNER>
+				<PHONE>${phone}</PHONE>
+				<RECEIVERDOC>${document}</RECEIVERDOC>
+				<RECEIVERLAST>${lastName}</RECEIVERLAST>
+				<RECEIVERNAME>${firstName}</RECEIVERNAME>
+				<STATE>${state}</STATE>
+				<ZIP>${zip}</ZIP>
+			</RECEIVER>
+		</XPRESSO>`
+
 		return this.http.post(this.url + "XpAddReceiver.cfm", xmlData).switchMap((res) => {
 			return this.xmlParserService.parseXml(res, "RECEIVER")
 		})
 	}
 
-	public addReceiverAccount(xmlData: string): Observable<any> {
+	public addReceiverAccount(
+		receiverID: string,
+		bank: any,
+		branch: string,
+		account: string,
+		pix: string
+	): Observable<any> {
+		const sessionKey = this.session.get("linkInfo").SessionKey
+
+		const xmlData = `<?xml version='1.0'?>
+		<?note XpAddReceiverAccount?>
+			<XPRESSO>
+				<AUTHENTICATE>
+					<SESSIONKEY>${sessionKey}</SESSIONKEY>
+				</AUTHENTICATE>
+				<RECEIVERACCOUNT>
+						<ACCT>${pix ? pix : account}</ACCT>			
+						<BANKBRANCH>${branch}</BANKBRANCH>
+						<BANKNAME>${bank.BANKNAME}</BANKNAME>
+						<BANKNUMBER>${bank.BANKNUMBER}</BANKNUMBER>
+						<CITY></CITY>
+						<RECEIVERID>${receiverID}</RECEIVERID>
+						<STATE></STATE>
+						<TYPE>C</TYPE>
+				</RECEIVERACCOUNT>
+			</XPRESSO>`
+
 		return this.http.post(this.url + "XpAddReceiverAccount.cfm", xmlData).switchMap((res) => {
 			return this.xmlParserService.parseXml(res, "RECEIVERACCOUNT")
 		})

@@ -3,5 +3,5 @@
 	"clientName": "Transamericas Services",
 	"copyright": "C&D International ©",
 	"copyrightYear": "2001-2023",
-	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/apicall/SampleCall.cfm?XpressoApiName="
+	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/extra/"
 }

@@ -5,9 +5,9 @@ import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
 import { validate } from "gerador-validador-cpf"
 import { SessionService } from "app/services/session/session.service";
-import { NewReceiverService } from "app/services/new-receiver/new-receiver.service";
+import { NewReceiverService, ReceiverAccountResponse, ReceiverResponse } from "app/services/new-receiver/new-receiver.service";
 import { validCNPJ } from "../../shared/cnpj-validator"
-import { Kinship, KinshipService } from "app/services/kinship/kinships.service";
+import { AddSenderReceiverKinshipResponse, Kinship, KinshipService } from "app/services/kinship/kinships.service";
 import { Bank, BankInfoService } from "app/services/bank-info/bank-info.service";
 
 @Component({
@@ -65,10 +65,30 @@ export class NewReceiverComponent implements OnInit {
 		if(!this.receiverForm.valid || !this.isCPFValid() || !this.isCNPJValid() || !this.receiverAccountForm.valid) {
 			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
 		}
-		
-		const xmlData = this.createNewReceiverXml()
 
-		this.toastr.success("O formulário foi preenchido corretamente.", "Formulário válido!")
+		const newReceiverXml = this.createNewReceiverXml()
+		let senderID = this.session.get("linkInfo").SenderId
+		let receiverID = ""
+		
+		this.newReceiverService.addReceiver(newReceiverXml)
+			.switchMap((res: ReceiverResponse) => {
+				receiverID = res.RECEIVERID
+				console.log("RESPOSTA ao adicionar um receiver")
+				console.log(res)
+				const receiverAccountXml = this.createNewReceiverAccountXml(res.RECEIVERID)
+				return this.newReceiverService.addReceiverAccount(receiverAccountXml)
+			})
+			.switchMap((res: ReceiverAccountResponse) => {
+				console.log("RESPOSTA ao adicionar um receiver account")
+				console.log(res)
+				const kinshipID = this.receiverForm.get("kinship").value;
+				return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
+			})
+			.subscribe((res: AddSenderReceiverKinshipResponse) => {
+				console.log("RESPOSTA ao adicionar um kinship")
+				console.log(res)
+				this.toastr.success("Parabéns! Um novo beneficiário foi adicionado!", "Formulário válido!")
+			})
 	}
 
 	public isCPFValid(): boolean {
@@ -107,13 +127,11 @@ export class NewReceiverComponent implements OnInit {
 		const zip = this.sanitizeZipCode(this.receiverForm.get("zip").value);
 		const phone = this.sanitizePhone(this.receiverForm.get("phone").value);
 		const email = this.receiverForm.get("email").value;
-		const kinship = this.receiverForm.get("kinship").value;
 		const flag = "BR"
 		const owner = this.session.get("linkInfo").BranchNo
 
 		return `<?xml version='1.0'?>
 		<?note XpAddReceiver?>
-
 		<XPRESSO>
 			<AUTHENTICATE>
 				<SESSIONKEY>${sessionKey}</SESSIONKEY>
@@ -137,7 +155,7 @@ export class NewReceiverComponent implements OnInit {
 		`
 	}
 
-	private createNewReceiverAccountXml() {
+	private createNewReceiverAccountXml(receiverId: string) {
 		const sessionKey = this.session.get("linkInfo").SessionKey
 		const pix = this.receiverAccountForm.get("pix").value
 		const branch = this.receiverAccountForm.get("branch").value
@@ -156,16 +174,14 @@ export class NewReceiverComponent implements OnInit {
 						<BANKNAME>${bank.BANKNAME}</BANKNAME>
 						<BANKNUMBER>${bank.BANKNUMBER}</BANKNUMBER>
 						<CITY></CITY>
-						<RECEIVERID>4437</RECEIVERID>
+						<RECEIVERID>${receiverId}</RECEIVERID>
 						<STATE></STATE>
 						<TYPE>C</TYPE>
 				</RECEIVERACCOUNT>
 			</XPRESSO>
 		`
 	}
-
-
-
+	
 	ngOnInit() {
 		this.kinshipService.getKinships().subscribe((res: Kinship[]) => {
 			this.kinshipList = res

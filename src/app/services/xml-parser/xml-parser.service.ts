@@ -14,6 +14,9 @@ export class XmlParserService {
 				if(err) {
 					observer.error(err)
 				} else {
+					if(result.AuthenticationResponse) {
+						return observer.error(result.AuthenticationResponse.Message)
+					}
 					observer.next(result[key])
 					observer.complete()
 				}

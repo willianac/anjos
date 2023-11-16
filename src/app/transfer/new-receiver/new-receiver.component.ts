@@ -9,6 +9,8 @@ import { NewReceiverService, ReceiverAccountResponse, ReceiverResponse } from "a
 import { validCNPJ } from "../../shared/cnpj-validator"
 import { AddSenderReceiverKinshipResponse, Kinships, KinshipService } from "app/services/kinship/kinships.service";
 import { Banks, BankInfoService } from "app/services/bank-info/bank-info.service";
+import { of } from "rxjs/observable/of";
+import { forkJoin } from "rxjs/observable/forkJoin";
 
 @Component({
 	selector: "app-new-receiver",
@@ -73,11 +75,11 @@ export class NewReceiverComponent implements OnInit {
 		
 		this.newReceiverService.addReceiver(
 			this.receiverForm.get("country").value,
-			this.receiverForm.get("firstName").value,
-			this.receiverForm.get("surname").value,
+			this.removeAccents(this.receiverForm.get("firstName").value),
+			this.removeAccents(this.receiverForm.get("surname").value),
 			this.receiverForm.get("document").value,
 			this.receiverForm.get("address").value,
-			this.receiverForm.get("city").value,
+			this.removeAccents(this.receiverForm.get("city").value),
 			this.receiverForm.get("state").value,
 			this.sanitizeZipCode(this.receiverForm.get("zip").value),
 			this.sanitizePhone(this.receiverForm.get("phone").value),
@@ -97,9 +99,13 @@ export class NewReceiverComponent implements OnInit {
 				const kinshipID = this.receiverForm.get("kinship").value;
 				return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
 			})
-			.subscribe((res: AddSenderReceiverKinshipResponse) => {
-				this.toastr.success("Parabéns! Um novo beneficiário foi adicionado!", "Formulário válido!")
-				this.isLoading = false
+			.subscribe({
+				next: (res: AddSenderReceiverKinshipResponse) => {console.log("bloco NEXT")},
+				error: (err) => {
+					this.handleErrors(err.message)
+					this.isLoading = false
+				},
+				complete: () => this.isLoading = false
 			})
 	}
 
@@ -127,18 +133,41 @@ export class NewReceiverComponent implements OnInit {
 		return "#" + zip.replace(/[^\d]/g, '')
 	}
 
+	private removeAccents(str: string) {
+		return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+	}
+
+	private handleErrors(error: string) {
+		if(error === "Record already exists") {
+			return this.toastr.error("Este beneficiário já está cadastrado na sua lista", "Não foi possivel cadastrar")
+		}
+		if(error === "Session key not found") {
+			return this.toastr.error("Session key inválida", "Erro")
+		}
+		if(error === "Session Expired") {
+			return this.toastr.error("Por favor, refaça o login", "Sessão expirada")
+		}
+		if(error === "Adding record failed") {
+			return this.toastr.error("Erro ao tentar cadastrar um beneficiario", "Erro")
+		}
+	}
+
 	ngOnInit() {
-		this.kinshipService.getKinships().subscribe((res: Kinships) => {
-			for(let kinship of res.KINSHIP) {
+		const getKinships = this.kinshipService.getKinships()
+		const getBanks = this.bankService.getBanks()
+
+		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
+			for(let kinship of kinships.KINSHIP) {
 				this.kinshipList.push(kinship)
 			}
-		})
-
-		this.bankService.getBanks().subscribe((res: Banks) => {
-			for(let bank of res.BANK) {
+			for(let bank of banks.BANK) {
 				this.bankList.push(bank)
 			}
-		})
+		},
+			error => {
+				this.handleErrors(error)
+			}
+		)
 
 		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
 			if(val === "PIX") {

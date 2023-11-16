@@ -71,6 +71,9 @@ export class ReceiverListComponent implements OnInit {
           } else {
             if (response && response.LinkInfo) {
               this.session.set('linkInfo', response.LinkInfo);
+							this.session.set("receiverList", response.MoneyReceivers.Receiver)
+							this.getList()
+							this.session.set("accountList", response.MoneyReceivers.ReceiverBank)
             }
           }
         },

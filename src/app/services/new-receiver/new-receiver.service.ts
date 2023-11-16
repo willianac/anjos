@@ -104,6 +104,11 @@ export class NewReceiverService {
 
 		return this.http.post(this.url + "XpAddReceiverAccount.cfm", xmlData).switchMap((res) => {
 			return this.xmlParserService.parseXml(res, "RECEIVERACCOUNT")
+			.do((res) => {
+				if(res.ERROR) {
+					throw new Error(res.MESSAGE)
+				}
+			})
 		})
 	}
 }

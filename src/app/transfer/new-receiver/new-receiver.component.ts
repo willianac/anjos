@@ -102,7 +102,12 @@ export class NewReceiverComponent implements OnInit {
 				return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
 			})
 			.subscribe({
-				next: (res: AddSenderReceiverKinshipResponse) => {console.log("bloco NEXT")},
+				next: (res: AddSenderReceiverKinshipResponse) => {
+					this.toastr.success("Novo beneficiário cadastrado com sucesso! Redirecionando...", "Beneficiário cadastrado")
+					setTimeout(() => {
+						this.router.navigate(['admin', 'transfer']);
+					}, 3000)
+				},
 				error: (err) => {
 					this.handleErrors(err.message)
 					this.isLoading = false

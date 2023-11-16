@@ -7,10 +7,10 @@ import { validate } from "gerador-validador-cpf"
 import { SessionService } from "app/services/session/session.service";
 import { NewReceiverService, ReceiverAccountResponse, ReceiverResponse } from "app/services/new-receiver/new-receiver.service";
 import { validCNPJ } from "../../shared/cnpj-validator"
-import { AddSenderReceiverKinshipResponse, Kinships, KinshipService } from "app/services/kinship/kinships.service";
-import { Banks, BankInfoService } from "app/services/bank-info/bank-info.service";
-import { of } from "rxjs/observable/of";
+import { AddSenderReceiverKinshipResponse, KinshipService } from "app/services/kinship/kinships.service";
+import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { forkJoin } from "rxjs/observable/forkJoin";
+import { State, StatesByCountryService } from "app/services/states-by-country/states-by-country.service";
 
 @Component({
 	selector: "app-new-receiver",
@@ -19,6 +19,7 @@ import { forkJoin } from "rxjs/observable/forkJoin";
 })
 export class NewReceiverComponent implements OnInit {
 	kinshipList = []
+	stateList: State[] = []
 	receiverForm = this.fb.group({
 		country: ["", Validators.required],
 		firstName: ["", [Validators.required, Validators.maxLength(40)]],
@@ -51,7 +52,8 @@ export class NewReceiverComponent implements OnInit {
 		private session: SessionService,
 		private newReceiverService: NewReceiverService,
 		private kinshipService: KinshipService,
-		private bankService: BankInfoService
+		private bankService: BankInfoService,
+		private statesService: StatesByCountryService
 	) {}
 
 	@HostListener("keydown.backspace", ["$event"])
@@ -150,6 +152,7 @@ export class NewReceiverComponent implements OnInit {
 		if(error === "Adding record failed") {
 			return this.toastr.error("Erro ao tentar cadastrar um beneficiario", "Erro")
 		}
+		this.toastr.error("Ocorreu um erro inesperado", "Erro inesperado")
 	}
 
 	ngOnInit() {
@@ -168,6 +171,10 @@ export class NewReceiverComponent implements OnInit {
 				this.handleErrors(error)
 			}
 		)
+
+		this.statesService.getStates("BR").subscribe((res) => {
+			this.stateList = res.json()
+		})
 
 		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
 			if(val === "PIX") {

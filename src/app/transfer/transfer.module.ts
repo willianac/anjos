@@ -26,6 +26,7 @@ import { NewReceiverService } from 'app/services/new-receiver/new-receiver.servi
 import { PhoneMaskDirective } from 'app/shared/phone-mask.directive';
 import { KinshipService } from 'app/services/kinship/kinships.service';
 import { BankInfoService } from 'app/services/bank-info/bank-info.service';
+import { StatesByCountryService } from 'app/services/states-by-country/states-by-country.service';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { BankInfoService } from 'app/services/bank-info/bank-info.service';
     LanguageService,
 		NewReceiverService,
 		KinshipService,
-		BankInfoService
+		BankInfoService,
+		StatesByCountryService
   ]
 })
 export class TransferModule { }

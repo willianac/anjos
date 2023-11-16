@@ -40,7 +40,7 @@
 			<label for="kinship" translate>RELATIONSHIP</label>
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<select name="country" id="country" class="select" formControlName="kinship">
+				<select name="kinship" id="kinship" class="select" formControlName="kinship">
 					<option value="" translate>PLEASE_SELECT</option>
 					<option 
 						*ngFor="let kinship of kinshipList"
@@ -118,8 +118,15 @@
 				<div class="mb-3">
 					<label for="state" translate>STATE</label>
 					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-						<input type="text" formControlName="state" name="state" id="state" class="form-control" placeholder="{{'STATE' | translate}}" maxlength="3">
+						<span class="input-group-addon"><i class="icon-user"></i></span>
+						<select name="state" id="state" class="select" formControlName="state">
+							<option value="" translate>PLEASE_SELECT</option>
+							<option 
+								*ngFor="let state of stateList"
+								[value]="state.iso2"
+								>{{state.name}}
+							</option>
+						</select>
 					</div>
 				</div>
 			</div>

@@ -1,8 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http } from "@angular/http";
 
+export type State = {
+	id: number
+	iso2: string
+	name: string
+}
+
 @Injectable()
-export class StatesByCountry {
+export class StatesByCountryService {
 
 	constructor(private http: Http) {}
 

@@ -5,7 +5,7 @@
     <form [formGroup]="receiverForm">
 
 			<label for="country" translate>COUNTRY</label>
-			<div class="input-group mb-3">
+			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 				<select name="country" id="country" class="select" formControlName="country">
 					<option value="" translate>PLEASE_SELECT</option>
@@ -16,13 +16,13 @@
 			<div class="inline-field-wrapper">
 				<div>
 					<label for="firstName" translate>FIRST_NAME</label>
-					<div class="input-group mb-3">
+					<div class="input-group mb-2">
 						<span class="input-group-addon"><i class="icon-user"></i></span>
 						<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName">
 					</div>
 				</div>
 
-				<div class="mb-3">
+				<div class="mb-2">
 					<label for="surname" translate>LASTNAME</label>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-user"></i></span>
@@ -38,7 +38,7 @@
 			</div>
 
 			<label for="kinship" translate>RELATIONSHIP</label>
-			<div class="input-group mb-3">
+			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
 				<select name="kinship" id="kinship" class="select" formControlName="kinship">
 					<option value="" translate>PLEASE_SELECT</option>
@@ -50,58 +50,64 @@
 				</select>
 			</div>
 
-			<label for="personType" translate>PERSON_TYPE</label>
-			<div class="input-group mb-3">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<select name="personType" id="personType" class="select" formControlName="personType">
-					<option value="fisica" translate>INDIVIDUAL</option>
-					<option value="juridica" translate>CORPORATION</option>
-				</select>
-			</div>
-
-			<div *ngIf="receiverForm.get('country').value === 'brazil' && receiverForm.get('personType').value !== ''; else document" class="mb-3">
-				<div *ngIf="receiverForm.get('personType').value === 'fisica'; else cnpj" class="field-wrapper">
-					<label for="document">CPF</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-doc"></i></span>
-						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF">
+			<div class="inline-field-wrapper">
+				<div class="">
+					<label for="personType" translate>PERSON_TYPE</label>
+					<div class="input-group mb-2">
+						<span class="input-group-addon"><i class="icon-user"></i></span>
+						<select name="personType" id="personType" class="select" formControlName="personType">
+							<option value="fisica" translate>INDIVIDUAL</option>
+							<option value="juridica" translate>CORPORATION</option>
+						</select>
 					</div>
-					<small 
-						*ngIf="!isCPFValid() && receiverForm.get('document').touched" 
-						class="input-error"
-						translate
-						>INVALID_CPF
-					</small>
 				</div>
 
-				<ng-template #cnpj>
-					<div class="field-wrapper mb-3">
-						<label for="document">CNPJ</label>
-						<div class="input-group">
+				<div *ngIf="receiverForm.get('country').value === 'brazil' && receiverForm.get('personType').value !== ''; else document">
+					<div *ngIf="receiverForm.get('personType').value === 'fisica'; else cnpj" class="field-wrapper">
+						<label for="document">CPF</label>
+						<div class="input-group mb-2">
 							<span class="input-group-addon"><i class="icon-doc"></i></span>
-							<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ">
+							<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CPF">
 						</div>
 						<small 
-							*ngIf="!isCNPJValid() && receiverForm.get('document').touched"
+							*ngIf="!isCPFValid() && receiverForm.get('document').touched" 
 							class="input-error"
 							translate
-							>INVALID_CNPJ
+							>INVALID_CPF
 						</small>
+					</div>
+
+					<ng-template #cnpj>
+						<div class="field-wrapper">
+							<label for="document">CNPJ</label>
+							<div class="input-group mb-2">
+								<span class="input-group-addon"><i class="icon-doc"></i></span>
+								<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="CNPJ">
+							</div>
+							<small 
+								*ngIf="!isCNPJValid() && receiverForm.get('document').touched"
+								class="input-error"
+								translate
+								>INVALID_CNPJ
+							</small>
+						</div>
+					</ng-template>
+				</div>
+
+				<ng-template #document>
+					<div class="field-wrapper">
+						<label for="document" translate>DOCUMENT</label>
+						<div class="input-group mb-2">
+							<span class="input-group-addon"><i class="icon-doc"></i></span>
+							<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
+						</div>
 					</div>
 				</ng-template>
 			</div>
-
-			<ng-template #document>
-				<label for="document" translate>DOCUMENT</label>
-				<div class="input-group mb-3">
-					<span class="input-group-addon"><i class="icon-doc"></i></span>
-					<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
-				</div>
-			</ng-template>
 				
 
 			<label for="address" translate>ADDRESS</label>
-			<div class="input-group mb-3">
+			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-home"></i></span>
 				<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
 			</div>
@@ -109,13 +115,13 @@
 			<div class="inline-field-wrapper">
 				<div>
 					<label for="city" translate>CITY</label>
-					<div class="input-group mb-3">
+					<div class="input-group mb-2">
 						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 						<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
 					</div>
 				</div>
 
-				<div class="mb-3">
+				<div class="mb-2">
 					<label for="state" translate>STATE</label>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-user"></i></span>
@@ -129,17 +135,17 @@
 						</select>
 					</div>
 				</div>
-			</div>
 
-			<div class="inline-field-wrapper mb-3">
-				<div class="mb-3">
+				<div class="mb-2">
 					<label for="zip" translate>ZIPCODE</label>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
 						<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
 					</div>
 				</div>
+			</div>
 
+			<div class="inline-field-wrapper">
 				<div>
 					<label for="phone" translate>PHONE</label>
 					<div class="input-group">
@@ -153,27 +159,27 @@
 						>INVALID_PHONE
 					</small>
 				</div>
-			</div>
 
-			<div class="field-wrapper">
-				<label for="email" translate>EMAIL</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i class="icon-envelope"></i></span>
-					<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+				<div class="field-wrapper">
+					<label for="email" translate>EMAIL</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="icon-envelope"></i></span>
+						<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+					</div>
+					<small 
+						*ngIf="receiverForm.get('email').hasError('email') && receiverForm.get('email').touched" 
+						class="input-error"
+						translate
+						>INVALID_EMAIL
+					</small>
 				</div>
-				<small 
-					*ngIf="receiverForm.get('email').hasError('email') && receiverForm.get('email').touched" 
-					class="input-error"
-					translate
-					>INVALID_EMAIL
-				</small>
 			</div>
 		</form>
 		<hr class="forms-divider">
 		<h4 class="form-title">Dados Bancários</h4>
 		<form [formGroup]="receiverAccountForm">
 			<label for="bank" translate>Banco</label>
-			<div class="input-group mb-3">
+			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-organization"></i></span>
 				<select formControlName="bankName" name="bank" id="bank" class="select">
 					<option value="" translate>PLEASE_SELECT</option>
@@ -190,7 +196,7 @@
 			<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'; else PixKey" class="inline-field-wrapper">
 				<div>
 					<label for="branch" translate>BRANCH</label>
-					<div class="input-group mb-3">
+					<div class="input-group mb-2">
 						<span class="input-group-addon"><i class="icon-home"></i></span>
 						<input type="number" formControlName="branch" name="branch" id="branch" class="form-control" placeholder="{{'BRANCH' | translate}}" autocomplete="off">
 					</div>
@@ -198,7 +204,7 @@
 
 				<div>
 					<label for="account" translate>ACCOUNT</label>
-					<div class="input-group mb-3">
+					<div class="input-group mb-2">
 						<span class="input-group-addon"><i class="icon-home"></i></span>
 						<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="{{'ACCOUNT' | translate}}" autocomplete="off">
 					</div>
@@ -207,7 +213,7 @@
 
 			<ng-template #PixKey>
 				<label for="pix" translate>PIX_KEY</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 					<span class="input-group-addon"><i class="icon-home"></i></span>
 					<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="{{'PIX_KEY' | translate}}" autocomplete="off">
 				</div>

@@ -1,5 +1,5 @@
 .card-block {
-	padding: 1.25rem 4rem 1.25rem 4rem;
+	padding: 0.75rem 4rem 0.75rem 4rem;
 
 	@media screen and (max-width: 480px) {
 		padding: 1.25rem 1.75rem 1.25rem 1.75rem;
@@ -9,7 +9,7 @@
 .form-title {
 	font-size: 20px;
 	font-weight: 600;	
-	margin-bottom: 1.25rem;
+	margin-bottom: 0.75rem;
 }
 
 .select {
@@ -41,7 +41,7 @@
 }
 
 .forms-divider {
-	margin: 2.25rem auto 2.25rem auto;
+	margin: 1rem auto 0.5rem auto;
 }
 
 .inline-field-wrapper {
@@ -57,6 +57,12 @@
 }
 
 .loading-wrapper {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	@media screen and (max-width: 480px) {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+label {
+	margin-bottom: 0.2rem;
 }

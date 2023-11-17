@@ -11,6 +11,7 @@ import { AddSenderReceiverKinshipResponse, KinshipService } from "app/services/k
 import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { forkJoin } from "rxjs/observable/forkJoin";
 import { State, StatesByCountryService } from "app/services/states-by-country/states-by-country.service";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: "app-new-receiver",
@@ -74,8 +75,34 @@ export class NewReceiverComponent implements OnInit {
 
 		const senderID = this.session.get("linkInfo").SenderId
 		let receiverID = ""
-		
-		this.newReceiverService.addReceiver(
+
+		this.createNewReceiver().switchMap((res) => {
+			receiverID = res.RECEIVERID
+			return this.createNewReceiverAccount(receiverID)
+		})
+		.switchMap(() => {
+			return this.createSenderReceiverKinship(senderID, receiverID)
+		})
+		.subscribe({
+			next: () => {
+				this.toastr.success(
+					this.translate.instant("RECEIVER_ADDED"),
+					this.translate.instant("SUCCESS")
+				)
+				setTimeout(() => {
+					this.isLoading = false
+					this.router.navigate(['admin', 'transfer']);
+				}, 3000)
+			},
+			error: (err) => {
+				this.handleErrors(err.message)
+				this.isLoading = false
+			}
+		})
+	}
+
+	private createNewReceiver(): Observable<ReceiverResponse> {
+		return this.newReceiverService.addReceiver(
 			this.receiverForm.get("country").value,
 			this.removeAccents(this.receiverForm.get("firstName").value),
 			this.removeAccents(this.receiverForm.get("surname").value),
@@ -87,33 +114,21 @@ export class NewReceiverComponent implements OnInit {
 			this.sanitizePhone(this.receiverForm.get("phone").value),
 			this.receiverForm.get("email").value
 		)
-			.switchMap((res: ReceiverResponse) => {
-				receiverID = res.RECEIVERID
-				return this.newReceiverService.addReceiverAccount(
-					receiverID,
-					this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME),
-					this.receiverAccountForm.get("branch").value,
-					this.receiverAccountForm.get("account").value,
-					this.receiverAccountForm.get("pix").value
-				)
-			})
-			.switchMap((res: ReceiverAccountResponse) => {
-				const kinshipID = this.receiverForm.get("kinship").value;
-				return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
-			})
-			.subscribe({
-				next: (res: AddSenderReceiverKinshipResponse) => {
-					this.toastr.success("Novo beneficiário cadastrado com sucesso! Redirecionando...", "Beneficiário cadastrado")
-					setTimeout(() => {
-						this.router.navigate(['admin', 'transfer']);
-					}, 3000)
-				},
-				error: (err) => {
-					this.handleErrors(err.message)
-					this.isLoading = false
-				},
-				complete: () => this.isLoading = false
-			})
+	}
+
+	private createNewReceiverAccount(receiverID: string): Observable<ReceiverAccountResponse> {
+		return this.newReceiverService.addReceiverAccount(
+			receiverID,
+			this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME),
+			this.receiverAccountForm.get("branch").value,
+			this.receiverAccountForm.get("account").value,
+			this.receiverAccountForm.get("pix").value
+		)
+	}
+
+	private createSenderReceiverKinship(senderID: string, receiverID: string): Observable<AddSenderReceiverKinshipResponse> {
+		const kinshipID = this.receiverForm.get("kinship").value;
+		return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
 	}
 
 	public isCPFValid(): boolean {
@@ -146,18 +161,28 @@ export class NewReceiverComponent implements OnInit {
 
 	private handleErrors(error: string) {
 		if(error === "Record already exists") {
-			return this.toastr.error("Este beneficiário já está cadastrado na sua lista", "Não foi possivel cadastrar")
+			return this.toastr.error(
+				this.translate.instant("RECEIVER_ALREADY_EXISTS_TEXT"),
+				this.translate.instant("RECEIVER_ALREADY_EXISTS_TITLE")
+			)
 		}
 		if(error === "Session key not found") {
 			return this.toastr.error("Session key inválida", "Erro")
 		}
 		if(error === "Session Expired") {
-			return this.toastr.error("Por favor, refaça o login", "Sessão expirada")
+			return this.toastr.error(
+				this.translate.instant("SESSION_EXPIRED_TEXT"),
+				this.translate.instant("SESSION_EXPIRED_TITLE")
+			)
 		}
 		if(error === "Adding record failed") {
 			return this.toastr.error("Erro ao tentar cadastrar um beneficiario", "Erro")
 		}
-		this.toastr.error("Ocorreu um erro inesperado", "Erro inesperado")
+
+		this.toastr.error(
+			this.translate.instant("UNKNOWN_ERROR"),
+			this.translate.instant("ERROR")
+		)
 	}
 
 	ngOnInit() {

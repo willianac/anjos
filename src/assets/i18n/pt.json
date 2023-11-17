@@ -201,6 +201,13 @@
 	"INVALID_SURNAME": "Campo de Sobrenome deve ter apenas uma palavra",
 	"INVALID_CPF": "CPF Inválido",
 	"INVALID_CNPJ": "CNPJ Inválido",
+	"RECEIVER_ADDED": "Novo beneficiário cadastrado com sucesso! Redirecionando...",
+	"RECEIVER_ALREADY_EXISTS_TITLE": "Não foi possivel cadastrar",
+	"RECEIVER_ALREADY_EXISTS_TEXT": "Este beneficiário já está cadastrado na sua lista",
 
-	"NEW_RECEIVER_ACCOUNT": "Adicionar Conta"
+	"NEW_RECEIVER_ACCOUNT": "Adicionar Conta",
+	"ACCOUNT_ADDED": "Nova conta cadastrada com sucesso, você será redirecionado...",
+	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Preencha todos os campos para adicionar uma nova conta.",
+	"ACCOUNT_ALREADY_EXISTS_TITLE": "Conta já cadastrada",
+	"ACCOUNT_ALREADY_EXISTS_TEXT": "A conta que você tentou adicionar já existe"
 }

@@ -5,6 +5,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { NewReceiverService } from "app/services/new-receiver/new-receiver.service";
 import { SessionService } from "app/services/session/session.service";
+import { error } from "console";
 import { ToastrService } from "ngx-toastr";
 
 
@@ -46,12 +47,18 @@ export class NewReceiverAccountComponent implements OnInit {
 		)
 		.subscribe({
 			next: (res) => {
-				this.toastr.success("Nova conta cadastrada com sucesso, você será redirecionado...", "Conta adicionada")
+				this.toastr.success(
+					this.translate.instant("ACCOUNT_ADDED"),
+					this.translate.instant("SUCCESS")
+				)
 				setTimeout(() => {
 					this.router.navigate(['admin']);
 				}, 3000)
 			},
-			error: (err) => this.toastr.error("A conta que você tentou adicionar já existe", "Conta já cadastrada")
+			error: (err) => this.toastr.error(
+				this.translate.instant("ACCOUNT_ALREADY_EXISTS_TEXT"),
+				this.translate.instant("ACCOUNT_ALREADY_EXISTS_TITLE")
+			)
 		})
 		
 	}
@@ -59,7 +66,14 @@ export class NewReceiverAccountComponent implements OnInit {
 	ngOnInit(): void {
 		this.bankService.getBanks().subscribe((res) => {
 			this.bankList = res.BANK
-		})
+		},
+		error => {
+			this.toastr.error(
+				this.translate.instant("SESSION_EXPIRED_TEXT"),
+				this.translate.instant("SESSION_EXPIRED_TITLE")
+			)
+		}
+		)
 
 		this.receiverID = this.session.get("currentReceiver").ReceiverID
 

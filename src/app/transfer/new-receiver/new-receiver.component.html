@@ -176,21 +176,36 @@
 			</div>
 		</form>
 		<hr class="forms-divider">
-		<h4 class="form-title">Dados Bancários</h4>
+		<h4 class="form-title" translate>BANK_DATA</h4>
 		<form [formGroup]="receiverAccountForm">
-			<label for="bank" translate>Banco</label>
-			<div class="input-group mb-2">
-				<span class="input-group-addon"><i class="icon-organization"></i></span>
-				<select formControlName="bankName" name="bank" id="bank" class="select">
-					<option value="" translate>PLEASE_SELECT</option>
-					<option 
-						*ngFor="let bank of bankList"
-						[value]="bank.BANKNAME"
-					>
-						<span>{{bank.BANKNUMBER}} - </span>
-						<span>{{bank.BANKNAME}}</span>
-					</option>
-				</select>
+			<div class="inline-field-wrapper">
+				<div>
+					<label for="bank" translate>BANK</label>
+					<div class="input-group mb-2">
+						<span class="input-group-addon"><i class="icon-organization"></i></span>
+						<select formControlName="bankName" name="bank" id="bank" class="select">
+							<option value="" translate>PLEASE_SELECT</option>
+							<option 
+								*ngFor="let bank of bankList"
+								[value]="bank.BANKNAME"
+							>
+								<span>{{bank.BANKNUMBER}} - </span>
+								<span>{{bank.BANKNAME}}</span>
+							</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<label for="accountType" translate>ACCOUNT_TYPE</label>
+					<div class="input-group mb-2">
+						<span class="input-group-addon"><i class="icon-organization"></i></span>
+						<select formControlName="accountType" name="accountType" id="accountType" class="select">
+							<option value="" translate>PLEASE_SELECT</option>
+							<option value="C" translate>CHECKING</option>
+							<option value="S" translate>SAVINGS</option>
+						</select>
+					</div>
+				</div>
 			</div>
 
 			<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'; else PixKey" class="inline-field-wrapper">

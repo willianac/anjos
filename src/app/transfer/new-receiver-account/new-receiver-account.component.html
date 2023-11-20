@@ -16,6 +16,16 @@
 					</option>
 				</select>
 			</div>
+			
+			<label for="accountType" translate>ACCOUNT_TYPE</label>
+			<div class="input-group mb-2">
+				<span class="input-group-addon"><i class="icon-organization"></i></span>
+				<select formControlName="accountType" name="accountType" id="accountType" class="select">
+					<option value="" translate>PLEASE_SELECT</option>
+					<option value="C" translate>CHECKING</option>
+					<option value="S" translate>SAVINGS</option>
+				</select>
+			</div>
 
 			<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'; else PixKey" class="inline-field-wrapper">
 				<div>

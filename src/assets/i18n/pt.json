@@ -113,6 +113,7 @@
   "RESEND_ERROR": "Erro de Reenvio",
   "BRANCH": "Agência",
   "ACCOUNT": "Conta",
+	"ACCOUNT_TYPE": "Tipo de conta",
   "BASE": "Base",
   "INVALID_AMOUNT": "O Valor deve ser informado.",
   "INVALID_SEND": "Valor de Envio está inválido",
@@ -206,6 +207,9 @@
 	"RECEIVER_ALREADY_EXISTS_TEXT": "Este beneficiário já está cadastrado na sua lista",
 
 	"NEW_RECEIVER_ACCOUNT": "Adicionar Conta",
+	"BANK_DATA": "Dados Bancários",
+	"CHECKING": "Corrente",
+	"SAVINGS": "Poupança",
 	"ACCOUNT_ADDED": "Nova conta cadastrada com sucesso, você será redirecionado...",
 	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Preencha todos os campos para adicionar uma nova conta.",
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Conta já cadastrada",

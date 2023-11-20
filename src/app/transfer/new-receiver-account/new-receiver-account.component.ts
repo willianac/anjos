@@ -21,6 +21,7 @@ export class NewReceiverAccountComponent implements OnInit {
 		bankName: ["", Validators.required],
 		branch: ["", Validators.required],
 		account: ["", Validators.required],
+		accountType: ["", Validators.required],
 		pix: ["", Validators.required]
 	})
 	
@@ -43,6 +44,7 @@ export class NewReceiverAccountComponent implements OnInit {
 			this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME),
 			this.receiverAccountForm.get("branch").value,
 			this.receiverAccountForm.get("account").value,
+			this.receiverAccountForm.get("accountType").value,
 			this.receiverAccountForm.get("pix").value
 		)
 		.subscribe({

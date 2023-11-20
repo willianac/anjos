@@ -80,6 +80,7 @@ export class NewReceiverService {
 		bank: any,
 		branch: string,
 		account: string,
+		accountType: string,
 		pix: string
 	): Observable<any> {
 		const sessionKey = this.session.get("linkInfo").SessionKey
@@ -98,7 +99,7 @@ export class NewReceiverService {
 						<CITY></CITY>
 						<RECEIVERID>${receiverID}</RECEIVERID>
 						<STATE></STATE>
-						<TYPE>C</TYPE>
+						<TYPE>${accountType}</TYPE>
 				</RECEIVERACCOUNT>
 			</XPRESSO>`
 

@@ -113,6 +113,7 @@
   "RESEND_ERROR": "Resend Error",
   "BRANCH": "Branch",
   "ACCOUNT": "Account",
+	"ACCOUNT_TYPE": "Account Type",
   "BASE": "Base",
   "INVALID_AMOUNT": "Amount must be informed.",
   "INVALID_SEND": "Send Value is invalid",
@@ -206,6 +207,9 @@
 	"RECEIVER_ALREADY_EXISTS_TEXT": "This receiver is already on your list",
 
 	"NEW_RECEIVER_ACCOUNT": "New Account",
+	"BANK_DATA": "Bank Account",
+	"CHECKING": "Checking",
+	"SAVINGS": "Savings",
 	"ACCOUNT_ADDED": "Account successfully registered, you will be redirected...",
 	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Fill in all the fields to add a new account.",
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Account already exists",

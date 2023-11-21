@@ -11,93 +11,116 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-6">
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input type="text" id="name" name="name" [(ngModel)]="register.name" class="form-control" placeholder="{{ 'NAME' | translate }}" tabindex="1">
-                </div>
+							<div class="col-12">
+								<form>
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="firstName" translate>FIRST_NAME</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}">
+											</div>
+										</div>
+	
+										<div>
+											<label for="surname" translate>LASTNAME</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="surname" id="surname" class="form-control" placeholder="{{'LASTNAME' | translate}}">
+											</div>
+										</div>
+									</div>
 
-                <div class="input-group mb-3">
-                  <span class="input-group-addon">@</span>
-                  <input type="text" id="email" name="email" [(ngModel)]="register.email" class="form-control" placeholder="{{ 'EMAIL' | translate }}" tabindex="3">
-                </div>
+									<div>
+										<label for="birthday" translate>BIRTH_DATE</label>
+										<div class="input-group mb-2">
+											<span class="input-group-addon"><i class="icon-user"></i></span>
+											<input type="date" name="birthday" id="birthday" class="form-control" placeholder="{{'BIRTH_DATE' | translate}}">
+										</div>
+									</div>
 
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input type="password" id="password" name="password" [(ngModel)]="register.password" class="form-control" placeholder="{{ 'PASSWORD' | translate }}" tabindex="5">
-                </div>
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="document" translate>IDENTIFICATION_DOC</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+												<select name="document" id="document" class="select">
+													<option value="" translate>PLEASE_SELECT</option>
+													<option value="identidade">Identidade</option>
+													<option value="passaporte">Passaporte</option>
+													<option value="rg">RG</option>
+												</select>
+											</div>
+										</div>
+	
+										<div>
+											<label for="document" translate>DOCUMENT</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
+											</div>
+										</div>
+									</div>
 
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-screen-smartphone"></i></span>
-                  <input type="phone" id="cellphone" name="cellphone" [(ngModel)]="register.cellphone" class="form-control" placeholder="{{ 'CELLPHONE' | translate }}" tabindex="7">
-                </div>
+									<div>
+										<label for="address" translate>ADDRESS</label>
+										<div class="input-group mb-2">
+											<span class="input-group-addon"><i class="icon-user"></i></span>
+											<input type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
+										</div>
+									</div>
 
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-globe-alt"></i></span>
-                  <input type="text" id="country" name="country" [(ngModel)]="register.country" class="form-control" placeholder="{{ 'COUNTRY' | translate }}" tabindex="9">
-                </div>
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="city" translate>City</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
+											</div>
+										</div>
+	
+										<div>
+											<label for="state" translate>STATE</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="state" id="state" class="form-control" placeholder="{{'STATE' | translate}}">
+											</div>
+										</div>
+									</div>
 
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input type="text" id="address" name="address" [(ngModel)]="register.address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" tabindex="11">
-                </div>
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="phone" translate>PHONE</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
+											</div>
+										</div>
+	
+										<div>
+											<label for="zip" translate>ZIPCODE</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
+											</div>
+										</div>
+									</div>
 
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-user-female"></i></span>
-                  <input type="text" id="mother_name" name="mother_name" [(ngModel)]="register.motherName" class="form-control" placeholder="{{ 'MOTHER_NAME' | translate }}" tabindex="13">
-                </div>
+									<div>
+										<label for="email" translate>EMAIL</label>
+										<div class="input-group mb-2">
+											<span class="input-group-addon"><i class="icon-user"></i></span>
+											<input type="text" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+										</div>
+									</div>
 
-                <div class="document">
-                  <h4 for="document" translate>IDENTIFICATION_DOC</h4>
-                  <p translate>IDENTIFICATION_DOC_TEXT</p>
-                  <div class="input-group mb-3">
-                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                    <input type="file" id="document" name="document" [(ngModel)]="register.document" class="form-control" tabindex="14">
-                  </div>
-                </div>
-
-                <div class="input-group mb-3">
-                  <button type="button" class="btn btn-primary" translate>CREATE_ACCOUNT</button>
-                </div>
-
-                <div class="input-group mb-3">
-                  <button type="button" class="btn btn-link px-0" [routerLink]="['/login']" translate>BACK_TO_LOGIN</button>
-                </div>
-              </div>
-
-              
-              <div class="col-6">
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input type="text" id="lastname" name="lastname" [(ngModel)]="register.lastName" class="form-control" placeholder="{{ 'LASTNAME' | translate }}" tabindex="2">
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-calendar"></i></span>
-                  <input type="text" id="birthdate" name="birthdate" [(ngModel)]="register.birthdate" class="form-control" placeholder="{{ 'BIRTH_DATE' | translate }}" tabindex="4">
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input type="password" id="confirm_password" name="confirm_password" [(ngModel)]="register.confirmPassword" class="form-control" placeholder="{{ 'PASSWORD_CONFIRM' | translate }}" tabindex="6">
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-phone"></i></span>
-                  <input type="text" id="phone" name="phone" [(ngModel)]="register.phone" class="form-control" placeholder="{{ 'PHONE' | translate }}" tabindex="8">
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-map"></i></span>
-                  <input type="text" id="state" name="state" [(ngModel)]="register.state" class="form-control" placeholder="{{ 'STATE' | translate }}" tabindex="10">
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-directions"></i></span>
-                  <input type="text" id="zipcode" name="zipcode" [(ngModel)]="register.zipcode" class="form-control" placeholder="{{ 'ZIPCODE' | translate }}" tabindex="12">
-                </div>
-              </div>
-            </div>
+									<div class="button-wrapper">
+										<button class="btn btn-link">Já tem uma conta?</button>
+										<button class="btn btn-primary">Cadastrar</button>
+									</div>
+								</form>
+							</div>
+						</div>
           </div>
           <div class="card-footer text-center">
             <language-list></language-list>

@@ -17,6 +17,7 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
 import { LanguageListComponent } from '../shared/language-list/language-list.component';
 import { SetupService } from 'app/services/setup/setup.service';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
+import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 
 @NgModule({
   imports: [ 
@@ -38,7 +39,8 @@ import { PaymentStatusComponent } from './payment-status/payment-status.componen
   providers: [
     LoginService,
     LanguageService,
-		SetupService
+		SetupService,
+		GeolocationService
   ]
 })
 export class PagesModule { }

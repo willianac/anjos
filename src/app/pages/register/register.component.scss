@@ -1,3 +1,43 @@
-.document {
-    margin: 50px 0;
+// .document {
+//     margin: 50px 0;
+// }
+
+.select {
+	padding: 0.5rem;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background-color: #ffffff;
+	color: #607d8b;
+}
+
+.inline-field-wrapper {
+
+	@media screen and (min-width: 768px) {
+		display: flex;
+		column-gap: 5rem;
+
+		div {
+			flex: 1;
+		}
+	}
+}
+
+.button-wrapper {
+	margin-top: 1.25rem;
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+
+	.btn {
+		cursor: pointer;
+		width: 40%;
+	}
+
+	@media screen and (max-width: 480px) {
+		flex-direction: column-reverse;
+
+		.btn {
+			width: auto;
+		}
+	}
 }

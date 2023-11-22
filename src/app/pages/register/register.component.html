@@ -7,7 +7,10 @@
             <div class="row">
               <div class="col-12">
                 <h1 translate>REGISTER</h1>
-                <p class="text-muted" translate>REGISTER_SUB</p>
+                <p *ngIf="isUserAllowed; else geolocationError" class="text-muted" translate>REGISTER_SUB</p>
+								<ng-template #geolocationError>
+									<p class="geolocation-error">Por favor, permita o acesso à localização para prosseguir com o cadastro da conta.</p>
+								</ng-template>
               </div>
             </div>
             <div class="row">
@@ -15,10 +18,10 @@
 								<form>
 									<div class="inline-field-wrapper">
 										<div>
-											<label for="firstName" translate>FIRST_NAME</label>
+											<label for="firstName" translate>NAME</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}">
+												<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'NAME' | translate}}">
 											</div>
 										</div>
 	
@@ -32,10 +35,10 @@
 									</div>
 
 									<div>
-										<label for="birthday" translate>BIRTH_DATE</label>
+										<label for="birthdate" translate>BIRTH_DATE</label>
 										<div class="input-group mb-2">
 											<span class="input-group-addon"><i class="icon-user"></i></span>
-											<input type="date" name="birthday" id="birthday" class="form-control" placeholder="{{'BIRTH_DATE' | translate}}">
+											<input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="{{'BIRTH_DATE' | translate}}">
 										</div>
 									</div>
 
@@ -46,9 +49,7 @@
 												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 												<select name="document" id="document" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
-													<option value="identidade">Identidade</option>
-													<option value="passaporte">Passaporte</option>
-													<option value="rg">RG</option>
+													<option *ngFor="let type of idTypeList" value="type.IDTYPESENDER">{{type.IDTYPENAMESENDER}}</option>
 												</select>
 											</div>
 										</div>
@@ -80,28 +81,31 @@
 										</div>
 	
 										<div>
-											<label for="state" translate>STATE</label>
-											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="state" id="state" class="form-control" placeholder="{{'STATE' | translate}}">
-											</div>
-										</div>
-									</div>
-
-									<div class="inline-field-wrapper">
-										<div>
-											<label for="phone" translate>PHONE</label>
-											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
-											</div>
-										</div>
-	
-										<div>
 											<label for="zip" translate>ZIPCODE</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
 												<input type="text" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
+											</div>
+										</div>
+									</div>
+									
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="cellphone" translate>CELLPHONE</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="cellphone" id="cellphone" class="form-control" placeholder="{{'CELLPHONE' | translate}}">
+											</div>
+										</div>
+
+										<div>
+											<label for="homephone" translate>HOMEPHONE</label>
+											<span class="optional">
+												(<small translate>OPTIONAL</small>)
+											</span>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input type="text" name="homephone" id="homephone" class="form-control" placeholder="{{'HOMEPHONE' | translate}}">
 											</div>
 										</div>
 									</div>
@@ -113,10 +117,9 @@
 											<input type="text" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
 										</div>
 									</div>
-
 									<div class="button-wrapper">
-										<button class="btn btn-link">Já tem uma conta?</button>
-										<button class="btn btn-primary">Cadastrar</button>
+										<button class="btn btn-link" [routerLink]="['/login']">Já tem uma conta?</button>
+										<button class="btn btn-primary" [disabled]="!isUserAllowed">Cadastrar</button>
 									</div>
 								</form>
 							</div>

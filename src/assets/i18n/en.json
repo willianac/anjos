@@ -164,15 +164,16 @@
   "BACK_TO_LOGIN": "Back to Login",
 
   "LASTNAME": "Lastname",
-  "BIRTH_DATE": "Birthdate",
+  "BIRTH_DATE": "Date of Birth",
   "CELLPHONE": "Cellphone",
+	"HOMEPHONE": "Home phone",
   "COUNTRY": "Country",
   "STATE": "State",
   "ZIPCODE": "Zip code",
   "MOTHER_NAME": "Mother's Name",
   "CREATE_ACCOUNT": "Create Account",
   "REGISTER_SUB": "Create your account to make transfers",
-  "IDENTIFICATION_DOC": "Identification Document",
+  "IDENTIFICATION_DOC": "Id Document Type",
   "IDENTIFICATION_DOC_TEXT": "Scan one of those documents: Driver's License or ID Card.",
 
   "ACTIONS": "Actions",
@@ -213,5 +214,8 @@
 	"ACCOUNT_ADDED": "Account successfully registered, you will be redirected...",
 	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Fill in all the fields to add a new account.",
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Account already exists",
-	"ACCOUNT_ALREADY_EXISTS_TEXT": "The account you tried to add already exists"
+	"ACCOUNT_ALREADY_EXISTS_TEXT": "The account you tried to add already exists",
+
+	"OPTIONAL": "optional"
+	
 }

@@ -166,13 +166,14 @@
   "LASTNAME": "Sobrenome",
   "BIRTH_DATE": "Data de Nascimento",
   "CELLPHONE": "Celular",
+	"HOMEPHONE": "Telefone",
   "COUNTRY": "País",
   "STATE": "Estado",
-  "ZIPCODE": "CEP",
+  "ZIPCODE": "Código Postal",
   "MOTHER_NAME": "Nome da Mãe",
   "CREATE_ACCOUNT": "Criar Conta",
   "REGISTER_SUB": "Crie sua conta para efetuar remessas",
-  "IDENTIFICATION_DOC": "Documento de Identidade",
+  "IDENTIFICATION_DOC": "Tipo de Documento",
   "IDENTIFICATION_DOC_TEXT": "Escaneie um dos seguintes documentos: carteira de identidade, CNH ou RG.",
 
   "ACTIONS": "Ações",
@@ -213,5 +214,7 @@
 	"ACCOUNT_ADDED": "Nova conta cadastrada com sucesso, você será redirecionado...",
 	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Preencha todos os campos para adicionar uma nova conta.",
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Conta já cadastrada",
-	"ACCOUNT_ALREADY_EXISTS_TEXT": "A conta que você tentou adicionar já existe"
+	"ACCOUNT_ALREADY_EXISTS_TEXT": "A conta que você tentou adicionar já existe",
+
+	"OPTIONAL": "opcional"
 }

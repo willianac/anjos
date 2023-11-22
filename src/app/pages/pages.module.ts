@@ -18,6 +18,7 @@ import { LanguageListComponent } from '../shared/language-list/language-list.com
 import { SetupService } from 'app/services/setup/setup.service';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
+import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 
 @NgModule({
   imports: [ 
@@ -40,7 +41,8 @@ import { GeolocationService } from 'app/services/geolocation/geolocation.service
     LoginService,
     LanguageService,
 		SetupService,
-		GeolocationService
+		GeolocationService,
+		NewSenderService
   ]
 })
 export class PagesModule { }

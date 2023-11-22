@@ -195,7 +195,7 @@
 						</select>
 					</div>
 				</div>
-				<div>
+				<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'">
 					<label for="accountType" translate>ACCOUNT_TYPE</label>
 					<div class="input-group mb-2">
 						<span class="input-group-addon"><i class="icon-organization"></i></span>

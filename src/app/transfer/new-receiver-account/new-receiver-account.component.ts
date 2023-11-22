@@ -83,12 +83,15 @@ export class NewReceiverAccountComponent implements OnInit {
 			if(val === "PIX") {
 				this.receiverAccountForm.controls["branch"].clearValidators()
 				this.receiverAccountForm.controls["account"].clearValidators()
+				this.receiverAccountForm.controls["accountType"].clearValidators()
 				this.receiverAccountForm.controls["pix"].setValidators([Validators.required])
 				this.receiverAccountForm.controls["branch"].setValue("")
 				this.receiverAccountForm.controls["account"].setValue("")
+				this.receiverAccountForm.controls["accountType"].setValue("C")
 			} else {
 				this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
 				this.receiverAccountForm.controls["account"].setValidators([Validators.required])
+				this.receiverAccountForm.controls["accountType"].setValidators([Validators.required])
 				this.receiverAccountForm.controls["pix"].clearValidators()
 				this.receiverAccountForm.controls["pix"].setValue("")
 			}

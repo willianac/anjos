@@ -15,13 +15,13 @@
             </div>
             <div class="row">
 							<div class="col-12">
-								<form>
+								<form [formGroup]="registerControls" (ngSubmit)="addNewSender()">
 									<div class="inline-field-wrapper">
 										<div>
 											<label for="firstName" translate>NAME</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'NAME' | translate}}">
+												<input formControlName="senderName" type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'NAME' | translate}}">
 											</div>
 										</div>
 	
@@ -29,7 +29,7 @@
 											<label for="surname" translate>LASTNAME</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="surname" id="surname" class="form-control" placeholder="{{'LASTNAME' | translate}}">
+												<input formControlName="senderLast" type="text" name="surname" id="surname" class="form-control" placeholder="{{'LASTNAME' | translate}}">
 											</div>
 										</div>
 									</div>
@@ -38,18 +38,18 @@
 										<label for="birthdate" translate>BIRTH_DATE</label>
 										<div class="input-group mb-2">
 											<span class="input-group-addon"><i class="icon-user"></i></span>
-											<input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="{{'BIRTH_DATE' | translate}}">
+											<input formControlName="birthdate" type="date" name="birthdate" id="birthdate" class="form-control" placeholder="{{'BIRTH_DATE' | translate}}">
 										</div>
 									</div>
 
 									<div class="inline-field-wrapper">
 										<div>
-											<label for="document" translate>IDENTIFICATION_DOC</label>
+											<label for="docType" translate>IDENTIFICATION_DOC</label>
 											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-												<select name="document" id="document" class="select">
+												<span class="input-group-addon"><i class="icon-doc"></i></span>
+												<select formControlName="docType" name="docType" id="docType" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
-													<option *ngFor="let type of idTypeList" value="type.IDTYPESENDER">{{type.IDTYPENAMESENDER}}</option>
+													<option *ngFor="let type of idTypeList" [value]="type.IDTYPESENDER">{{type.IDTYPENAMESENDER}}</option>
 												</select>
 											</div>
 										</div>
@@ -57,8 +57,8 @@
 										<div>
 											<label for="document" translate>DOCUMENT</label>
 											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
+												<span class="input-group-addon"><i class="icon-doc"></i></span>
+												<input formControlName="senderDoc" type="text" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
 											</div>
 										</div>
 									</div>
@@ -66,8 +66,8 @@
 									<div>
 										<label for="address" translate>ADDRESS</label>
 										<div class="input-group mb-2">
-											<span class="input-group-addon"><i class="icon-user"></i></span>
-											<input type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
+											<span class="input-group-addon"><i class="icon-map"></i></span>
+											<input formControlName="address" type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
 										</div>
 									</div>
 
@@ -75,16 +75,16 @@
 										<div>
 											<label for="city" translate>City</label>
 											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
+												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+												<input formControlName="city" type="text" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
 											</div>
 										</div>
 	
 										<div>
 											<label for="zip" translate>ZIPCODE</label>
 											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
+												<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+												<input formControlName="zipcode" type="text" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
 											</div>
 										</div>
 									</div>
@@ -93,8 +93,8 @@
 										<div>
 											<label for="cellphone" translate>CELLPHONE</label>
 											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="cellphone" id="cellphone" class="form-control" placeholder="{{'CELLPHONE' | translate}}">
+												<span class="input-group-addon"><i class="icon-phone"></i></span>
+												<input formControlName="cellphone" type="text" name="cellphone" id="cellphone" class="form-control" placeholder="{{'CELLPHONE' | translate}}">
 											</div>
 										</div>
 
@@ -104,8 +104,8 @@
 												(<small translate>OPTIONAL</small>)
 											</span>
 											<div class="input-group mb-2">
-												<span class="input-group-addon"><i class="icon-user"></i></span>
-												<input type="text" name="homephone" id="homephone" class="form-control" placeholder="{{'HOMEPHONE' | translate}}">
+												<span class="input-group-addon"><i class="icon-phone"></i></span>
+												<input formControlName="homephone" type="text" name="homephone" id="homephone" class="form-control" placeholder="{{'HOMEPHONE' | translate}}">
 											</div>
 										</div>
 									</div>
@@ -113,13 +113,13 @@
 									<div>
 										<label for="email" translate>EMAIL</label>
 										<div class="input-group mb-2">
-											<span class="input-group-addon"><i class="icon-user"></i></span>
-											<input type="text" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+											<span class="input-group-addon"><i class="icon-envelope"></i></span>
+											<input formControlName="email" type="text" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
 										</div>
 									</div>
 									<div class="button-wrapper">
 										<button class="btn btn-link" [routerLink]="['/login']">Já tem uma conta?</button>
-										<button class="btn btn-primary" [disabled]="!isUserAllowed">Cadastrar</button>
+										<button type="submit" class="btn btn-primary" >Cadastrar</button>
 									</div>
 								</form>
 							</div>

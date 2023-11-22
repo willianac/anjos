@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { P404Component } from './404.component';
 import { P500Component } from './500.component';
@@ -26,7 +26,8 @@ import { NewSenderService } from 'app/services/new-sender/new-sender.service';
     TranslateModule,
     LoadingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+		ReactiveFormsModule
   ],
   declarations: [
     P404Component,

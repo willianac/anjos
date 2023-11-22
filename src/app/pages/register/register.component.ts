@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './register.component.html',
@@ -10,22 +11,22 @@ import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 export class RegisterComponent implements OnInit {
 	isUserAllowed = false;
   registerControls = this.fb.group({
-		address: [""],
-		city: [""],
-		birthdate: [""],
-		docType: [""],
-		email: [""],
+		address: ["", Validators.required],
+		city: ["", Validators.required],
+		birthdate: ["", Validators.required],
+		docType: ["", Validators.required],
+		email: ["", [Validators.required, Validators.email]],
 		//idCountrySender: [""],
 		//idTypeSender: [""],
 		//owner: [""],
-		cellphone: [""],
+		cellphone: ["", Validators.required],
 		homephone: [""],
 		//senderCard: [""],
-		senderDoc: [""],
-		senderLast: [""],
-		senderName: [""],
+		senderDoc: ["", Validators.required],
+		senderLast: ["", [Validators.required, Validators.pattern(/^\w+$/)]],
+		senderName: ["", Validators.required],
 		//SSNumberSender: [""],
-		zipcode: [""]
+		zipcode: ["", Validators.required]
 	})
 
 	stateList = [];
@@ -34,10 +35,15 @@ export class RegisterComponent implements OnInit {
   constructor(
 		private geo: GeolocationService, 
 		private fb: FormBuilder,
-		private newSenderService: NewSenderService
+		private newSenderService: NewSenderService,
+		private toast: ToastrService
 	) { }
 
-	private onSuccess = (pos: any) => {
+	public addNewSender() {
+		console.log(this.registerControls.getRawValue())
+	}
+
+	private onGeolocationSuccess = (pos: any) => {
 		const lat = pos.coords.latitude as number;
 		const long = pos.coords.longitude as number;
 
@@ -53,16 +59,17 @@ export class RegisterComponent implements OnInit {
 		// })
 	}
 
-	private onError = (err: any) => {
+	private onGeolocationError = (err: any) => {
 		alert("Precisamos saber sua localização")
 	}
 
 	ngOnInit(): void {
-		navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError)
+		// navigator.geolocation.getCurrentPosition(this.onGeolocationSuccess, this.onGeolocationError)
 
 		this.newSenderService.getSenderIdTypes().subscribe((res) => {
 			this.idTypeList = res.IDTYPE
-			console.log(this.idTypeList[0])
 		})
+
+		this.toast.warning("Para cadastrar uma conta é preciso estar situado em Nova Jersey - USA", "Importante")
 	}
 }

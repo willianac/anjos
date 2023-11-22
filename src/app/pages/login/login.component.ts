@@ -74,6 +74,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+	public register() {
+		if(!this.loginInputs.password || !this.loginInputs.email) {
+			return this.toastr.error("Por favor, preencha os campos login e senh", "Erro")
+		}
+	}
+
 	ngOnInit() {
 		this.setupService.getSettings().subscribe((setup) => {
 			this.appSetup = setup

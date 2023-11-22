@@ -19,6 +19,7 @@ import { SetupService } from 'app/services/setup/setup.service';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [ 
@@ -27,7 +28,8 @@ import { NewSenderService } from 'app/services/new-sender/new-sender.service';
     LoadingModule,
     FormsModule,
     CommonModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		SharedModule
   ],
   declarations: [
     P404Component,

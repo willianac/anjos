@@ -19,7 +19,7 @@ export class NewSenderService {
 	}
 
 	public getSenderIdTypes() {
-		const sessionKey = this.session.get("linkInfo").SessionKey
+		const sessionKey = this.session.get("linkInfo")
 		const xmlData = `
 			<?note XpGetSenderIdTypes?>
 			<XPRESSO>
@@ -31,6 +31,23 @@ export class NewSenderService {
 
 		return this.http.post(this.url + "XpGetSenderIdTypes.cfm", xmlData).switchMap((res) => {
 			return this.xmlParser.parseXml(res, "SENDERIDTYPES")
+		})
+	}
+
+	public addNewRegister(email: string, password: string) {
+		const xmlData = `<?xml version='1.0'?>
+			<?note XpAthenticate?>
+			<XPRESSO>
+				<AUTHENTICATE>
+					<LOGINNAME>${email}</LOGINNAME>
+					<MYPASSWORD>${password}</MYPASSWORD>
+				</AUTHENTICATE>
+			</XPRESSO>
+		`
+		
+
+		return this.http.post(this.url + "XpNewRegister.cfm", xmlData).switchMap((res) => {
+			return this.xmlParser.parseXml(res, "NewRegisterResponse")
 		})
 	}
 }

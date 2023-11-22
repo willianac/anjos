@@ -16,7 +16,7 @@ export class ConnectionService {
 
   constructor(public http: Http) {
 		const setup = setupData as AppSetup
-		this.serverUrl = setup.apiUrl
+		this.serverUrl = setup.sampleApiCalls
   }
 
   private makeUrl(url, data) {

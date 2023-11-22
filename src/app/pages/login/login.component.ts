@@ -8,6 +8,7 @@ import { LoginService } from '../../services/login/login.service';
 import { SessionService } from '../../services/session/session.service';
 import { SenderAccountService } from '../../services/sender-account/sender-account.service';
 import { SetupService } from 'app/services/setup/setup.service';
+import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     public language: LanguageService,
     public toastr: ToastrService,
     public senderAccountSvc: SenderAccountService,
-		public setupService: SetupService
+		public setupService: SetupService,
+		public newSenderService: NewSenderService
   ) { }
 
   doLogin() {
@@ -78,11 +80,27 @@ export class LoginComponent implements OnInit {
 		if(!this.loginInputs.password || !this.loginInputs.email) {
 			return this.toastr.error("Por favor, preencha os campos login e senh", "Erro")
 		}
+		// if(this.loginInputs.password.length !== 20) {
+		// 	return this.toastr.error("A senha deve ter 20 caracteres", "Erro")
+		// }
+
+		this.newSenderService.addNewRegister(this.loginInputs.email, this.loginInputs.password).subscribe({
+			next: (res) => {
+				if(res.Error) return this.toastr.error(res.Message)
+				const newRegisterSessionKey = res.SessionKey
+				this.session.set("linkInfo", newRegisterSessionKey)
+				this.session.set("registerPass", this.loginInputs.password)
+				this.router.navigate(['/register'])
+			}
+		})
 	}
 
 	ngOnInit() {
 		this.setupService.getSettings().subscribe((setup) => {
 			this.appSetup = setup
+		})
+		this.setupService.getAPIRootSettings().subscribe({
+			next: (res) => console.log(res)
 		})
 	}
 }

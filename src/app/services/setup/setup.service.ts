@@ -16,10 +16,10 @@ export class SetupService {
 
 	getAPIRootSettings() {
 		return this.getSettings().switchMap((res) => {
-			return this.http.get(res.sampleApiCalls)
+			return this.http.get(res.apiUrl)
 		})
 		.switchMap((res) => {
-			return this.xmlParser.parseXml(res, "")
+			return this.xmlParser.parseXml(res, "responsestring")
 		})
 	}
 }

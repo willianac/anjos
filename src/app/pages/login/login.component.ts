@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
 			this.appSetup = setup
 		})
 		this.setupService.getAPIRootSettings().subscribe({
-			next: (res) => console.log(res)
+			next: (res) => this.session.set("rootInfo", JSON.stringify(res))
 		})
 	}
 }

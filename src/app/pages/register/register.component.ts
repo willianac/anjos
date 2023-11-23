@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 import { SessionService } from 'app/services/session/session.service';
+import { ApiRootResponse } from 'app/services/setup/ApiRootResponse';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -27,11 +28,14 @@ export class RegisterComponent implements OnInit {
 		senderLast: ["", [Validators.required, Validators.pattern(/^\w+$/)]],
 		senderName: ["", Validators.required],
 		//SSNumberSender: [""],
-		zipcode: ["", Validators.required]
+		zipcode: ["", Validators.required],
+		acceptTerms: [""]
 	})
 	
 	idTypeList = [];
-	registerPass = ""
+	validStates = [];
+	registerPass = "";
+	rootInfo: ApiRootResponse;
 
   constructor(
 		private geo: GeolocationService, 
@@ -86,6 +90,8 @@ export class RegisterComponent implements OnInit {
 		})
 
 		this.registerPass = this.session.get("registerPass")
+		this.rootInfo = JSON.parse(this.session.get("rootInfo"))
+		this.validStates = this.rootInfo.ValidStates.split(",")
 
 		this.toast.warning("Para cadastrar uma conta é preciso estar situado em Nova Jersey - USA", "Importante")
 	}

@@ -91,24 +91,36 @@
 										</div>
 									</div>
 
-									<div>
-										<label for="address" translate>ADDRESS</label>
-										<div class="input-group mb-2">
-											<span class="input-group-addon"><i class="icon-map"></i></span>
-											<input 
-												formControlName="address" 
-												type="text" 
-												name="address" 
-												id="address" 
-												class="form-control" 
-												placeholder="{{'ADDRESS' | translate}}"
-											>
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="address" translate>ADDRESS</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-map"></i></span>
+												<input 
+													formControlName="address" 
+													type="text" 
+													name="address" 
+													id="address" 
+													class="form-control" 
+													placeholder="{{'ADDRESS' | translate}}"
+												>
+											</div>
+										</div>
+										<div>
+											<label for="state" translate>STATE</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+												<select name="state" id="state" class="select">
+													<option value="" translate>PLEASE_SELECT</option>
+													<option *ngFor="let state of validStates" [value]="state">{{state}}</option>
+												</select>
+											</div>
 										</div>
 									</div>
 
 									<div class="inline-field-wrapper">
 										<div>
-											<label for="city" translate>City</label>
+											<label for="city" translate>CITY</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 												<input 
@@ -177,7 +189,7 @@
 									</div>
 									<div class="button-wrapper">
 										<button class="btn btn-link" [routerLink]="['/login']">Já tem uma conta?</button>
-										<button type="submit" class="btn btn-primary" >Cadastrar</button>
+										<button type="submit" class="btn btn-primary" [disabled]="!isUserAllowed">Cadastrar</button>
 									</div>
 								</form>
 							</div>

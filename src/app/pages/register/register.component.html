@@ -49,20 +49,33 @@
 												>INVALID_SURNAME
 											</small>
 										</div>
-									</div>
+									</div>				
 
-									<div>
-										<label for="birthdate" translate>BIRTH_DATE</label>
-										<div class="input-group mb-2">
-											<span class="input-group-addon"><i class="icon-user"></i></span>
-											<input 
-												formControlName="birthdate" 
-												type="date" 
-												name="birthdate" 
-												id="birthdate" 
-												class="form-control" 
-												placeholder="{{'BIRTH_DATE' | translate}}"
-											>
+									<div class="inline-field-wrapper">
+										<div>
+											<label for="country" translate>COUNTRY</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-map"></i></span>
+												<select formControlName="country" name="country" id="country" class="select">
+													<option value="" translate>PLEASE_SELECT</option>
+													<option *ngFor="let country of countryList" [value]="country.iso2">{{country.name}}</option>
+												</select>
+											</div>
+										</div>
+
+										<div>
+											<label for="birthdate" translate>BIRTH_DATE</label>
+											<div class="input-group mb-2">
+												<span class="input-group-addon"><i class="icon-user"></i></span>
+												<input 
+													formControlName="birthdate" 
+													type="date" 
+													name="birthdate" 
+													id="birthdate" 
+													class="form-control" 
+													placeholder="{{'BIRTH_DATE' | translate}}"
+												>
+											</div>
 										</div>
 									</div>
 
@@ -189,64 +202,23 @@
 										</div>
 									</div>
 
-									<div class="inline-field-wrapper">
-										<div class="mb-2">
-											<label for="SSNumberSender" translate>SS Number Sender</label>
-											<span class="optional">
-												(<small translate>OPTIONAL</small>)
-											</span>
-											<div class="input-group">
-												<span class="input-group-addon"><i class="icon-envelope"></i></span>
-												<input 
-													formControlName="SSNumberSender" 
-													type="text" 
-													name="SSNumberSender" 
-													id="SSNumberSender" 
-													class="form-control" 
-													placeholder="SS Number Sender"
-												>
-											</div>
-										</div>
-
-										<div class="mb-2">
-											<label for="senderCard" translate>Sender Card</label>
-											<span class="optional">
-												(<small translate>OPTIONAL</small>)
-											</span>
-											<div class="input-group">
-												<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
-												<input 
-													formControlName="senderCard" 
-													type="number" 
-													name="senderCard" 
-													id="senderCard" 
-													class="form-control" 
-													placeholder="Sender Card"
-												>
-											</div>
-										</div>
-									</div>
-
-									<div class="mb-2">
-										<label for="email" translate>EMAIL</label>
+									<!-- <div class="mb-2">
+										<label for="senderCard" translate>Sender Card</label>
+										<span class="optional">
+											(<small translate>OPTIONAL</small>)
+										</span>
 										<div class="input-group">
-											<span class="input-group-addon"><i class="icon-envelope"></i></span>
+											<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
 											<input 
-												formControlName="email" 
-												type="text" 
-												name="email" 
-												id="email" 
+												formControlName="senderCard" 
+												type="number" 
+												name="senderCard" 
+												id="senderCard" 
 												class="form-control" 
-												placeholder="{{'EMAIL' | translate}}"
+												placeholder="Sender Card"
 											>
 										</div>
-										<small 
-											*ngIf="registerControls.get('email').hasError('email')" 
-											class="input-error"
-											translate
-											>INVALID_EMAIL
-										</small>
-									</div>
+									</div> -->
 
 									<div class="checkbox-wrapper">
 										<input type="checkbox" formControlName="acceptTerms" name="terms" id="terms" class="form-control">
@@ -254,8 +226,8 @@
 									</div>
 
 									<div class="button-wrapper">
-										<button class="btn btn-link" [routerLink]="['/login']">Já tem uma conta?</button>
-										<button type="submit" class="btn btn-primary">Cadastrar</button>
+										<button class="btn btn-link" [routerLink]="['/login']" translate>ALREADY_HAVE_ACCOUNT</button>
+										<button type="submit" [disabled]="registerControls.get('acceptTerms').value === false" class="btn btn-primary" translate>REGISTER_NOW</button>
 									</div>
 								</form>
 							</div>

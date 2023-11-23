@@ -218,6 +218,11 @@
 
 	"OPTIONAL": "optional",
 	"ACCEPT_TERMS": "I accept",
-	"TERMS": "terms and conditions"
-
+	"TERMS": "terms and conditions",
+	"PLEASE_ACCEPT_TERMS": "Please accept the terms and conditions",
+	"GEOLOCATION_WARNING": "To send money you must be located in New Jersey - USA",
+	"IMPORTANT": "Important",
+	"ALREADY_HAVE_ACCOUNT": "Already have an account?",
+	"PASSWORD_MINIMUM": "The password must have at least 10 characters to register",
+	"SUCCESS_REGISTER": "Account registered successfully!"
 }

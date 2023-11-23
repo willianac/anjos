@@ -78,11 +78,11 @@ export class LoginComponent implements OnInit {
 
 	public register() {
 		if(!this.loginInputs.password || !this.loginInputs.email) {
-			return this.toastr.error("Por favor, preencha os campos login e senh", "Erro")
+			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("ERROR"))
 		}
-		// if(this.loginInputs.password.length !== 20) {
-		// 	return this.toastr.error("A senha deve ter 20 caracteres", "Erro")
-		// }
+		if(this.loginInputs.password.length < 10) {
+			return this.toastr.error(this.translate.instant("PASSWORD_MINIMUM"), this.translate.instant("ERROR"))
+		}
 
 		this.newSenderService.addNewRegister(this.loginInputs.email, this.loginInputs.password).subscribe({
 			next: (res) => {
@@ -90,6 +90,7 @@ export class LoginComponent implements OnInit {
 				const newRegisterSessionKey = res.SessionKey
 				this.session.set("linkInfo", newRegisterSessionKey)
 				this.session.set("registerPass", this.loginInputs.password)
+				this.session.set("registerEmail", this.loginInputs.email)
 				this.router.navigate(['/register'])
 			}
 		})

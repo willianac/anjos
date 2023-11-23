@@ -32,6 +32,9 @@ export class NewSenderService {
 
 		return this.http.post(this.url + "XpGetSenderIdTypes.cfm", xmlData).switchMap((res) => {
 			return this.xmlParser.parseXml(res, "SENDERIDTYPES")
+				.catch(err => {
+					throw new Error(err)
+				})
 		})
 	}
 
@@ -65,11 +68,11 @@ export class NewSenderService {
 		senderDoc: string,
 		senderLast: string,
 		senderName: string,
-		SSNumberSender: string,
 		state: string,
+		country: string,
 		zip: string,
 		sessionKey: string,
-		senderCard: string
+		registerPassword: string
 	): Observable<any> {
 		const xmlData = `<?note XpAddsender?>
 		<XPRESSO>
@@ -77,11 +80,12 @@ export class NewSenderService {
 				<SESSIONKEY>${sessionKey}</SESSIONKEY>
 			</AUTHENTICATE>
 			<SENDER>
+				<MYPASSWORD>${registerPassword}</MYPASSWORD>
 				<ADDRESS>${address}</ADDRESS>
 				<CELLPHONE>${cellphone}</CELLPHONE>
 				<CITY>${city}</CITY>
-				<DOB>11/20/2020</DOB>
-				<IDCOUNTRYSENDER>BR</IDCOUNTRYSENDER>
+				<DOB>${birthdate}</DOB>
+				<IDCOUNTRYSENDER>${country}</IDCOUNTRYSENDER>
 				<DOCTYPE>${docType}</DOCTYPE>
 				<EMAIL>${email}</EMAIL>
 				<IDTYPESENDER>${idTypeSender}</IDTYPESENDER>
@@ -90,8 +94,7 @@ export class NewSenderService {
 				<SENDERDOC>${senderDoc}</SENDERDOC>
 				<SENDERLAST>${senderLast}</SENDERLAST>
 				<SENDERNAME>${senderName}</SENDERNAME>
-				<SENDERCARD>${senderCard}</SENDERCARD>
-				<SSNUMBERSENDER>${SSNumberSender}</SSNUMBERSENDER>
+				<SSNUMBERSENDER></SSNUMBERSENDER>
 				<STATE>${state}</STATE>
 				<ZIP>${zip}</ZIP>
 			</SENDER>

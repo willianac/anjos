@@ -18,4 +18,11 @@ export class StatesByCountryService {
 
 		return this.http.get(`https://api.countrystatecity.in/v1/countries/${country}/states`, { headers })
 	}
+
+	public getCountries() {
+		const headers = new Headers()
+		headers.append("X-CSCAPI-KEY", "c3VESTdqc1lwVmdOVXlnaHh4QmNZeVZqZ09VZ2lReTYzUGNiSXlxRw==")
+
+		return this.http.get(`https://api.countrystatecity.in/v1/countries/`, { headers })
+	}
 }

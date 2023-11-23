@@ -19,8 +19,8 @@ export class LanguageItem {
 }
 
 export const LANGUAGE_LIST = [
-  new LanguageItem('en', '/assets/img/flags/USA.png', 'English'),
-  new LanguageItem('pt', '/assets/img/flags/Brazil.png', 'Português'),
+  new LanguageItem('en', '/assets/img/flags/US.png', 'English'),
+  new LanguageItem('pt', '/assets/img/flags/BR.png', 'Português'),
 ]
 
 @Injectable()

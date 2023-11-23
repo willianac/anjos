@@ -12,12 +12,14 @@
       <thead>
         <tr>
           <th translate>NAME</th>
+					<th translate>COUNTRY</th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngIf="receiverList && receiverList.length > 0">
           <tr *ngFor="let receiver of receiverList" (click)="select(receiver)">
             <td>{{receiver.ReceiverName}}</td>
+						<td><img class="flag" src="../../../assets/img/flags/{{receiver.ReceiverCountryCode}}.png" alt=""></td>
           </tr>
         </ng-container>
         <ng-container *ngIf="!receiverList || receiverList.length < 1">

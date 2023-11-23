@@ -216,5 +216,7 @@
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Conta já cadastrada",
 	"ACCOUNT_ALREADY_EXISTS_TEXT": "A conta que você tentou adicionar já existe",
 
-	"OPTIONAL": "opcional"
+	"OPTIONAL": "opcional",
+	"ACCEPT_TERMS": "Eu concordo com os",
+	"TERMS": "termos e condições"
 }

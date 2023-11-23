@@ -216,6 +216,8 @@
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Account already exists",
 	"ACCOUNT_ALREADY_EXISTS_TEXT": "The account you tried to add already exists",
 
-	"OPTIONAL": "optional"
-	
+	"OPTIONAL": "optional",
+	"ACCEPT_TERMS": "I accept",
+	"TERMS": "terms and conditions"
+
 }

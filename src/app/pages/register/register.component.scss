@@ -49,3 +49,17 @@
 .optional {
 	color: gray
 }
+
+.checkbox-wrapper {
+	display: flex;
+	align-items: center;
+	column-gap: 0.25rem;
+
+	input {
+		width: 20px;
+	}
+
+	label {
+		margin: 0;
+	}
+}

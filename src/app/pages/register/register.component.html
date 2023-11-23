@@ -7,10 +7,7 @@
             <div class="row">
               <div class="col-12">
                 <h1 translate>REGISTER</h1>
-                <p *ngIf="isUserAllowed; else geolocationError" class="text-muted" translate>REGISTER_SUB</p>
-								<ng-template #geolocationError>
-									<p class="geolocation-error">Por favor, permita o acesso à localização para prosseguir com o cadastro da conta.</p>
-								</ng-template>
+                <p class="text-muted" translate>REGISTER_SUB</p>
               </div>
             </div>
             <div class="row">
@@ -110,7 +107,7 @@
 											<label for="state" translate>STATE</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-												<select name="state" id="state" class="select">
+												<select formControlName="state" name="state" id="state" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
 													<option *ngFor="let state of validStates" [value]="state">{{state}}</option>
 												</select>
@@ -175,7 +172,14 @@
 											</span>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-phone"></i></span>
-												<input formControlName="homephone" type="text" name="homephone" id="homephone" class="form-control" placeholder="{{'HOMEPHONE' | translate}}">
+												<input 
+													formControlName="homephone" 
+													type="text" 
+													name="homephone" 
+													id="homephone" 
+													class="form-control" 
+													placeholder="{{'HOMEPHONE' | translate}}"
+												>
 											</div>
 										</div>
 									</div>
@@ -184,12 +188,25 @@
 										<label for="email" translate>EMAIL</label>
 										<div class="input-group mb-2">
 											<span class="input-group-addon"><i class="icon-envelope"></i></span>
-											<input formControlName="email" type="text" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+											<input 
+												formControlName="email" 
+												type="text" 
+												name="email" 
+												id="email" 
+												class="form-control" 
+												placeholder="{{'EMAIL' | translate}}"
+											>
 										</div>
 									</div>
+
+									<div class="checkbox-wrapper">
+										<input type="checkbox" formControlName="acceptTerms" name="terms" id="terms" class="form-control">
+										<label for="terms" translate>ACCEPT_TERMS <a href="http://www.moneytransfersystem.com" target="_blank" translate>TERMS</a> </label>
+									</div>
+
 									<div class="button-wrapper">
 										<button class="btn btn-link" [routerLink]="['/login']">Já tem uma conta?</button>
-										<button type="submit" class="btn btn-primary" [disabled]="!isUserAllowed">Cadastrar</button>
+										<button type="submit" class="btn btn-primary">Cadastrar</button>
 									</div>
 								</form>
 							</div>

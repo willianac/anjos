@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 import { SessionService } from 'app/services/session/session.service';
 import { ApiRootResponse } from 'app/services/setup/ApiRootResponse';
@@ -11,10 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-	isUserAllowed = false;
   registerControls = this.fb.group({
 		address: ["", Validators.required],
 		city: ["", Validators.required],
+		state: ["", Validators.required],
 		birthdate: ["", Validators.required],
 		docType: ["", Validators.required],
 		email: ["", [Validators.required, Validators.email]],
@@ -29,16 +28,15 @@ export class RegisterComponent implements OnInit {
 		senderName: ["", Validators.required],
 		//SSNumberSender: [""],
 		zipcode: ["", Validators.required],
-		acceptTerms: [""]
+		acceptTerms: [false, Validators.required]
 	})
-	
+
 	idTypeList = [];
 	validStates = [];
 	registerPass = "";
 	rootInfo: ApiRootResponse;
 
   constructor(
-		private geo: GeolocationService, 
 		private fb: FormBuilder,
 		private newSenderService: NewSenderService,
 		private toast: ToastrService,
@@ -49,27 +47,11 @@ export class RegisterComponent implements OnInit {
 		if(!this.registerControls.valid) {
 			return this.toast.error("Preencha todos os campos para continuar", "Preencha os campos")
 		}
+		if(!this.registerControls.get("acceptTerms").value) {
+			return this.toast.error("Por favor, aceite os termos e condições de uso.", "Termos e Condições")
+		}
+		console.log(this.registerControls.getRawValue())
 		this.toast.success("Agora seria feita a requisição para XpAddSender", "Formulário Válido!")
-	}
-
-	private onGeolocationSuccess = (pos: any) => {
-		const lat = pos.coords.latitude as number;
-		const long = pos.coords.longitude as number;
-
-		this.geo.checkIfUserIsInNewJersey(lat, long).subscribe({
-			next: (res) => {
-				const state = res.results[0].address_components[0].short_name;
-				if(state !== "RJ") {
-					this.toast.error("O cadastramento de usuários só é permitido no estado de Nova Jersey.", "Erro")
-				} else {
-					this.isUserAllowed = true
-				}
-			}
-		})
-	}
-
-	private onGeolocationError = (err: any) => {
-		this.toast.warning("Precisamos da sua localização para prosseguir com o cadastramento", "Atenção")
 	}
 
 	@HostListener("keydown.backspace", ["$event"])
@@ -83,8 +65,6 @@ export class RegisterComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		navigator.geolocation.getCurrentPosition(this.onGeolocationSuccess, this.onGeolocationError)
-
 		this.newSenderService.getSenderIdTypes().subscribe((res) => {
 			this.idTypeList = res.IDTYPE
 		})
@@ -93,6 +73,6 @@ export class RegisterComponent implements OnInit {
 		this.rootInfo = JSON.parse(this.session.get("rootInfo"))
 		this.validStates = this.rootInfo.ValidStates.split(",")
 
-		this.toast.warning("Para cadastrar uma conta é preciso estar situado em Nova Jersey - USA", "Importante")
+		this.toast.warning("Para realizar remessas é necessário estar situado em Nova Jersey - USA", "Importante")
 	}
 }

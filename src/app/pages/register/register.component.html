@@ -12,7 +12,7 @@
             </div>
             <div class="row">
 							<div class="col-12">
-								<form [formGroup]="registerControls" (ngSubmit)="addNewSender()">
+								<form [formGroup]="registerControls" (ngSubmit)="submit()">
 									<div class="inline-field-wrapper">
 										<div>
 											<label for="firstName" translate>NAME</label>
@@ -29,9 +29,9 @@
 											</div>
 										</div>
 	
-										<div>
+										<div class="mb-2">
 											<label for="surname" translate>LASTNAME</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
 												<input 
 													formControlName="senderLast" 
@@ -42,6 +42,12 @@
 													placeholder="{{'LASTNAME' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('senderLast').hasError('pattern')" 
+												class="input-error"
+												translate
+												>INVALID_SURNAME
+											</small>
 										</div>
 									</div>
 
@@ -152,11 +158,10 @@
 											<label for="cellphone" translate>CELLPHONE</label>
 											<div class="input-group mb-2">
 												<span class="input-group-addon"><i class="icon-phone"></i></span>
-												<input 
-													appPhoneMask 
+												<input
 													formControlName="cellphone" 
 													maxlength="20" 
-													type="text" 
+													type="tel" 
 													name="cellphone" 
 													id="cellphone" 
 													class="form-control" 
@@ -174,7 +179,7 @@
 												<span class="input-group-addon"><i class="icon-phone"></i></span>
 												<input 
 													formControlName="homephone" 
-													type="text" 
+													type="tel" 
 													name="homephone" 
 													id="homephone" 
 													class="form-control" 
@@ -184,9 +189,47 @@
 										</div>
 									</div>
 
-									<div>
+									<div class="inline-field-wrapper">
+										<div class="mb-2">
+											<label for="SSNumberSender" translate>SS Number Sender</label>
+											<span class="optional">
+												(<small translate>OPTIONAL</small>)
+											</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="icon-envelope"></i></span>
+												<input 
+													formControlName="SSNumberSender" 
+													type="text" 
+													name="SSNumberSender" 
+													id="SSNumberSender" 
+													class="form-control" 
+													placeholder="SS Number Sender"
+												>
+											</div>
+										</div>
+
+										<div class="mb-2">
+											<label for="senderCard" translate>Sender Card</label>
+											<span class="optional">
+												(<small translate>OPTIONAL</small>)
+											</span>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+												<input 
+													formControlName="senderCard" 
+													type="number" 
+													name="senderCard" 
+													id="senderCard" 
+													class="form-control" 
+													placeholder="Sender Card"
+												>
+											</div>
+										</div>
+									</div>
+
+									<div class="mb-2">
 										<label for="email" translate>EMAIL</label>
-										<div class="input-group mb-2">
+										<div class="input-group">
 											<span class="input-group-addon"><i class="icon-envelope"></i></span>
 											<input 
 												formControlName="email" 
@@ -197,6 +240,12 @@
 												placeholder="{{'EMAIL' | translate}}"
 											>
 										</div>
+										<small 
+											*ngIf="registerControls.get('email').hasError('email')" 
+											class="input-error"
+											translate
+											>INVALID_EMAIL
+										</small>
 									</div>
 
 									<div class="checkbox-wrapper">

@@ -50,4 +50,50 @@ export class NewSenderService {
 			return this.xmlParser.parseXml(res, "NewRegisterResponse")
 		})
 	}
+
+	public addNewSender(
+		address: string,
+		cellphone: string,
+		birthdate: string,
+		city: string,
+		docType: string,
+		email: string,
+		idTypeSender: string,
+		owner: string,
+		phone: string,
+		senderDoc: string,
+		senderLast: string,
+		senderName: string,
+		SSNumberSender: string,
+		state: string,
+		zip: string,
+		sessionKey: string,
+		senderCard: string
+	) {
+		const xmlData = `<?note XpAddsender?>
+		<XPRESSO>
+			<AUTHENTICATE>
+				<SESSIONKEY>${sessionKey}</SESSIONKEY>
+			</AUTHENTICATE>
+			<SENDER>
+				<ADDRESS>${address}</ADDRESS>
+				<CELLPHONE>${cellphone}</CELLPHONE>
+				<CITY>${city}</CITY>
+				<DOB>${birthdate}</DOB>
+				<DOCTYPE>${docType}</DOCTYPE>
+				<EMAIL>${email}</EMAIL>
+				<IDTYPESENDER>${idTypeSender}</IDTYPESENDER>
+				<OWNER>${owner}</OWNER>
+				<PHONE>${phone}</PHONE>
+				<SENDERDOC>${senderDoc}</SENDERDOC>
+				<SENDERLAST>${senderLast}</SENDERLAST>
+				<SENDERNAME>${senderName}</SENDERNAME>
+				<SENDERCARD>${senderCard}</SENDERCARD>
+				<SSNUMBERSENDER>${SSNumberSender}</SSNUMBERSENDER>
+				<STATE>${state}</STATE>
+				<ZIP>${zip}</ZIP>
+			</SENDER>
+		</XPRESSO>`
+		console.log(xmlData)
+	}
 }

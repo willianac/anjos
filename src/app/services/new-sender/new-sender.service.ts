@@ -4,6 +4,7 @@ const setupData = require("../../../assets/setup/setup.json")
 import { AppSetup } from 'assets/setup/setup';
 import { SessionService } from "../session/session.service";
 import { XmlParserService } from "../xml-parser/xml-parser.service";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class NewSenderService {
@@ -69,7 +70,7 @@ export class NewSenderService {
 		zip: string,
 		sessionKey: string,
 		senderCard: string
-	) {
+	): Observable<any> {
 		const xmlData = `<?note XpAddsender?>
 		<XPRESSO>
 			<AUTHENTICATE>
@@ -79,7 +80,8 @@ export class NewSenderService {
 				<ADDRESS>${address}</ADDRESS>
 				<CELLPHONE>${cellphone}</CELLPHONE>
 				<CITY>${city}</CITY>
-				<DOB>${birthdate}</DOB>
+				<DOB>11/20/2020</DOB>
+				<IDCOUNTRYSENDER>BR</IDCOUNTRYSENDER>
 				<DOCTYPE>${docType}</DOCTYPE>
 				<EMAIL>${email}</EMAIL>
 				<IDTYPESENDER>${idTypeSender}</IDTYPESENDER>
@@ -94,6 +96,9 @@ export class NewSenderService {
 				<ZIP>${zip}</ZIP>
 			</SENDER>
 		</XPRESSO>`
-		console.log(xmlData)
+		
+		return this.http.post(this.url + "XpAddSender.cfm", xmlData).switchMap((res) => {
+			return this.xmlParser.parseXml(res, "SENDER")
+		})
 	}
 }

@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit {
 		const owner = this.rootInfo.Owner;
 		const docType = this.idTypeList.find(item => item.IDTYPESENDER === this.registerControls.get("docType").value)
 		const sessionKey = this.session.get("linkInfo")
-		console.log(docType)
 
 		this.newSenderService.addNewSender(
 			this.registerControls.get("address").value,
@@ -75,7 +74,9 @@ export class RegisterComponent implements OnInit {
 			this.sanitizeZipCode(this.registerControls.get("zipcode").value),
 			sessionKey,
 			this.registerControls.get("senderCard").value
-		)
+		).subscribe({
+			next: (res) => console.log(res)
+		})
 	}
 
 	private sanitizePhone(phone: string) {

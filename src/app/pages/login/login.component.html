@@ -13,11 +13,27 @@
                 <p class="text-muted" translate>LOGIN_SUB</p>
                 <div class="input-group mb-3">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input name="email" [(ngModel)]="loginInputs.email" type="text" class="form-control" placeholder="{{ 'USERNAME' | translate }}">
+                  <input 
+										name="email" 
+										[(ngModel)]="loginInputs.email" 
+										type="email" 
+										class="form-control" 
+										placeholder="{{ 'EMAIL' | translate }}" 
+										autocomplete="off"
+									>
                 </div>
                 <div class="input-group mb-4">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input name="password" [(ngModel)]="loginInputs.password" type="password" class="form-control" placeholder="{{ 'PASSWORD' | translate }}">
+                  <input 
+										name="password" 
+										[(ngModel)]="loginInputs.password" 
+										type="password" 
+										class="form-control" 
+										placeholder="{{ 'PASSWORD' | translate }}" 
+										#passwordInput 
+										autocomplete="off"
+									>
+									<i (click)="handlePassInputVisibility($event.target)" class="eye-toggle icon-eye"></i>
                 </div>
                 <div class="row">
                   <div class="col-12">

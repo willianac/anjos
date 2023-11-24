@@ -23,6 +23,8 @@ export class ReceiverAccountListComponent {
   }
 
   getList(receiverId) {
+		if(!receiverId) return
+		
     receiverId = receiverId.trim();
     const list = this.sanitizeArray(this.session.get('accountList'));
     const aux = [];

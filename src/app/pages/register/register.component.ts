@@ -50,9 +50,10 @@ export class RegisterComponent implements OnInit {
 		if(!this.registerControls.valid) {
 			return this.toast.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
 		}
-		if(!this.registerControls.get("acceptTerms").value) {
-			return this.toast.error(this.translate.instant("PLEASE_ACCEPT_TERMS"), this.translate.instant("ERROR"))
+		if(!this.isUserLegalAge()) {
+			return this.toast.error(this.translate.instant("USER_ISNT_LEGAL_AGE"), this.translate.instant("ERROR"))
 		}
+		
 		this.addNewSender()
 	}
 
@@ -61,7 +62,6 @@ export class RegisterComponent implements OnInit {
 		const docType = this.idTypeList.find(item => item.IDTYPESENDER === this.registerControls.get("docType").value)
 		const country = this.countryList.find(country => country.iso2 === this.registerControls.get("country").value)
 		const sessionKey = this.session.get("linkInfo")
-		console.log(country)
 
 		this.newSenderService.addNewSender(
 			this.registerControls.get("address").value,
@@ -81,7 +81,11 @@ export class RegisterComponent implements OnInit {
 			this.sanitizeZipCode(this.registerControls.get("zipcode").value),
 			sessionKey,
 			this.registerPass
-		).subscribe({
+		).catch((err) => {
+			this.handleError(err.Message)
+			throw new Error()
+		})
+		.subscribe({
 			next: (res) => {
 				this.session.remove("registerPass")
 				this.session.remove("registerEmail")
@@ -105,6 +109,12 @@ export class RegisterComponent implements OnInit {
 		return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 	}
 
+	private isUserLegalAge() {
+		const birthYear = new Date(this.registerControls.get("birthdate").value).getFullYear()
+		const currentYear = new Date().getFullYear()
+		return currentYear - birthYear >= 18
+	}
+
 	private handleError(err: string) {
 		if(err === "Session Expired") {
 			return this.toast.error(
@@ -112,6 +122,7 @@ export class RegisterComponent implements OnInit {
 				this.translate.instant("SESSION_EXPIRED_TITLE")
 			)
 		}
+		this.toast.error(this.translate.instant("UNKNOWN_ERROR"), this.translate.instant("ERROR"))
 	}
 
 	ngOnInit(): void {

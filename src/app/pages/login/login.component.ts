@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,7 @@ import { NewSenderService } from 'app/services/new-sender/new-sender.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+	@ViewChild("passwordInput") passwordInput: ElementRef;
 
   public isLoading = false;
   public loginInputs = {
@@ -86,7 +87,7 @@ export class LoginComponent implements OnInit {
 
 		this.newSenderService.addNewRegister(this.loginInputs.email, this.loginInputs.password).subscribe({
 			next: (res) => {
-				if(res.Error) return this.toastr.error(res.Message)
+				if(res.Error) return this.handleResponseErrors(res.Message)
 				const newRegisterSessionKey = res.SessionKey
 				this.session.set("linkInfo", newRegisterSessionKey)
 				this.session.set("registerPass", this.loginInputs.password)
@@ -94,6 +95,20 @@ export class LoginComponent implements OnInit {
 				this.router.navigate(['/register'])
 			}
 		})
+	}
+
+	public handlePassInputVisibility(event: any) {
+		const inputType = this.passwordInput.nativeElement.type
+		
+		inputType === "password" 
+		? this.passwordInput.nativeElement.type = "text" 
+		: this.passwordInput.nativeElement.type = "password"
+	}
+
+	private handleResponseErrors(err: string) {
+		if(err === "New register failed email already exists") {
+			return this.toastr.error(this.translate.instant("REGISTER_DUPLICATE_ERROR"), this.translate.instant("ERROR"))
+		}
 	}
 
 	ngOnInit() {

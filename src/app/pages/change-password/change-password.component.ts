@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from '../../services/login/login.service';
 import { SessionService } from '../../services/session/session.service';
@@ -11,6 +11,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent {
+	@ViewChild("currentPassInput") currentPassInput: ElementRef
+	@ViewChild("newPassInput") newPassInput: ElementRef
+	@ViewChild("confirmPassInput") confirmPassInput: ElementRef
+
   public password = {
     current: '',
     new: '',
@@ -53,4 +57,23 @@ export class ChangePasswordComponent {
       });
   }
 
+	public handleInputsVisibility(target: any) {
+		if(target.id === "current") {
+			this.currentPassInput.nativeElement.type === "password"
+			? this.currentPassInput.nativeElement.type = "text"
+			: this.currentPassInput.nativeElement.type = "password"
+		}	
+
+		if(target.id === "new") {
+			this.newPassInput.nativeElement.type === "password"
+			? this.newPassInput.nativeElement.type = "text"
+			: this.newPassInput.nativeElement.type = "password"
+		}
+
+		if(target.id === "confirm") {
+			this.confirmPassInput.nativeElement.type === "password"
+			? this.confirmPassInput.nativeElement.type = "text"
+			: this.confirmPassInput.nativeElement.type = "password"
+		}
+	}
 }

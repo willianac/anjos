@@ -224,5 +224,8 @@
 	"IMPORTANT": "Important",
 	"ALREADY_HAVE_ACCOUNT": "Already have an account?",
 	"PASSWORD_MINIMUM": "The password must have at least 10 characters to register",
-	"SUCCESS_REGISTER": "Account registered successfully!"
+	"SUCCESS_REGISTER": "Account registered successfully!",
+	"REGISTER_DUPLICATE_ERROR": "This email is already registered",
+	"USER_ISNT_LEGAL_AGE": "Account registration is only available to people over 18 years old"
+
 }

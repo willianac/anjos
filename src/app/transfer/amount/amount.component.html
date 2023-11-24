@@ -5,15 +5,30 @@
 	</div>
   <div class="card-block">
     <form action="" class="form-horizontal" method="post">
-      <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="send">{{'SEND' | translate}} ({{ linkInfo.BaseUnit }})</label>
-        <div class="col-md-3">
-          <input class="form-control" id="send" name="send" type="number" step="0.01" [(ngModel)]="transfer.base" (change)="convertBase()" (ngModelChange)="checkMaxSend($event)">
+      <div class="form-group row send-wrapper">
+        <div class="label-wrapper">
+					<label for="send">{{'SEND' | translate}} ({{ linkInfo.BaseUnit }})</label>
+					<img src="../../../assets/img/flags/US.png" alt="">
+				</div>
+        <div class="col-md-6">
+          <input 
+						class="form-control" 
+						id="send" 
+						name="send" 
+						type="number" 
+						step="0.01" 
+						[(ngModel)]="transfer.base" 
+						(change)="convertBase()" 
+						(ngModelChange)="checkMaxSend($event)"
+					>
         </div>
       </div>
-      <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="receive">{{'RECEIVE' | translate}} ({{ linkInfo.SendUnit }})</label>
-        <div class="col-md-3">
+      <div class="form-group row receive-wrapper">
+        <div class="label-wrapper">
+					<label for="receive">{{'RECEIVE' | translate}} ({{ linkInfo.SendUnit }})</label>
+					<img src="../../../assets/img/flags/BR.png" alt="">
+				</div>
+        <div class="col-md-6">
           <input class="form-control" id="receive" name="receive" type="number" step="0.01" [(ngModel)]="transfer.send" (change)="convertSend()">
           <span class="help-block">1 {{ linkInfo.BaseUnit }} = {{ linkInfo.Rate }} {{ linkInfo.SendUnit }}</span>
         </div>

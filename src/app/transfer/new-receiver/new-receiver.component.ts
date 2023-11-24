@@ -92,7 +92,7 @@ export class NewReceiverComponent implements OnInit {
 				)
 				setTimeout(() => {
 					this.isLoading = false
-					this.router.navigate(['admin', 'transfer']);
+					this.router.navigate(['admin', 'transfer', 'receiver']);
 				}, 3000)
 			},
 			error: (err) => {

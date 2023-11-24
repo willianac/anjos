@@ -15,6 +15,10 @@ export class ChangePasswordComponent {
 	@ViewChild("newPassInput") newPassInput: ElementRef
 	@ViewChild("confirmPassInput") confirmPassInput: ElementRef
 
+	@ViewChild("minLength") minLengthRuleIcon: ElementRef;
+	@ViewChild("hasUppercase") hasUppercaseRuleIcon: ElementRef;
+	@ViewChild("hasDigit") hasDigitRuleIcon: ElementRef;
+
   public password = {
     current: '',
     new: '',
@@ -34,6 +38,8 @@ export class ChangePasswordComponent {
   }
 
   doChange() {
+		if(!this.checkPassword()) return
+
     this.isLoading = true;
     if (this.password.new !== this.password.confirm) {
       let str = this.translate.instant('DIFFERENT_PASSWORDS');
@@ -75,5 +81,37 @@ export class ChangePasswordComponent {
 			? this.confirmPassInput.nativeElement.type = "text"
 			: this.confirmPassInput.nativeElement.type = "password"
 		}
+	}
+
+	public checkPassword() {
+		const minLength = 10
+		const hasUppercase = /[A-Z]/.test(this.password.new)
+		const hasDigit = /[\d]/.test(this.password.new)
+
+		if(this.password.new.length >= minLength) {
+			this.minLengthRuleIcon.nativeElement.classList.remove("fa-times", "fa");
+			this.minLengthRuleIcon.nativeElement.classList.add("icon-check")
+		} else {
+			this.minLengthRuleIcon.nativeElement.classList.remove("icon-check");
+			this.minLengthRuleIcon.nativeElement.classList.add("fa", "fa-times")
+		}
+
+		if(hasUppercase) {
+			this.hasUppercaseRuleIcon.nativeElement.classList.remove("fa-times", "fa");
+			this.hasUppercaseRuleIcon.nativeElement.classList.add("icon-check")
+		} else {
+			this.hasUppercaseRuleIcon.nativeElement.classList.remove("icon-check");
+			this.hasUppercaseRuleIcon.nativeElement.classList.add("fa", "fa-times")
+		}
+
+		if(hasDigit) {
+			this.hasDigitRuleIcon.nativeElement.classList.remove("fa-times", "fa");
+			this.hasDigitRuleIcon.nativeElement.classList.add("icon-check")
+		} else {
+			this.hasDigitRuleIcon.nativeElement.classList.remove("icon-check");
+			this.hasDigitRuleIcon.nativeElement.classList.add("fa", "fa-times")
+		}
+		
+		return hasUppercase && hasDigit && this.password.new.length >= minLength
 	}
 }

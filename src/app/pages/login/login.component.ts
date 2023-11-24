@@ -18,6 +18,10 @@ import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 export class LoginComponent implements OnInit {
 	@ViewChild("passwordInput") passwordInput: ElementRef;
 
+	@ViewChild("minLength") minLengthRuleIcon: ElementRef;
+	@ViewChild("hasUppercase") hasUppercaseRuleIcon: ElementRef;
+	@ViewChild("hasDigit") hasDigitRuleIcon: ElementRef;
+
   public isLoading = false;
   public loginInputs = {
     email: '',
@@ -81,9 +85,7 @@ export class LoginComponent implements OnInit {
 		if(!this.loginInputs.password || !this.loginInputs.email) {
 			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("ERROR"))
 		}
-		if(this.loginInputs.password.length < 10) {
-			return this.toastr.error(this.translate.instant("PASSWORD_MINIMUM"), this.translate.instant("ERROR"))
-		}
+		if(!this.checkPassword()) return
 
 		this.newSenderService.addNewRegister(this.loginInputs.email, this.loginInputs.password).subscribe({
 			next: (res) => {
@@ -109,6 +111,38 @@ export class LoginComponent implements OnInit {
 		if(err === "New register failed email already exists") {
 			return this.toastr.error(this.translate.instant("REGISTER_DUPLICATE_ERROR"), this.translate.instant("ERROR"))
 		}
+	}
+
+	public checkPassword() {
+		const minLength = 10
+		const hasUppercase = /[A-Z]/.test(this.loginInputs.password)
+		const hasDigit = /[\d]/.test(this.loginInputs.password)
+
+		if(this.loginInputs.password.length >= minLength) {
+			this.minLengthRuleIcon.nativeElement.classList.remove("fa-times", "fa");
+			this.minLengthRuleIcon.nativeElement.classList.add("icon-check")
+		} else {
+			this.minLengthRuleIcon.nativeElement.classList.remove("icon-check");
+			this.minLengthRuleIcon.nativeElement.classList.add("fa", "fa-times")
+		}
+
+		if(hasUppercase) {
+			this.hasUppercaseRuleIcon.nativeElement.classList.remove("fa-times", "fa");
+			this.hasUppercaseRuleIcon.nativeElement.classList.add("icon-check")
+		} else {
+			this.hasUppercaseRuleIcon.nativeElement.classList.remove("icon-check");
+			this.hasUppercaseRuleIcon.nativeElement.classList.add("fa", "fa-times")
+		}
+
+		if(hasDigit) {
+			this.hasDigitRuleIcon.nativeElement.classList.remove("fa-times", "fa");
+			this.hasDigitRuleIcon.nativeElement.classList.add("icon-check")
+		} else {
+			this.hasDigitRuleIcon.nativeElement.classList.remove("icon-check");
+			this.hasDigitRuleIcon.nativeElement.classList.add("fa", "fa-times")
+		}
+		
+		return hasUppercase && hasDigit && this.loginInputs.password.length >= minLength
 	}
 
 	ngOnInit() {

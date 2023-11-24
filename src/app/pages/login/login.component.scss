@@ -4,6 +4,10 @@
 
 .container {
 	margin-top: 8rem;
+
+	@media screen and (max-width: 480px) {
+		margin-top: 4rem;
+	}
 }
 
 .card {
@@ -85,4 +89,17 @@
 
 .eye-toggle:hover {
 	color: #676d74;
+}
+
+.password-rules {
+	display: flex;
+	flex-direction: column;
+
+	.icon-check {
+		color: green;
+	}
+
+	.fa-times {
+		color: red;
+	}
 }

@@ -22,11 +22,12 @@
 										autocomplete="off"
 									>
                 </div>
-                <div class="input-group mb-4">
+                <div class="input-group mb-3">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
                   <input 
 										name="password" 
 										[(ngModel)]="loginInputs.password" 
+										(input)="checkPassword()"
 										type="password" 
 										class="form-control" 
 										placeholder="{{ 'PASSWORD' | translate }}" 
@@ -35,6 +36,20 @@
 									>
 									<i (click)="handlePassInputVisibility($event.target)" class="eye-toggle icon-eye"></i>
                 </div>
+								<div class="password-rules mb-3">
+									<span>
+										<i class="fa fa-times" #minLength></i>
+										Deve ter no mínimo 10 caracteres
+									</span>
+									<span>
+										<i class="fa fa-times" #hasUppercase></i>
+										Deve ter uma letra maiúscula
+									</span>
+									<span>
+										<i class="fa fa-times" #hasDigit></i>
+										Deve ter um dígito
+									</span>
+								</div>
                 <div class="row">
                   <div class="col-12">
                       <ngx-loading [show]="isLoading"></ngx-loading>

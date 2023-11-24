@@ -85,6 +85,6 @@ export class AmountComponent {
 		}
     this.session.set('currentBase', this.transfer.base);
     this.session.set('currentSend', this.transfer.send);
-    this.router.navigate(['admin', 'transfer', 'summary']);
+    this.router.navigate(['admin', 'transfer', 'receiver']);
   }
 }

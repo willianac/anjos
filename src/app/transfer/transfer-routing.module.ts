@@ -13,7 +13,7 @@ import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'receiver',
+    redirectTo: 'amount',
     pathMatch: 'full',
   },
   {
@@ -22,6 +22,13 @@ const routes: Routes = [
       title: 'TRANSFER'
     },
     children: [
+			{
+				path: 'amount',
+        component: AmountComponent,
+        data: {
+          title: 'TRANSFER_AMOUNT'
+        }
+			},
       {
         path: 'receiver',
         component: ReceiverListComponent,
@@ -41,13 +48,6 @@ const routes: Routes = [
         component: PurposeListComponent,
         data: {
           title: 'SELECT_PURPOSE'
-        }
-      },
-      {
-        path: 'amount',
-        component: AmountComponent,
-        data: {
-          title: 'TRANSFER_AMOUNT'
         }
       },
       {

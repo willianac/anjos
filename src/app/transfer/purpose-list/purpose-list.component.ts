@@ -32,7 +32,7 @@ export class PurposeListComponent {
 
   select(purpose) {
     this.session.set('currentPurpose', purpose);
-    this.router.navigate(['admin', 'transfer', 'amount']);
+    this.router.navigate(['admin', 'transfer', 'summary']);
   }
 
 }

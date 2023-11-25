@@ -158,6 +158,7 @@
   "SELECT_RECEIVER_BANK_ACCOUNT": "Escolha a conta do Beneficiário",
 
   "RECEIVER": "Beneficiário",
+	"SELECT_RECEIVER_FROM": "Escolha um beneficiário de",
   "VALUES": "Valores",
 
   "RECOVER_SUB": "Insira seu email de cadastro",
@@ -226,6 +227,7 @@
 	"PASSWORD_MINIMUM": "A senha deve ter no mínimo 10 caracteres para realizar o cadastro",
 	"SUCCESS_REGISTER": "Conta cadastrada com sucesso!",
 	"REGISTER_DUPLICATE_ERROR": "Este email já está cadastrado",
-	"USER_ISNT_LEGAL_AGE": "O cadastro de conta só está disponivel para maiores de 18 anos"
+	"USER_ISNT_LEGAL_AGE": "O cadastro de conta só está disponivel para maiores de 18 anos",
+	"REQUIRED_FIELD": "Campo obrigatório"
 
 }

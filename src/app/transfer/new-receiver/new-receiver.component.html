@@ -14,12 +14,18 @@
 			</div>
 
 			<div class="inline-field-wrapper">
-				<div>
+				<div class="mb-2">
 					<label for="firstName" translate>FIRST_NAME</label>
-					<div class="input-group mb-2">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-user"></i></span>
 						<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName">
 					</div>
+					<small 
+						*ngIf="receiverForm.get('firstName').hasError('required') && receiverForm.get('firstName').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 
 				<div class="mb-2">
@@ -34,24 +40,38 @@
 						translate
 						>INVALID_SURNAME
 					</small>
+					<small 
+						*ngIf="receiverForm.get('surname').hasError('required') && receiverForm.get('surname').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 			</div>
 
-			<label for="kinship" translate>RELATIONSHIP</label>
-			<div class="input-group mb-2">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<select name="kinship" id="kinship" class="select" formControlName="kinship">
-					<option value="" translate>PLEASE_SELECT</option>
-					<option 
-						*ngFor="let kinship of kinshipList"
-						[value]="kinship.KINSHIPID"
-						>{{kinship.KINSHIPNAME}}
-					</option>
-				</select>
+			<div class="mb-2">
+				<label for="kinship" translate>RELATIONSHIP</label>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="icon-user"></i></span>
+					<select name="kinship" id="kinship" class="select" formControlName="kinship">
+						<option value="" translate>PLEASE_SELECT</option>
+						<option 
+							*ngFor="let kinship of kinshipList"
+							[value]="kinship.KINSHIPID"
+							>{{kinship.KINSHIPNAME}}
+						</option>
+					</select>
+				</div>
+				<small 
+					*ngIf="receiverForm.get('kinship').hasError('required') && receiverForm.get('kinship').touched" 
+					class="input-error"
+					translate
+					>REQUIRED_FIELD
+				</small>
 			</div>
 
 			<div class="inline-field-wrapper">
-				<div class="">
+				<div>
 					<label for="personType" translate>PERSON_TYPE</label>
 					<div class="input-group mb-2">
 						<span class="input-group-addon"><i class="icon-user"></i></span>
@@ -75,6 +95,12 @@
 							translate
 							>INVALID_CPF
 						</small>
+						<small 
+							*ngIf="receiverForm.get('document').hasError('required') && receiverForm.get('document').touched" 
+							class="input-error"
+							translate
+							>REQUIRED_FIELD
+						</small>
 					</div>
 
 					<ng-template #cnpj>
@@ -90,36 +116,64 @@
 								translate
 								>INVALID_CNPJ
 							</small>
+							<small 
+							*ngIf="receiverForm.get('document').hasError('required') && receiverForm.get('document').touched" 
+							class="input-error"
+							translate
+							>REQUIRED_FIELD
+						</small>
 						</div>
 					</ng-template>
 				</div>
 
 				<ng-template #document>
-					<div class="field-wrapper">
+					<div class="field-wrapper mb-2">
 						<label for="document" translate>DOCUMENT</label>
-						<div class="input-group mb-2">
+						<div class="input-group">
 							<span class="input-group-addon"><i class="icon-doc"></i></span>
 							<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
 						</div>
+						<small 
+							*ngIf="receiverForm.get('document').hasError('required') && receiverForm.get('document').touched" 
+							class="input-error"
+							translate
+							>REQUIRED_FIELD
+						</small>
 					</div>
 				</ng-template>
 			</div>
-				
-
-			<label for="address" translate>ADDRESS</label>
-			<div class="input-group mb-2">
-				<span class="input-group-addon"><i class="icon-home"></i></span>
-				<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
-			</div>
 
 			<div class="inline-field-wrapper">
-				<div>
+				<div class="mb-2">
+					<label for="address" translate>ADDRESS</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="icon-home"></i></span>
+						<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
+					</div>
+					<small 
+						*ngIf="receiverForm.get('address').hasError('required') && receiverForm.get('address').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
+				</div>
+
+				<div class="mb-2">
 					<label for="city" translate>CITY</label>
-					<div class="input-group mb-2">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 						<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
 					</div>
+					<small 
+						*ngIf="receiverForm.get('city').hasError('required') && receiverForm.get('city').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
+			</div>
+
+			<div class="inline-field-wrapper">
 
 				<div class="mb-2">
 					<label for="state" translate>STATE</label>
@@ -134,6 +188,12 @@
 							</option>
 						</select>
 					</div>
+					<small 
+						*ngIf="receiverForm.get('state').hasError('required') && receiverForm.get('state').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 
 				<div class="mb-2">
@@ -142,6 +202,12 @@
 						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
 						<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
 					</div>
+					<small 
+						*ngIf="receiverForm.get('zip').hasError('required') && receiverForm.get('zip').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 			</div>
 
@@ -152,6 +218,12 @@
 						<span class="input-group-addon"><i class="icon-phone"></i></span>
 						<input appPhoneMask maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
 					</div>
+					<small 
+						*ngIf="receiverForm.get('phone').hasError('required') && receiverForm.get('phone').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 					<small 
 						*ngIf="receiverForm.get('phone').hasError('minlength') && receiverForm.get('phone').touched" 
 						class="input-error"
@@ -167,6 +239,12 @@
 						<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
 					</div>
 					<small 
+						*ngIf="receiverForm.get('email').hasError('required') && receiverForm.get('email').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
+					<small 
 						*ngIf="receiverForm.get('email').hasError('email') && receiverForm.get('email').touched" 
 						class="input-error"
 						translate
@@ -175,13 +253,15 @@
 				</div>
 			</div>
 		</form>
+
 		<hr class="forms-divider">
 		<h4 class="form-title" translate>BANK_DATA</h4>
+
 		<form [formGroup]="receiverAccountForm">
 			<div class="inline-field-wrapper">
-				<div>
+				<div class="mb-2">
 					<label for="bank" translate>BANK</label>
-					<div class="input-group mb-2">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-organization"></i></span>
 						<select formControlName="bankName" name="bank" id="bank" class="select">
 							<option value="" translate>PLEASE_SELECT</option>
@@ -194,10 +274,16 @@
 							</option>
 						</select>
 					</div>
+					<small 
+						*ngIf="receiverAccountForm.get('bankName').hasError('required') && receiverAccountForm.get('bankName').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
-				<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'">
+				<div class="mb-2" *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'">
 					<label for="accountType" translate>ACCOUNT_TYPE</label>
-					<div class="input-group mb-2">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-organization"></i></span>
 						<select formControlName="accountType" name="accountType" id="accountType" class="select">
 							<option value="" translate>PLEASE_SELECT</option>
@@ -205,32 +291,58 @@
 							<option value="S" translate>SAVINGS</option>
 						</select>
 					</div>
+					<small 
+						*ngIf="receiverAccountForm.get('accountType').hasError('required') && receiverAccountForm.get('accountType').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 			</div>
 
 			<div *ngIf="receiverAccountForm.get('bankName').value !== 'PIX'; else PixKey" class="inline-field-wrapper">
-				<div>
+				<div class="mb-2">
 					<label for="branch" translate>BRANCH</label>
-					<div class="input-group mb-2">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-home"></i></span>
 						<input type="number" formControlName="branch" name="branch" id="branch" class="form-control" placeholder="{{'BRANCH' | translate}}" autocomplete="off">
 					</div>
+					<small 
+						*ngIf="receiverAccountForm.get('branch').hasError('required') && receiverAccountForm.get('branch').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 
-				<div>
+				<div class="mb-2">
 					<label for="account" translate>ACCOUNT</label>
-					<div class="input-group mb-2">
+					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-home"></i></span>
 						<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="{{'ACCOUNT' | translate}}" autocomplete="off">
 					</div>
+					<small 
+						*ngIf="receiverAccountForm.get('account').hasError('required') && receiverAccountForm.get('account').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 			</div>
 
 			<ng-template #PixKey>
-				<label for="pix" translate>PIX_KEY</label>
-				<div class="input-group mb-2">
-					<span class="input-group-addon"><i class="icon-home"></i></span>
-					<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="{{'PIX_KEY' | translate}}" autocomplete="off">
+				<div class="mb-2">
+						<label for="pix" translate>PIX_KEY</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="icon-home"></i></span>
+						<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="{{'PIX_KEY' | translate}}" autocomplete="off">
+					</div>
+					<small 
+						*ngIf="receiverAccountForm.get('pix').hasError('required') && receiverAccountForm.get('pix').touched" 
+						class="input-error"
+						translate
+						>REQUIRED_FIELD
+					</small>
 				</div>
 			</ng-template>
 		</form>

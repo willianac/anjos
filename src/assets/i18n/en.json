@@ -158,6 +158,7 @@
   "SELECT_RECEIVER_BANK_ACCOUNT": "Select Receiver's Bank Account",
 
   "RECEIVER": "Receiver",
+	"SELECT_RECEIVER_FROM": "Select a receiver from",
   "VALUES": "Values",
 
   "RECOVER_SUB": "Insert your email to recover",
@@ -226,6 +227,7 @@
 	"PASSWORD_MINIMUM": "The password must have at least 10 characters to register",
 	"SUCCESS_REGISTER": "Account registered successfully!",
 	"REGISTER_DUPLICATE_ERROR": "This email is already registered",
-	"USER_ISNT_LEGAL_AGE": "Account registration is only available to people over 18 years old"
+	"USER_ISNT_LEGAL_AGE": "Account registration is only available to people over 18 years old",
+	"REQUIRED_FIELD": "Required field"
 
 }

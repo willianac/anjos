@@ -52,7 +52,9 @@ export class LoginComponent implements OnInit {
       } else if (statusCode === 0) {
         if (response && response.MoneyReceivers && response.MoneyReceivers.Receiver) {
           this.session.set('receiverList', response.MoneyReceivers.Receiver);
-        }
+        } else {
+					this.session.set('receiverList', "undefined")
+				}
         if (response && response.MoneyReceivers && response.MoneyReceivers.ReceiverBank) {
           this.session.set('accountList', response.MoneyReceivers.ReceiverBank);
         }

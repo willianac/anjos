@@ -7,8 +7,8 @@
     <form action="" class="form-horizontal" method="post">
       <div class="form-group row send-wrapper">
         <div class="label-wrapper">
-					<label for="send">{{'SEND' | translate}} ({{ linkInfo.BaseUnit }})</label>
 					<img src="../../../assets/img/flags/US.png" alt="">
+					<label for="send">{{'SEND' | translate}} ({{ linkInfo.BaseUnit }})</label>
 				</div>
         <div class="col-md-6">
           <input 
@@ -25,8 +25,8 @@
       </div>
       <div class="form-group row receive-wrapper">
         <div class="label-wrapper">
-					<label for="receive">{{'RECEIVE' | translate}} ({{ linkInfo.SendUnit }})</label>
 					<img src="../../../assets/img/flags/BR.png" alt="">
+					<label for="receive">{{'RECEIVE' | translate}} ({{ linkInfo.SendUnit }})</label>
 				</div>
         <div class="col-md-6">
           <input class="form-control" id="receive" name="receive" type="number" step="0.01" [(ngModel)]="transfer.send" (change)="convertSend()">
@@ -41,7 +41,7 @@
         </div>
       </div>
 			<div class="row">
-        <div class="col-6">
+        <div class="col-12 btn-wrapper">
           <button class="btn btn-primary btn-desktop px-4" (click)="select()" translate>NEXT</button>
         </div>
       </div>

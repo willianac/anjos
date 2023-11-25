@@ -14,9 +14,9 @@
 							<div class="col-12">
 								<form [formGroup]="registerControls" (ngSubmit)="submit()">
 									<div class="inline-field-wrapper">
-										<div>
+										<div class="mb-2">
 											<label for="firstName" translate>NAME</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
 												<input 
 													formControlName="senderName" 
@@ -27,6 +27,12 @@
 													placeholder="{{'NAME' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('senderName').hasError('required') && registerControls.get('senderName').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 	
 										<div class="mb-2">
@@ -48,24 +54,36 @@
 												translate
 												>INVALID_SURNAME
 											</small>
+											<small 
+												*ngIf="registerControls.get('senderLast').hasError('required') && registerControls.get('senderLast').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 									</div>				
 
 									<div class="inline-field-wrapper">
-										<div>
+										<div class="mb-2">
 											<label for="country" translate>COUNTRY</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-map"></i></span>
 												<select formControlName="country" name="country" id="country" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
 													<option *ngFor="let country of countryList" [value]="country.iso2">{{country.name}}</option>
 												</select>
 											</div>
+											<small 
+												*ngIf="registerControls.get('country').hasError('required') && registerControls.get('country').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 
-										<div>
+										<div class="mb-2">
 											<label for="birthdate" translate>BIRTH_DATE</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-user"></i></span>
 												<input 
 													formControlName="birthdate" 
@@ -76,24 +94,36 @@
 													placeholder="{{'BIRTH_DATE' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('birthdate').hasError('required') && registerControls.get('birthdate').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 									</div>
 
 									<div class="inline-field-wrapper">
-										<div>
+										<div class="mb-2">
 											<label for="docType" translate>IDENTIFICATION_DOC</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-doc"></i></span>
 												<select formControlName="docType" name="docType" id="docType" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
 													<option *ngFor="let type of idTypeList" [value]="type.IDTYPESENDER">{{type.IDTYPENAMESENDER}}</option>
 												</select>
 											</div>
+											<small 
+												*ngIf="registerControls.get('docType').hasError('required') && registerControls.get('docType').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 	
-										<div>
+										<div class="mb-2">
 											<label for="document" translate>DOCUMENT</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-doc"></i></span>
 												<input 
 													formControlName="senderDoc" 
@@ -104,13 +134,19 @@
 													placeholder="{{'DOCUMENT' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('senderDoc').hasError('required') && registerControls.get('senderDoc').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 									</div>
 
 									<div class="inline-field-wrapper">
-										<div>
+										<div class="mb-2">
 											<label for="address" translate>ADDRESS</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-map"></i></span>
 												<input 
 													formControlName="address" 
@@ -121,23 +157,36 @@
 													placeholder="{{'ADDRESS' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('address').hasError('required') && registerControls.get('address').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
+
 										</div>
-										<div>
+										<div class="mb-2">
 											<label for="state" translate>STATE</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 												<select formControlName="state" name="state" id="state" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
 													<option *ngFor="let state of validStates" [value]="state">{{state}}</option>
 												</select>
 											</div>
+											<small 
+												*ngIf="registerControls.get('state').hasError('required') && registerControls.get('state').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 									</div>
 
 									<div class="inline-field-wrapper">
-										<div>
+										<div class="mb-2">
 											<label for="city" translate>CITY</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 												<input 
 													formControlName="city" 
@@ -148,11 +197,17 @@
 													placeholder="{{'CITY' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('city').hasError('required') && registerControls.get('city').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 	
-										<div>
+										<div class="mb-2">
 											<label for="zip" translate>ZIPCODE</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
 												<input 
 													formControlName="zipcode" 
@@ -163,13 +218,19 @@
 													placeholder="{{'ZIPCODE' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('zipcode').hasError('required') && registerControls.get('zipcode').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 									</div>
 									
 									<div class="inline-field-wrapper">
-										<div>
+										<div class="mb-2">
 											<label for="cellphone" translate>CELLPHONE</label>
-											<div class="input-group mb-2">
+											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-phone"></i></span>
 												<input
 													formControlName="cellphone" 
@@ -181,6 +242,12 @@
 													placeholder="{{'CELLPHONE' | translate}}"
 												>
 											</div>
+											<small 
+												*ngIf="registerControls.get('cellphone').hasError('required') && registerControls.get('cellphone').touched" 
+												class="input-error"
+												translate
+												>REQUIRED_FIELD
+											</small>
 										</div>
 
 										<div>

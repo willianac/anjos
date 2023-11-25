@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session/session.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ class Transfer {
   templateUrl: './amount.component.html',
   styleUrls: ['./amount.component.scss']
 })
-export class AmountComponent {
+export class AmountComponent implements OnInit {
   public transfer: Transfer = new Transfer();
   public linkInfo;
   public message;
@@ -87,4 +87,12 @@ export class AmountComponent {
     this.session.set('currentSend', this.transfer.send);
     this.router.navigate(['admin', 'transfer', 'receiver']);
   }
+
+	ngOnInit(): void {
+		console.log(this.session.get("receiverList"))
+		if(this.session.get("receiverList") === "undefined") {
+			console.log("vazio")
+			this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
+		}
+	}
 }

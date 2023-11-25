@@ -11,6 +11,9 @@
 }
 
 .btn-desktop {
+	width: 160px;
+	cursor: pointer;
+
 	@media screen and (max-width: 480px) {
 		display: none;
 	}
@@ -27,6 +30,7 @@
 	align-items: center;
 	justify-content: space-between;
 	max-width: 600px;
+	row-gap: 5px;
 }
 
 .label-wrapper {

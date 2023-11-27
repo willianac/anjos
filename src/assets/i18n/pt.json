@@ -181,7 +181,7 @@
 	"ADD_RECEIVER": "Cadastrar Beneficiário",
 
 	"NEW_RECEIVER": "Novo Beneficiário",
-	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Preencha todos os campos para adicionar um novo beneficiário.",
+	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Preencha todos os campos para adicionar um novo beneficiário em",
 	"FILL_FIELDS": "Preencha os campos",
 	"BRAZIL": "Brasil",
 	"USA": "Estados Unidos da América",
@@ -213,7 +213,7 @@
 	"CHECKING": "Corrente",
 	"SAVINGS": "Poupança",
 	"ACCOUNT_ADDED": "Nova conta cadastrada com sucesso, você será redirecionado...",
-	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Preencha todos os campos para adicionar uma nova conta.",
+	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Preencha todos os campos para adicionar uma nova conta em",
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Conta já cadastrada",
 	"ACCOUNT_ALREADY_EXISTS_TEXT": "A conta que você tentou adicionar já existe",
 

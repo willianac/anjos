@@ -181,7 +181,7 @@
 	"ADD_RECEIVER": "New Receiver",
 
 	"NEW_RECEIVER": "New Receiver",
-	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Fill in all the fields to add a new receiver.",
+	"FILL_ALL_FIELDS_FOR_NEW_RECEIVER": "Fill in all the fields to add a new receiver in",
 	"FILL_FIELDS": "Fill in the fields",
 	"BRAZIL": "Brazil",
 	"USA": "United States of America",
@@ -213,7 +213,7 @@
 	"CHECKING": "Checking",
 	"SAVINGS": "Savings",
 	"ACCOUNT_ADDED": "Account successfully registered, you will be redirected...",
-	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Fill in all the fields to add a new account.",
+	"FILL_ALL_FIELDS_FOR_NEW_ACCOUNT": "Fill in all the fields to add a new account in",
 	"ACCOUNT_ALREADY_EXISTS_TITLE": "Account already exists",
 	"ACCOUNT_ALREADY_EXISTS_TEXT": "The account you tried to add already exists",
 

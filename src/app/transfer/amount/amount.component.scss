@@ -30,17 +30,29 @@
 	align-items: center;
 	justify-content: space-between;
 	max-width: 600px;
-	row-gap: 5px;
+	gap: 30px;
+	flex-wrap: nowrap;
 }
 
 .label-wrapper {
 	display: flex;
 	align-items: center;
 	column-gap: 16px;
-	padding-left: 15px;
-	padding-right: 4rem;
+	padding-right: 5px;
 
 	label {
 		font-weight: 600;
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: 480px) {
+		max-width: 40%;
+	}
+}
+
+.input-wrapper {
+
+	@media screen and (max-width: 480px) {
+		flex: 1;
 	}
 }

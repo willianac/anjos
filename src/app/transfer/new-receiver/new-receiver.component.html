@@ -1,17 +1,20 @@
 <div class="card">
-  <div class="card-header" translate>FILL_ALL_FIELDS_FOR_NEW_RECEIVER</div>
+  <div class="card-header">
+		<span translate>FILL_ALL_FIELDS_FOR_NEW_RECEIVER</span>
+		<img src="../../../assets/img/flags/BR.png" alt="a country flag">
+	</div>
   <div class="card-block">
 		<h4 class="form-title" translate>NEW_RECEIVER</h4>
     <form [formGroup]="receiverForm">
 
-			<label for="country" translate>COUNTRY</label>
+			<!-- <label for="country" translate>COUNTRY</label>
 			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 				<select name="country" id="country" class="select" formControlName="country">
 					<option value="" translate>PLEASE_SELECT</option>
 					<option value="brazil" translate>BRAZIL</option>
 				</select>
-			</div>
+			</div> -->
 
 			<div class="inline-field-wrapper">
 				<div class="mb-2">
@@ -60,6 +63,7 @@
 							[value]="kinship.KINSHIPID"
 							>{{kinship.KINSHIPNAME}}
 						</option>
+						<option value="kin">teste</option>
 					</select>
 				</div>
 				<small 
@@ -272,6 +276,7 @@
 								<span>{{bank.BANKNUMBER}} - </span>
 								<span>{{bank.BANKNAME}}</span>
 							</option>
+							<option value="ban">teste</option>
 						</select>
 					</div>
 					<small 

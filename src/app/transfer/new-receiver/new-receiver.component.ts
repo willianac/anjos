@@ -22,7 +22,7 @@ export class NewReceiverComponent implements OnInit {
 	kinshipList = []
 	stateList: State[] = []
 	receiverForm = this.fb.group({
-		country: ["", Validators.required],
+		country: ["brazil", Validators.required],
 		firstName: ["", [Validators.required, Validators.maxLength(40)]],
 		surname: ["", [Validators.required, Validators.pattern(/^\w+$/), Validators.maxLength(20)]],
 		personType: ["fisica", Validators.required],
@@ -92,7 +92,7 @@ export class NewReceiverComponent implements OnInit {
 				)
 				setTimeout(() => {
 					this.isLoading = false
-					this.router.navigate(['admin', 'transfer', 'receiver']);
+					this.router.navigate(['admin']);
 				}, 3000)
 			},
 			error: (err) => {

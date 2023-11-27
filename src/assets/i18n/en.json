@@ -228,6 +228,9 @@
 	"SUCCESS_REGISTER": "Account registered successfully!",
 	"REGISTER_DUPLICATE_ERROR": "This email is already registered",
 	"USER_ISNT_LEGAL_AGE": "Account registration is only available to people over 18 years old",
-	"REQUIRED_FIELD": "Required field"
+	"REQUIRED_FIELD": "Required field",
+
+	"PROTECT_YOUR_ACCOUNT": "Protect your account",
+	"CHANGE_PASSWORD_RECOMENDATION": "Change your password to a stronger one and protect your account"
 
 }

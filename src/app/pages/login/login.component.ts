@@ -71,6 +71,15 @@ export class LoginComponent implements OnInit {
         this.session.set('currentEmail', this.loginInputs.email);
         this.session.set('lastPassword', this.loginInputs.password);
         this.senderAccountSvc.checkUser();
+
+				if(this.loginInputs.password.length < 10) {
+					this.router.navigate(['admin', 'changePassword']);
+					return this.toastr.info(
+						this.translate.instant("CHANGE_PASSWORD_RECOMENDATION"), 
+						this.translate.instant("PROTECT_YOUR_ACCOUNT")
+					)
+				}
+
         this.router.navigate(['admin'])
       } else {
         this.toastr.error(this.translate.instant('UNKNOWN_ERROR'), this.translate.instant('ERROR'));

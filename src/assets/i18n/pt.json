@@ -228,6 +228,9 @@
 	"SUCCESS_REGISTER": "Conta cadastrada com sucesso!",
 	"REGISTER_DUPLICATE_ERROR": "Este email já está cadastrado",
 	"USER_ISNT_LEGAL_AGE": "O cadastro de conta só está disponivel para maiores de 18 anos",
-	"REQUIRED_FIELD": "Campo obrigatório"
+	"REQUIRED_FIELD": "Campo obrigatório",
+
+	"PROTECT_YOUR_ACCOUNT": "Proteja sua conta",
+	"CHANGE_PASSWORD_RECOMENDATION": "Troque sua senha para uma mais forte e proteja sua conta"
 
 }

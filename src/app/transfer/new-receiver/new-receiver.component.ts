@@ -96,7 +96,7 @@ export class NewReceiverComponent implements OnInit {
 				}, 3000)
 			},
 			error: (err) => {
-				this.handleErrors(err.message)
+				this.handleErrors(err)
 				this.isLoading = false
 			}
 		})
@@ -161,23 +161,23 @@ export class NewReceiverComponent implements OnInit {
 		return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 	}
 
-	private handleErrors(error: string) {
-		if(error === "Record already exists") {
+	private handleErrors(error: any) {
+		if(error.message === "Record already exists") {
 			return this.toastr.error(
 				this.translate.instant("RECEIVER_ALREADY_EXISTS_TEXT"),
 				this.translate.instant("RECEIVER_ALREADY_EXISTS_TITLE")
 			)
 		}
-		if(error === "Session key not found") {
+		if(error.message === "Session key not found") {
 			return this.toastr.error("Session key inválida", "Erro")
 		}
-		if(error === "Session Expired") {
+		if(error.message === "Session Expired" || error === "Session Expired") {
 			return this.toastr.error(
 				this.translate.instant("SESSION_EXPIRED_TEXT"),
 				this.translate.instant("SESSION_EXPIRED_TITLE")
 			)
 		}
-		if(error === "Adding record failed") {
+		if(error.message === "Adding record failed") {
 			return this.toastr.error("Erro ao tentar cadastrar um beneficiario", "Erro")
 		}
 

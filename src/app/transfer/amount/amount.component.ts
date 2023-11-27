@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session/session.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LoginService } from 'app/services/login/login.service';
+import { ToastrService } from 'ngx-toastr';
 
 class Transfer {
   public base: string;
@@ -20,6 +22,8 @@ export class AmountComponent implements OnInit {
 
   constructor(
     public session: SessionService,
+		public loginService: LoginService,
+		public toastr: ToastrService,
     public router: Router,
     public translate: TranslateService
   ) {
@@ -88,11 +92,34 @@ export class AmountComponent implements OnInit {
     this.router.navigate(['admin', 'transfer', 'receiver']);
   }
 
+	getNewSession() {
+    const lang = this.translate.currentLang || this.translate.defaultLang;
+    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang)
+      .subscribe({
+        next: (response: any) => {
+          const statusCode = Number(response.StatusCode);
+          if (statusCode < 0) {
+            this.toastr.error(`[${response.StatusCode}] ${response.SessionResult}`, this.translate.instant('UNKNOWN_ERROR'));
+            this.router.navigate(['login']);
+          } else {
+            if (response && response.LinkInfo) {
+							if(!response.MoneyReceivers.Receiver) {
+								this.toastr.success("sucess","sim sucesso")
+								return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
+							}
+              this.session.set('linkInfo', response.LinkInfo);
+							this.session.set("receiverList", response.MoneyReceivers.Receiver)
+							this.session.set("accountList", response.MoneyReceivers.ReceiverBank)
+            }
+          }
+        },
+        error: (err) => {
+          this.toastr.error(this.translate.instant('CONNECTION_ERROR'));
+        }
+      })
+  }
+
 	ngOnInit(): void {
-		console.log(this.session.get("receiverList"))
-		if(this.session.get("receiverList") === "undefined") {
-			console.log("vazio")
-			this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
-		}
+		this.getNewSession()
 	}
 }

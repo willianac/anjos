@@ -233,7 +233,7 @@
 	"REQUIRED_FIELD": "Required field",
 	"ACCOUNT_CONFIRMATION_ALERT": "Once your account is approved you will receive a confirmation email",
 
-	"PROTECT_YOUR_ACCOUNT": "Protect your account",
-	"CHANGE_PASSWORD_RECOMENDATION": "Protect your account, follow the criteria provided"
+	"PROTECT_YOUR_ACCOUNT": "Your password is weak",
+	"CHANGE_PASSWORD_RECOMENDATION": "Protect your account with the criteria provided or go to Transfer"
 
 }

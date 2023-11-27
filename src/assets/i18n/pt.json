@@ -233,7 +233,7 @@
 	"REQUIRED_FIELD": "Campo obrigatório",
 	"ACCOUNT_CONFIRMATION_ALERT": "Assim que a sua conta estiver aprovada você receberá um email de confirmação",
 
-	"PROTECT_YOUR_ACCOUNT": "Proteja sua conta",
-	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta, siga os critérios informados"
+	"PROTECT_YOUR_ACCOUNT": "Sua senha é fraca",
+	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta com os critérios fornecidos ou vá para a Transferência"
 
 }

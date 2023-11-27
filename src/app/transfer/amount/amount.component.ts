@@ -103,10 +103,9 @@ export class AmountComponent implements OnInit {
             this.router.navigate(['login']);
           } else {
             if (response && response.LinkInfo) {
-							if(!response.MoneyReceivers.Receiver) {
-								this.toastr.success("sucess","sim sucesso")
-								return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
-							}
+							// if(!response.MoneyReceivers.Receiver) {
+							// 	return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
+							// }
               this.session.set('linkInfo', response.LinkInfo);
 							this.session.set("receiverList", response.MoneyReceivers.Receiver)
 							this.session.set("accountList", response.MoneyReceivers.ReceiverBank)

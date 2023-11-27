@@ -65,16 +65,16 @@
 
 									<div class="inline-field-wrapper">
 										<div class="mb-2">
-											<label for="country" translate>COUNTRY</label>
+											<label for="idDocCountry" translate>IDENTIFICATION_DOC_COUNTRY</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-map"></i></span>
-												<select formControlName="country" name="country" id="country" class="select">
+												<select formControlName="idDocCountry" name="idDocCountry" id="idDocCountry" class="select">
 													<option value="" translate>PLEASE_SELECT</option>
 													<option *ngFor="let country of countryList" [value]="country.iso2">{{country.name}}</option>
 												</select>
 											</div>
 											<small 
-												*ngIf="registerControls.get('country').hasError('required') && registerControls.get('country').touched" 
+												*ngIf="registerControls.get('idDocCountry').hasError('required') && registerControls.get('idDocCountry').touched" 
 												class="input-error"
 												translate
 												>REQUIRED_FIELD

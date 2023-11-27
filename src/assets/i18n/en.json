@@ -176,6 +176,7 @@
   "REGISTER_SUB": "Create your account to make transfers",
   "IDENTIFICATION_DOC": "Id Document Type",
   "IDENTIFICATION_DOC_TEXT": "Scan one of those documents: Driver's License or ID Card.",
+	"IDENTIFICATION_DOC_COUNTRY": "Id Document Country",
 
   "ACTIONS": "Actions",
 	"ADD_RECEIVER": "New Receiver",
@@ -230,8 +231,9 @@
 	"REGISTER_DUPLICATE_ERROR": "This email is already registered",
 	"USER_ISNT_LEGAL_AGE": "Account registration is only available to people over 18 years old",
 	"REQUIRED_FIELD": "Required field",
+	"ACCOUNT_CONFIRMATION_ALERT": "Once your account is approved you will receive a confirmation email",
 
 	"PROTECT_YOUR_ACCOUNT": "Protect your account",
-	"CHANGE_PASSWORD_RECOMENDATION": "Change your password to a stronger one and protect your account"
+	"CHANGE_PASSWORD_RECOMENDATION": "Protect your account, follow the criteria provided"
 
 }

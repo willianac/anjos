@@ -176,6 +176,7 @@
   "REGISTER_SUB": "Crie sua conta para efetuar remessas",
   "IDENTIFICATION_DOC": "Tipo de Documento",
   "IDENTIFICATION_DOC_TEXT": "Escaneie um dos seguintes documentos: carteira de identidade, CNH ou RG.",
+	"IDENTIFICATION_DOC_COUNTRY": "País do documento",
 
   "ACTIONS": "Ações",
 	"ADD_RECEIVER": "Cadastrar Beneficiário",
@@ -230,8 +231,9 @@
 	"REGISTER_DUPLICATE_ERROR": "Este email já está cadastrado",
 	"USER_ISNT_LEGAL_AGE": "O cadastro de conta só está disponivel para maiores de 18 anos",
 	"REQUIRED_FIELD": "Campo obrigatório",
+	"ACCOUNT_CONFIRMATION_ALERT": "Assim que a sua conta estiver aprovada você receberá um email de confirmação",
 
 	"PROTECT_YOUR_ACCOUNT": "Proteja sua conta",
-	"CHANGE_PASSWORD_RECOMENDATION": "Troque sua senha para uma mais forte e proteja sua conta"
+	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta, siga os critérios informados"
 
 }

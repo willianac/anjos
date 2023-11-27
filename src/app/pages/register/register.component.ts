@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 		address: ["", [Validators.required, Validators.maxLength(40)]],
 		city: ["", [Validators.required, Validators.maxLength(20)]],
 		state: ["", Validators.required],
-		country: ["", Validators.required],
+		idDocCountry: ["", Validators.required],
 		birthdate: ["", Validators.required],
 		docType: ["", Validators.required],
 		cellphone: ["", [Validators.required, Validators.maxLength(30)]],
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
 	private addNewSender() {
 		const owner = this.rootInfo.Owner;
 		const docType = this.idTypeList.find(item => item.IDTYPESENDER === this.registerControls.get("docType").value)
-		const country = this.countryList.find(country => country.iso2 === this.registerControls.get("country").value)
+		const country = this.countryList.find(country => country.iso2 === this.registerControls.get("idDocCountry").value)
 		const sessionKey = this.session.get("linkInfo")
 
 		this.newSenderService.addNewSender(
@@ -87,9 +87,14 @@ export class RegisterComponent implements OnInit {
 		})
 		.subscribe({
 			next: (res) => {
+				console.log(res)
 				this.session.remove("registerPass")
 				this.session.remove("registerEmail")
-				this.toast.success(this.translate.instant("SUCCESS_REGISTER"), this.translate.instant("SUCCESS"))
+				if(res.ACTIVATEDSENDER === "0") {
+					this.toast.success(this.translate.instant("ACCOUNT_CONFIRMATION_ALERT"), this.translate.instant("SUCCESS"))
+				} else {
+					this.toast.success(this.translate.instant("SUCCESS_REGISTER"), this.translate.instant("SUCCESS"))
+				}
 				setTimeout(() => {
 					this.router.navigate(['/login'])
 				}, 1000)

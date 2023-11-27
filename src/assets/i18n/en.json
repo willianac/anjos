@@ -222,6 +222,7 @@
 	"TERMS": "terms and conditions",
 	"PLEASE_ACCEPT_TERMS": "Please accept the terms and conditions",
 	"GEOLOCATION_WARNING": "To send money you must be located in New Jersey - USA",
+	"GEOLOCATION_DENIED": "We need access to the location to proceed with the payment",
 	"IMPORTANT": "Important",
 	"ALREADY_HAVE_ACCOUNT": "Already have an account?",
 	"PASSWORD_MINIMUM": "The password must have at least 10 characters to register",

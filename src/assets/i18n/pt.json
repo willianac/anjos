@@ -222,6 +222,7 @@
 	"TERMS": "termos e condições",
 	"PLEASE_ACCEPT_TERMS": "Por favor, aceite os termos e condições de uso",
 	"GEOLOCATION_WARNING": "Para realizar remessas é necessário estar situado em Nova Jersey - USA",
+	"GEOLOCATION_DENIED": "Precisamos do acesso à localização para prosseguir com a remessa",
 	"IMPORTANT": "Importante",
 	"ALREADY_HAVE_ACCOUNT": "Já tem uma conta?",
 	"PASSWORD_MINIMUM": "A senha deve ter no mínimo 10 caracteres para realizar o cadastro",

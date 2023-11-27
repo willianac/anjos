@@ -62,7 +62,7 @@
 			<ngx-loading [show]="isLoading"></ngx-loading>
 		</div>
 		<div class="button-wrapper">
-			<button [routerLink]="['/admin']" type="button" class="btn btn-secondary" translate>BACK</button>
+			<button [routerLink]="['/admin', 'transfer', 'receiverAccount']" type="button" class="btn btn-secondary" translate>BACK</button>
 			<button (click)="submit()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>
 		</div>
 	</div>

@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 import { SenderAccountService } from '../../services/sender-account/sender-account.service';
+import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class SummaryComponent {
     public translate: TranslateService,
     public transfer: TransferService,
     public toastr: ToastrService,
-    public senderAccSvc: SenderAccountService
+    public senderAccSvc: SenderAccountService,
+		public geolocationService: GeolocationService
   ) {
     this.currentLang = this.translate.currentLang || this.translate.defaultLang;
     this.receiver = this.session.get('currentReceiver');
@@ -63,6 +65,41 @@ export class SummaryComponent {
     //     this.senderAccount = account
     //   });
   }
+
+	public checkGeolocation() {
+		navigator.geolocation.getCurrentPosition(this.onGeolocationSuccess, this.onGeolocationError)
+	}
+
+	private onGeolocationSuccess = (pos: any) => {
+		const latitude = pos.coords.latitude;
+		const longitude = pos.coords.longitude
+		this.geolocationService.checkIfUserIsInNewJersey(latitude, longitude).subscribe({
+			next: (res) => {
+				const rootInfo = JSON.parse(this.session.get("rootInfo"))
+				const validStates = rootInfo.ValidStates.split(",") as string[]
+				const userState = res.results[0].address_components[0].short_name
+
+				let isUserAllowedToTransfer = false;
+
+				for(let state of validStates) {
+					if(state === userState) {
+						isUserAllowedToTransfer = true
+						this.doTransfer()
+						break
+					}
+				}
+				if(!isUserAllowedToTransfer) {
+					this.toastr.error(this.translate.instant("GEOLOCATION_WARNING"), this.translate.instant("ERROR"))
+				}
+			}
+		})
+	}
+
+	private onGeolocationError = (err: any) => {
+		if(err.code === 1) {
+			this.toastr.error(this.translate.instant("GEOLOCATION_DENIED"), this.translate.instant("ERROR"))
+		}
+	}
 
   doTransfer() {
     this.isLoading = true;

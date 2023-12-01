@@ -234,6 +234,7 @@
 	"ACCOUNT_CONFIRMATION_ALERT": "Assim que a sua conta estiver aprovada você receberá um email de confirmação",
 
 	"PROTECT_YOUR_ACCOUNT": "Sua senha é fraca",
-	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta com os critérios fornecidos ou vá para a Transferência"
+	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta com os critérios fornecidos ou vá para a Transferência",
 
+	"INVOICE_NUMBER": "Seu numero de invoice é: "
 }

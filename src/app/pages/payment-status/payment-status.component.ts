@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { SessionService } from "app/services/session/session.service";
 import { TransferService } from "app/services/transfer/transfer.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "app-payment-status",
@@ -25,7 +26,8 @@ export class PaymentStatusComponent implements OnInit {
 		private router: Router, 
 		private session: SessionService,
 		private translate: TranslateService,
-		private transfer: TransferService
+		private transfer: TransferService,
+		private toast: ToastrService
 	) {}
 
 	public navigateToHome() {
@@ -68,18 +70,22 @@ export class PaymentStatusComponent implements OnInit {
 		this.route.queryParams.subscribe(params => {
 			this.status = params["status"]
 
-			this.transfer.doTransfer(
-				this.linkInfo.SessionKey,
-				this.receiver.ReceiverID,
-				this.receiverAccount.AcctId,
-				this.amount.base,
-				this.amount.send,
-				this.purpose.PurposeId,
-				this.senderAccount.account,
-				this.senderAccount.aba,
-				this.translate.currentLang || this.translate.defaultLang,
-				this.status
-			).subscribe((response) => console.log(response))
+			if(this.status === "Success") {
+				this.transfer.doTransfer(
+					this.linkInfo.SessionKey,
+					this.receiver.ReceiverID,
+					this.receiverAccount.AcctId,
+					this.amount.base,
+					this.amount.send,
+					this.purpose.PurposeId,
+					this.senderAccount.account,
+					this.senderAccount.aba,
+					this.translate.currentLang || this.translate.defaultLang,
+					this.status
+				).subscribe((response) => {
+					this.toast.success(this.translate.instant("INVOICE_NUMBER"), this.translate.instant("SUCCESS"))
+				})
+			}
 
 			this.clearStorage()
 		})

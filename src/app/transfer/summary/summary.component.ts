@@ -84,7 +84,11 @@ export class SummaryComponent {
 				for(let state of validStates) {
 					if(state === userState) {
 						isUserAllowedToTransfer = true
-						this.doTransfer()
+
+						this.session.set("total", this.total)
+						this.router.navigate(['admin', 'transfer', 'payment']);
+
+						//this.doTransfer()
 						break
 					}
 				}
@@ -112,7 +116,8 @@ export class SummaryComponent {
       this.purpose.PurposeId,
       this.senderAccount.account,
       this.senderAccount.aba,
-      this.translate.currentLang || this.translate.defaultLang
+      this.translate.currentLang || this.translate.defaultLang,
+			"teste"
     ).subscribe(
       (response: any) => {
         this.isLoading = false;

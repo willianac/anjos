@@ -11,12 +11,12 @@ import { AppSetup } from 'assets/setup/setup';
 })
 export class PaymentComponent implements AfterViewInit, OnDestroy {
 	private totalPayment: string
-	private externalID: string
+	//private externalID: string
 	private returnLink = ""
 
 	constructor(public renderer: Renderer2, @Inject(DOCUMENT) private _document: Document, public session: SessionService,) {
 		this.totalPayment = this.session.get("total")
-		this.externalID = this.session.get("externalID")
+		//this.externalID = this.session.get("externalID")
 
 		const setup = setupData as AppSetup
 		this.returnLink = setup.paymentGatewayReturnLink
@@ -37,11 +37,10 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							terminalId: 172601, 
 							threeds: 'Disabled', 
 							hash: '2e0c294c5a93e305b82296cb482a466b', 
-							externalId: ${this.externalID}, 
 							amount: ${Number(this.totalPayment)}, 
 							fee: '', 
 							feeType: 'amount', 
-							returnURL: ${this.returnLink}, 
+							returnURL: '${this.returnLink}', 
 							returnUrlNavigation: 'top', 
 							useLogo: 'No', 
 							visibleNote: 'No', 

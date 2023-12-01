@@ -41,7 +41,7 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							fee: '', 
 							feeType: 'amount', 
 							returnURL: '${this.returnLink}', 
-							returnUrlNavigation: 'top', 
+							returnUrlNavigation: 'self', 
 							useLogo: 'No', 
 							visibleNote: 'No', 
 							requestContactInfo: 'No', 

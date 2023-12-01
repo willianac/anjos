@@ -68,10 +68,6 @@ export class PaymentStatusComponent implements OnInit {
 		this.route.queryParams.subscribe(params => {
 			this.status = params["status"]
 
-			if(!params.externalId) {
-				this.router.navigate(['login'])
-			}
-
 			this.transfer.doTransfer(
 				this.linkInfo.SessionKey,
 				this.receiver.ReceiverID,

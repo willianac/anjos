@@ -86,9 +86,7 @@ export class SummaryComponent {
 						isUserAllowedToTransfer = true
 
 						this.session.set("total", this.total)
-						this.router.navigate(['admin', 'transfer', 'payment']);
-
-						//this.doTransfer()
+						this.router.navigate(['admin', 'transfer', 'payment']);		
 						break
 					}
 				}
@@ -105,61 +103,61 @@ export class SummaryComponent {
 		}
 	}
 
-  doTransfer() {
-    this.isLoading = true;
-    this.transfer.doTransfer(
-      this.linkInfo.SessionKey,
-      this.receiver.ReceiverID,
-      this.receiverAccount.AcctId,
-      this.amount.base,
-      this.amount.send,
-      this.purpose.PurposeId,
-      this.senderAccount.account,
-      this.senderAccount.aba,
-      this.translate.currentLang || this.translate.defaultLang,
-			"teste"
-    ).subscribe(
-      (response: any) => {
-        this.isLoading = false;
-        const statusCode = Number(response.StatusCode);
-        switch (statusCode) {
-          case 1:
-						this.session.set("total", this.total)
-						this.session.set("externalID", response.SendMoney)
-						this.router.navigate(['admin', 'transfer', 'payment']);
-            //this.finishTransfer(response.SendMoney);
-            break;
-          case -2:
-            this.session.clear();
-            this.backToInit('SESSION_EXPIRED_TITLE', 'SESSION_EXPIRED_TEXT', 'login');
-            break;
-          case -4:
-            this.backToInit('DAYLI_SENDER_EXCEEDED_TITLE', 'DAYLI_SENDER_EXCEEDED_TEXT');
-            break;
-          case -5:
-            this.backToInit('DAYLI_RECEIVER_EXCEEDED_TITLE', 'DAYLI_RECEIVER_EXCEEDED_TEXT');
-            break;
-          case -8:
-            this.backToInit('ERROR', response.SendMoney, 'login');
-            break;
-          case -9:
-            this.backToInit('ERROR', 'BANK_LENGTH_ERROR', this.senderAccountPage);
-            break;
-          case -10:
-            this.backToInit('ERROR', 'ABA_LENGTH_ERROR', this.senderAccountPage);
-            break;
-          default:
-            const text = response.SessionResult || response.SendMoney || this.translate.instant('UNKNOWN_RESPONSE');
-            this.message = `[${response.StatusCode}] ${text}`;
-            break;
-        }
-      },
-      (err) => {
-        this.message = err.message;
-        this.isLoading = false;
-      },
-    );
-  }
+  // doTransfer() {
+  //   this.isLoading = true;
+  //   this.transfer.doTransfer(
+  //     this.linkInfo.SessionKey,
+  //     this.receiver.ReceiverID,
+  //     this.receiverAccount.AcctId,
+  //     this.amount.base,
+  //     this.amount.send,
+  //     this.purpose.PurposeId,
+  //     this.senderAccount.account,
+  //     this.senderAccount.aba,
+  //     this.translate.currentLang || this.translate.defaultLang,
+	// 		"teste"
+  //   ).subscribe(
+  //     (response: any) => {
+  //       this.isLoading = false;
+  //       const statusCode = Number(response.StatusCode);
+  //       switch (statusCode) {
+  //         case 1:
+	// 					this.session.set("total", this.total)
+	// 					this.session.set("externalID", response.SendMoney)
+	// 					this.router.navigate(['admin', 'transfer', 'payment']);
+  //           //this.finishTransfer(response.SendMoney);
+  //           break;
+  //         case -2:
+  //           this.session.clear();
+  //           this.backToInit('SESSION_EXPIRED_TITLE', 'SESSION_EXPIRED_TEXT', 'login');
+  //           break;
+  //         case -4:
+  //           this.backToInit('DAYLI_SENDER_EXCEEDED_TITLE', 'DAYLI_SENDER_EXCEEDED_TEXT');
+  //           break;
+  //         case -5:
+  //           this.backToInit('DAYLI_RECEIVER_EXCEEDED_TITLE', 'DAYLI_RECEIVER_EXCEEDED_TEXT');
+  //           break;
+  //         case -8:
+  //           this.backToInit('ERROR', response.SendMoney, 'login');
+  //           break;
+  //         case -9:
+  //           this.backToInit('ERROR', 'BANK_LENGTH_ERROR', this.senderAccountPage);
+  //           break;
+  //         case -10:
+  //           this.backToInit('ERROR', 'ABA_LENGTH_ERROR', this.senderAccountPage);
+  //           break;
+  //         default:
+  //           const text = response.SessionResult || response.SendMoney || this.translate.instant('UNKNOWN_RESPONSE');
+  //           this.message = `[${response.StatusCode}] ${text}`;
+  //           break;
+  //       }
+  //     },
+  //     (err) => {
+  //       this.message = err.message;
+  //       this.isLoading = false;
+  //     },
+  //   );
+  // }
 
   finishTransfer(text) {
     const title = this.translate.instant('SUCCESS');

@@ -47,11 +47,15 @@ export class PaymentStatusComponent implements OnInit {
 		this.session.remove('externalID')
 	}
 
-	ngOnInit(): void {
+	ngOnInit() {
+		this.purpose = this.session.get('currentPurpose');
+		if(!this.purpose) {
+			return this.router.navigate(['login'])
+		}
 		this.linkInfo = this.session.get('linkInfo');
 		this.receiver = this.session.get('currentReceiver');
 		this.receiverAccount = this.session.get('currentReceiverAccount');
-		this.purpose = this.session.get('currentPurpose');
+
 		this.senderAccount = {
       aba: '000000000',
       account: '000000000000'
@@ -79,9 +83,10 @@ export class PaymentStatusComponent implements OnInit {
 				this.senderAccount.aba,
 				this.translate.currentLang || this.translate.defaultLang,
 				this.status
-			)
+			).subscribe((response) => console.log(response))
+
+			this.clearStorage()
 		})
 		this.checkIfLanguageIsSelected()
-		this.clearStorage()
 	}
 }

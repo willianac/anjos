@@ -222,7 +222,7 @@
 	"ACCEPT_TERMS": "Eu concordo com os",
 	"TERMS": "termos e condições",
 	"PLEASE_ACCEPT_TERMS": "Por favor, aceite os termos e condições de uso",
-	"GEOLOCATION_WARNING": "Para realizar remessas é necessário estar situado em Nova Jersey - USA",
+	"GEOLOCATION_WARNING": "Para enviar dinheiro conosco, você deve estar localizado em um de nossos estados licenciados: ",
 	"GEOLOCATION_DENIED": "Precisamos do acesso à localização para prosseguir com a remessa",
 	"IMPORTANT": "Importante",
 	"ALREADY_HAVE_ACCOUNT": "Já tem uma conta?",

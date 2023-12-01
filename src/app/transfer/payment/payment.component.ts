@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, Inject, OnDestroy, Renderer2 } from "@angular/core";
 import { DOCUMENT } from "@angular/platform-browser";
 import { SessionService } from "app/services/session/session.service";
+const setupData = require("../../../assets/setup/setup.json")
+import { AppSetup } from 'assets/setup/setup';
 
 @Component({
 	selector: "app-payment",
@@ -10,10 +12,14 @@ import { SessionService } from "app/services/session/session.service";
 export class PaymentComponent implements AfterViewInit, OnDestroy {
 	private totalPayment: string
 	private externalID: string
+	private returnLink = ""
 
 	constructor(public renderer: Renderer2, @Inject(DOCUMENT) private _document: Document, public session: SessionService,) {
 		this.totalPayment = this.session.get("total")
 		this.externalID = this.session.get("externalID")
+
+		const setup = setupData as AppSetup
+		this.returnLink = setup.paymentGatewayReturnLink
 	}
 
 	ngAfterViewInit(): void {
@@ -35,7 +41,7 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 							amount: ${Number(this.totalPayment)}, 
 							fee: '', 
 							feeType: 'amount', 
-							returnURL: 'https://transamericas.moneytransmittersystem.com/maverick/', 
+							returnURL: ${this.returnLink}, 
 							returnUrlNavigation: 'top', 
 							useLogo: 'No', 
 							visibleNote: 'No', 

@@ -87,7 +87,6 @@ export class RegisterComponent implements OnInit {
 		})
 		.subscribe({
 			next: (res) => {
-				console.log(res)
 				this.session.remove("registerPass")
 				this.session.remove("registerEmail")
 				if(res.ACTIVATEDSENDER === "0") {
@@ -150,7 +149,7 @@ export class RegisterComponent implements OnInit {
 		this.validStates = this.rootInfo.ValidStates.split(",")
 		
 		setTimeout(() => {
-			this.toast.warning(this.translate.instant("GEOLOCATION_WARNING"), this.translate.instant("IMPORTANT"))
+			this.toast.warning(this.translate.instant("GEOLOCATION_WARNING") + this.validStates, this.translate.instant("IMPORTANT"))
 		}, 1000)
 
 	}

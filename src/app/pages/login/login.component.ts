@@ -82,7 +82,6 @@ export class LoginComponent implements OnInit {
 						this.translate.instant("PROTECT_YOUR_ACCOUNT")
 					)
 				}
-				console.log("final da funcao")
 
         this.router.navigate(['admin'])
       } else {

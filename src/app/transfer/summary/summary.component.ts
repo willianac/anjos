@@ -89,7 +89,7 @@ export class SummaryComponent {
 					}
 				}
 				if(!isUserAllowedToTransfer) {
-					this.toastr.error(this.translate.instant("GEOLOCATION_WARNING"), this.translate.instant("ERROR"))
+					this.toastr.error(this.translate.instant("GEOLOCATION_WARNING") + validStates, this.translate.instant("ERROR"))
 				}
 			}
 		})

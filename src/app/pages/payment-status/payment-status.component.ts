@@ -30,9 +30,9 @@ export class PaymentStatusComponent implements OnInit {
 		private toast: ToastrService
 	) {}
 
-	public navigateToHome() {
-		this.router.navigate(['admin'])
-	}
+	// public navigateToHome() {
+	// 	this.router.navigate(['admin'])
+	// }
 
 	private checkIfLanguageIsSelected() {
 		const language = this.session.get("language")

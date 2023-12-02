@@ -23,43 +23,31 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 	}
 
 	ngAfterViewInit(): void {
+		console.log(this.totalPayment)
 		let script = document.createElement("script") as HTMLScriptElement
 		script.type = "text/javascript"
 		script.id = "hosted-form-script"
 		script.text = `
-			(function() {
-				var l = function() { 
-					new PaymentGateway({ 
-						target: 'payment-form', 
-						url: e?.src, 
-						options: {
-							dbaId: 108202, 
-							terminalId: 172601, 
-							threeds: 'Disabled', 
-							hash: '2e0c294c5a93e305b82296cb482a466b', 
-							amount: ${Number(this.totalPayment)}, 
-							fee: '', 
-							feeType: 'amount', 
-							returnURL: '${this.returnLink}', 
-							returnUrlNavigation: 'self', 
-							useLogo: 'No', 
-							visibleNote: 'No', 
-							requestContactInfo: 'No', 
-							requestBillingInfo: 'Yes', 
-							sendReceipt: 'No', 
-							origin: 'HostedForm'
-						} 
-					}); 
-				};
-
-				if(typeof window.PaymentGateway === 'undefined') {
-					window.webroot = "https://dashboard.maverickpayments.com";
-					var e = document.createElement('script'); e.async = true;
-					e.src = window.webroot + "/js/gateway/payment.js?v=" + Date.now();
-					document.getElementsByTagName('head')[0].appendChild(e);
-					e.onload = e.onreadystatechange = function() { l(); }
-				} else { l(); }
-			}());
+		(function() {
+			const options = 
+				{"data":"eyJkYmFJZCI6IjEwODIwMiIsInRlcm1pbmFsSWQiOiIxNzI2MDEiLCJ0aHJlZWRzIjoiRGlzYWJsZWQiLCJleHRlcm5hbElkIjoiIiwicmV0dXJuVXJsIjoiaHR0cHM6XC9cL3RyYW5zZmVyYW1lcmljYXMubW9uZXl0cmFuc21pdHRlcnN5c3RlbS5jb21cL21hdmVyaWNrXC8iLCJyZXR1cm5VcmxOYXZpZ2F0aW9uIjoic2VsZiIsImxvZ28iOm51bGwsInZpc2libGVOb3RlIjpudWxsLCJyZXF1ZXN0Q29udGFjdEluZm8iOiJZZXMiLCJyZXF1ZXN0QmlsbGluZ0luZm8iOm51bGwsInNlbmRSZWNlaXB0IjpudWxsLCJvcmlnaW4iOiJIb3N0ZWRGb3JtIiwiaGFzaCI6ImI3Y2M3OTAzNjVkNTFkNGM1ZWI2MWU0YThiZjIzNzA1In0%3D",
+				"amount":${Number(this.totalPayment)},"fee":"","feeType":"amount","contactInfo":{"name":"","email":"","phone":""}};
+	
+			const l = function() {
+				new PaymentGateway({
+					target: "payment-form",
+					options: options
+				}); 
+			};
+	
+			if(typeof window.PaymentGateway === "undefined") {
+				window.webroot = "https://dashboard.maverickpayments.com";
+				const e = document.createElement("script"); e.async = true;
+				e.src = window.webroot + "/js/gateway/payment.js?v=" + Date.now();
+				document.getElementsByTagName("head")[0].appendChild(e);
+				e.onload = e.onreadystatechange = function() { l(); }
+			} else { l(); }
+		}());
 		`
 		this.renderer.appendChild(this._document.body, script);
 	}

@@ -23,7 +23,6 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 	}
 
 	ngAfterViewInit(): void {
-		console.log(this.totalPayment)
 		let script = document.createElement("script") as HTMLScriptElement
 		script.type = "text/javascript"
 		script.id = "hosted-form-script"

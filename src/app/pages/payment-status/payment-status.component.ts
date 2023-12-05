@@ -68,7 +68,8 @@ export class PaymentStatusComponent implements OnInit {
     }
 
 		this.route.queryParams.subscribe(params => {
-			this.status = params["status"]
+			//this.status = params["status"]
+			this.status = "Success"
 
 			if(this.status === "Success") {
 				this.transfer.doTransfer(

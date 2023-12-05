@@ -1,8 +1,8 @@
 {
-	"apiUrl": "https://api.moneytransmittersystem.com/mts/am/mobileApp/xpappstart.cfm",
+	"apiUrl": "https://api.moneytransmittersystem.com/mts/tas/mobileApp/xpappstart.cfm",
 	"clientName": "Transamericas Services",
 	"copyright": "C&D International ©",
 	"copyrightYear": "2001-2023",
-	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/extra/",
+	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/tas/extra/",
 	"paymentGatewayReturnLink": "https://transferamericas.moneytransmittersystem.com/maverick/"
 }

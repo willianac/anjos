@@ -3,6 +3,5 @@
 	"clientName": "Transamericas Services",
 	"copyright": "C&D International ©",
 	"copyrightYear": "2001-2023",
-	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/tas/extra/",
-	"paymentGatewayReturnLink": "https://transferamericas.moneytransmittersystem.com/maverick/"
+	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/tas/extra/"
 }

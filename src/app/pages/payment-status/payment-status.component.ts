@@ -83,7 +83,7 @@ export class PaymentStatusComponent implements OnInit {
 					this.translate.currentLang || this.translate.defaultLang,
 					this.status
 				).subscribe((response) => {
-					this.toast.success(this.translate.instant("INVOICE_NUMBER"), this.translate.instant("SUCCESS"))
+					this.toast.success(this.translate.instant("INVOICE_NUMBER") + response.SendMoney, this.translate.instant("SUCCESS"))
 				})
 			}
 

@@ -4,5 +4,4 @@ export type AppSetup = {
 	footerCopyright: string
 	footerCopyrightYear: string
 	sampleApiCalls: string
-	paymentGatewayReturnLink: string
 }

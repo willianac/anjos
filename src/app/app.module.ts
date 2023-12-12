@@ -49,6 +49,9 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { PagesModule } from './pages/pages.module';
 import { TransferModule } from './transfer/transfer.module';
 import { XmlParserService } from './services/xml-parser/xml-parser.service';
+import { InvoicesHistoryComponent } from './pages/invoices-history/invoices-history.component';
+import { InvoicesService } from './services/invoices/invoices.service';
+import { InvoicesResolver } from './shared/invoices.resolver';
 
 @NgModule({
   imports: [
@@ -96,6 +99,7 @@ import { XmlParserService } from './services/xml-parser/xml-parser.service';
     AsideToggleDirective,
     ChangePasswordComponent,
     SenderAccountListComponent,
+		InvoicesHistoryComponent
   ],
   providers: [
     {
@@ -106,7 +110,9 @@ import { XmlParserService } from './services/xml-parser/xml-parser.service';
     LanguageService,
     LoginService,
     SenderAccountService,
-		XmlParserService
+		XmlParserService,
+		InvoicesService,
+		InvoicesResolver
   ],
   bootstrap: [ AppComponent ],
   exports: [

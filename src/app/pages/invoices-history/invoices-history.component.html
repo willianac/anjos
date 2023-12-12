@@ -1,0 +1,28 @@
+<div class="card">
+	<div class="card-header">Clique em um</div>
+	<div class="card-block table-responsive">
+		<table class="table table-striped table-hover table-clickable table-sm">
+			<thead>
+				<tr>
+					<th>Invoice Nº</th>
+					<th>Beneficiário</th>
+					<th>Valor</th>
+					<th>Data</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let invoice of invoiceList">
+					<td>
+						<img src="../../../assets/img/flags/BR.png" alt="a country flag" class="flag">
+						{{invoice.INVOICENUMBER}}
+					</td>
+					<td>{{invoice.RECEIVERNAME}} {{invoice.RECEIVERLAST}}</td>
+					<td>{{invoice.PAYRECEIVER}} {{invoice.UNIT}}</td>
+					<td>{{invoice.DATE}}</td>
+					<td><strong>{{invoice.APPSTATUS}}</strong></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

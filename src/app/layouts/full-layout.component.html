@@ -35,7 +35,7 @@
         <li class="divider"></li>
         <li class="nav-title" translate>MENU</li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/transfer']"><i class="icon-rocket"></i> {{ 'TRANSFER' | translate }} </a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/transfer']"><i class="icon-rocket"></i>{{ 'TRANSFER' | translate }} </a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/accounts']"><i class="icon-wallet"></i> {{ 'SENDER_ACCOUNTS' | translate }} </a>
@@ -44,7 +44,10 @@
           <a disabled class="nav-link" routerLinkActive="active"><i class="icon-people"></i> {{ 'RECEIVERS' | translate }} </a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/changePassword']"><i class="icon-lock"></i> {{ 'CHANGE_PASSWORD' | translate }} </a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/changePassword']"><i class="icon-lock"></i>{{ 'CHANGE_PASSWORD' | translate }} </a>
+        </li>
+				<li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/invoices-history']"><i class="fa fa-history"></i>Minhas remessas</a>
         </li>
       </ul>
     </nav>

@@ -1,4 +1,3 @@
-
 import { Routes, RouterModule } from '@angular/router';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
@@ -6,6 +5,8 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import { NgModule } from '@angular/core';
+import { InvoicesHistoryComponent } from './pages/invoices-history/invoices-history.component';
+import { InvoicesResolver } from './shared/invoices.resolver';
 
 export const routes: Routes = [
   {
@@ -43,7 +44,17 @@ export const routes: Routes = [
         data: {
           title: 'CHANGE_PASSWORD'
         }
-      }
+      },
+			{
+				path: 'invoices-history',
+				component: InvoicesHistoryComponent,
+				resolve: {
+					invoices: InvoicesResolver
+				},
+				data: {
+					title: 'Histórico de remessas'
+				}
+			}
     ]
   },
   {

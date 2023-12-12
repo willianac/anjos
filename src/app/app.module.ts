@@ -52,6 +52,7 @@ import { XmlParserService } from './services/xml-parser/xml-parser.service';
 import { InvoicesHistoryComponent } from './pages/invoices-history/invoices-history.component';
 import { InvoicesService } from './services/invoices/invoices.service';
 import { InvoicesResolver } from './shared/invoices.resolver';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
 
 @NgModule({
   imports: [
@@ -99,7 +100,8 @@ import { InvoicesResolver } from './shared/invoices.resolver';
     AsideToggleDirective,
     ChangePasswordComponent,
     SenderAccountListComponent,
-		InvoicesHistoryComponent
+		InvoicesHistoryComponent,
+		InvoiceComponent
   ],
   providers: [
     {

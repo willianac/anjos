@@ -7,6 +7,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import { NgModule } from '@angular/core';
 import { InvoicesHistoryComponent } from './pages/invoices-history/invoices-history.component';
 import { InvoicesResolver } from './shared/invoices.resolver';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
 
 export const routes: Routes = [
   {
@@ -53,6 +54,13 @@ export const routes: Routes = [
 				},
 				data: {
 					title: 'INVOICE_HISTORY'
+				}
+			},
+			{
+				path: 'invoice/:number',
+				component: InvoiceComponent,
+				data: {
+					title: 'Detalhes do invoice'
 				}
 			}
     ]

@@ -12,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let invoice of invoiceList">
+				<tr *ngFor="let invoice of invoiceList" [routerLink]="['/admin', 'invoice', invoice.INVOICENUMBER]">
 					<td>
 						<img src="../../../assets/img/flags/BR.png" alt="a country flag" class="flag">
 						{{invoice.INVOICENUMBER}}

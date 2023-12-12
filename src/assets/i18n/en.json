@@ -236,6 +236,8 @@
 	"PROTECT_YOUR_ACCOUNT": "Your password is weak",
 	"CHANGE_PASSWORD_RECOMENDATION": "Protect your account with the criteria provided or go to Transfer",
 
-	"INVOICE_NUMBER": "Your invoice number: "
-
+	"VALUE": "Value",
+	"DATE": "Date",
+	"CHOOSE_INVOICE_SEE_DETAILS": "Select an invoice to see more details",
+	"INVOICE_HISTORY": "Invoice History"
 }

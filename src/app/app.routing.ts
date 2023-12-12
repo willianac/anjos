@@ -52,7 +52,7 @@ export const routes: Routes = [
 					invoices: InvoicesResolver
 				},
 				data: {
-					title: 'Histórico de remessas'
+					title: 'INVOICE_HISTORY'
 				}
 			}
     ]

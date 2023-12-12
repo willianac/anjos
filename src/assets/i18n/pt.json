@@ -236,5 +236,10 @@
 	"PROTECT_YOUR_ACCOUNT": "Sua senha é fraca",
 	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta com os critérios fornecidos ou vá para a Transferência",
 
-	"INVOICE_NUMBER": "Seu numero de invoice é: "
+	"YOUR_INVOICE_NUM_IS": "Seu numero de invoice é: ",
+
+	"VALUE": "Valor",
+	"DATE": "Data",
+	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para ver mais detalhes",
+	"INVOICE_HISTORY": "Histórico de remessas"
 }

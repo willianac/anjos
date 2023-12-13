@@ -60,7 +60,7 @@ export const routes: Routes = [
 				path: 'invoice/:number',
 				component: InvoiceComponent,
 				data: {
-					title: 'Detalhes do invoice'
+					title: 'INVOICE_DETAILS'
 				}
 			}
     ]

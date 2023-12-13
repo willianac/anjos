@@ -1,1 +1,54 @@
-<h1>HERE I SHOW DETAILS OF INVOICE (TRACKING)</h1>
+<div class="button-wrapper">
+	<button type="button" class="btn btn-secondary" [routerLink]="['/admin', 'invoices-history']">
+		<i class="icon-arrow-left"></i>
+		<span translate>BACK</span>
+	</button>
+</div>
+
+<div class="card">
+	<div class="invoice-header-container">
+		<div class="number-container">
+			<img src="../../../assets/img/flags/BR.png" alt="a country flag">
+			<h4>{{invoice?.INVOICENUMBER}}</h4>
+		</div>
+		<div class="status-container">
+			<h4 class="status">Status</h4>
+			<h4><strong>{{invoice?.APPSTATUS}}</strong></h4>
+		</div>
+	</div>
+	<div class="card-block">
+		
+		<h5 translate>DETAILS</h5>
+		<div class="details-container">
+			<div class="detail">
+				<strong translate>TRANSFER_AMOUNT</strong>
+				<span>{{invoice?.PAYRECEIVER}}</span>
+			</div>
+			<hr class="divider">	
+			<div class="detail">
+				<strong translate>UNIT</strong>
+				<span>{{invoice?.UNIT}}</span>
+			</div>
+			<hr class="divider">	
+			<div class="detail">
+				<strong translate>DATE</strong>
+				<span>{{invoice?.DATE}}</span>
+			</div>
+			<hr class="divider">	
+			<div class="detail">
+				<strong translate>PAYMENT_METHOD</strong>
+				<span>{{invoice?.PAYMETHOD}}</span>
+			</div>
+			<hr class="divider">	
+			<div class="detail">
+				<strong translate>BRANCH</strong>
+				<span>{{invoice?.BRANCHNO}}</span>
+			</div>
+			<hr class="divider">	
+			<div class="detail">
+				<strong>Status</strong>
+				<span>{{invoice?.APPSTATUS}}</span>
+			</div>
+		</div>
+	</div>
+</div>

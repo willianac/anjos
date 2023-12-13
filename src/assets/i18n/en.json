@@ -240,5 +240,8 @@
 	"DATE": "Date",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Select an invoice to see more details",
 	"INVOICE_HISTORY": "Invoice History",
-	"UNIT": "Unit"
+	"UNIT": "Unit",
+	"INVOICE_DETAILS": "Invoice Details",
+	"DETAILS": "Details",
+	"PAYMENT_METHOD": "Payment Method"
 }

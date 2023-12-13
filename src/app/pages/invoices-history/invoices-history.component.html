@@ -5,10 +5,11 @@
 			<thead>
 				<tr>
 					<th>Invoice Nº</th>
-					<th translate>RECEIVER</th>
+					<th translate class="hide-on-mobile">RECEIVER</th>
+					<th translate>UNIT</th>
 					<th translate>VALUE</th>
-					<th translate>Data</th>
-					<th>Status</th>
+					<th translate>DATE</th>
+					<th class="hide-on-mobile">Status</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -17,10 +18,11 @@
 						<img src="../../../assets/img/flags/BR.png" alt="a country flag" class="flag">
 						{{invoice.INVOICENUMBER}}
 					</td>
-					<td>{{invoice.RECEIVERNAME}} {{invoice.RECEIVERLAST}}</td>
-					<td>{{invoice.PAYRECEIVER}} {{invoice.UNIT}}</td>
+					<td class="hide-on-mobile">{{invoice.RECEIVERNAME}} {{invoice.RECEIVERLAST}}</td>
+					<td>{{invoice.UNIT}}</td>
+					<td>{{invoice.PAYRECEIVER}}</td>
 					<td>{{invoice.DATE}}</td>
-					<td><strong>{{invoice.APPSTATUS}}</strong></td>
+					<td class="hide-on-mobile"><strong>{{invoice.APPSTATUS}}</strong></td>
 				</tr>
 			</tbody>
 		</table>

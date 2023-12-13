@@ -36,6 +36,14 @@ export class InvoicesService {
 
 		return this.http.post(this.url + "XpGetSenderHistoryById.cfm", xmlAuth).switchMap((res) => {
 			return this.xmlParserService.parseXml(res, "SENDERHISTORY")
+				.map((val) => {
+					const fixedDatesInvoices = val.INVOICE.map((invoice) => {
+						const dt = new Date(invoice.DATE)
+						invoice.DATE = `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`
+						return invoice
+					})
+					return fixedDatesInvoices
+				})
 		})
 	}
 }

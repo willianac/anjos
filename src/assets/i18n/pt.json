@@ -241,5 +241,6 @@
 	"VALUE": "Valor",
 	"DATE": "Data",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para ver mais detalhes",
-	"INVOICE_HISTORY": "Histórico de remessas"
+	"INVOICE_HISTORY": "Histórico de remessas",
+	"UNIT": "Moeda"
 }

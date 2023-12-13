@@ -15,7 +15,7 @@ export class InvoicesHistoryComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.invoiceSubscription = this.activatedRoute.data.subscribe({
-			next: (res) => this.invoiceList = res.invoices.INVOICE
+			next: (res) => this.invoiceList = res.invoices
 		})
 	}
 

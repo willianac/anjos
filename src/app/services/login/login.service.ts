@@ -13,7 +13,8 @@ export class LoginService extends ConnectionService {
     return this.createRequest({
       LoginName: user,
       MyPassword: pass,
-      lang: lang
+      lang: lang,
+			LandUnit: "BRX"
     });
   }
 

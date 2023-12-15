@@ -23,7 +23,7 @@
 				<tr *ngFor="let invoice of invoiceList" [routerLink]="['/admin', 'invoice', invoice.INVOICENUMBER]">
 					<td>
 						<img src="../../../assets/img/flags/BR.png" alt="a country flag" class="flag">
-						{{invoice.INVOICENUMBER}}
+						***{{invoice.INVOICENUMBER.slice(-6)}}
 					</td>
 					<td class="hide-on-mobile">{{invoice.RECEIVERNAME}} {{invoice.RECEIVERLAST}}</td>
 					<td>{{invoice.UNIT}}</td>

@@ -20,6 +20,13 @@ export class AmountComponent implements OnInit {
   public linkInfo;
   public message;
 
+	public units = [];
+	public showDropdown = false;
+
+	public selectedUnit = "";
+	public selectedFlag = "";
+
+
   constructor(
     public session: SessionService,
 		public loginService: LoginService,
@@ -111,14 +118,35 @@ export class AmountComponent implements OnInit {
 							this.session.set("accountList", response.MoneyReceivers.ReceiverBank)
             }
           }
-        },
+        }, 
         error: (err) => {
           this.toastr.error(this.translate.instant('CONNECTION_ERROR'));
         }
       })
   }
 
+	toggleDropdown() {
+		this.showDropdown = !this.showDropdown
+	}
+
+	selectUnit(option: string) {
+		this.selectedUnit = option
+		this.selectedFlag = option.slice(0,2)
+		console.log(option)
+  }
+
+	private createUnitsObject() {
+		const units = (JSON.parse(this.session.get("rootInfo")).ListLandUnit as string).split(",")
+		return units.map(unit => {
+			return {
+				unit: unit,
+				flag: unit.slice(0,2)
+			}
+		})
+	}
+
 	ngOnInit(): void {
+		this.units = this.createUnitsObject()
 		this.getNewSession()
 	}
 }

@@ -245,6 +245,7 @@
 	"DETAILS": "Details",
 	"PAYMENT_METHOD": "Payment Method",
 	"BANKDEP": "Bank Deposit",
+	"LAST_UPDATE": "Last update",
 
 	"Posted": "Your invoice was created successfully in our system",
 	"VERIFIED": "Invoice was verified successfully",

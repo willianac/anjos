@@ -13,7 +13,7 @@ export class InvoiceComponent implements OnInit {
 	constructor(private invoicesService: InvoicesService, private activatedRouter: ActivatedRoute) {}
 
 	private formatDate(date: string): string {
-		const dt = new Date()
+		const dt = new Date(date)
 		return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()} at ${dt.getHours()}:${dt.getMinutes()}`
 	}
 

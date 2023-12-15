@@ -9,7 +9,7 @@
 
 .invoice-header-container {
 	display: flex;
-	background-color: #5a4a52;
+	background-color: #004f26;
 
 	.number-container {
 		padding: 2rem 3.2rem 2rem 3.2rem;
@@ -37,6 +37,7 @@
 		.status-label-wrapper {
 			display: flex;
 			justify-content: space-between;
+			margin-bottom: 12px;
 
 			.date-wrapper{
 				
@@ -88,25 +89,33 @@ img {
 	}
 
 	.number-container, .status-container {
-		padding: 1.6rem 1rem !important;
+		padding: 1.2rem 1rem !important;
 		
 		h4 {
 			font-size: 18px;
 		}
 	}
 	
-		.details-container {
-			width: 100%;
-			grid-template-columns: 1fr;
+	.details-container {
+		width: 100%;
+		grid-template-columns: 1fr;
 
-			.detail {
-				justify-content: space-between;
-			}
-
-			.divider {
-				display: block;
-				width: 100%;
-				margin: 0;
-			}
+		.detail {
+			justify-content: space-between;
 		}
+
+		.divider {
+			display: block;
+			width: 100%;
+			margin: 0;
+		}
+	}
+
+	.date-wrapper {
+		h6, span {
+			font-size: 13px;
+			margin-bottom: 2px;
+		}
+	}
+		
 }

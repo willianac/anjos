@@ -19,7 +19,7 @@
 					<span>{{invoice?.STATUSDATE}}</span>
 				</div>
 			</div>
-			<h4><strong>{{invoice?.INVOICESTATUS}}</strong></h4>
+			<strong translate>{{invoice?.INVOICESTATUS}}</strong>
 		</div>
 	</div>
 	<div class="card-block">
@@ -40,15 +40,12 @@
 				<strong translate>RECEIVER_NAME</strong>
 				<span>{{invoice?.RECEIVERNAME}} {{invoice?.RECEIVERLAST}}</span>
 			</div>
+			<hr class="divider">	
 			<div class="detail">
 				<strong translate>PAYMENT_METHOD</strong>
 				<span translate>{{invoice?.PAYMETHOD}}</span>
 			</div>
-			<hr class="divider">	
-			<div class="detail">
-				<strong>Status</strong>
-				<span>{{invoice?.APPSTATUS}}</span>
-			</div>
+			
 		</div>
 	</div>
 </div>

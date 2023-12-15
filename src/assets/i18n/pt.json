@@ -240,11 +240,19 @@
 
 	"AMOUNT": "Valor",
 	"DATE": "Data",
-	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para ver mais detalhes",
+	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para obter detalhes",
 	"INVOICE_HISTORY": "Histórico de remessas",
 	"UNIT": "Moeda",
-	"INVOICE_DETAILS": "Detalhes do Invoice",
+	"INVOICE_DETAILS": "Detalhes da transação",
 	"DETAILS": "Detalhes",
 	"PAYMENT_METHOD": "Método de pagamento",
-	"BANKDEP": "Depósito Bancário"
+	"BANKDEP": "Depósito Bancário",
+
+	"Posted": "Sua remessa foi registrada com sucesso em nosso sistema",
+	"VERIFIED": "A sua remessa foi aprovada com sucesso",
+	"TRANSMITTED": "Remessa enviada com sucesso para o beneficiário",
+	"DNQ": "Sua remessa foi rejeitada pelo correspondente",
+	"PAID": "A remessa está completa e foi paga",
+	"AGTHOLD": "Remessa está sob revisão",
+	"VOIDED": "Remessa cancelada"
 }

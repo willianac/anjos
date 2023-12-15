@@ -238,11 +238,19 @@
 
 	"AMOUNT": "Amount",
 	"DATE": "Date",
-	"CHOOSE_INVOICE_SEE_DETAILS": "Select an invoice to see more details",
+	"CHOOSE_INVOICE_SEE_DETAILS": "Select an invoice for details",
 	"INVOICE_HISTORY": "Invoice History",
 	"UNIT": "Unit",
-	"INVOICE_DETAILS": "Invoice Details",
+	"INVOICE_DETAILS": "Transaction details",
 	"DETAILS": "Details",
 	"PAYMENT_METHOD": "Payment Method",
-	"BANKDEP": "Bank Deposit"
+	"BANKDEP": "Bank Deposit",
+
+	"Posted": "Your invoice was created successfully in our system",
+	"VERIFIED": "Invoice was verified successfully",
+	"TRANSMITTED": "The invoice was sent for payment",
+	"DNQ": "Your invoice was rejected by correspondent",
+	"PAID": "Invoice was confirmed paid",
+	"AGTHOLD": "Your invoice was placed under review",
+	"VOIDED": "Invoice is cancelled"
 }

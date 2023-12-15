@@ -1,6 +1,6 @@
 {
 	"apiUrl": "https://api.moneytransmittersystem.com/mts/am/mobileApp/xpappstart.cfm",
-	"clientName": "Transamericas Services",
+	"clientName": "Transfer Americas - Staging",
 	"copyright": "C&D International ©",
 	"copyrightYear": "2001-2023",
 	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/extra/"

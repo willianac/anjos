@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { InvoicesService } from "app/services/invoices/invoices.service";
 import { Invoice } from "app/shared/invoices.resolver";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: "app-invoice",
@@ -10,7 +12,13 @@ import { Invoice } from "app/shared/invoices.resolver";
 })
 export class InvoiceComponent implements OnInit {
 	invoice: Invoice;
-	constructor(private invoicesService: InvoicesService, private activatedRouter: ActivatedRoute) {}
+	constructor(
+		private invoicesService: InvoicesService, 
+		private activatedRouter: ActivatedRoute,
+		private toast: ToastrService,
+		private translate: TranslateService,
+		private router: Router
+	) {}
 
 	private formatDate(date: string): string {
 		const dt = new Date(date)
@@ -19,12 +27,19 @@ export class InvoiceComponent implements OnInit {
 
 	ngOnInit(): void {
 		const invoiceNumber = this.activatedRouter.snapshot.params.number
-		this.invoicesService.trackInvoice(invoiceNumber).subscribe({
-			next: (res) => {
-				res.STATUSDATE = this.formatDate(res.STATUSDATE)
-				res.DATE = this.formatDate(res.DATE)
-				this.invoice = res
-			}
-		})
+		
+		this.invoicesService.trackInvoice(invoiceNumber)
+			.catch(err => {
+				this.toast.error(this.translate.instant("SESSION_EXPIRED_TEXT"), this.translate.instant("SESSION_EXPIRED_TITLE"))
+				this.router.navigate(["login"])
+				throw new Error(err)
+			})
+			.subscribe({
+				next: (res) => {
+					res.STATUSDATE = this.formatDate(res.STATUSDATE)
+					res.DATE = this.formatDate(res.DATE)
+					this.invoice = res
+				}
+			})
 	}
 }

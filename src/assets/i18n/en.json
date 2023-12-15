@@ -251,6 +251,6 @@
 	"TRANSMITTED": "The invoice was sent for payment",
 	"DNQ": "Your invoice was rejected by correspondent",
 	"PAID": "Invoice was confirmed paid",
-	"AGTHOLD": "Your invoice was placed under review",
+	"Agt Hold": "Your invoice was placed under review",
 	"VOIDED": "Invoice is cancelled"
 }

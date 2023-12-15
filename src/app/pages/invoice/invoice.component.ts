@@ -22,6 +22,7 @@ export class InvoiceComponent implements OnInit {
 		this.invoicesService.trackInvoice(invoiceNumber).subscribe({
 			next: (res) => {
 				res.STATUSDATE = this.formatDate(res.STATUSDATE)
+				res.DATE = this.formatDate(res.DATE)
 				this.invoice = res
 			}
 		})

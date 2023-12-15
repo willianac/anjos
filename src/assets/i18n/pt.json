@@ -253,6 +253,6 @@
 	"TRANSMITTED": "Remessa enviada com sucesso para o beneficiário",
 	"DNQ": "Sua remessa foi rejeitada pelo correspondente",
 	"PAID": "A remessa está completa e foi paga",
-	"AGTHOLD": "Remessa está sob revisão",
+	"Agt Hold": "Remessa está sob revisão",
 	"VOIDED": "Remessa cancelada"
 }

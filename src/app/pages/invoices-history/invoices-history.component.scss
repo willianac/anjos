@@ -1,3 +1,19 @@
+.btn {
+	display: none;
+	position: relative;
+
+	@media screen and (max-width: 768px) {
+		display: block;
+		width: 100%;
+
+		i {
+			position: absolute;
+			left: 10px;
+			top: 11px;
+		}
+	}
+}
+
 .flag {
 	max-width: 26px;
 }

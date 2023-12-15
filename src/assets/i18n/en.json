@@ -251,10 +251,10 @@
 	"Verified": "Invoice verified successfully",
 	"Transmitted": "Invoice sent for payment",
 	"D.N.Q.": "Invoice rejected by correspondent",
-	"T.B.R.": "",
-	"Refunded": "",
+	"T.B.R.": "Refund authorized",
+	"Refunded": "Invoice refunded",
 	"Paid": "Invoice paid",
 	"Agt Hold": "Invoice placed under review",
-	"Adm Hold": "",
+	"Adm Hold": "Invoice placed under review",
 	"Void": "Invoice cancelled"
 }

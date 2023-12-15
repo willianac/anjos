@@ -253,10 +253,10 @@
 	"Verified": "Remessa aprovada com sucesso",
 	"Transmitted": "Remessa enviada com sucesso",
 	"D.N.Q.": "Remessa rejeitada",
-	"T.B.R.": "",
-	"Refunded": "",
+	"T.B.R.": "Reembolso autorizado",
+	"Refunded": "Remessa reembolsada",
 	"Paid": "Remessa completa e paga",
 	"Agt Hold": "Remessa sob revisão",
-	"Adm Hold": "",
+	"Adm Hold": "Remessa sob revisão",
 	"Void": "Remessa cancelada"
 }

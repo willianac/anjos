@@ -237,7 +237,7 @@
 	"CHANGE_PASSWORD_RECOMENDATION": "Protect your account with the criteria provided or go to Transfer",
 
 	"AMOUNT": "Amount",
-	"DATE": "Date",
+	"CREATED_ON": "Created on",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Select an invoice for details",
 	"INVOICE_HISTORY": "Invoice History",
 	"UNIT": "Unit",
@@ -247,11 +247,14 @@
 	"BANKDEP": "Bank Deposit",
 	"LAST_UPDATE": "Last update",
 
-	"Posted": "Your invoice was created successfully in our system",
-	"VERIFIED": "Invoice was verified successfully",
-	"TRANSMITTED": "The invoice was sent for payment",
-	"DNQ": "Your invoice was rejected by correspondent",
-	"PAID": "Invoice was confirmed paid",
-	"Agt Hold": "Your invoice was placed under review",
-	"VOIDED": "Invoice is cancelled"
+	"Posted": "Invoice created successfully",
+	"Verified": "Invoice verified successfully",
+	"Transmitted": "Invoice sent for payment",
+	"D.N.Q.": "Invoice rejected by correspondent",
+	"T.B.R.": "",
+	"Refunded": "",
+	"Paid": "Invoice paid",
+	"Agt Hold": "Invoice placed under review",
+	"Adm Hold": "",
+	"Void": "Invoice cancelled"
 }

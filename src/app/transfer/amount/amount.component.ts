@@ -132,7 +132,6 @@ export class AmountComponent implements OnInit {
 	selectUnit(option: string) {
 		this.selectedUnit = option
 		this.selectedFlag = option.slice(0,2)
-		console.log(option)
   }
 
 	private createUnitsObject() {

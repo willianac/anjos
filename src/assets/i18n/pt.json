@@ -239,7 +239,7 @@
 	"YOUR_INVOICE_NUM_IS": "Seu numero de invoice é: ",
 
 	"AMOUNT": "Valor",
-	"DATE": "Data",
+	"CREATED_ON": "Criada em",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para obter detalhes",
 	"INVOICE_HISTORY": "Histórico de remessas",
 	"UNIT": "Moeda",
@@ -249,11 +249,14 @@
 	"BANKDEP": "Depósito Bancário",
 	"LAST_UPDATE": "Ultima movimentação",
 
-	"Posted": "Sua remessa foi registrada com sucesso em nosso sistema",
-	"VERIFIED": "A sua remessa foi aprovada com sucesso",
-	"TRANSMITTED": "Remessa enviada com sucesso para o beneficiário",
-	"DNQ": "Sua remessa foi rejeitada pelo correspondente",
-	"PAID": "A remessa está completa e foi paga",
-	"Agt Hold": "Remessa está sob revisão",
-	"VOIDED": "Remessa cancelada"
+	"Posted": "Remessa foi registrada com sucesso",
+	"Verified": "Remessa aprovada com sucesso",
+	"Transmitted": "Remessa enviada com sucesso",
+	"D.N.Q.": "Remessa rejeitada",
+	"T.B.R.": "",
+	"Refunded": "",
+	"Paid": "Remessa completa e paga",
+	"Agt Hold": "Remessa sob revisão",
+	"Adm Hold": "",
+	"Void": "Remessa cancelada"
 }

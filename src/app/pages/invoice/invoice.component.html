@@ -12,19 +12,14 @@
 			<h4>{{invoice?.INVOICENUMBER}}</h4>
 		</div>
 		<div class="status-container">
-			<div class="status-label-wrapper">
-				<h4 class="status">Status</h4>
-				<div class="date-wrapper">
-					<h6>Ultima movimentação</h6>
-					<span>{{invoice?.STATUSDATE}}</span>
-				</div>
-			</div>
 			<strong translate>{{invoice?.INVOICESTATUS}}</strong>
+			<div class="date-wrapper">
+				<h6 translate>LAST_UPDATE</h6>
+				<span>{{invoice?.STATUSDATE}}</span>
+			</div>
 		</div>
 	</div>
 	<div class="card-block">
-		
-		<h5 translate>DETAILS</h5>
 		<div class="details-container">
 			<div class="detail">
 				<strong translate>AMOUNT</strong>
@@ -32,7 +27,7 @@
 			</div>
 			<hr class="divider">	
 			<div class="detail">
-				<strong translate>DATE</strong>
+				<strong translate>CREATED_ON</strong>
 				<span>{{invoice?.DATE}}</span>
 			</div>
 			<hr class="divider">

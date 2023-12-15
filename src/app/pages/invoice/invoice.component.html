@@ -12,8 +12,14 @@
 			<h4>{{invoice?.INVOICENUMBER}}</h4>
 		</div>
 		<div class="status-container">
-			<h4 class="status">Status</h4>
-			<h4><strong>{{invoice?.APPSTATUS}}</strong></h4>
+			<div class="status-label-wrapper">
+				<h4 class="status">Status</h4>
+				<div class="date-wrapper">
+					<h6>Ultima movimentação</h6>
+					<span>{{invoice?.STATUSDATE}}</span>
+				</div>
+			</div>
+			<h4><strong>{{invoice?.INVOICESTATUS}}</strong></h4>
 		</div>
 	</div>
 	<div class="card-block">
@@ -21,28 +27,22 @@
 		<h5 translate>DETAILS</h5>
 		<div class="details-container">
 			<div class="detail">
-				<strong translate>TRANSFER_AMOUNT</strong>
-				<span>{{invoice?.PAYRECEIVER}}</span>
-			</div>
-			<hr class="divider">	
-			<div class="detail">
-				<strong translate>UNIT</strong>
-				<span>{{invoice?.UNIT}}</span>
+				<strong translate>AMOUNT</strong>
+				<span>{{invoice?.UNIT}} {{invoice?.PAYRECEIVER}}</span>
 			</div>
 			<hr class="divider">	
 			<div class="detail">
 				<strong translate>DATE</strong>
 				<span>{{invoice?.DATE}}</span>
 			</div>
-			<hr class="divider">	
+			<hr class="divider">
+			<div class="detail">
+				<strong translate>RECEIVER_NAME</strong>
+				<span>{{invoice?.RECEIVERNAME}} {{invoice?.RECEIVERLAST}}</span>
+			</div>
 			<div class="detail">
 				<strong translate>PAYMENT_METHOD</strong>
-				<span>{{invoice?.PAYMETHOD}}</span>
-			</div>
-			<hr class="divider">	
-			<div class="detail">
-				<strong translate>BRANCH</strong>
-				<span>{{invoice?.BRANCHNO}}</span>
+				<span translate>{{invoice?.PAYMETHOD}}</span>
 			</div>
 			<hr class="divider">	
 			<div class="detail">

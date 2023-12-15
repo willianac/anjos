@@ -236,12 +236,13 @@
 	"PROTECT_YOUR_ACCOUNT": "Your password is weak",
 	"CHANGE_PASSWORD_RECOMENDATION": "Protect your account with the criteria provided or go to Transfer",
 
-	"VALUE": "Amount",
+	"AMOUNT": "Amount",
 	"DATE": "Date",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Select an invoice to see more details",
 	"INVOICE_HISTORY": "Invoice History",
 	"UNIT": "Unit",
 	"INVOICE_DETAILS": "Invoice Details",
 	"DETAILS": "Details",
-	"PAYMENT_METHOD": "Payment Method"
+	"PAYMENT_METHOD": "Payment Method",
+	"BANKDEP": "Bank Deposit"
 }

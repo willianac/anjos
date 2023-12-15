@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
+import { Resolve, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { InvoicesService } from "app/services/invoices/invoices.service";
 const setupData = require("../../assets/setup/setup.json")
@@ -23,7 +23,12 @@ export type Invoice = {
 @Injectable()
 export class InvoicesResolver implements Resolve<Invoice> {
 	private url = ""
-	constructor(private invoicesService: InvoicesService, private toast: ToastrService, private translate: TranslateService) {
+	constructor(
+		private invoicesService: InvoicesService, 
+		private toast: ToastrService, 
+		private translate: TranslateService,
+		private router: Router
+	) {
 		const setup = setupData as AppSetup
 		this.url = setup.sampleApiCalls
 	}
@@ -31,6 +36,7 @@ export class InvoicesResolver implements Resolve<Invoice> {
 	resolve(): Observable<any> {
 		return this.invoicesService.getUserInvoices().catch((err) => {
 			this.toast.error(this.translate.instant("SESSION_EXPIRED_TEXT"), this.translate.instant("SESSION_EXPIRED_TITLE"))
+			this.router.navigate(['login'])
 			throw new Error("expirada")
 		})
 	}

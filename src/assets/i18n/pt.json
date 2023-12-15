@@ -238,12 +238,13 @@
 
 	"YOUR_INVOICE_NUM_IS": "Seu numero de invoice é: ",
 
-	"VALUE": "Valor",
+	"AMOUNT": "Valor",
 	"DATE": "Data",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para ver mais detalhes",
 	"INVOICE_HISTORY": "Histórico de remessas",
 	"UNIT": "Moeda",
 	"INVOICE_DETAILS": "Detalhes do Invoice",
 	"DETAILS": "Detalhes",
-	"PAYMENT_METHOD": "Método de pagamento"
+	"PAYMENT_METHOD": "Método de pagamento",
+	"BANKDEP": "Depósito Bancário"
 }

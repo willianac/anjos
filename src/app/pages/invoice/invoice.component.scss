@@ -30,19 +30,32 @@
 		padding: 2rem 3.2rem 2rem 3.2rem;
 		flex: 1;
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		flex-direction: column;
 		color: #f8f8f8;
 		
+
+		.status-label-wrapper {
+			display: flex;
+			justify-content: space-between;
+
+			.date-wrapper{
+				
+				h6 {
+					font-weight: 700;
+					color: #b7babf;
+				}
+
+			}
+		}
 	}
 }
 
 .details-container {
 	display: grid;
 	grid-template-columns: max-content max-content;
-	justify-content: space-between;
+	column-gap: 10rem;
 	row-gap: 12px;
-	width: 50%;
+	
 	margin-top: 1.6rem;
 
 	.detail {

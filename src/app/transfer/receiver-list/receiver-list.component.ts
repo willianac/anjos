@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ReceiverListComponent implements OnInit {
 
   public receiverList;
+	public receiverListCountry = "";
 
   constructor(
     public session: SessionService,
@@ -19,6 +20,7 @@ export class ReceiverListComponent implements OnInit {
   }
 
   ngOnInit() {
+		this.receiverListCountry = this.session.get("linkInfo").SendUnit.slice(0,2);
     this.getList();
   }
 

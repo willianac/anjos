@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   doLogin() {
     this.isLoading = true;
     const lang = this.language.get();
-    this.loginSvc.login(this.loginInputs.email, this.loginInputs.password, lang)
+    this.loginSvc.login(this.loginInputs.email, this.loginInputs.password, lang, "BRX")
     .subscribe((response) => {
       const statusCode = Number(response.StatusCode);
       if (statusCode < 0) {

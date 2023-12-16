@@ -9,12 +9,12 @@ export class LoginService extends ConnectionService {
     super(http);
   }
 
-  public login(user: string, pass: string, lang: string) {
+  public login(user: string, pass: string, lang: string, LandUnit: string) {
     return this.createRequest({
       LoginName: user,
       MyPassword: pass,
       lang: lang,
-			LandUnit: "BRX"
+			LandUnit
     });
   }
 

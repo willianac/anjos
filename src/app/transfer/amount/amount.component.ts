@@ -26,6 +26,7 @@ export class AmountComponent implements OnInit {
 	public selectedUnit = "";
 	public selectedFlag = "";
 
+	public isLoading = false;
 
   constructor(
     public session: SessionService,
@@ -101,7 +102,7 @@ export class AmountComponent implements OnInit {
 
 	getNewSession() {
     const lang = this.translate.currentLang || this.translate.defaultLang;
-    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang)
+    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, "BRX")
       .subscribe({
         next: (response: any) => {
           const statusCode = Number(response.StatusCode);
@@ -110,9 +111,6 @@ export class AmountComponent implements OnInit {
             this.router.navigate(['login']);
           } else {
             if (response && response.LinkInfo) {
-							// if(!response.MoneyReceivers.Receiver) {
-							// 	return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
-							// }
               this.session.set('linkInfo', response.LinkInfo);
 							this.session.set("receiverList", response.MoneyReceivers.Receiver)
 							this.session.set("accountList", response.MoneyReceivers.ReceiverBank)
@@ -132,7 +130,23 @@ export class AmountComponent implements OnInit {
 	selectUnit(option: string) {
 		this.selectedUnit = option
 		this.selectedFlag = option.slice(0,2)
+
+		this.isLoading = true
+		const lang = this.translate.currentLang || this.translate.defaultLang;
+		this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, option).subscribe({
+			next: (res) => this.handleSelectedUnitApiResponse(res)
+		})
   }
+
+	private handleSelectedUnitApiResponse(res: any) {
+		this.linkInfo = res.LinkInfo
+		this.convertBase()
+		this.convertSend()
+		this.session.set('linkInfo', res.LinkInfo);
+		this.session.set("receiverList", res.MoneyReceivers.Receiver)
+		this.session.set("accountList", res.MoneyReceivers.ReceiverBank)
+		this.isLoading = false;
+	}
 
 	private createUnitsObject() {
 		const units = (JSON.parse(this.session.get("rootInfo")).ListLandUnit as string).split(",")

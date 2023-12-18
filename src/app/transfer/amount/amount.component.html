@@ -1,8 +1,8 @@
 <div class="card">
-  <!-- <div class="card-header">
+  <div class="card-header">
 		<span translate>TRANSFER_AMOUNT</span>
-		<button class="btn btn-primary btn-mobile px-4" (click)="select()" translate>NEXT</button>
-	</div> -->
+		<!-- <button class="btn btn-primary btn-mobile px-4" (click)="select()" translate>NEXT</button> -->
+	</div>
   <div class="card-block">
     <form action="">
 			<div class="control-wrapper">
@@ -77,24 +77,23 @@
   <div class="modal-dialog modal-primary" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" translate>Selecione uma forma de pagamento</h4>
+        <h4 class="modal-title" translate>SELECT_PAYMENT_TYPE</h4>
         <button type="button" class="close" (click)="modalConfirm.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-				<span>Formas diponiveis:</span>
 				<form class="transfer-type-form">
 					<div class="transfer-type" *ngIf="hasCashPayment">
 						<label for="cash" [class.selected]="transferType === 'cash'">
 							<input type="radio" placeholder="CASH" id="cash" name="cash" value="cash" [(ngModel)]="transferType">
-							Cash
+							<span translate>CASH</span>
 						</label>
 					</div>
 					<div class="transfer-type" *ngIf="hasBankDeposit">		
 						<label for="deposit" [class.selected]="transferType === 'deposit'">
 							<input type="radio" name="deposit" id="deposit" value="deposit" [(ngModel)]="transferType">
-							Deposit
+							<span translate>BANKDEP</span>
 						</label>
 					</div>
 				</form>

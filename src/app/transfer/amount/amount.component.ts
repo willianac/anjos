@@ -154,6 +154,10 @@ export class AmountComponent implements OnInit {
 	}
 
 	private handlePayOptions(payOptions: any) {
+		//reset previous value
+		this.hasBankDeposit = false;
+		this.hasCashPayment = false;
+
 		if(payOptions.BankDep === "YES") this.hasBankDeposit = true;
 		if(payOptions.CashPay === "YES") {
 			this.hasCashPayment = true;

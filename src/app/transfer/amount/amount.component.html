@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div>
-				<button [disabled]="!selectedUnit" (click)="select()" class="btn btn-primary px-4" translate>
+				<button [disabled]="!selectedUnit" (click)="modalConfirm.show()" class="btn btn-primary px-4" translate>
 					NEXT
 				</button>
 			</div>
@@ -72,3 +72,37 @@
 		<span>{{selectedUnit}}</span>
 	</div>
 </ng-template>
+
+<div bsModal #modalConfirm="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" translate>Selecione uma forma de pagamento</h4>
+        <button type="button" class="close" (click)="modalConfirm.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<span>Formas diponiveis:</span>
+				<form class="transfer-type-form">
+					<div class="transfer-type" *ngIf="hasCashPayment">
+						<label for="cash" [class.selected]="transferType === 'cash'">
+							<input type="radio" placeholder="CASH" id="cash" name="cash" value="cash" [(ngModel)]="transferType">
+							Cash
+						</label>
+					</div>
+					<div class="transfer-type" *ngIf="hasBankDeposit">		
+						<label for="deposit" [class.selected]="transferType === 'deposit'">
+							<input type="radio" name="deposit" id="deposit" value="deposit" [(ngModel)]="transferType">
+							Deposit
+						</label>
+					</div>
+				</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalConfirm.hide()" translate>BUTTON_CANCEL</button>
+        <button type="button" class="btn btn-primary" (click)="modalConfirm.hide(); goNextPage()" [disabled]="!transferType" translate>BUTTON_DO_TRANSFER</button>
+      </div>
+    </div>
+  </div>
+</div>

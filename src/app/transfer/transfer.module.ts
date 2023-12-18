@@ -28,6 +28,7 @@ import { BankInfoService } from 'app/services/bank-info/bank-info.service';
 import { StatesByCountryService } from 'app/services/states-by-country/states-by-country.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
+import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { GeolocationService } from 'app/services/geolocation/geolocation.service
 		PaymentComponent,
 		NewReceiverComponent,
 		NewReceiverAccountComponent,
+		CashPaymentComponent,
 		Last4DigitsPipe
   ],
   entryComponents: [

@@ -9,6 +9,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NewReceiverComponent } from './new-receiver/new-receiver.component';
 import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver-account.component';
+import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,13 @@ const routes: Routes = [
           title: 'SELECT_RECEIVER'
         },
       },
+			{
+				path: 'cash-payment',
+				component: CashPaymentComponent,
+				data: {
+					title: 'Escolha onde fazer o pagamento'
+				}
+			},
       {
         path: 'receiverAccount',
         component: ReceiverAccountListComponent,

@@ -28,6 +28,11 @@ export class AmountComponent implements OnInit {
 
 	public isLoading = false;
 
+	public modalConfirm;
+	public transferType = "";
+	public hasBankDeposit = false;
+	public hasCashPayment = false;
+
   constructor(
     public session: SessionService,
 		public loginService: LoginService,
@@ -97,7 +102,6 @@ export class AmountComponent implements OnInit {
 		}
     this.session.set('currentBase', this.transfer.base);
     this.session.set('currentSend', this.transfer.send);
-    this.router.navigate(['admin', 'transfer', 'receiver']);
   }
 
 	getNewSession() {
@@ -145,17 +149,35 @@ export class AmountComponent implements OnInit {
 		this.session.set('linkInfo', res.LinkInfo);
 		this.session.set("receiverList", res.MoneyReceivers.Receiver)
 		this.session.set("accountList", res.MoneyReceivers.ReceiverBank)
+		this.handlePayOptions(res.PayoutOptions)
 		this.isLoading = false;
 	}
 
+	private handlePayOptions(payOptions: any) {
+		if(payOptions.BankDep === "YES") this.hasBankDeposit = true;
+		if(payOptions.CashPay === "YES") {
+			this.hasCashPayment = true;
+			this.session.set("payCities", payOptions.CashPayoutLocation)
+		}
+	}
+
 	private createUnitsObject() {
-		const units = (JSON.parse(this.session.get("rootInfo")).ListLandUnit as string).split(",")
+		const units = (this.session.get("linkInfo").ListLandUnit as string).split(",")
 		return units.map(unit => {
 			return {
 				unit: unit,
 				flag: unit.slice(0,2)
 			}
 		})
+	}
+
+	public goNextPage() {
+		this.select()
+
+		if(this.transferType === "cash") {
+			return this.router.navigate(['admin', 'transfer', 'cash-payment']);
+		}
+		this.router.navigate(['admin', 'transfer', 'receiver']);
 	}
 
 	ngOnInit(): void {

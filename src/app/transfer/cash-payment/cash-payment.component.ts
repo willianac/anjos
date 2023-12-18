@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { SessionService } from "app/services/session/session.service";
 
 @Component({
@@ -8,7 +9,12 @@ import { SessionService } from "app/services/session/session.service";
 })
 export class CashPaymentComponent implements OnInit {
 	cityList = []
-	constructor(private session: SessionService) {}
+	constructor(private session: SessionService, private router: Router) {}
+
+	public select(city: any) {
+		console.log(city)
+		this.router.navigate(["admin", "transfer", "purposeList"])
+	}
 
 	ngOnInit(): void {
 		const cities = this.session.get("payCities");

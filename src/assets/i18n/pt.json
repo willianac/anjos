@@ -261,5 +261,6 @@
 	"Void": "Remessa cancelada",
 
 	"SELECT_PAYMENT_TYPE": "Selecione uma forma de pagamento",
-	"CASH": "Dinheiro"
+	"CASH": "Dinheiro",
+	"SELECT_CITY": "Selecione a cidade que dinheiro deve ser enviado"
 }

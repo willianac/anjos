@@ -259,5 +259,6 @@
 	"Void": "Invoice cancelled",
 
 	"SELECT_PAYMENT_TYPE": "Select a payment method",
-	"CASH": "Cash"
+	"CASH": "Cash",
+	"SELECT_CITY": "Select the city where money should be sent"
 }

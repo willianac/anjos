@@ -41,7 +41,7 @@ const routes: Routes = [
 				path: 'cash-payment',
 				component: CashPaymentComponent,
 				data: {
-					title: 'Escolha onde fazer o pagamento'
+					title: 'CITY'
 				}
 			},
       {

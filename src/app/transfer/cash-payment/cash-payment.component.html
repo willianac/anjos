@@ -1,19 +1,19 @@
 <div class="card">
 	<div class="card-header">
-		<span translate>TRANSFER_AMOUNT</span>
+		<span translate>SELECT_CITY</span>
 	</div>
 
 	<div class="card-block">
 		<table class="table table-striped table-hover table-clickable table-sm">
 			<thead>
 				<tr>
-					<th>Country</th>
-					<th>City</th>
+					<th translate>COUNTRY</th>
+					<th translate>CITY</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let city of cityList">
+				<tr *ngFor="let city of cityList" (click)="select(city)">
 					<td>
 						<img src="../../../assets/img/flags/NG.png" alt="a country flag" class="flag">
 					</td>

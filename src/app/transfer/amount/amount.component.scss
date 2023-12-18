@@ -1,6 +1,5 @@
 form {
 	width: 50%;
-	margin: auto;
 }
 
 .control-wrapper {
@@ -17,6 +16,11 @@ form {
 		position: absolute;
 		padding: 0 0.6rem;
 		min-width: 136px;
+
+		img {
+			max-width: 48px;
+			height: 48px;
+		}
 	}
 
 	#send-input {

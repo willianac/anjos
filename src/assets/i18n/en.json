@@ -256,5 +256,8 @@
 	"Paid": "Invoice paid",
 	"Agt Hold": "Invoice placed under review",
 	"Adm Hold": "Invoice placed under review",
-	"Void": "Invoice cancelled"
+	"Void": "Invoice cancelled",
+
+	"SELECT_PAYMENT_TYPE": "Select a payment method",
+	"CASH": "Cash"
 }

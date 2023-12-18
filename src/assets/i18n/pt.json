@@ -258,5 +258,8 @@
 	"Paid": "Remessa completa e paga",
 	"Agt Hold": "Remessa sob revisão",
 	"Adm Hold": "Remessa sob revisão",
-	"Void": "Remessa cancelada"
+	"Void": "Remessa cancelada",
+
+	"SELECT_PAYMENT_TYPE": "Selecione uma forma de pagamento",
+	"CASH": "Dinheiro"
 }

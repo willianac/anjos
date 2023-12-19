@@ -4,38 +4,59 @@
 		<button type="button" class="btn btn-primary btn-mobile mt-3" (click)="modalConfirm.show()" translate>BUTTON_DO_TRANSFER</button>
 	</div>
   <div class="card-block">
-    <!-- <div class="row">
-      <div class="col-md-12">
-        <h3 translate>SENDER_ACCOUNT</h3>
-      </div>
-      <div class="col-md-12 ident">
-        <div class="item"><strong translate>ABA</strong>: {{ senderAccount.aba }}</div>
-        <div class="item"><strong translate>ACCOUNT</strong>: {{ senderAccount.account }}</div>
-      </div>
-    </div>
 
-    <hr/> -->
-
-    <div class="row">
+    <div class="row" *ngIf="payoutOption === 'deposit'; else cashInfo">
       <div class="col-md-12">
         <h3 translate>RECEIVER</h3>
       </div>
-      <div *ngIf="receiverAccount.BankName !== 'PIX'; else PIX" class="col-md-12 ident">
-        <div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
-        <div class="item"><strong translate>BANK</strong>: {{receiverAccount.BankName }}</div>
-        <div class="item"><strong translate>BRANCH</strong>: {{ receiverAccount.BankBranch }}</div>
-        <div class="item"><strong translate>BANK_ACCOUNT_NUMBER</strong>: {{ receiverAccount.AccountNo }}</div>
-      </div>
 
-			<ng-template class="col-md-12 ident" #PIX>
-				<div class="col-md-12 ident">
+      <div>
+				<div *ngIf="receiverAccount.BankName !== 'PIX'; else PIX" class="col-md-12 ident">
 					<div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
-					<div class="item"><strong translate>PIX</strong>: {{ receiverAccount.AccountNo }}</div>
+					<div class="item"><strong translate>BANK</strong>: {{receiverAccount.BankName }}</div>
+					<div class="item"><strong translate>BRANCH</strong>: {{ receiverAccount.BankBranch }}</div>
+					<div class="item"><strong translate>BANK_ACCOUNT_NUMBER</strong>: {{ receiverAccount.AccountNo }}</div>
 				</div>
-			</ng-template>
-    </div>
+	
+				<ng-template class="col-md-12 ident" #PIX>
+					<div class="col-md-12 ident">
+						<div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
+						<div class="item"><strong translate>PIX</strong>: {{ receiverAccount.AccountNo }}</div>
+					</div>
+				</ng-template>
+			</div>
+		</div>
 
     <hr/>
+
+		<ng-template #cashInfo>
+			<div>
+				<div class="row">
+					<div class="col-md-12">
+						<h3 translate>RECEIVER</h3>
+					</div>
+					<div class="col-md-12 ident">
+						<div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
+					</div>
+				</div>
+		
+				<hr />
+		
+				<div class="row">
+					<div class="col-md-12">
+						<h3 translate>Cash Payment Location</h3>
+					</div>
+					<div class="col-md-12 ident">
+						<div class="item"><strong translate>ADDRESS</strong>: {{ payoutLocation.Address1 }}</div>
+						<div class="item"><strong translate>CITY</strong>: {{ payoutLocation.City }}</div>
+						<div class="item"><strong translate>COUNTRY</strong>: {{ payoutLocation.Country }}</div>
+						<div class="item"><strong translate>STATE</strong>: {{ payoutLocation.State }}</div>
+						<div class="item"><strong translate>ZIP</strong>: {{ payoutLocation.Zip }}</div>
+						<div class="item"><strong translate>PHONE</strong>: {{ payoutLocation.Phone1 }}</div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
 
     <div class="row">
       <div class="col-md-12">

@@ -12,10 +12,9 @@ export class CashPaymentComponent implements OnInit {
 	constructor(private session: SessionService, private router: Router) {}
 
 	public select(city: any) {
-		console.log(city)
 		this.session.remove("currentReceiverAccount")
 		this.session.set("payoutLocation", city)
-		this.router.navigate(["admin", "transfer", "purposeList"])
+		this.router.navigate(["admin", "transfer", "receiver"])
 	}
 
 	ngOnInit(): void {

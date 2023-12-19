@@ -39,6 +39,11 @@ export class ReceiverListComponent implements OnInit {
   select(receiver) {
 		if(receiver === "undefined") return
 		this.session.set('currentReceiver', receiver);
-		this.router.navigate(['admin', 'transfer', 'receiverAccount']);
+
+		if(this.session.get("payoutOptionSelected") === "cash") {
+			this.router.navigate(['admin', 'transfer', 'purposeList']);
+		} else {
+			this.router.navigate(['admin', 'transfer', 'receiverAccount']);
+		}
   }
 }

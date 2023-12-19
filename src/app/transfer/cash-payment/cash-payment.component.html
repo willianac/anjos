@@ -15,7 +15,7 @@
 			<tbody>
 				<tr *ngFor="let city of cityList" (click)="select(city)">
 					<td>
-						<img src="../../../assets/img/flags/NG.png" alt="a country flag" class="flag">
+						<img src="../../../assets/img/flags/{{city.Country}}.png" alt="a country flag" class="flag">
 					</td>
 					<td>
 						{{city.City}}

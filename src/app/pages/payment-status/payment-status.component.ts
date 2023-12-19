@@ -58,6 +58,7 @@ export class PaymentStatusComponent implements OnInit {
 		this.linkInfo = this.session.get('linkInfo');
 		this.receiver = this.session.get('currentReceiver');
 		if(this.session.get("payoutOptionSelected") === "cash") {
+			this.receiverAccount = {}
 			this.receiverAccount.AcctId = "0"
 		} else {
 			this.receiverAccount = this.session.get('currentReceiverAccount');

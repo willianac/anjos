@@ -20,7 +20,17 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 		script.id = "hosted-form-script"
 		script.text = `
 			(function() {
-				const options = {"data":"eyJkYmFJZCI6IjEwODIwMiIsInRlcm1pbmFsSWQiOiIxNzI2MDEiLCJ0aHJlZWRzIjoiRGlzYWJsZWQiLCJleHRlcm5hbElkIjoiIiwicmV0dXJuVXJsIjoiaHR0cHM6XC9cL3RyYW5zZmVyYW1lcmljYXMubW9uZXl0cmFuc21pdHRlcnN5c3RlbS5jb21cL21hdmVyaWNrXC8iLCJyZXR1cm5VcmxOYXZpZ2F0aW9uIjoic2VsZiIsImxvZ28iOm51bGwsInZpc2libGVOb3RlIjpudWxsLCJyZXF1ZXN0Q29udGFjdEluZm8iOiJZZXMiLCJyZXF1ZXN0QmlsbGluZ0luZm8iOm51bGwsInNlbmRSZWNlaXB0IjpudWxsLCJvcmlnaW4iOiJIb3N0ZWRGb3JtIiwiaGFzaCI6ImI3Y2M3OTAzNjVkNTFkNGM1ZWI2MWU0YThiZjIzNzA1In0%3D","amount":"","fee":"","feeType":"amount","contactInfo":{"name":"","email":"","phone":""}};
+				const options = {
+					"data":"eyJkYmFJZCI6IjEwODIwMiIsInRlcm1pbmFsSWQiOiIxNzI2MDEiLCJ0aHJlZWRzIjoiRGlzYWJsZWQiLCJleHRlcm5hbElkIjoiIiwicmV0dXJuVXJsIjoiaHR0cHM6XC9cL3RyYW5zZmVyYW1lcmljYXMubW9uZXl0cmFuc21pdHRlcnN5c3RlbS5jb21cL21hdmVyaWNrXC8iLCJyZXR1cm5VcmxOYXZpZ2F0aW9uIjoic2VsZiIsImxvZ28iOm51bGwsInZpc2libGVOb3RlIjpudWxsLCJyZXF1ZXN0Q29udGFjdEluZm8iOiJZZXMiLCJyZXF1ZXN0QmlsbGluZ0luZm8iOm51bGwsInNlbmRSZWNlaXB0IjpudWxsLCJvcmlnaW4iOiJIb3N0ZWRGb3JtIiwiaGFzaCI6ImI3Y2M3OTAzNjVkNTFkNGM1ZWI2MWU0YThiZjIzNzA1In0%3D",
+					"amount":"",
+					"fee":"",
+					"feeType":"amount",
+					"contactInfo":{
+						"name":"",
+						"email":"",
+						"phone":""
+					}
+				};
 		
 				const l = function() {
 					new PaymentGateway({

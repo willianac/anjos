@@ -163,6 +163,9 @@ export class AmountComponent implements OnInit {
 			this.hasCashPayment = true;
 			this.session.set("payCities", payOptions.CashPayoutLocation)
 		}
+
+		if(payOptions.BankDep === "YES" && payOptions.CashPay === "NO") this.transferType = "deposit"
+		if(payOptions.BankDep === "NO" && payOptions.CashPay === "YES") this.transferType = "cash"
 	}
 
 	private createUnitsObject() {
@@ -177,7 +180,8 @@ export class AmountComponent implements OnInit {
 
 	public goNextPage() {
 		this.select()
-
+		this.session.set("payoutOptionSelected", this.transferType)
+		
 		if(this.transferType === "cash") {
 			return this.router.navigate(['admin', 'transfer', 'cash-payment']);
 		}

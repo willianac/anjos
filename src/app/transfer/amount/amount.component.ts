@@ -109,6 +109,7 @@ export class AmountComponent implements OnInit {
     this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, "BRX")
       .subscribe({
         next: (response: any) => {
+					this.handlePayOptions(response.PayoutOptions)
           const statusCode = Number(response.StatusCode);
           if (statusCode < 0) {
             this.toastr.error(`[${response.StatusCode}] ${response.SessionResult}`, this.translate.instant('UNKNOWN_ERROR'));
@@ -128,7 +129,9 @@ export class AmountComponent implements OnInit {
   }
 
 	toggleDropdown() {
-		this.showDropdown = !this.showDropdown
+		if(this.units.length > 1) {
+			this.showDropdown = !this.showDropdown
+		}
 	}
 
 	selectUnit(option: string) {
@@ -178,6 +181,11 @@ export class AmountComponent implements OnInit {
 		})
 	}
 
+	private handleDefaultValues() {
+		this.selectedUnit = this.units[0].unit
+		this.selectedFlag = this.units[0].flag
+	}
+
 	public goNextPage() {
 		this.select()
 		this.session.set("payoutOptionSelected", this.transferType)
@@ -190,6 +198,7 @@ export class AmountComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.units = this.createUnitsObject()
+		this.handleDefaultValues()
 		this.getNewSession()
 	}
 }

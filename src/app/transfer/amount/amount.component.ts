@@ -32,6 +32,7 @@ export class AmountComponent implements OnInit {
 	public transferType = "";
 	public hasBankDeposit = false;
 	public hasCashPayment = false;
+	public hasValuesError = false;
 
   constructor(
     public session: SessionService,
@@ -63,9 +64,11 @@ export class AmountComponent implements OnInit {
       if (!number || number <= 0) {
         throw '';
       }
+			this.hasValuesError = false
       this.transfer.base = number.toFixed(2);
       this.transfer.send = (number*rate).toFixed(2);
     } catch(err) {
+			this.hasValuesError = true
       this.message = this.translate.instant('INVALID_BASE');
     }
   }
@@ -82,9 +85,11 @@ export class AmountComponent implements OnInit {
       if (!number || number <= 0) {
         throw '';
       }
+			this.hasValuesError = false
       this.transfer.send = number.toFixed(2);
       this.transfer.base = (number/rate).toFixed(2);
     } catch(err) {
+			this.hasValuesError = true
       this.message = this.translate.instant('INVALID_SEND');
     }
   }
@@ -104,12 +109,13 @@ export class AmountComponent implements OnInit {
     this.session.set('currentSend', this.transfer.send);
   }
 
+	//TODO: mudar o "BRX hardcoded"
 	getNewSession() {
     const lang = this.translate.currentLang || this.translate.defaultLang;
     this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, "BRX")
       .subscribe({
         next: (response: any) => {
-					this.handlePayOptions(response.PayoutOptions)
+					this.handleSelectedUnitApiResponse(response)
           const statusCode = Number(response.StatusCode);
           if (statusCode < 0) {
             this.toastr.error(`[${response.StatusCode}] ${response.SessionResult}`, this.translate.instant('UNKNOWN_ERROR'));

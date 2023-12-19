@@ -71,7 +71,7 @@
 				</div>
 			</div>
 			<div>
-				<button [disabled]="!selectedUnit || !transferType" (click)="goNextPage()" class="btn btn-primary px-4" translate>
+				<button [disabled]="!selectedUnit || !transferType || hasValuesError" (click)="goNextPage()" class="btn btn-primary px-4" translate>
 					NEXT
 				</button>
 			</div>

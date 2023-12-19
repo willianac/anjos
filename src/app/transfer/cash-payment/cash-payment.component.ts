@@ -13,6 +13,8 @@ export class CashPaymentComponent implements OnInit {
 
 	public select(city: any) {
 		console.log(city)
+		this.session.remove("currentReceiverAccount")
+		this.session.set("payoutLocation", city)
 		this.router.navigate(["admin", "transfer", "purposeList"])
 	}
 

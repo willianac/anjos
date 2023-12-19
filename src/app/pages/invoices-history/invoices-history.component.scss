@@ -1,4 +1,4 @@
-.btn {
+.go-back-btn {
 	display: none;
 	position: relative;
 
@@ -18,8 +18,82 @@
 	max-width: 26px;
 }
 
+.order-by-container {
+	padding-right: 4rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	justify-content: flex-end;
+	margin-bottom: 0.6rem;
+
+	.order-by-btn-group {
+		display: flex;
+		gap: 8px;
+		
+		button {
+			cursor: pointer;
+		}
+	}
+}
+
+.custom-dropdown {
+  position: relative;
+	cursor: pointer;
+	max-width: 150px;
+	height: 32px;
+	border: 1px solid #f3e9e9;
+	margin-left: auto;
+	margin-right: 3rem;
+	margin-bottom: 0.6rem;
+
+	.sort-label {
+		font-size: 14px;
+		position: relative;
+		top: 5px;
+		left: 14px;
+	}
+
+	i {
+		position: absolute;
+		right: 12px;
+		top: 7px;
+	}
+
+	.dropdown-content {
+		width: 100%;
+		position: absolute;
+		top: 35px;
+		background-color: #f9f9f9;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+
+		button {
+			cursor: pointer;
+		}
+	}
+}
+
 .hide-on-mobile {
 	@media screen and (max-width: 768px) {
 		display: none;
 	}
+}
+
+@media screen and (max-width: 480px) {
+	.order-by-container {
+		padding: 0;
+		justify-content: space-between;
+	}
+
+	.custom-dropdown {
+		max-width: 128px;
+		margin-right: 0;
+	}
+}
+
+
+.card-block {
+	padding: 0.6rem 1.25rem;
 }

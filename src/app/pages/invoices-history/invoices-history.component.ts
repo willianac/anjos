@@ -11,11 +11,56 @@ import { Subscription } from "rxjs";
 export class InvoicesHistoryComponent implements OnInit, OnDestroy {
 	invoiceList: Invoice[] = [];
 	invoiceSubscription: Subscription
+	showDropdown = false;
+	sortType = "";
+
 	constructor(private activatedRoute: ActivatedRoute) {}
+
+	public sortBy(property: string) {
+		this.invoiceList.sort((a,b) => {
+			if(a[property] > b[property]) return 1
+			if(b[property] > a[property]) return -1
+			return 0
+		})
+		if(property === "INVOICENUMBER") this.sortType = "Invoice Nº"
+		if(property === "RECEIVERNAME") this.sortType = "Receiver"
+	}
+
+	public sortByAmount() {
+		this.invoiceList.sort((a,b) => {
+			if(Number(a.PAYRECEIVER) > Number(b.PAYRECEIVER)) return -1
+			if(Number(b.PAYRECEIVER) > Number(a.PAYRECEIVER)) return 1
+			return 0
+		})
+		this.sortType = "Amount"
+	}
+
+	public sortByDate() {
+		this.invoiceList.sort((a,b) => {
+			if(new Date(a.DATE) > new Date(b.DATE)) return -1
+			if(new Date(b.DATE) > new Date(a.DATE)) return 1
+			return 0
+		})
+		this.sortType = "Date"
+	}
+
+	private createInvoiceObjs(invoices: any[]) {
+		const invoicesWithFlag = invoices.map((invoice) => {
+			const FLAG = invoice.UNIT.slice(0, 2)
+			return {...invoice, FLAG}
+		})
+		this.invoiceList = invoicesWithFlag
+	}
+
+	public toggleDropdown() {
+		this.showDropdown = !this.showDropdown
+	}
 
 	ngOnInit() {
 		this.invoiceSubscription = this.activatedRoute.data.subscribe({
-			next: (res) => this.invoiceList = res.invoices
+			next: (res) => {
+				this.createInvoiceObjs(res.invoices)
+			}
 		})
 	}
 

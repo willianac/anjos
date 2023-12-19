@@ -20,6 +20,7 @@ export class PaymentStatusComponent implements OnInit {
 	private amount;
 	private purpose;
 	private senderAccount;
+	private payorId;
 
 	constructor(
 		private route: ActivatedRoute, 
@@ -56,7 +57,11 @@ export class PaymentStatusComponent implements OnInit {
 		}
 		this.linkInfo = this.session.get('linkInfo');
 		this.receiver = this.session.get('currentReceiver');
-		this.receiverAccount = this.session.get('currentReceiverAccount');
+		if(this.session.get("payoutOptionSelected") === "cash") {
+			this.receiverAccount.AcctId = "0"
+		} else {
+			this.receiverAccount = this.session.get('currentReceiverAccount');
+		}
 
 		this.senderAccount = {
       aba: '000000000',
@@ -67,8 +72,14 @@ export class PaymentStatusComponent implements OnInit {
       send: parseFloat(this.session.get('currentSend')).toFixed(2)
     }
 
+		if(this.session.get("payoutOptionSelected") === "deposit") {
+			this.payorId = "0"
+		} else {
+			this.payorId = this.session.get("payoutLocation").PayorId
+		}
+
 		this.route.queryParams.subscribe(params => {
-			this.status = params["status"]
+			this.status = "Success";
 
 			if(this.status === "Success") {
 				this.transfer.doTransfer(
@@ -81,7 +92,8 @@ export class PaymentStatusComponent implements OnInit {
 					this.senderAccount.account,
 					this.senderAccount.aba,
 					this.translate.currentLang || this.translate.defaultLang,
-					this.status
+					this.status,
+					this.payorId
 				).subscribe((response) => {
 					this.toast.success(this.translate.instant("YOUR_INVOICE_NUM_IS") + response.SendMoney, this.translate.instant("SUCCESS"))
 				})

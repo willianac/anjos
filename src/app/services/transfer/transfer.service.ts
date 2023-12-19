@@ -9,7 +9,7 @@ export class TransferService extends ConnectionService {
     super(http);
   }
 
-  public doTransfer(sessionKey, receiverId, acctId, amount, nacional, payorServId, senderBankAcct, senderBankAba, lang, paymentStatus) {
+  public doTransfer(sessionKey, receiverId, acctId, amount, nacional, payorServId, senderBankAcct, senderBankAba, lang, paymentStatus, payorId) {
     const data = {
       SessionKey: sessionKey,
       ReceiverID: receiverId,
@@ -20,7 +20,8 @@ export class TransferService extends ConnectionService {
       SenderBankAcct: senderBankAcct,
       SenderBankAba: senderBankAba,
       lang: lang,
-			PaidStatus: paymentStatus
+			PaidStatus: paymentStatus,
+			PayorID: payorId
     };
     return this.createRequest(data);
   }

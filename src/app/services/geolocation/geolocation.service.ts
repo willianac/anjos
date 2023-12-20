@@ -1,12 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { Observable } from "rxjs";
+const setupData = require("../../../assets/setup/setup.json")
+import { AppSetup } from 'assets/setup/setup';
 
 @Injectable()
 export class GeolocationService {
-	private APIKey = "AIzaSyD1tyIJwm0EKuzV-uwM-CTAiDqp-1G5Q_M"
+	private APIKey = ""
 
-	constructor(private http: Http) {}
+	constructor(private http: Http) {
+		const setup = setupData as AppSetup
+		this.APIKey = setup.google_maps_api_key
+	}
 
 	public checkIfUserIsInNewJersey(lat: number, long: number): Observable<any> {
 		return this.http.get(

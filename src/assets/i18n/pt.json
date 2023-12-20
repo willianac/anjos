@@ -82,6 +82,7 @@
 	"PAYMENT_FAIL": "Algo deu errado, seu pagamento não foi efetuado.",
 	"PAYMENT_CANCELED": "Seu pagamento foi cancelado",
   "CHANGE_PASSWORD": "Trocar Senha",
+	"MY_INVOICES": "Minhas Remessas",
   "PASSWORD_CURRENT": "Senha atual",
   "PASSWORD_NEW": "Nova senha",
   "PASSWORD_CONFIRM": "Confirmar nova senha",
@@ -261,5 +262,9 @@
 
 	"SELECT_PAYMENT_TYPE": "Selecione uma forma de pagamento",
 	"CASH": "Dinheiro",
-	"SELECT_CITY": "Selecione a cidade que dinheiro deve ser enviado"
+	"SELECT_CITY": "Selecione a cidade que dinheiro deve ser enviado",
+
+	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Deve ter no mínimo 10 caracteres",
+	"SHOULD_HAVE_UPPERCASE": "Deve ter uma letra maiúscula",
+	"SHOULD_HAVE_DIGITS": "Deve ter um dígito"
 }

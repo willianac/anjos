@@ -82,6 +82,7 @@
   "PAYMENT_FAIL": "Algo salió mal, tu pago no se realizó.",
   "PAYMENT_CANCELED": "Tu pago ha sido cancelado",
   "CHANGE_PASSWORD": "Cambiar contraseña",
+	"MY_INVOICES": "Mis facturas",
   "PASSWORD_CURRENT": "Contraseña actual",
   "PASSWORD_NEW": "Nueva contraseña",
   "PASSWORD_CONFIRM": "Confirmar nueva contraseña",
@@ -261,5 +262,9 @@
 
   "SELECT_PAYMENT_TYPE": "Selecciona un método de pago",
   "CASH": "Efectivo",
-  "SELECT_CITY": "Selecciona la ciudad a la que se debe enviar el dinero"
+  "SELECT_CITY": "Selecciona la ciudad a la que se debe enviar el dinero",
+
+	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Debe tener al menos 10 caracteres",
+	"SHOULD_HAVE_UPPERCASE": "Debe tener mayúscula",
+	"SHOULD_HAVE_DIGITS": "Debe tener un dígito"
 }

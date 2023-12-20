@@ -82,6 +82,7 @@
 	"PAYMENT_FAIL": "Something went wrong, your payment was not made.",
 	"PAYMENT_CANCELED": "Your payment has been canceled",
   "CHANGE_PASSWORD": "Change Password",
+	"MY_INVOICES": "My Invoices",
   "PASSWORD_CURRENT": "Current Password",
   "PASSWORD_NEW": "New Password",
   "PASSWORD_CONFIRM": "Confirm new Password",
@@ -261,5 +262,9 @@
 
 	"SELECT_PAYMENT_TYPE": "Select a payment method",
 	"CASH": "Cash",
-	"SELECT_CITY": "Select the city where money should be sent"
+	"SELECT_CITY": "Select the city where money should be sent",
+
+	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Must be at least 10 characters long",
+	"SHOULD_HAVE_UPPERCASE": "Must have a capital letter",
+	"SHOULD_HAVE_DIGITS": "Must have one digit"
 }

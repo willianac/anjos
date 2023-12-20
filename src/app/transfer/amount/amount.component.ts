@@ -191,9 +191,6 @@ export class AmountComponent implements OnInit {
 		this.select()
 		this.session.set("payoutOptionSelected", payoutSelected)
 		
-		if(payoutSelected === "cash") {
-			return this.router.navigate(['admin', 'transfer', 'cash-payment']);
-		}
 		this.router.navigate(['admin', 'transfer', 'receiver']);
 	}
 

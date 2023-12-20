@@ -13,13 +13,13 @@ export class CashPaymentComponent implements OnInit {
 
 	public select(city: any) {
 		this.session.remove("currentReceiverAccount")
-		this.session.set("payoutLocation", city)
+		this.session.set("payoutLocationSelected", city)
 		this.router.navigate(["admin", "transfer", "purposeList"])
 	}
 
 	ngOnInit(): void {
-		const cities = this.session.get("payCities");
-		delete cities.$;
-		this.cityList = [...cities]
+		 const cities = this.session.get("payOptions").CashPayoutLocation;
+		 delete cities.$;
+		 this.cityList = [...cities]
 	}
 }

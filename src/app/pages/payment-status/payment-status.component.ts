@@ -76,7 +76,7 @@ export class PaymentStatusComponent implements OnInit {
 		if(this.session.get("payoutOptionSelected") === "deposit") {
 			this.payorId = "0"
 		} else {
-			this.payorId = this.session.get("payoutLocation").PayorId
+			this.payorId = this.session.get("payoutLocationSelected").PayorId
 		}
 
 		this.route.queryParams.subscribe(params => {

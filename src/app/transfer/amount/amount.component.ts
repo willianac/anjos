@@ -168,9 +168,7 @@ export class AmountComponent implements OnInit {
 		if(payOptions.BankDep === "YES") this.hasBankDeposit = true;
 		if(payOptions.CashPay === "YES") {
 			this.hasCashPayment = true;
-			this.session.set("payCities", payOptions.CashPayoutLocation)
 		}
-		//TODO: 'payCities' and 'payOptions' could be the same on localStorage + rename 'payoutLocation'
 		this.session.set("payOptions", payOptions)
 	}
 

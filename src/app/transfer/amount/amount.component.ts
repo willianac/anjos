@@ -31,6 +31,7 @@ export class AmountComponent implements OnInit {
 	public modalConfirm;
 	public hasBankDeposit = false;
 	public hasCashPayment = false;
+	public invalidValues = false
 
   constructor(
     public session: SessionService,
@@ -69,7 +70,7 @@ export class AmountComponent implements OnInit {
       this.transfer.base = number.toFixed(2);
       this.transfer.send = (number*rate).toFixed(2);
     } catch(err) {
-      this.message = this.translate.instant('INVALID_BASE');
+      this.invalidValues = true;
     }
   }
 
@@ -88,7 +89,7 @@ export class AmountComponent implements OnInit {
       this.transfer.send = number.toFixed(2);
       this.transfer.base = (number/rate).toFixed(2);
     } catch(err) {
-      this.message = this.translate.instant('INVALID_SEND');
+      this.invalidValues = true;
     }
   }
 

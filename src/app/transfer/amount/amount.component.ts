@@ -107,10 +107,10 @@ export class AmountComponent implements OnInit {
     this.session.set('currentSend', this.transfer.send);
   }
 
-	//TODO: mudar o "BRX hardcoded"
 	getNewSession() {
+		const allowedUnitsList = this.createUnitsObject()
     const lang = this.translate.currentLang || this.translate.defaultLang;
-    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, "BRX")
+    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, allowedUnitsList[0].unit)
       .subscribe({
         next: (response: any) => {
 					this.handleSelectedUnitApiResponse(response)

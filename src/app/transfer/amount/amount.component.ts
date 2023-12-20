@@ -70,6 +70,7 @@ export class AmountComponent implements OnInit {
       this.transfer.base = number.toFixed(2);
       this.transfer.send = (number*rate).toFixed(2);
     } catch(err) {
+			this.transfer.send = "0"
       this.invalidValues = true;
     }
   }
@@ -89,6 +90,7 @@ export class AmountComponent implements OnInit {
       this.transfer.send = number.toFixed(2);
       this.transfer.base = (number/rate).toFixed(2);
     } catch(err) {
+			this.transfer.base = "0"
       this.invalidValues = true;
     }
   }

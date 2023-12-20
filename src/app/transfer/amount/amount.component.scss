@@ -110,6 +110,10 @@ form {
 
 	button {
 		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 6px;
 	}
 }
 

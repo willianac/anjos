@@ -170,6 +170,8 @@ export class AmountComponent implements OnInit {
 			this.hasCashPayment = true;
 			this.session.set("payCities", payOptions.CashPayoutLocation)
 		}
+		//TODO: 'payCities' and 'payOptions' could be the same on localStorage + rename 'payoutLocation'
+		this.session.set("payOptions", payOptions)
 	}
 
 	private createUnitsObject() {

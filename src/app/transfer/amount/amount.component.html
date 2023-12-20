@@ -57,8 +57,22 @@
 				</div>
 			</div>
 			<div class="payout-group-btn">
-				<button *ngIf="hasBankDeposit" (click)="goNextPage('deposit')" class="btn btn-primary" [disabled]="!selectedUnit || exceededMaxValue()">Bank Deposit</button>
-				<button *ngIf="hasCashPayment" (click)="goNextPage('cash')" class="btn btn-secondary" [disabled]="!selectedUnit || exceededMaxValue()">Cash Payment</button>
+				<button 
+					*ngIf="hasBankDeposit" 
+					(click)="goNextPage('deposit')" 
+					class="btn btn-primary" 
+					[disabled]="!selectedUnit || exceededMaxValue()" 
+					translate
+					>BANKDEP
+				</button>
+				<button 
+					*ngIf="hasCashPayment" 
+					(click)="goNextPage('cash')" 
+					class="btn btn-secondary" 
+					[disabled]="!selectedUnit || exceededMaxValue()" 
+					translate
+					>PAYCASH
+				</button>
 			</div>
 		</form>
   </div>

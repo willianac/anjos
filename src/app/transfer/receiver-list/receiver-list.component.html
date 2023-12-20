@@ -1,4 +1,4 @@
-<div class="add-receiver-container">
+<div *ngIf="payOptions.BankDep === 'YES'" class="add-receiver-container">
 	<button [routerLink]="['/admin/transfer/new/receiver']" class="btn btn-primary">
 		<i class="fa fa-plus"></i>
 		<span translate>ADD_RECEIVER</span>

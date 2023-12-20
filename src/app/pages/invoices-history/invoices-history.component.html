@@ -8,14 +8,6 @@
 <div class="card">
 	<div class="card-header" translate>CHOOSE_INVOICE_SEE_DETAILS</div>
 	<div class="card-block table-responsive">
-		<!-- <div class="order-by-container">
-			<strong>Sort By</strong>
-			<div class="order-by-btn-group">
-				<button class="btn btn-primary btn-sm" [class.active]="teste === true">Invoice Nº</button>
-				<button class="btn btn-primary btn-sm">Amount</button>
-				<button class="btn btn-primary btn-sm">Date</button>
-			</div>
-		</div> -->
 		<div class="custom-dropdown" (click)="toggleDropdown()">
 			<span *ngIf="!sortType; else sortLabel" class="sort-label">Sort By</span>
 			<i class="icon-arrow-down"></i>
@@ -39,8 +31,9 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let invoice of invoiceList" [routerLink]="['/admin', 'invoice', invoice.INVOICENUMBER]">
-					<td>
+					<td class="invoice-num">
 						<img src="../../../assets/img/flags/{{invoice.FLAG}}.png" alt="a country flag" class="flag">
+						<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path fill="currentColor" d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Z"/></svg>
 						***{{invoice.INVOICENUMBER.slice(-6)}}
 					</td>
 					<td class="hide-on-mobile">{{invoice.RECEIVERNAME}} {{invoice.RECEIVERLAST}}</td>

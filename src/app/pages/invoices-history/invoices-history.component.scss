@@ -18,24 +18,6 @@
 	max-width: 26px;
 }
 
-.order-by-container {
-	padding-right: 4rem;
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	justify-content: flex-end;
-	margin-bottom: 0.6rem;
-
-	.order-by-btn-group {
-		display: flex;
-		gap: 8px;
-		
-		button {
-			cursor: pointer;
-		}
-	}
-}
-
 .custom-dropdown {
   position: relative;
 	cursor: pointer;
@@ -96,4 +78,10 @@
 
 .card-block {
 	padding: 0.6rem 1.25rem;
+}
+
+.invoice-num {
+	display: flex;
+	align-items: center;
+	gap: 4px;
 }

@@ -59,7 +59,7 @@ export class SummaryComponent {
     this.linkInfo.rate = parseFloat(this.linkInfo.rate).toFixed(2)
     this.total = (parseFloat(this.amount.base) + parseFloat(this.linkInfo.ServiceFee)).toFixed(2);
 		this.payoutOption = this.session.get("payoutOptionSelected")
-		this.payoutLocation = this.session.get("payoutLocation")
+		this.payoutLocation = this.session.get("payoutLocationSelected")
   }
 
 	public checkGeolocation() {

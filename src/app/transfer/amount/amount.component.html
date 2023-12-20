@@ -19,7 +19,7 @@
 						name="send"
 						[(ngModel)]="transfer.base" 
 						(change)="convertBase()" 
-						(ngModelChange)="checkMaxSend($event)"
+						(ngModelChange)="checkMaxSend()"
 					>
 				</div>
 			</div>
@@ -51,29 +51,14 @@
 			</div>
 			<ngx-loading [show]="isLoading"></ngx-loading>
 			<span class="help-block">1 {{ linkInfo.BaseUnit }} = {{ linkInfo.Rate }} {{ linkInfo.SendUnit }}</span>
-			<form class="transfer-type-form" *ngIf="hasBankDeposit && hasCashPayment">
-				<div class="transfer-type" *ngIf="hasCashPayment">
-					<label for="cash" [class.selected]="transferType === 'cash'">
-						<input type="radio" placeholder="CASH" id="cash" name="cash" value="cash" [(ngModel)]="transferType">
-						<span translate>CASH</span>
-					</label>
-				</div>
-				<div class="transfer-type" *ngIf="hasBankDeposit">		
-					<label for="deposit" [class.selected]="transferType === 'deposit'">
-						<input type="radio" name="deposit" id="deposit" value="deposit" [(ngModel)]="transferType">
-						<span translate>BANKDEP</span>
-					</label>
-				</div>
-			</form>
 			<div class="col-12 message-container" *ngIf="message">
 				<div class="alert alert-danger" role="alert">
 					{{ message }}
 				</div>
 			</div>
-			<div>
-				<button [disabled]="!selectedUnit || !transferType || hasValuesError" (click)="goNextPage()" class="btn btn-primary px-4" translate>
-					NEXT
-				</button>
+			<div class="payout-group-btn">
+				<button *ngIf="hasBankDeposit" (click)="goNextPage('deposit')" class="btn btn-primary" [disabled]="!selectedUnit || exceededMaxValue()">Bank Deposit</button>
+				<button *ngIf="hasCashPayment" (click)="goNextPage('cash')" class="btn btn-secondary" [disabled]="!selectedUnit || exceededMaxValue()">Cash Payment</button>
 			</div>
 		</form>
   </div>

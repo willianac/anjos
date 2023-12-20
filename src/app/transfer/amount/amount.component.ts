@@ -29,10 +29,8 @@ export class AmountComponent implements OnInit {
 	public isLoading = false;
 
 	public modalConfirm;
-	public transferType = "";
 	public hasBankDeposit = false;
 	public hasCashPayment = false;
-	public hasValuesError = false;
 
   constructor(
     public session: SessionService,
@@ -46,10 +44,14 @@ export class AmountComponent implements OnInit {
     this.transfer.send = this.session.get('currentSend') || 0;
    }
 
-	 checkMaxSend(value: any) {
+	 checkMaxSend() {
 		if(Number(this.transfer.base) > this.linkInfo.MaxOrderAmount) {
 			this.message = this.translate.instant("MAX_SEND_EXCEEDED", {unit: this.linkInfo.BaseUnit})
 		}
+	 }
+
+	 public exceededMaxValue() {
+		return Number(this.transfer.base) > Number(this.linkInfo.MaxOrderAmount) || Number(this.transfer.base) <= 0
 	 }
 
   convertBase() {
@@ -64,11 +66,9 @@ export class AmountComponent implements OnInit {
       if (!number || number <= 0) {
         throw '';
       }
-			this.hasValuesError = false
       this.transfer.base = number.toFixed(2);
       this.transfer.send = (number*rate).toFixed(2);
     } catch(err) {
-			this.hasValuesError = true
       this.message = this.translate.instant('INVALID_BASE');
     }
   }
@@ -85,11 +85,9 @@ export class AmountComponent implements OnInit {
       if (!number || number <= 0) {
         throw '';
       }
-			this.hasValuesError = false
       this.transfer.send = number.toFixed(2);
       this.transfer.base = (number/rate).toFixed(2);
     } catch(err) {
-			this.hasValuesError = true
       this.message = this.translate.instant('INVALID_SEND');
     }
   }
@@ -172,9 +170,6 @@ export class AmountComponent implements OnInit {
 			this.hasCashPayment = true;
 			this.session.set("payCities", payOptions.CashPayoutLocation)
 		}
-
-		if(payOptions.BankDep === "YES" && payOptions.CashPay === "NO") this.transferType = "deposit"
-		if(payOptions.BankDep === "NO" && payOptions.CashPay === "YES") this.transferType = "cash"
 	}
 
 	private createUnitsObject() {
@@ -192,11 +187,11 @@ export class AmountComponent implements OnInit {
 		this.selectedFlag = this.units[0].flag
 	}
 
-	public goNextPage() {
+	public goNextPage(payoutSelected: string) {
 		this.select()
-		this.session.set("payoutOptionSelected", this.transferType)
+		this.session.set("payoutOptionSelected", payoutSelected)
 		
-		if(this.transferType === "cash") {
+		if(payoutSelected === "cash") {
 			return this.router.navigate(['admin', 'transfer', 'cash-payment']);
 		}
 		this.router.navigate(['admin', 'transfer', 'receiver']);

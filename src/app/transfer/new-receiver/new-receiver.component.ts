@@ -10,7 +10,7 @@ import { validCNPJ } from "../../shared/cnpj-validator"
 import { AddSenderReceiverKinshipResponse, KinshipService } from "app/services/kinship/kinships.service";
 import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { forkJoin } from "rxjs/observable/forkJoin";
-import { State, StatesByCountryService } from "app/services/states-by-country/states-by-country.service";
+import { State, GeographyService } from "app/services/geography/geography.service";
 import { Observable } from "rxjs";
 
 @Component({
@@ -55,7 +55,7 @@ export class NewReceiverComponent implements OnInit {
 		private newReceiverService: NewReceiverService,
 		private kinshipService: KinshipService,
 		private bankService: BankInfoService,
-		private statesService: StatesByCountryService
+		private statesService: GeographyService
 	) {}
 
 	@HostListener("keydown.backspace", ["$event"])

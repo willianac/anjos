@@ -25,7 +25,7 @@ import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver
 import { NewReceiverService } from 'app/services/new-receiver/new-receiver.service';
 import { KinshipService } from 'app/services/kinship/kinships.service';
 import { BankInfoService } from 'app/services/bank-info/bank-info.service';
-import { StatesByCountryService } from 'app/services/states-by-country/states-by-country.service';
+import { GeographyService } from 'app/services/geography/geography.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { CashPaymentComponent } from './cash-payment/cash-payment.component';
@@ -63,7 +63,7 @@ import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 		NewReceiverService,
 		KinshipService,
 		BankInfoService,
-		StatesByCountryService,
+		GeographyService,
 		GeolocationService
   ]
 })

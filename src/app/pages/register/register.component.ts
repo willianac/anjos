@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 import { SessionService } from 'app/services/session/session.service';
 import { ApiRootResponse } from 'app/services/setup/ApiRootResponse';
-import { StatesByCountryService } from 'app/services/states-by-country/states-by-country.service';
+import { GeographyService } from 'app/services/geography/geography.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
 		private newSenderService: NewSenderService,
 		private toast: ToastrService,
 		private session: SessionService,
-		private countriesService: StatesByCountryService,
+		private countriesService: GeographyService,
 		private translate: TranslateService,
 		private router: Router
 	) { }

@@ -8,7 +8,7 @@ export type State = {
 }
 
 @Injectable()
-export class StatesByCountryService {
+export class GeographyService {
 
 	constructor(private http: Http) {}
 

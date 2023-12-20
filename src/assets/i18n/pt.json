@@ -236,8 +236,6 @@
 	"PROTECT_YOUR_ACCOUNT": "Sua senha é fraca",
 	"CHANGE_PASSWORD_RECOMENDATION": "Proteja sua conta com os critérios fornecidos ou vá para a Transferência",
 
-	"YOUR_INVOICE_NUM_IS": "Seu numero de invoice é: ",
-
 	"AMOUNT": "Valor",
 	"CREATED_ON": "Criada em",
 	"CHOOSE_INVOICE_SEE_DETAILS": "Selecione uma remessa para obter detalhes",
@@ -247,6 +245,7 @@
 	"DETAILS": "Detalhes",
 	"PAYMENT_METHOD": "Método de pagamento",
 	"BANKDEP": "Depósito Bancário",
+	"PAYCASH": "Pagamento em dinheiro",
 	"LAST_UPDATE": "Ultima movimentação",
 
 	"Posted": "Remessa foi registrada com sucesso",

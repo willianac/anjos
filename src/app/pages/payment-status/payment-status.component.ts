@@ -96,7 +96,7 @@ export class PaymentStatusComponent implements OnInit {
 					this.status,
 					this.payorId
 				).subscribe((response) => {
-					this.toast.success(this.translate.instant("YOUR_INVOICE_NUM_IS") + response.SendMoney, this.translate.instant("SUCCESS"))
+					this.toast.success("Invoice: " + response.SendMoney, this.translate.instant("SUCCESS"))
 				})
 			}
 

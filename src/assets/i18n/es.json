@@ -82,7 +82,7 @@
   "PAYMENT_FAIL": "Algo salió mal, tu pago no se realizó.",
   "PAYMENT_CANCELED": "Tu pago ha sido cancelado",
   "CHANGE_PASSWORD": "Cambiar contraseña",
-	"MY_INVOICES": "Mis facturas",
+	"MY_INVOICES": "Mis Transferencias",
   "PASSWORD_CURRENT": "Contraseña actual",
   "PASSWORD_NEW": "Nueva contraseña",
   "PASSWORD_CONFIRM": "Confirmar nueva contraseña",
@@ -148,6 +148,7 @@
   "CHANGE_LANGUAGE": "Cambiar Idioma",
   "SENDER_ACCOUNTS": "Mis Cuentas",
   "RECEIVERS": "Beneficiarios",
+	"SEND_MONEY": "Enviar dinero",
 
   "NAME": "Nombre",
 

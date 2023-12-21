@@ -76,3 +76,17 @@
 
 // Custom styles
 @import "custom";
+
+
+.send-money-icon {
+	position: relative;
+	top: 2px;
+	margin-right: 8px;
+	color: #b0bec5;
+}
+
+.active {
+	.send-money-icon {
+		color:#20a8d8;
+	}
+}

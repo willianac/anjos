@@ -177,16 +177,18 @@ export class AmountComponent implements OnInit {
 
 	private createUnitsObject() {
 		const units = (this.session.get("linkInfo").ListLandUnit as string).split(",")
-		return units.map(unit => {
+		const showUnit = (this.session.get("linkInfo").ListSendUnit as string).split(",")
+		return units.map((unit, index) => {
 			return {
 				unit: unit,
+				showUnit: showUnit[index],
 				flag: unit.slice(0,2)
 			}
 		})
 	}
 
 	private handleDefaultValues() {
-		this.selectedUnit = this.units[0].unit
+		this.selectedUnit = this.units[0].showUnit
 		this.selectedFlag = this.units[0].flag
 	}
 

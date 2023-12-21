@@ -22,23 +22,28 @@
 	<div class="card-block">
 		<div class="details-container">
 			<div class="detail">
-				<strong translate>AMOUNT</strong>
+				<strong>{{'AMOUNT' | translate}}:</strong>
 				<span>{{invoice?.UNIT}} {{invoice?.PAYRECEIVER}}</span>
 			</div>
 			<hr class="divider">	
 			<div class="detail">
-				<strong translate>CREATED_ON</strong>
+				<strong>{{'CREATED_ON' | translate}}:</strong>
 				<span>{{invoice?.DATE}}</span>
 			</div>
 			<hr class="divider">
 			<div class="detail">
-				<strong translate>RECEIVER_NAME</strong>
+				<strong>{{'RECEIVER_NAME' | translate}}:</strong>
 				<span>{{invoice?.RECEIVERNAME}} {{invoice?.RECEIVERLAST}}</span>
 			</div>
 			<hr class="divider">	
 			<div class="detail">
-				<strong translate>PAYMENT_METHOD</strong>
+				<strong>{{'PAYMENT_METHOD' | translate}}:</strong>
 				<span translate>{{invoice?.PAYMETHOD}}</span>
+			</div>
+			<hr class="divider">	
+			<div class="detail">
+				<strong>{{'TRANSFER_TOTAL' | translate}}:</strong>
+				<span>{{baseUnit}} {{invoice?.INVOICETOTAL}}</span>
 			</div>
 			
 		</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { InvoicesService } from "app/services/invoices/invoices.service";
+import { SessionService } from "app/services/session/session.service";
 import { Invoice } from "app/shared/invoices.resolver";
 import { ToastrService } from "ngx-toastr";
 
@@ -12,12 +13,15 @@ import { ToastrService } from "ngx-toastr";
 })
 export class InvoiceComponent implements OnInit {
 	invoice: Invoice;
+	baseUnit = "";
+
 	constructor(
 		private invoicesService: InvoicesService, 
 		private activatedRouter: ActivatedRoute,
 		private toast: ToastrService,
 		private translate: TranslateService,
-		private router: Router
+		private router: Router,
+		private session: SessionService
 	) {}
 
 	private formatDate(date: string): string {
@@ -27,6 +31,7 @@ export class InvoiceComponent implements OnInit {
 
 	ngOnInit(): void {
 		const invoiceNumber = this.activatedRouter.snapshot.params.number
+		this.baseUnit = this.session.get("linkInfo").BaseUnit
 		
 		this.invoicesService.trackInvoice(invoiceNumber)
 			.catch(err => {

@@ -39,7 +39,8 @@ export class InvoicesService {
 				.map((val) => {
 					const fixedDatesInvoices = [...val.INVOICE].map((invoice) => {
 						const dt = new Date(invoice.DATE)
-						invoice.DATE = `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`
+						invoice.DATE = `${dt.getMonth() + 1}/${(dt.getDate() < 10 ? "0" : "") + dt.getDate()}/${dt.getFullYear()}`
+						invoice.TIME = `${(dt.getHours() < 10 ? "0" : "") + dt.getHours()}:${(dt.getMinutes() < 10 ? "0" : "") + dt.getMinutes()}:${dt.getSeconds() + "0"}`
 						return invoice
 					})
 					return fixedDatesInvoices

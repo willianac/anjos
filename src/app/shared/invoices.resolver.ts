@@ -17,6 +17,7 @@ export type Invoice = {
 	UNIT: string
 	PAYRECEIVER: string
 	INVOICESTATUS: string
+	INVOICETOTAL: string
 	APPSTATUS: string
 }
 

@@ -27,15 +27,24 @@
 	margin-left: auto;
 	margin-right: 3rem;
 	margin-bottom: 0.6rem;
+	background-color: #f3eae8;
 
 	.sort-label {
 		font-size: 14px;
 		position: relative;
 		top: 5px;
 		left: 14px;
+		font-weight: 700;
 	}
 
-	i {
+	.fa-filter {
+		position: relative;
+		top: 5px;
+		left: 8px;
+		font-size: 18px;
+	}
+
+	.icon-arrow-down {
 		position: absolute;
 		right: 12px;
 		top: 7px;
@@ -75,7 +84,6 @@
 	}
 }
 
-
 .card-block {
 	padding: 0.6rem 1.25rem;
 }
@@ -84,4 +92,21 @@
 	display: flex;
 	align-items: center;
 	gap: 4px;
+}
+
+.status {
+	padding: 0.2rem 0.6rem;
+	background-color: #00fffc;
+}
+
+.voided {
+	padding: 0.2rem 0.6rem;
+	background-color: #ff3333;
+	color: #ffffff;
+}
+
+.paid {
+	padding: 0.2rem 0.6rem;
+	background-color: #22bb33;
+	color: #ffffff;
 }

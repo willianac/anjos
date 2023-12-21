@@ -12,6 +12,7 @@
           <tr *ngFor="let purpose of purposeList" (click)="select(purpose)">
             <td *ngIf="currentLang == 'pt'">{{purpose.PurposeNamePT}}</td>
             <td *ngIf="currentLang == 'en'">{{purpose.PurposeNameUS}}</td>
+						<td *ngIf="currentLang == 'es'">{{purpose.PurposeNameES}}</td>
           </tr>
         </ng-container>
         <ng-container *ngIf="!purposeList || purposeList.length < 1">

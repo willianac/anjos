@@ -260,6 +260,8 @@
 	"Agt Hold": "Invoice placed under review",
 	"Adm Hold": "Invoice placed under review",
 	"Void": "Invoice cancelled",
+	
+	"TRANSFER_TOTAL": "Transfer total",
 
 	"SELECT_PAYMENT_TYPE": "Select a payment method",
 	"CASH": "Cash",

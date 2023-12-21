@@ -261,6 +261,8 @@
 	"Adm Hold": "Remessa sob revisão",
 	"Void": "Remessa cancelada",
 
+	"TRANSFER_TOTAL": "Total da remessa",
+
 	"SELECT_PAYMENT_TYPE": "Selecione uma forma de pagamento",
 	"CASH": "Dinheiro",
 	"SELECT_CITY": "Selecione a cidade que dinheiro deve ser enviado",

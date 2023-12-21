@@ -249,6 +249,7 @@
   "BANKDEP": "Depósito Bancario",
   "PAYCASH": "Pago en Efectivo",
   "LAST_UPDATE": "Última actualización",
+	"DATE": "Fecha",
 
   "Posted": "Factura creada exitosamente",
   "Verified": "Factura verificada exitosamente",

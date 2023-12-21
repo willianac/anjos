@@ -249,6 +249,7 @@
 	"BANKDEP": "Depósito Bancário",
 	"PAYCASH": "Pagamento em dinheiro",
 	"LAST_UPDATE": "Ultima movimentação",
+	"DATE": "Data",
 
 	"Posted": "Remessa foi registrada com sucesso",
 	"Verified": "Remessa aprovada com sucesso",

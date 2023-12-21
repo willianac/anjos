@@ -28,8 +28,8 @@ export class InvoicesHistoryComponent implements OnInit, OnDestroy {
 
 	public sortByAmount() {
 		this.invoiceList.sort((a,b) => {
-			if(Number(a.PAYRECEIVER) > Number(b.PAYRECEIVER)) return -1
-			if(Number(b.PAYRECEIVER) > Number(a.PAYRECEIVER)) return 1
+			if(Number(a.INVOICETOTAL) > Number(b.INVOICETOTAL)) return -1
+			if(Number(b.INVOICETOTAL) > Number(a.INVOICETOTAL)) return 1
 			return 0
 		})
 		this.sortType = "Amount"

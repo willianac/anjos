@@ -15,8 +15,8 @@
 			<div class="dropdown-content" *ngIf="showDropdown">
 				<button (click)="sortBy('INVOICENUMBER')" class="btn btn-primary btn-sm">Invoice Nº</button>
 				<button (click)="sortBy('RECEIVERNAME')" class="btn btn-primary btn-sm">Receiver</button>
-				<button (click)="sortByAmount()" class="btn btn-primary btn-sm">Amount</button>
-				<button (click)="sortByDate()" class="btn btn-primary btn-sm">Date</button>
+				<button (click)="sortByAmount()" class="btn btn-primary btn-sm" translate>AMOUNT</button>
+				<button (click)="sortByDate()" class="btn btn-primary btn-sm" translate>DATE</button>
 			</div>
 		</div>
 		<table class="table table-striped table-hover table-clickable table-sm">

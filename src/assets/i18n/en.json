@@ -249,6 +249,7 @@
 	"BANKDEP": "Bank Deposit",
 	"PAYCASH": "Cash Payment",
 	"LAST_UPDATE": "Last update",
+	"DATE": "Date",
 
 	"Posted": "Invoice created successfully",
 	"Verified": "Invoice verified successfully",

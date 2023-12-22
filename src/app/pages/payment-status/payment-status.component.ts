@@ -31,10 +31,6 @@ export class PaymentStatusComponent implements OnInit {
 		private toast: ToastrService
 	) {}
 
-	// public navigateToHome() {
-	// 	this.router.navigate(['admin'])
-	// }
-
 	private checkIfLanguageIsSelected() {
 		const language = this.session.get("language")
 		if(!language) this.session.set("language", "en")
@@ -48,6 +44,11 @@ export class PaymentStatusComponent implements OnInit {
     this.session.remove('currentSend');
 		this.session.remove('total');
 		this.session.remove('externalID')
+	}
+
+	private backToInit(toastTitle: string, toastText) {
+		this.toast.error(this.translate.instant(toastText), this.translate.instant(toastTitle))
+		this.router.navigate(['login'])
 	}
 
 	ngOnInit() {
@@ -96,7 +97,34 @@ export class PaymentStatusComponent implements OnInit {
 					this.status,
 					this.payorId
 				).subscribe((response) => {
-					this.toast.success("Invoice: " + response.SendMoney, this.translate.instant("SUCCESS"))
+					const statusCode = Number(response.StatusCode);
+					switch (statusCode) {
+						case 1:
+							this.toast.success("Invoice: " + response.SendMoney, this.translate.instant("SUCCESS"))
+							break;
+						case -2:
+							this.session.clear();
+							this.backToInit('SESSION_EXPIRED_TITLE', 'SESSION_EXPIRED_TEXT');
+							break;
+						case -4:
+							this.backToInit('DAYLI_SENDER_EXCEEDED_TITLE', 'DAYLI_SENDER_EXCEEDED_TEXT');
+							break;
+						case -5:
+							this.backToInit('DAYLI_RECEIVER_EXCEEDED_TITLE', 'DAYLI_RECEIVER_EXCEEDED_TEXT');
+							break;
+						case -8:
+							this.backToInit('ERROR', response.SendMoney);
+							break;
+						case -9:
+							this.backToInit('ERROR', 'BANK_LENGTH_ERROR');
+							break;
+						case -10:
+							this.backToInit('ERROR', 'ABA_LENGTH_ERROR');
+							break;
+						default:
+							this.backToInit('ERROR', 'UNKNOWN_RESPONSE')
+							break;
+					}
 				})
 			}
 

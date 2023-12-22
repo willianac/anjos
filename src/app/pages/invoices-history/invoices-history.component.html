@@ -51,6 +51,8 @@
 							class="status"
 							[class.voided]="invoice.INVOICESTATUS === 'Void'" 
 							[class.paid]="invoice.INVOICESTATUS === 'Paid'"
+							[class.adm-hold]="invoice.INVOICESTATUS === 'Adm Hold'"
+							[class.agt-hold]="invoice.INVOICESTATUS === 'Agt Hold'"
 						>{{invoice.INVOICESTATUS}}
 						<i *ngIf="invoice.INVOICESTATUS === 'Paid'" class="fa fa-check"></i>
 						<i *ngIf="invoice.INVOICESTATUS === 'Void'" class="fa fa-times"></i>

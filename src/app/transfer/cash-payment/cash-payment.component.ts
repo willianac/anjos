@@ -28,7 +28,7 @@ export class CashPaymentComponent implements OnInit {
 	}
 
 	private handleDefaultValue() {
-		this.country = this.session.get("linkInfo").SendUnit.slice(0,2);
+		this.country = this.session.get("unitSelected").slice(0,2)
 		const cities = this.session.get("payOptions").CashPayoutLocation;
 		delete cities.$;
 		this.cityList = [...cities]

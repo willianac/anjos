@@ -21,7 +21,7 @@ export class ReceiverListComponent implements OnInit {
   }
 
   ngOnInit() {
-		this.receiverListCountry = this.session.get("linkInfo").SendUnit.slice(0,2);
+		this.receiverListCountry = this.session.get("unitSelected").slice(0,2);
 		this.payOptions = this.session.get("payOptions")
     this.getList();
   }

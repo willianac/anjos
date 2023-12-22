@@ -146,6 +146,7 @@ export class AmountComponent implements OnInit {
 		this.selectedFlag = option.slice(0,2)
 
 		this.isLoading = true
+		this.session.set("unitSelected", option)
 		const lang = this.translate.currentLang || this.translate.defaultLang;
 		this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, option).subscribe({
 			next: (res) => this.handleSelectedUnitApiResponse(res)

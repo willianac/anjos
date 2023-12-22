@@ -28,6 +28,7 @@ export class SummaryComponent {
   public isLoading: Boolean = false;
   public message;
   public modalConfirm;
+	public receiveCountry = "";
 
   public senderAccountPage = ['admin', 'senderAccount'];
 
@@ -60,6 +61,7 @@ export class SummaryComponent {
     this.total = (parseFloat(this.amount.base) + parseFloat(this.linkInfo.ServiceFee)).toFixed(2);
 		this.payoutOption = this.session.get("payoutOptionSelected")
 		this.payoutLocation = this.session.get("payoutLocationSelected")
+		this.receiveCountry = this.session.get("unitSelected").slice(0,2)
   }
 
 	public checkGeolocation() {
@@ -98,13 +100,4 @@ export class SummaryComponent {
 			this.toastr.error(this.translate.instant("GEOLOCATION_DENIED"), this.translate.instant("ERROR"))
 		}
 	}
-
-  backToInit(title: string, text: string, page?: any) {
-    this.toastr.error(this.translate.instant(text), this.translate.instant(title));
-    if (page) {
-      this.router.navigate(page);
-    } else {
-      this.router.navigate(['login']);
-    }
-  }
 }

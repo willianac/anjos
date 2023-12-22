@@ -141,8 +141,8 @@ export class AmountComponent implements OnInit {
 		}
 	}
 
-	selectUnit(option: string) {
-		this.selectedUnit = option
+	selectUnit(option: string, optionToDisplay: string) {
+		this.selectedUnit = optionToDisplay
 		this.selectedFlag = option.slice(0,2)
 
 		this.isLoading = true

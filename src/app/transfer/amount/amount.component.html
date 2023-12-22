@@ -30,7 +30,7 @@
 						<span *ngIf="!selectedUnit; else selectedUnitFlag" id="selectedLabel">Select</span>
 						<div class="dropdown-content" *ngIf="showDropdown">
 
-							<div *ngFor="let unit of units" class="item" (click)="selectUnit(unit.unit)">
+							<div *ngFor="let unit of units" class="item" (click)="selectUnit(unit.unit, unit.showUnit)">
 								<img src="../../../assets/img/flags/{{unit.flag}}.png" alt="a country flag">
 								<span>{{unit.showUnit}}</span>
 							</div>

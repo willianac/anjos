@@ -26,7 +26,7 @@ export class InvoiceComponent implements OnInit {
 
 	private formatDate(date: string): string {
 		const dt = new Date(date)
-		return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()} at ${dt.getHours()}:${dt.getMinutes()}`
+		return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()} at ${(dt.getHours() < 10 ? "0" : "") + dt.getHours()}:${(dt.getMinutes() < 10 ? "0" : "") + dt.getMinutes()}`
 	}
 
 	ngOnInit(): void {

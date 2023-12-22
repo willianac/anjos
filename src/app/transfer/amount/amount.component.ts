@@ -111,6 +111,7 @@ export class AmountComponent implements OnInit {
   }
 
 	getNewSession() {
+		this.isLoading = true
 		const allowedUnitsList = this.createUnitsObject()
     const lang = this.translate.currentLang || this.translate.defaultLang;
     this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, allowedUnitsList[0].unit)
@@ -128,9 +129,11 @@ export class AmountComponent implements OnInit {
 							this.session.set("accountList", response.MoneyReceivers.ReceiverBank)
             }
           }
+					this.isLoading = false;
         }, 
         error: (err) => {
           this.toastr.error(this.translate.instant('CONNECTION_ERROR'));
+					this.isLoading = false;
         }
       })
   }
@@ -149,7 +152,11 @@ export class AmountComponent implements OnInit {
 		this.session.set("unitSelected", option)
 		const lang = this.translate.currentLang || this.translate.defaultLang;
 		this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, option).subscribe({
-			next: (res) => this.handleSelectedUnitApiResponse(res)
+			next: (res) => this.handleSelectedUnitApiResponse(res),
+			error: (err) => {
+				this.toastr.error(this.translate.instant('UNKNOWN_ERROR'), this.translate.instant('ERROR'));
+				this.isLoading = false;
+			}
 		})
   }
 

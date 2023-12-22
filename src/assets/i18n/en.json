@@ -267,6 +267,8 @@
 	"SELECT_PAYMENT_TYPE": "Select a payment method",
 	"CASH": "Cash",
 	"SELECT_CITY": "Select the city where money should be sent",
+	"CODE": "Code",
+	"PAYOR_NAME": "Payor name",
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Must be at least 10 characters long",
 	"SHOULD_HAVE_UPPERCASE": "Must have a capital letter",

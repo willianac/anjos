@@ -267,6 +267,8 @@
 	"SELECT_PAYMENT_TYPE": "Selecione uma forma de pagamento",
 	"CASH": "Dinheiro",
 	"SELECT_CITY": "Selecione a cidade que dinheiro deve ser enviado",
+	"CODE": "Código",
+	"PAYOR_NAME": "Nome do pagador",
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Deve ter no mínimo 10 caracteres",
 	"SHOULD_HAVE_UPPERCASE": "Deve ter uma letra maiúscula",

@@ -27,15 +27,19 @@ export class CashPaymentComponent implements OnInit {
 		this.router.navigate(["admin", "transfer", "purposeList"])
 	}
 
-	private handleDefaultValue() {
+	private handleDefaultValues() {
 		this.country = this.session.get("unitSelected").slice(0,2)
-		const cities = this.session.get("payOptions").CashPayoutLocation;
-		delete cities.$;
-		this.cityList = [...cities]
-		this.filteredCityList = [...cities]
+		const locations = this.session.get("payOptions").CashPayoutLocation as any[];
+
+		const sanitizedCities = [...locations].map(location => {
+			const sanitized = location.City.replace(/[\d-]/g, "")
+			return {...location, City: sanitized}
+		})
+		this.cityList = [...sanitizedCities]
+		this.filteredCityList = [...sanitizedCities]
 	}
 
 	ngOnInit(): void {
-		this.handleDefaultValue()
+		this.handleDefaultValues()
 	}
 }

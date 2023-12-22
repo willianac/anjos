@@ -8,8 +8,9 @@ import { SessionService } from "app/services/session/session.service";
 	styleUrls: ["cash-payment.component.scss"]
 })
 export class CashPaymentComponent implements OnInit {
-	cityList = []
-	filteredCityList = []
+	cityList = [];
+	filteredCityList = [];
+	country = "";
 
 	constructor(private session: SessionService, private router: Router) {}
 
@@ -26,10 +27,15 @@ export class CashPaymentComponent implements OnInit {
 		this.router.navigate(["admin", "transfer", "purposeList"])
 	}
 
+	private handleDefaultValue() {
+		this.country = this.session.get("linkInfo").SendUnit.slice(0,2);
+		const cities = this.session.get("payOptions").CashPayoutLocation;
+		delete cities.$;
+		this.cityList = [...cities]
+		this.filteredCityList = [...cities]
+	}
+
 	ngOnInit(): void {
-		 const cities = this.session.get("payOptions").CashPayoutLocation;
-		 delete cities.$;
-		 this.cityList = [...cities]
-		 this.filteredCityList = [...cities]
+		this.handleDefaultValue()
 	}
 }

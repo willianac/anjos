@@ -268,7 +268,7 @@
   "CASH": "Efectivo",
   "SELECT_CITY": "Selecciona la ciudad a la que se debe enviar el dinero",
 	"CODE": "Código",
-	"PAYOR_NAME": "Nombre del agador",
+	"CORRESPONDENT": "Corresponsal",
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Debe tener al menos 10 caracteres",
 	"SHOULD_HAVE_UPPERCASE": "Debe tener mayúscula",

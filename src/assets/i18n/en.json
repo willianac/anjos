@@ -268,7 +268,7 @@
 	"CASH": "Cash",
 	"SELECT_CITY": "Select the city where money should be sent",
 	"CODE": "Code",
-	"PAYOR_NAME": "Payor name",
+	"CORRESPONDENT": "Correspondent",
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Must be at least 10 characters long",
 	"SHOULD_HAVE_UPPERCASE": "Must have a capital letter",

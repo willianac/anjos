@@ -45,6 +45,7 @@ export class NewReceiverComponent implements OnInit {
 		pix: ["", Validators.required]
 	})
 	isLoading = false;
+	currentUnit = "";
 
 	constructor(
 		private fb: FormBuilder, 
@@ -55,7 +56,7 @@ export class NewReceiverComponent implements OnInit {
 		private newReceiverService: NewReceiverService,
 		private kinshipService: KinshipService,
 		private bankService: BankInfoService,
-		private statesService: GeographyService
+		private geographyService: GeographyService
 	) {}
 
 	@HostListener("keydown.backspace", ["$event"])
@@ -189,7 +190,7 @@ export class NewReceiverComponent implements OnInit {
 
 	ngOnInit() {
 		const getKinships = this.kinshipService.getKinships()
-		const getBanks = this.bankService.getBanks()
+		const getBanks = this.bankService.getBanks("BR")
 
 		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
 			for(let kinship of kinships.KINSHIP) {
@@ -204,7 +205,7 @@ export class NewReceiverComponent implements OnInit {
 			}
 		)
 
-		this.statesService.getStates("BR").subscribe((res) => {
+		this.geographyService.getStates("BR").subscribe((res) => {
 			this.stateList = res.json()
 		})
 
@@ -229,5 +230,7 @@ export class NewReceiverComponent implements OnInit {
 			this.receiverAccountForm.get("account").updateValueAndValidity();
 			this.receiverAccountForm.get("pix").updateValueAndValidity();
 		})
+
+		this.currentUnit = this.session.get("unitSelected")
 	}
 }

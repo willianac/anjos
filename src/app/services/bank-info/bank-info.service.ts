@@ -27,7 +27,7 @@ export class BankInfoService {
 		this.url = setup.sampleApiCalls
 	}
 
-	public getBanks(): Observable<any> {
+	public getBanks(landUnit?: string): Observable<any> {
 		const sessionKey = this.session.get("linkInfo").SessionKey
 
 		const xmlAuth = `
@@ -37,6 +37,9 @@ export class BankInfoService {
 				<AUTHENTICATE>
 					<SESSIONKEY>${sessionKey}</SESSIONKEY>
 				</AUTHENTICATE>
+				<GETBANKS>
+					<LANDUNIT>${landUnit}</LANDUNIT> 
+				</GETBANKS>
 			</XPRESSO>
 		`
 

@@ -29,6 +29,7 @@ import { GeographyService } from 'app/services/geography/geography.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { CashPaymentComponent } from './cash-payment/cash-payment.component';
+import { NewReceiverGenericFormComponent } from 'app/components/new-receiver-generic-form/new-receiver-generic-form.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 		NewReceiverComponent,
 		NewReceiverAccountComponent,
 		CashPaymentComponent,
-		Last4DigitsPipe
+		Last4DigitsPipe,
+		NewReceiverGenericFormComponent
   ],
   entryComponents: [
   ],

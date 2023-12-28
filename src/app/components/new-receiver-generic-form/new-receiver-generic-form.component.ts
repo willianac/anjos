@@ -51,22 +51,23 @@ export class NewReceiverGenericFormComponent implements OnInit {
 	]
 	currentUnit = "";
 	receiverForm = this.fb.group({
-		country: [{name: "", isoCode: ""}],
-		firstName: [""],
-		surname: [""],
-		document: [""],
-		address: [""],
-		city: [""],
-		state: [{value: "", disabled: true}],
-		zip: [""],
-		phone: [""],
-		email: [""],
-		kinship: [""]
+		country: [{name: "", isoCode: ""}, Validators.required],
+		firstName: ["", [Validators.required, Validators.maxLength(40)]],
+		surname: ["", [Validators.required, Validators.pattern(/^\w+$/), Validators.maxLength(20)]],
+		personType: ["fisica", Validators.required],
+		document: ["", [Validators.required, Validators.maxLength(30), Validators.maxLength(40)]],
+		address: ["", [Validators.required, Validators.maxLength(60)]],
+		city: ["", [Validators.required, Validators.maxLength(32)]],
+		state: [{value: "", disabled: true}, [Validators.required]],
+		zip: ["", [Validators.required, Validators.maxLength(10)]],
+		phone: ["", [Validators.required, Validators.minLength(19)]],
+		email: ["", [Validators.required, Validators.email, Validators.maxLength(40)]],
+		kinship: ["", Validators.required]
 	})
 
 	receiverAccountForm = this.fb.group({
-		bank: [""],
-		account: [""]
+		bank: ["", Validators.required],
+		account: ["", Validators.required]
 	})
 
 	constructor(

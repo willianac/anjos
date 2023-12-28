@@ -38,7 +38,7 @@ export class NewReceiverService {
 		phone: string,
 		email: string,
 	): Observable<any> {
-		const flag = "BR"
+		const flag = this.session.get("unitSelected").slice(0,2)
 		const owner = this.session.get("linkInfo").BranchNo
 		const sessionKey = this.session.get("linkInfo").SessionKey
 

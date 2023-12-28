@@ -5,7 +5,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { NewReceiverService } from "app/services/new-receiver/new-receiver.service";
 import { SessionService } from "app/services/session/session.service";
-import { error } from "console";
 import { ToastrService } from "ngx-toastr";
 
 
@@ -24,6 +23,7 @@ export class NewReceiverAccountComponent implements OnInit {
 		accountType: ["", Validators.required],
 		pix: ["", Validators.required]
 	})
+	currentUnit = "";
 	
 	constructor(
 		private bankService: BankInfoService, 
@@ -66,7 +66,8 @@ export class NewReceiverAccountComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.bankService.getBanks().subscribe((res) => {
+		this.currentUnit = this.session.get("unitSelected")
+		this.bankService.getBanks(this.currentUnit).subscribe((res) => {
 			this.bankList = res.BANK
 		},
 		error => {
@@ -76,8 +77,14 @@ export class NewReceiverAccountComponent implements OnInit {
 			)
 		}
 		)
-
+		
 		this.receiverID = this.session.get("currentReceiver").ReceiverID
+
+		if(this.currentUnit !== "BRX") {
+			this.receiverAccountForm.get("branch").disable()
+			this.receiverAccountForm.get("pix").disable()
+			return this.receiverAccountForm.get("accountType").setValue("C")
+		}
 
 		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
 			if(val === "PIX") {

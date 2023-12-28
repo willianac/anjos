@@ -1,10 +1,10 @@
 <div class="card">
 	<div class="card-header">
 		<span translate>FILL_ALL_FIELDS_FOR_NEW_ACCOUNT</span>
-		<img src="../../../assets/img/flags/BR.png" alt="a country flag">
+		<img src="../../../assets/img/flags/{{currentUnit.slice(0,2)}}.png" alt="a country flag">
 	</div>
   <div class="card-block">
-		<form [formGroup]="receiverAccountForm">
+		<form [formGroup]="receiverAccountForm" *ngIf="currentUnit === 'BRX'; else genericForm">
 			<label for="bank" translate>Banco</label>
 			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-organization"></i></span>
@@ -66,4 +66,47 @@
 			<button (click)="submit()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>
 		</div>
 	</div>
-	</div>
+</div>
+
+<ng-template #genericForm>
+	<form [formGroup]="receiverAccountForm">
+		<div class="inline-field-wrapper">
+			<div class="mb-2">
+				<label for="bank" translate>BANK <span> or mobile wallet</span></label>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="icon-organization"></i></span>
+					<select formControlName="bankName" name="bank" id="bank" class="select">
+						<option value="" translate>PLEASE_SELECT</option>
+						<option 
+							*ngFor="let bank of bankList"
+							[value]="bank.BANKNAME"
+						>
+							<span>{{bank.BANKNUMBER}} - </span>
+							<span>{{bank.BANKNAME}}</span>
+						</option>
+					</select>
+				</div>
+				<small 
+					*ngIf="receiverAccountForm.get('bankName').hasError('required') && receiverAccountForm.get('bankName').touched" 
+					class="input-error"
+					translate
+					>REQUIRED_FIELD
+				</small>
+			</div>
+
+			<div class="mb-2">
+				<label for="account" translate>ACCOUNT</label>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="icon-home"></i></span>
+					<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="{{'ACCOUNT' | translate}}" autocomplete="off">
+				</div>
+				<small 
+					*ngIf="receiverAccountForm.get('account').hasError('required') && receiverAccountForm.get('account').touched" 
+					class="input-error"
+					translate
+					>REQUIRED_FIELD
+				</small>
+			</div>
+		</div>
+	</form>
+</ng-template>

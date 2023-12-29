@@ -14,7 +14,7 @@
 				<div *ngIf="receiverAccount.BankName !== 'PIX'; else PIX" class="col-md-12 ident">
 					<div class="item"><strong translate>NAME</strong>: {{ receiver.ReceiverName }}</div>
 					<div class="item"><strong translate>BANK</strong>: {{receiverAccount.BankName }}</div>
-					<div class="item"><strong translate>BRANCH</strong>: {{ receiverAccount.BankBranch }}</div>
+					<div *ngIf="receiverAccount.BankBranch" class="item"><strong translate>BRANCH</strong>: {{ receiverAccount.BankBranch }}</div>
 					<div class="item"><strong translate>BANK_ACCOUNT_NUMBER</strong>: {{ receiverAccount.AccountNo }}</div>
 				</div>
 	
@@ -47,12 +47,7 @@
 						<h3 translate>Cash Payment Location</h3>
 					</div>
 					<div class="col-md-12 ident">
-						<div class="item"><strong translate>ADDRESS</strong>: {{ payoutLocation.Address1 }}</div>
 						<div class="item"><strong translate>CITY</strong>: {{ payoutLocation.City }}</div>
-						<div class="item"><strong translate>COUNTRY</strong>: {{ payoutLocation.Country }}</div>
-						<div class="item"><strong translate>STATE</strong>: {{ payoutLocation.State }}</div>
-						<div class="item"><strong translate>ZIP</strong>: {{ payoutLocation.Zip }}</div>
-						<div class="item"><strong translate>PHONE</strong>: {{ payoutLocation.Phone1 }}</div>
 					</div>
 				</div>
 			</div>
@@ -85,7 +80,7 @@
 					<strong translate>RECEIVE</strong> 
 					({{ linkInfo.SendUnit }}): {{ amount.send }}
 				</div>
-        <div class="item"><strong translate>RATE</strong>: 1 {{ linkInfo.BaseUnit }} = {{ linkInfo.Rate }} {{ linkInfo.SendUnit }}</div>
+        <div *ngIf="rate > 1" class="item"><strong translate>RATE</strong>: 1 {{ linkInfo.BaseUnit }} = {{ linkInfo.Rate }} {{ linkInfo.SendUnit }}</div>
         <div class="item"><strong translate>SERVICE_FEE</strong> ({{ linkInfo.BaseUnit }}): {{ linkInfo.ServiceFee }}</div>
         <div class="item total"><strong translate>TOTAL</strong> ({{ linkInfo.BaseUnit }}): {{ total }}</div>
       </div>

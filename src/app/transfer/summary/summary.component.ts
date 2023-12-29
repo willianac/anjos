@@ -35,6 +35,9 @@ export class SummaryComponent {
 	public payoutOption = "";
 	public payoutLocation = {};
 
+	public rate;
+	public exchPercentage;
+
   constructor(
     public session: SessionService,
     public router: Router,
@@ -57,12 +60,24 @@ export class SummaryComponent {
       send: parseFloat(this.session.get('currentSend')).toFixed(2)
     }
     this.linkInfo = this.session.get('linkInfo');
+		this.rate = Number(this.linkInfo.Rate)
+		this.exchPercentage = Number(this.linkInfo.ExchPerc)
     this.linkInfo.rate = parseFloat(this.linkInfo.rate).toFixed(2)
-    this.total = (parseFloat(this.amount.base) + parseFloat(this.linkInfo.ServiceFee)).toFixed(2);
+		this.total = this.calculateTotal()
 		this.payoutOption = this.session.get("payoutOptionSelected")
 		this.payoutLocation = this.session.get("payoutLocationSelected")
 		this.receiveCountry = this.session.get("unitSelected").slice(0,2)
   }
+
+	private calculateTotal() {
+		if(this.rate > 1 ) {
+			return (parseFloat(this.amount.base) + parseFloat(this.linkInfo.ServiceFee)).toFixed(2);
+		} else {
+			const exchange = parseFloat(this.amount.base) * this.exchPercentage / 100
+			const newFee = exchange + parseFloat(this.linkInfo.ServiceFee)
+			return (parseFloat(this.amount.base) + newFee).toFixed(2)
+		}
+	}
 
 	public checkGeolocation() {
 		navigator.geolocation.getCurrentPosition(this.onGeolocationSuccess, this.onGeolocationError)

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { GeographyService } from "app/services/geography/geography.service";
@@ -72,6 +73,7 @@ export class NewReceiverGenericFormComponent implements OnInit {
 		bank: ["", Validators.required],
 		account: ["", Validators.required]
 	})
+	isLoading = false;
 
 	constructor(
 		private fb: FormBuilder,
@@ -81,13 +83,15 @@ export class NewReceiverGenericFormComponent implements OnInit {
 		private geographyService: GeographyService,
 		private newReceiverService: NewReceiverService,
 		private toastr: ToastrService,
-		private translate: TranslateService
+		private translate: TranslateService,
+		private router: Router
 	) {}
 
 	public submit() {
 		if(!this.receiverForm.valid || !this.receiverAccountForm.valid) {
 			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
 		}
+		this.isLoading = true
 		const senderID = this.session.get("linkInfo").SenderId
 		let receiverID = ""
 
@@ -104,14 +108,14 @@ export class NewReceiverGenericFormComponent implements OnInit {
 					this.translate.instant("RECEIVER_ADDED"),
 					this.translate.instant("SUCCESS")
 				)
-				// setTimeout(() => {
-				// 	this.isLoading = false
-				// 	this.router.navigate(['admin']);
-				// }, 3000)
+				setTimeout(() => {
+					this.isLoading = false
+					this.router.navigate(['admin']);
+				}, 3000)
 			},
 			error: (err) => {
 				this.handleErrors(err)
-				//this.isLoading = false
+				this.isLoading = false
 			}
 		})
 

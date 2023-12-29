@@ -117,6 +117,7 @@ export class AmountComponent implements OnInit {
     this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, allowedUnitsList[0].unit)
       .subscribe({
         next: (response: any) => {
+					this.session.set("unitSelected", allowedUnitsList[0].unit)
 					this.handleSelectedUnitApiResponse(response)
           const statusCode = Number(response.StatusCode);
           if (statusCode < 0) {

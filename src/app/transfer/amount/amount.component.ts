@@ -187,6 +187,15 @@ export class AmountComponent implements OnInit {
 	private createUnitsObject() {
 		const units = (this.session.get("linkInfo").ListLandUnit as string).split(",")
 		const showUnit = (this.session.get("linkInfo").ListSendUnit as string).split(",")
+
+		//colocando BRX no inicio de units e BRL no inicio de showUnit
+		const index = units.indexOf("BRX")
+		units.splice(index, 1)
+		showUnit.splice(index, 1)
+
+		units.unshift("BRX")
+		showUnit.unshift("BRL")
+
 		return units.map((unit, index) => {
 			return {
 				unit: unit,

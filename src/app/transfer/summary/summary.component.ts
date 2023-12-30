@@ -75,6 +75,7 @@ export class SummaryComponent {
 		} else {
 			const exchange = parseFloat(this.amount.base) * this.exchPercentage / 100
 			const newFee = exchange + parseFloat(this.linkInfo.ServiceFee)
+			this.linkInfo.ServiceFee = newFee.toFixed(2)
 			return (parseFloat(this.amount.base) + newFee).toFixed(2)
 		}
 	}

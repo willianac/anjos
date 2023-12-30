@@ -46,9 +46,8 @@ export class PaymentStatusComponent implements OnInit {
 		this.session.remove('externalID')
 	}
 
-	private backToInit(toastTitle: string, toastText) {
+	private displayToast(toastTitle: string, toastText) {
 		this.toast.error(this.translate.instant(toastText), this.translate.instant(toastTitle))
-		this.router.navigate(['login'])
 	}
 
 	ngOnInit() {
@@ -104,25 +103,25 @@ export class PaymentStatusComponent implements OnInit {
 							break;
 						case -2:
 							this.session.clear();
-							this.backToInit('SESSION_EXPIRED_TITLE', 'SESSION_EXPIRED_TEXT');
+							this.displayToast('SESSION_EXPIRED_TITLE', 'SESSION_EXPIRED_TEXT');
 							break;
 						case -4:
-							this.backToInit('DAYLI_SENDER_EXCEEDED_TITLE', 'DAYLI_SENDER_EXCEEDED_TEXT');
+							this.displayToast('DAYLI_SENDER_EXCEEDED_TITLE', 'DAYLI_SENDER_EXCEEDED_TEXT');
 							break;
 						case -5:
-							this.backToInit('DAYLI_RECEIVER_EXCEEDED_TITLE', 'DAYLI_RECEIVER_EXCEEDED_TEXT');
+							this.displayToast('DAYLI_RECEIVER_EXCEEDED_TITLE', 'DAYLI_RECEIVER_EXCEEDED_TEXT');
 							break;
 						case -8:
-							this.backToInit('ERROR', response.SendMoney);
+							this.displayToast('ERROR', response.SendMoney);
 							break;
 						case -9:
-							this.backToInit('ERROR', 'BANK_LENGTH_ERROR');
+							this.displayToast('ERROR', 'BANK_LENGTH_ERROR');
 							break;
 						case -10:
-							this.backToInit('ERROR', 'ABA_LENGTH_ERROR');
+							this.displayToast('ERROR', 'ABA_LENGTH_ERROR');
 							break;
 						default:
-							this.backToInit('ERROR', 'UNKNOWN_RESPONSE')
+							this.displayToast('ERROR', 'UNKNOWN_RESPONSE')
 							break;
 					}
 				})

@@ -44,14 +44,6 @@ export class InvoicesHistoryComponent implements OnInit, OnDestroy {
 		this.sortType = "Date"
 	}
 
-	private createInvoiceObjs(invoices: any[]) {
-		const invoicesWithFlag = invoices.map((invoice) => {
-			const FLAG = invoice.UNIT.slice(0, 2)
-			return {...invoice, FLAG}
-		})
-		this.invoiceList = invoicesWithFlag
-	}
-
 	public toggleDropdown() {
 		this.showDropdown = !this.showDropdown
 	}
@@ -59,7 +51,7 @@ export class InvoicesHistoryComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.invoiceSubscription = this.activatedRoute.data.subscribe({
 			next: (res) => {
-				this.createInvoiceObjs(res.invoices)
+				this.invoiceList = res.invoices
 			}
 		})
 	}

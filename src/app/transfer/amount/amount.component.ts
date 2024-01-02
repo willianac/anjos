@@ -47,7 +47,7 @@ export class AmountComponent implements OnInit {
 
 	 checkMaxSend() {
 		if(Number(this.transfer.base) > this.linkInfo.MaxOrderAmount) {
-			this.message = this.translate.instant("MAX_SEND_EXCEEDED", {unit: this.linkInfo.BaseUnit})
+			this.message = this.translate.instant("MAX_SEND_EXCEEDED", {value: this.linkInfo.MaxOrderAmount, unit: this.linkInfo.BaseUnit})
 		}
 	 }
 

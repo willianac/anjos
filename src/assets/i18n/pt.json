@@ -118,7 +118,7 @@
   "BASE": "Base",
   "INVALID_AMOUNT": "O Valor deve ser informado.",
   "INVALID_SEND": "Valor de Envio está inválido",
-	"MAX_SEND_EXCEEDED": "O valor não deve exceder 500 {{unit}}.",
+	"MAX_SEND_EXCEEDED": "O valor não deve exceder {{value}} {{unit}}.",
   "INVALID_BASE": "Valor de Base está inválido",
   "TOTAL": "Total",
   "SENDER_ACCOUNT": "Conta do remetente",

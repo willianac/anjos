@@ -4,7 +4,7 @@
 		<img src="../../../assets/img/flags/{{currentUnit.slice(0,2)}}.png" alt="a country flag">
 	</div>
   <div class="card-block">
-		<form [formGroup]="receiverAccountForm" *ngIf="currentUnit === 'BRX'; else genericForm">
+		<form [formGroup]="receiverAccountForm" *ngIf="currentUnit === 'BRX'; else africanForm">
 			<label for="bank" translate>Banco</label>
 			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-organization"></i></span>
@@ -68,7 +68,7 @@
 	</div>
 </div>
 
-<ng-template #genericForm>
+<ng-template #africanForm>
 	<form [formGroup]="receiverAccountForm">
 		<div class="inline-field-wrapper">
 			<div class="mb-2">

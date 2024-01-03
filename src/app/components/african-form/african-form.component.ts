@@ -11,11 +11,11 @@ import { ToastrService } from "ngx-toastr";
 import { forkJoin } from "rxjs/observable/forkJoin";
 
 @Component({
-	selector: "app-new-receiver-generic-form",
-	templateUrl: "new-receiver-generic-form.component.html",
-	styleUrls: ["new-receiver-generic-form.component.scss"]
+	selector: "app-african-form",
+	templateUrl: "african-form.component.html",
+	styleUrls: ["african-form.component.scss"]
 })
-export class NewReceiverGenericFormComponent implements OnInit {
+export class AfricanFormComponent implements OnInit {
 	kinshipList = []
 	stateList = []
 	bankList = []

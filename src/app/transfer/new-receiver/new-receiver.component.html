@@ -1,4 +1,4 @@
-<div class="card" *ngIf="currentUnit === 'BRX'; else genericForm">
+<div class="card" *ngIf="!isAfricanReceiver; else africanForm">
   <div class="card-header">
 		<span translate>FILL_ALL_FIELDS_FOR_NEW_RECEIVER</span>
 		<img src="../../../assets/img/flags/BR.png" alt="a country flag">
@@ -350,8 +350,8 @@
   </div>
 </div>
 
-<ng-template #genericForm>
-	<app-new-receiver-generic-form>
+<ng-template #africanForm>
+	<app-african-form>
 
-	</app-new-receiver-generic-form>
+	</app-african-form>
 </ng-template>

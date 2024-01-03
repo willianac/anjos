@@ -45,7 +45,7 @@ export class NewReceiverComponent implements OnInit {
 		pix: ["", Validators.required]
 	})
 	isLoading = false;
-	currentUnit = "";
+	isAfricanReceiver = false;
 
 	constructor(
 		private fb: FormBuilder, 
@@ -188,9 +188,22 @@ export class NewReceiverComponent implements OnInit {
 		)
 	}
 
+	private checkIfIsAfricanReceiver() {
+		const african = ["XOF", "KES", "GHS", "NGN", "UGX", "ZAR"]
+		const currentUnit = this.session.get("unitSelected")
+
+		african.forEach(unit => {
+			if(unit === currentUnit) {
+				this.isAfricanReceiver = true
+			}
+		})
+	}
+
 	ngOnInit() {
+		this.checkIfIsAfricanReceiver()
+		const currentUnitIso2 = this.session.get("unitSelected").slice(0,2)
 		const getKinships = this.kinshipService.getKinships()
-		const getBanks = this.bankService.getBanks("BR")
+		const getBanks = this.bankService.getBanks(currentUnitIso2)
 
 		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
 			for(let kinship of kinships.KINSHIP) {
@@ -230,7 +243,5 @@ export class NewReceiverComponent implements OnInit {
 			this.receiverAccountForm.get("account").updateValueAndValidity();
 			this.receiverAccountForm.get("pix").updateValueAndValidity();
 		})
-
-		this.currentUnit = this.session.get("unitSelected")
 	}
 }

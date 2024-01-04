@@ -17,6 +17,7 @@ export class FullLayoutComponent implements OnInit {
 
   public displayName
 	public appSetup
+	public currentYear;
 
   constructor(
     public session: SessionService,
@@ -49,6 +50,8 @@ export class FullLayoutComponent implements OnInit {
 		this.setupService.getSettings().subscribe((setup) => {
 			this.appSetup = setup
 		})
+		const d = new Date()
+		this.currentYear = d.getFullYear()
 	}
 
 }

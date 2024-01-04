@@ -110,7 +110,7 @@ export class AfricanFormComponent implements OnInit, OnChanges {
 				setTimeout(() => {
 					this.isLoading = false
 					this.router.navigate(['admin']);
-				}, 3000)
+				}, 2000)
 			},
 			error: (err) => {
 				this.handleErrors(err)

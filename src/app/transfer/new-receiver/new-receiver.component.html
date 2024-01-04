@@ -14,6 +14,9 @@
 			(submitEvent)="submit($event)"
 		>
 		</app-generic-form>
+		<div class="loading-wrapper">
+			<ngx-loading [show]="isLoading"></ngx-loading>
+		</div>
 	</div>
 </div>
 <ng-template #africanForm>

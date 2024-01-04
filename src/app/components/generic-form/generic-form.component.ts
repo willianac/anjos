@@ -40,8 +40,6 @@ export class GenericFormComponent implements OnInit, OnChanges {
 		accountType: ["", Validators.required],
 		pix: ["", Validators.required]
 	})
-
-	isLoading = false;
 	countryFlag = ""
 
 	constructor(

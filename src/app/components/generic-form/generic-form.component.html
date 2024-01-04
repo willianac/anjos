@@ -333,9 +333,6 @@
 		</div>
 	</ng-template>
 </form>
-<div class="loading-wrapper">
-	<ngx-loading [show]="isLoading"></ngx-loading>
-</div>
 <div class="button-wrapper">
 	<button [routerLink]="['/admin', 'transfer', 'receiver']" type="button" class="btn btn-secondary" translate>BACK</button>
 	<button (click)="submit()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>

@@ -17,3 +17,10 @@
 	font-weight: 600;	
 	margin-bottom: 0.75rem;
 }
+
+.loading-wrapper {
+	@media screen and (max-width: 480px) {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}

@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
 
 	public register() {
 		if(!this.loginInputs.password || !this.loginInputs.email) {
-			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("ERROR"))
+			return this.toastr.error(this.translate.instant("FILL_TO_CREATE_ACCOUNT"), this.translate.instant("ERROR"))
 		}
 		if(!this.checkPassword()) return
 

@@ -30,6 +30,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { GeolocationService } from 'app/services/geolocation/geolocation.service';
 import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 import { AfricanFormComponent } from 'app/components/african-form/african-form.component';
+import { GenericFormComponent } from 'app/components/generic-form/generic-form.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AfricanFormComponent } from 'app/components/african-form/african-form.c
 		NewReceiverAccountComponent,
 		CashPaymentComponent,
 		Last4DigitsPipe,
-		AfricanFormComponent
+		AfricanFormComponent,
+		GenericFormComponent
   ],
   entryComponents: [
   ],

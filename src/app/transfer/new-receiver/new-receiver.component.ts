@@ -1,17 +1,34 @@
-import { Component, HostListener, OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
-import { validate } from "gerador-validador-cpf"
 import { SessionService } from "app/services/session/session.service";
 import { NewReceiverService, ReceiverAccountResponse, ReceiverResponse } from "app/services/new-receiver/new-receiver.service";
-import { validCNPJ } from "../../shared/cnpj-validator"
 import { AddSenderReceiverKinshipResponse, KinshipService } from "app/services/kinship/kinships.service";
 import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { forkJoin } from "rxjs/observable/forkJoin";
 import { State, GeographyService } from "app/services/geography/geography.service";
 import { Observable } from "rxjs";
+
+type ReceiverInfoEvent = {
+	country: string
+	firstName: string
+	surname: string
+	personType: string
+	document: string
+	address: string
+	city: string
+	state: string
+	zip: string
+	phone: string
+	email: string
+	kinship: string
+	bankName: string
+	branch: string
+	account: string
+	accountType: string
+	pix: string
+}
 
 @Component({
 	selector: "app-new-receiver",
@@ -21,35 +38,15 @@ import { Observable } from "rxjs";
 export class NewReceiverComponent implements OnInit {
 	kinshipList = []
 	stateList: State[] = []
-	receiverForm = this.fb.group({
-		country: ["brazil", Validators.required],
-		firstName: ["", [Validators.required, Validators.maxLength(40)]],
-		surname: ["", [Validators.required, Validators.pattern(/^\w+$/), Validators.maxLength(20)]],
-		personType: ["fisica", Validators.required],
-		document: ["", [Validators.required, Validators.maxLength(30), Validators.maxLength(40)]],
-		address: ["", [Validators.required, Validators.maxLength(60)]],
-		city: ["", [Validators.required, Validators.maxLength(32)]],
-		state: ["", [Validators.required, Validators.maxLength(3)]],
-		zip: ["", [Validators.required, Validators.maxLength(10)]],
-		phone: ["", [Validators.required, Validators.minLength(19)]],
-		email: ["", [Validators.required, Validators.email, Validators.maxLength(40)]],
-		kinship: ["", Validators.required]
-	})
-
 	bankList = []
-	receiverAccountForm = this.fb.group({
-		bankName: ["", Validators.required],
-		branch: ["", Validators.required],
-		account: ["", Validators.required],
-		accountType: ["", Validators.required],
-		pix: ["", Validators.required]
-	})
+
 	isLoading = false;
 	isAfricanReceiver = false;
 	countryFlag = "";
 
+	receiverInfo: ReceiverInfoEvent;
+
 	constructor(
-		private fb: FormBuilder, 
 		private toastr: ToastrService, 
 		private router: Router, 
 		private translate: TranslateService,
@@ -60,20 +57,8 @@ export class NewReceiverComponent implements OnInit {
 		private geographyService: GeographyService
 	) {}
 
-	@HostListener("keydown.backspace", ["$event"])
-	keyDownBackspace(event){
-		if(event.target.id === "phone") {
-			const phone = this.receiverForm.get("phone").value.replace(/\D/g, '') as string
-			if(phone.length <= 9) {
-				this.receiverForm.get("phone").setValue(phone.substring(0, phone.length - 1))
-			}
-		}
-	}
-
-	public submit() {
-		if(!this.receiverForm.valid || !this.isCPFValid() || !this.isCNPJValid() || !this.receiverAccountForm.valid) {
-			return this.toastr.error(this.translate.instant("FILL_ALL_FIELDS"), this.translate.instant("FILL_FIELDS"))
-		}
+	public submit(receiverObj: ReceiverInfoEvent) {
+		this.receiverInfo = receiverObj
 		this.isLoading = true
 
 		const senderID = this.session.get("linkInfo").SenderId
@@ -106,49 +91,33 @@ export class NewReceiverComponent implements OnInit {
 
 	private createNewReceiver(): Observable<ReceiverResponse> {
 		return this.newReceiverService.addReceiver(
-			this.receiverForm.get("country").value,
-			this.removeAccents(this.receiverForm.get("firstName").value),
-			this.removeAccents(this.receiverForm.get("surname").value),
-			this.receiverForm.get("document").value,
-			this.receiverForm.get("address").value,
-			this.removeAccents(this.receiverForm.get("city").value),
-			this.receiverForm.get("state").value,
-			this.sanitizeZipCode(this.receiverForm.get("zip").value),
-			this.sanitizePhone(this.receiverForm.get("phone").value),
-			this.receiverForm.get("email").value
+			this.receiverInfo.country,
+			this.removeAccents(this.receiverInfo.firstName),
+			this.removeAccents(this.receiverInfo.surname),
+			this.receiverInfo.document,
+			this.removeAccents(this.receiverInfo.address),
+			this.removeAccents(this.receiverInfo.city),
+			this.receiverInfo.state,
+			this.sanitizeZipCode(this.receiverInfo.zip),
+			this.sanitizePhone(this.receiverInfo.phone),
+			this.receiverInfo.email
 		)
 	}
 
 	private createNewReceiverAccount(receiverID: string): Observable<ReceiverAccountResponse> {
 		return this.newReceiverService.addReceiverAccount(
 			receiverID,
-			this.bankList.find((bank) => this.receiverAccountForm.get("bankName").value === bank.BANKNAME),
-			this.receiverAccountForm.get("branch").value,
-			this.receiverAccountForm.get("account").value,
-			this.receiverAccountForm.get("accountType").value,
-			this.receiverAccountForm.get("pix").value
+			this.bankList.find((bank) => this.receiverInfo.bankName === bank.BANKNAME),
+			this.receiverInfo.branch,
+			this.receiverInfo.account,
+			this.receiverInfo.accountType,
+			this.receiverInfo.pix
 		)
 	}
 
 	private createSenderReceiverKinship(senderID: string, receiverID: string): Observable<AddSenderReceiverKinshipResponse> {
-		const kinshipID = this.receiverForm.get("kinship").value;
+		const kinshipID = this.receiverInfo.kinship
 		return this.kinshipService.addSenderReceiverKinship(kinshipID, senderID, receiverID)
-	}
-
-	public isCPFValid(): boolean {
-		if(this.receiverForm.get("country").value === "brazil" && this.receiverForm.get("personType").value === "fisica") {
-			const cpf = this.receiverForm.get("document").value
-			return validate(cpf)
-		}
-		return true
-	}
-
-	public isCNPJValid(): boolean {
-		if(this.receiverForm.get("country").value === "brazil" && this.receiverForm.get("personType").value === "juridica") {
-			const cnpj = this.receiverForm.get("document").value
-			return validCNPJ(cnpj)
-		}
-		return true
 	}
 
 	private sanitizePhone(phone: string) {
@@ -210,7 +179,7 @@ export class NewReceiverComponent implements OnInit {
 			for(let kinship of kinships.KINSHIP) {
 				this.kinshipList.push(kinship)
 			}
-			for(let bank of banks.BANK) {
+			for(let bank of [...banks.BANK]) {
 				this.bankList.push(bank)
 			}
 		},
@@ -221,28 +190,6 @@ export class NewReceiverComponent implements OnInit {
 
 		this.geographyService.getStates(this.countryFlag).subscribe((res) => {
 			this.stateList = res.json()
-		})
-
-		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
-			if(val === "PIX") {
-				this.receiverAccountForm.controls["branch"].clearValidators()
-				this.receiverAccountForm.controls["account"].clearValidators()
-				this.receiverAccountForm.controls["accountType"].clearValidators()
-				this.receiverAccountForm.controls["pix"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["branch"].setValue("")
-				this.receiverAccountForm.controls["account"].setValue("")
-				this.receiverAccountForm.controls["accountType"].setValue("C")
-			} else {
-				this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["account"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["accountType"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["pix"].clearValidators()
-				this.receiverAccountForm.controls["pix"].setValue("")
-			}
-			
-			this.receiverAccountForm.get("branch").updateValueAndValidity();
-			this.receiverAccountForm.get("account").updateValueAndValidity();
-			this.receiverAccountForm.get("pix").updateValueAndValidity();
 		})
 	}
 }

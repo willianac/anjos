@@ -1,0 +1,78 @@
+.card-header {
+	img {
+		max-width: 26px;
+	}
+}
+
+.card-block {
+	padding: 0.75rem 4rem 0.75rem 4rem;
+
+	@media screen and (max-width: 480px) {
+		padding: 1.25rem 1.75rem 1.25rem 1.75rem;
+	}
+}
+
+.form-title {
+	font-size: 20px;
+	font-weight: 600;	
+	margin-bottom: 0.75rem;
+}
+
+.select {
+	padding: 0.5rem;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background-color: #ffffff;
+	color: #607d8b;
+}
+
+.button-wrapper {
+	display: flex;
+	gap: 1rem;
+	justify-content: right;
+
+	@media screen and (max-width: 480px) {
+		flex-direction: column-reverse;
+	}
+
+	button {
+		cursor: pointer;
+	}
+}
+
+.field-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.input-error {
+	color: red
+}
+
+.forms-divider {
+	margin: 1rem auto 0.5rem auto;
+}
+
+.inline-field-wrapper {
+
+	@media screen and (min-width: 768px) {
+		display: flex;
+		column-gap: 5rem;
+
+		div {
+			flex: 1;
+		}
+	}
+}
+
+.loading-wrapper {
+	@media screen and (max-width: 480px) {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+label {
+	margin-bottom: 0.2rem;
+}

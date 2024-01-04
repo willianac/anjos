@@ -76,7 +76,7 @@
 					</div>
 				</div>
 
-				<div *ngIf="receiverForm.get('country').value === 'brazil' && receiverForm.get('personType').value !== ''; else document">
+				<div *ngIf="receiverForm.get('country').value === 'BRAZIL EXPRESS' && receiverForm.get('personType').value !== ''; else document">
 					<div *ngIf="receiverForm.get('personType').value === 'fisica'; else cnpj" class="field-wrapper">
 						<label for="document">CPF</label>
 						<div class="input-group mb-2">

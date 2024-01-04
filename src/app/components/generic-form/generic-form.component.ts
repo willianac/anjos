@@ -1,12 +1,7 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
-import { BankInfoService } from "app/services/bank-info/bank-info.service";
-import { GeographyService, State } from "app/services/geography/geography.service";
-import { KinshipService } from "app/services/kinship/kinships.service";
-import { NewReceiverService } from "app/services/new-receiver/new-receiver.service";
-import { SessionService } from "app/services/session/session.service";
+import { State } from "app/services/geography/geography.service";
 import { validCNPJ } from "app/shared/cnpj-validator";
 import { validate } from "gerador-validador-cpf";
 import { ToastrService } from "ngx-toastr";
@@ -16,13 +11,16 @@ import { ToastrService } from "ngx-toastr";
 	templateUrl: "generic-form.component.html",
 	styleUrls: ["generic-form.component.scss"]
 })
-export class GenericFormComponent implements OnInit {
+export class GenericFormComponent implements OnInit, OnChanges {
 	@Output() submitEvent = new EventEmitter()
 
+	@Input() country = ""
 	@Input() kinshipList = []
 	@Input() stateList: State[] = []
+	@Input() bankList = []
+
 	receiverForm = this.fb.group({
-		country: ["brazil", Validators.required],
+		country: [""],
 		firstName: ["", [Validators.required, Validators.maxLength(40)]],
 		surname: ["", [Validators.required, Validators.pattern(/^\w+$/), Validators.maxLength(20)]],
 		personType: ["fisica", Validators.required],
@@ -35,8 +33,6 @@ export class GenericFormComponent implements OnInit {
 		email: ["", [Validators.required, Validators.email, Validators.maxLength(40)]],
 		kinship: ["", Validators.required]
 	})
-
-	@Input() bankList = []
 	receiverAccountForm = this.fb.group({
 		bankName: ["", Validators.required],
 		branch: ["", Validators.required],
@@ -44,19 +40,14 @@ export class GenericFormComponent implements OnInit {
 		accountType: ["", Validators.required],
 		pix: ["", Validators.required]
 	})
+	
 	isLoading = false;
 	countryFlag = ""
 
 	constructor(
 		private fb: FormBuilder, 
-		private toastr: ToastrService, 
-		private router: Router, 
+		private toastr: ToastrService,
 		private translate: TranslateService,
-		private session: SessionService,
-		private newReceiverService: NewReceiverService,
-		private kinshipService: KinshipService,
-		private bankService: BankInfoService,
-		private geographyService: GeographyService
 	) {}
 
 	@HostListener("keydown.backspace", ["$event"])
@@ -90,6 +81,14 @@ export class GenericFormComponent implements OnInit {
 			return validCNPJ(cnpj)
 		}
 		return true
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if(changes.country) {
+			if(this.country) {
+				this.receiverForm.get("country").setValue(this.country)
+			}
+		}
 	}
 
 	ngOnInit(): void {

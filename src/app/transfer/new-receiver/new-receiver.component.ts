@@ -43,6 +43,7 @@ export class NewReceiverComponent implements OnInit {
 	isLoading = false;
 	isAfricanReceiver = false;
 	countryFlag = "";
+	country = ""
 
 	receiverInfo: ReceiverInfoEvent;
 
@@ -176,6 +177,7 @@ export class NewReceiverComponent implements OnInit {
 		const getBanks = this.bankService.getBanks(this.countryFlag)
 
 		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
+			this.country = banks.BANK[0].COUNTRY
 			for(let kinship of kinships.KINSHIP) {
 				this.kinshipList.push(kinship)
 			}

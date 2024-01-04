@@ -40,7 +40,7 @@ export class GenericFormComponent implements OnInit, OnChanges {
 		accountType: ["", Validators.required],
 		pix: ["", Validators.required]
 	})
-	
+
 	isLoading = false;
 	countryFlag = ""
 
@@ -68,7 +68,7 @@ export class GenericFormComponent implements OnInit, OnChanges {
 	}
 
 	public isCPFValid(): boolean {
-		if(this.receiverForm.get("country").value === "brazil" && this.receiverForm.get("personType").value === "fisica") {
+		if(this.receiverForm.get("country").value === "BRAZIL EXPRESS" && this.receiverForm.get("personType").value === "fisica") {
 			const cpf = this.receiverForm.get("document").value
 			return validate(cpf)
 		}
@@ -76,7 +76,7 @@ export class GenericFormComponent implements OnInit, OnChanges {
 	}
 
 	public isCNPJValid(): boolean {
-		if(this.receiverForm.get("country").value === "brazil" && this.receiverForm.get("personType").value === "juridica") {
+		if(this.receiverForm.get("country").value === "BRAZIL EXPRESS" && this.receiverForm.get("personType").value === "juridica") {
 			const cnpj = this.receiverForm.get("document").value
 			return validCNPJ(cnpj)
 		}

@@ -112,12 +112,11 @@ export class AmountComponent implements OnInit {
 
 	getNewSession() {
 		this.isLoading = true
-		const allowedUnitsList = this.createUnitsObject()
+		const unit = this.units.find(item => item.showUnit === this.selectedUnit)
     const lang = this.translate.currentLang || this.translate.defaultLang;
-    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, allowedUnitsList[0].unit)
+    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, unit.unit)
       .subscribe({
         next: (response: any) => {
-					this.session.set("unitSelected", allowedUnitsList[0].unit)
 					this.handleSelectedUnitApiResponse(response)
           const statusCode = Number(response.StatusCode);
           if (statusCode < 0) {
@@ -206,8 +205,16 @@ export class AmountComponent implements OnInit {
 	}
 
 	private handleDefaultValues() {
-		this.selectedUnit = this.units[0].showUnit
-		this.selectedFlag = this.units[0].flag
+		const lastUnitSelected = this.session.get("unitSelected")
+
+		if(lastUnitSelected) {
+			const obj = this.units.find(item => item.unit === lastUnitSelected)
+			this.selectedUnit = obj.showUnit
+			this.selectedFlag = obj.flag
+		} else {
+			this.selectedUnit = this.units[0].showUnit
+			this.selectedFlag = this.units[0].flag
+		}
 	}
 
 	public goNextPage(payoutSelected: string) {

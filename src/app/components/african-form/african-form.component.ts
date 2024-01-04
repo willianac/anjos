@@ -233,7 +233,7 @@ export class AfricanFormComponent implements OnInit {
 			for(let kinship of kinships.KINSHIP) {
 				this.kinshipList.push(kinship)
 			}
-			for(let bank of banks.BANK) {
+			for(let bank of [...banks.BANK]) {
 				this.bankList.push(bank)
 			}
 		},

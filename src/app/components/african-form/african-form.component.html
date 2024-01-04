@@ -1,264 +1,257 @@
-<div class="card">
-	<div class="card-header">
-		<span translate>Add a new receiver</span>
-	</div>
-	<div class="card-block">
-		<h4 class="form-title" translate>NEW_RECEIVER</h4>
-		<form [formGroup]="receiverForm">
+<form [formGroup]="receiverForm">
 
-			<label *ngIf="currentUnit === 'XOF'" for="country" translate>COUNTRY</label>
-			<div *ngIf="currentUnit === 'XOF'" class="input-group mb-2">
-				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-				<select name="country" id="country" class="select" formControlName="country">
-					<option [value]="{}" translate>PLEASE_SELECT</option>
-					<option *ngFor="let country of xofCountries"[ngValue]=country>{{country.name}}</option>
+	<label *ngIf="currentUnit === 'XOF'" for="country" translate>COUNTRY</label>
+	<div *ngIf="currentUnit === 'XOF'" class="input-group mb-2">
+		<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+		<select name="country" id="country" class="select" formControlName="country">
+			<option [value]="{}" translate>PLEASE_SELECT</option>
+			<option *ngFor="let country of xofCountries"[ngValue]=country>{{country.name}}</option>
+		</select>
+	</div>
+
+	<div class="inline-field-wrapper">
+		<div class="mb-2">
+			<label for="firstName" translate>NAME</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('firstName').hasError('required') && receiverForm.get('firstName').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+
+		<div class="mb-2">
+			<label for="surname" translate>LASTNAME</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input type="text" name="surname" id="surname" class="form-control" placeholder="{{'LASTNAME' | translate}}" formControlName="surname">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('surname').hasError('pattern')" 
+				class="input-error"
+				translate
+				>INVALID_SURNAME
+			</small>
+			<small 
+				*ngIf="receiverForm.get('surname').hasError('required') && receiverForm.get('surname').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+	</div>
+
+	<div>
+		<label for="personType" translate>PERSON_TYPE</label>
+		<div class="input-group mb-2">
+			<span class="input-group-addon"><i class="icon-user"></i></span>
+			<select name="personType" id="personType" class="select" formControlName="personType">
+				<option value="fisica" translate>INDIVIDUAL</option>
+				<option value="juridica" translate>CORPORATION</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="inline-field-wrapper">
+		<div class="field-wrapper mb-2">
+			<label for="document" translate>DOCUMENT</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-doc"></i></span>
+				<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('document').hasError('required') && receiverForm.get('document').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+
+		<div class="mb-2">
+			<label for="kinship" translate>RELATIONSHIP</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<select name="kinship" id="kinship" class="select" formControlName="kinship">
+					<option value="" translate>PLEASE_SELECT</option>
+					<option 
+						*ngFor="let kinship of kinshipList"
+						[value]="kinship.KINSHIPID"
+						>{{kinship.KINSHIPNAME}}
+					</option>
 				</select>
 			</div>
-
-			<div class="inline-field-wrapper">
-				<div class="mb-2">
-					<label for="firstName" translate>NAME</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-user"></i></span>
-						<input type="text" name="firstName" id="firstName" class="form-control" placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('firstName').hasError('required') && receiverForm.get('firstName').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-
-				<div class="mb-2">
-					<label for="surname" translate>LASTNAME</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-user"></i></span>
-						<input type="text" name="surname" id="surname" class="form-control" placeholder="{{'LASTNAME' | translate}}" formControlName="surname">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('surname').hasError('pattern')" 
-						class="input-error"
-						translate
-						>INVALID_SURNAME
-					</small>
-					<small 
-						*ngIf="receiverForm.get('surname').hasError('required') && receiverForm.get('surname').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-			</div>
-
-			<div>
-				<label for="personType" translate>PERSON_TYPE</label>
-				<div class="input-group mb-2">
-					<span class="input-group-addon"><i class="icon-user"></i></span>
-					<select name="personType" id="personType" class="select" formControlName="personType">
-						<option value="fisica" translate>INDIVIDUAL</option>
-						<option value="juridica" translate>CORPORATION</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="inline-field-wrapper">
-				<div class="field-wrapper mb-2">
-					<label for="document" translate>DOCUMENT</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-doc"></i></span>
-						<input type="text" formControlName="document" name="document" id="document" class="form-control" placeholder="{{'DOCUMENT' | translate}}">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('document').hasError('required') && receiverForm.get('document').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-
-				<div class="mb-2">
-					<label for="kinship" translate>RELATIONSHIP</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-user"></i></span>
-						<select name="kinship" id="kinship" class="select" formControlName="kinship">
-							<option value="" translate>PLEASE_SELECT</option>
-							<option 
-								*ngFor="let kinship of kinshipList"
-								[value]="kinship.KINSHIPID"
-								>{{kinship.KINSHIPNAME}}
-							</option>
-						</select>
-					</div>
-					<small 
-						*ngIf="receiverForm.get('kinship').hasError('required') && receiverForm.get('kinship').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-			</div>
-
-			<div class="inline-field-wrapper">
-				<div class="mb-2">
-					<label for="address" translate>ADDRESS</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-home"></i></span>
-						<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('address').hasError('required') && receiverForm.get('address').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-
-				<div class="mb-2">
-					<label for="city" translate>CITY</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-location-pin"></i></span>
-						<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('city').hasError('required') && receiverForm.get('city').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-			</div>
-
-			<div class="inline-field-wrapper">
-				<div class="mb-2">
-					<label for="state" translate>STATE</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-user"></i></span>
-						<select name="state" id="state" class="select" formControlName="state">
-							<option value="" translate>PLEASE_SELECT</option>
-							<option 
-								*ngFor="let state of stateList"
-								[value]="state.iso2"
-								>{{state.name}}
-							</option>
-						</select>
-					</div>
-					<small 
-						*ngIf="receiverForm.get('state').hasError('required') && receiverForm.get('state').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-
-				<div class="mb-2">
-					<label for="zip" translate>ZIPCODE</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
-						<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('zip').hasError('required') && receiverForm.get('zip').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-			</div>
-			
-			<div class="inline-field-wrapper">
-				<div>
-					<label for="phone" translate>PHONE</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-phone"></i></span>
-						<input maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('phone').hasError('required') && receiverForm.get('phone').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-					<small 
-						*ngIf="receiverForm.get('phone').hasError('minlength') && receiverForm.get('phone').touched" 
-						class="input-error"
-						translate
-						>INVALID_PHONE
-					</small>
-				</div>
-
-				<div class="field-wrapper">
-					<label for="email" translate>EMAIL</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-envelope"></i></span>
-						<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
-					</div>
-					<small 
-						*ngIf="receiverForm.get('email').hasError('required') && receiverForm.get('email').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-					<small 
-						*ngIf="receiverForm.get('email').hasError('email') && receiverForm.get('email').touched" 
-						class="input-error"
-						translate
-						>INVALID_EMAIL
-					</small>
-				</div>
-			</div>
-		</form>
-
-		<hr class="forms-divider">
-		<h4 class="form-title" translate>BANK_DATA</h4>
-
-		<form [formGroup]="receiverAccountForm">
-			<div class="inline-field-wrapper">
-				<div class="mb-2">
-					<label for="bank" translate>BANK <span> or mobile wallet</span></label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-organization"></i></span>
-						<select formControlName="bank" name="bank" id="bank" class="select">
-							<option value="" translate>PLEASE_SELECT</option>
-							<option 
-								*ngFor="let bank of bankList"
-								[value]="bank.BANKNAME"
-							>
-								<span>{{bank.BANKNUMBER}} - </span>
-								<span>{{bank.BANKNAME}}</span>
-							</option>
-						</select>
-					</div>
-					<small 
-						*ngIf="receiverAccountForm.get('bank').hasError('required') && receiverAccountForm.get('bank').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-
-				<div class="mb-2">
-					<label for="account" translate>ACCOUNT</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-home"></i></span>
-						<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="{{'ACCOUNT' | translate}}" autocomplete="off">
-					</div>
-					<small 
-						*ngIf="receiverAccountForm.get('account').hasError('required') && receiverAccountForm.get('account').touched" 
-						class="input-error"
-						translate
-						>REQUIRED_FIELD
-					</small>
-				</div>
-			</div>
-		</form>
-
-		<!-- <div class="loading-wrapper">
-			<ngx-loading [show]="isLoading"></ngx-loading>
-		</div> -->
-		<div class="button-wrapper">
-			<button [routerLink]="['/admin', 'transfer', 'receiver']" type="button" class="btn btn-secondary" translate>BACK</button>
-			<button (click)="submit()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>
-		</div>	
+			<small 
+				*ngIf="receiverForm.get('kinship').hasError('required') && receiverForm.get('kinship').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
 	</div>
+
+	<div class="inline-field-wrapper">
+		<div class="mb-2">
+			<label for="address" translate>ADDRESS</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-home"></i></span>
+				<input type="text" formControlName="address" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('address').hasError('required') && receiverForm.get('address').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+
+		<div class="mb-2">
+			<label for="city" translate>CITY</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
+				<input type="text" formControlName="city" name="city" id="city" class="form-control" placeholder="{{'CITY' | translate}}">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('city').hasError('required') && receiverForm.get('city').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+	</div>
+
+	<div class="inline-field-wrapper">
+		<div class="mb-2">
+			<label for="state" translate>STATE</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<select name="state" id="state" class="select" formControlName="state">
+					<option value="" translate>PLEASE_SELECT</option>
+					<option 
+						*ngFor="let state of stateList"
+						[value]="state.iso2"
+						>{{state.name}}
+					</option>
+				</select>
+			</div>
+			<small 
+				*ngIf="receiverForm.get('state').hasError('required') && receiverForm.get('state').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+
+		<div class="mb-2">
+			<label for="zip" translate>ZIPCODE</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+				<input type="text" formControlName="zip" name="zip" id="zip" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('zip').hasError('required') && receiverForm.get('zip').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+	</div>
+	
+	<div class="inline-field-wrapper">
+		<div>
+			<label for="phone" translate>PHONE</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-phone"></i></span>
+				<input maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('phone').hasError('required') && receiverForm.get('phone').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+			<small 
+				*ngIf="receiverForm.get('phone').hasError('minlength') && receiverForm.get('phone').touched" 
+				class="input-error"
+				translate
+				>INVALID_PHONE
+			</small>
+		</div>
+
+		<div class="field-wrapper">
+			<label for="email" translate>EMAIL</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-envelope"></i></span>
+				<input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="{{'EMAIL' | translate}}">
+			</div>
+			<small 
+				*ngIf="receiverForm.get('email').hasError('required') && receiverForm.get('email').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+			<small 
+				*ngIf="receiverForm.get('email').hasError('email') && receiverForm.get('email').touched" 
+				class="input-error"
+				translate
+				>INVALID_EMAIL
+			</small>
+		</div>
+	</div>
+</form>
+
+<hr class="forms-divider">
+<h4 class="form-title" translate>BANK_DATA</h4>
+
+<form [formGroup]="receiverAccountForm">
+	<div class="inline-field-wrapper">
+		<div class="mb-2">
+			<label for="bank" translate>BANK <span> or mobile wallet</span></label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-organization"></i></span>
+				<select formControlName="bank" name="bank" id="bank" class="select">
+					<option value="" translate>PLEASE_SELECT</option>
+					<option 
+						*ngFor="let bank of bankList"
+						[value]="bank.BANKNAME"
+					>
+						<span>{{bank.BANKNUMBER}} - </span>
+						<span>{{bank.BANKNAME}}</span>
+					</option>
+				</select>
+			</div>
+			<small 
+				*ngIf="receiverAccountForm.get('bank').hasError('required') && receiverAccountForm.get('bank').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+
+		<div class="mb-2">
+			<label for="account" translate>ACCOUNT</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-home"></i></span>
+				<input type="number" formControlName="account" name="account" id="account" class="form-control" placeholder="{{'ACCOUNT' | translate}}" autocomplete="off">
+			</div>
+			<small 
+				*ngIf="receiverAccountForm.get('account').hasError('required') && receiverAccountForm.get('account').touched" 
+				class="input-error"
+				translate
+				>REQUIRED_FIELD
+			</small>
+		</div>
+	</div>
+</form>
+
+<div class="button-wrapper">
+	<button [routerLink]="['/admin', 'transfer', 'receiver']" type="button" class="btn btn-secondary" translate>BACK</button>
+	<button (click)="submit()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>
+</div>	
+
+<div class="loading-wrapper">
+	<ngx-loading [show]="isLoading"></ngx-loading>
 </div>

@@ -1,14 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
-import { BankInfoService } from "app/services/bank-info/bank-info.service";
 import { GeographyService } from "app/services/geography/geography.service";
 import { KinshipService } from "app/services/kinship/kinships.service";
 import { NewReceiverService } from "app/services/new-receiver/new-receiver.service";
 import { SessionService } from "app/services/session/session.service";
 import { ToastrService } from "ngx-toastr";
-import { forkJoin } from "rxjs/observable/forkJoin";
 
 @Component({
 	selector: "app-african-form",
@@ -16,9 +14,10 @@ import { forkJoin } from "rxjs/observable/forkJoin";
 	styleUrls: ["african-form.component.scss"]
 })
 export class AfricanFormComponent implements OnInit {
-	kinshipList = []
+	@Input() kinshipList = []
+	@Input() bankList = []
 	stateList = []
-	bankList = []
+
 	xofCountries = [
 		{
 			name: "Benim",
@@ -78,7 +77,6 @@ export class AfricanFormComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private kinshipService: KinshipService,
-		private bankService: BankInfoService,
 		private session: SessionService,
 		private geographyService: GeographyService,
 		private newReceiverService: NewReceiverService,
@@ -225,22 +223,6 @@ export class AfricanFormComponent implements OnInit {
 	private getInitialData() {
 		const unit = this.session.get("unitSelected") as string
 		const iso2 = unit.slice(0, 2)
-
-		const getKinships = this.kinshipService.getKinships()
-		const getBanks = this.bankService.getBanks(iso2)
-
-		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
-			for(let kinship of kinships.KINSHIP) {
-				this.kinshipList.push(kinship)
-			}
-			for(let bank of [...banks.BANK]) {
-				this.bankList.push(bank)
-			}
-		},
-			error => {
-				console.log(error)
-			}
-		)
 		
 		if(unit !== "XOF") {
 			this.geographyService.getStates(iso2).subscribe((res) => {

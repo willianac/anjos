@@ -46,6 +46,7 @@ export class NewReceiverComponent implements OnInit {
 	})
 	isLoading = false;
 	isAfricanReceiver = false;
+	countryFlag = "";
 
 	constructor(
 		private fb: FormBuilder, 
@@ -201,9 +202,9 @@ export class NewReceiverComponent implements OnInit {
 
 	ngOnInit() {
 		this.checkIfIsAfricanReceiver()
-		const currentUnitIso2 = this.session.get("unitSelected").slice(0,2)
+		this.countryFlag = this.session.get("unitSelected").slice(0,2)
 		const getKinships = this.kinshipService.getKinships()
-		const getBanks = this.bankService.getBanks(currentUnitIso2)
+		const getBanks = this.bankService.getBanks(this.countryFlag)
 
 		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
 			for(let kinship of kinships.KINSHIP) {
@@ -218,7 +219,7 @@ export class NewReceiverComponent implements OnInit {
 			}
 		)
 
-		this.geographyService.getStates("BR").subscribe((res) => {
+		this.geographyService.getStates(this.countryFlag).subscribe((res) => {
 			this.stateList = res.json()
 		})
 

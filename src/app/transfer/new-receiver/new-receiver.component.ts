@@ -177,11 +177,12 @@ export class NewReceiverComponent implements OnInit {
 		const getBanks = this.bankService.getBanks(this.countryFlag)
 
 		forkJoin([getKinships, getBanks]).subscribe(([kinships, banks]) => {
-			this.country = banks.BANK[0].COUNTRY
+			const banksArray = [...banks.BANK]
+			this.country = banksArray[0].COUNTRY
 			for(let kinship of kinships.KINSHIP) {
 				this.kinshipList.push(kinship)
 			}
-			for(let bank of [...banks.BANK]) {
+			for(let bank of banksArray) {
 				this.bankList.push(bank)
 			}
 		},
@@ -190,8 +191,10 @@ export class NewReceiverComponent implements OnInit {
 			}
 		)
 
-		this.geographyService.getStates(this.countryFlag).subscribe((res) => {
-			this.stateList = res.json()
-		})
+		if(this.session.get("unitSelected") !== "XOF") {
+			this.geographyService.getStates(this.countryFlag).subscribe((res) => {
+				this.stateList = res.json()
+			})
+		}
 	}
 }

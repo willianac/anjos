@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
@@ -13,10 +13,11 @@ import { ToastrService } from "ngx-toastr";
 	templateUrl: "african-form.component.html",
 	styleUrls: ["african-form.component.scss"]
 })
-export class AfricanFormComponent implements OnInit {
+export class AfricanFormComponent implements OnInit, OnChanges {
 	@Input() kinshipList = []
 	@Input() bankList = []
-	stateList = []
+	@Input() stateList = []
+	@Input() country = ""
 
 	xofCountries = [
 		{
@@ -61,7 +62,7 @@ export class AfricanFormComponent implements OnInit {
 		document: ["", [Validators.required, Validators.maxLength(30), Validators.maxLength(40)]],
 		address: ["", [Validators.required, Validators.maxLength(60)]],
 		city: ["", [Validators.required, Validators.maxLength(32)]],
-		state: [{value: "", disabled: true}, [Validators.required]],
+		state: ["", [Validators.required]],
 		zip: ["", [Validators.required, Validators.maxLength(10)]],
 		phone: ["", [Validators.required, Validators.minLength(8)]],
 		email: ["", [Validators.required, Validators.email, Validators.maxLength(40)]],
@@ -188,59 +189,31 @@ export class AfricanFormComponent implements OnInit {
 		)
 	}
 
-	private associateUnitToCountry(unit: string): string {
-		let country;
-
-		switch (unit) {
-			case "BOB":
-				country = "bolivia"
-				break;
-			case "BOD":
-				country = "bolivia"
-				break;
-			case "GHS":
-				country = "ghana"
-				break;
-			case "KES":
-				country = "kenya"
-				break;
-			case "NGN":
-				country = "nigeria"
-				break;
-			case "UGX":
-				country = "uganda"
-				break;
-			case "ZAR":
-				country = "zambia"
-				break;
-			default:
-				country = ""
-				break;
-		}
-		return country
-	}
-
 	private getInitialData() {
 		const unit = this.session.get("unitSelected") as string
-		const iso2 = unit.slice(0, 2)
-		
-		if(unit !== "XOF") {
-			this.geographyService.getStates(iso2).subscribe((res) => {
-				this.receiverForm.get("state").enable()
-				this.stateList = res.json()
-			})
-			return this.receiverForm.get("country").setValue({name: this.associateUnitToCountry(unit), isoCode: ""})
-		}
 		this.currentUnit = unit
 		
-		this.receiverForm.get("country").valueChanges.subscribe((val) => {
+		if(unit === "XOF") {
 			this.receiverForm.get("state").disable()
-			const twoDigitsIso = val.isoCode.slice(0,2)
-			this.geographyService.getStates(twoDigitsIso).subscribe(res => {
-				this.receiverForm.get("state").enable()
-				this.stateList = res.json()
+			this.receiverForm.get("country").valueChanges.subscribe((val) => {
+				this.receiverForm.get("state").disable()
+				const twoDigitsIso = val.isoCode.slice(0,2)
+				this.geographyService.getStates(twoDigitsIso).subscribe(res => {
+					this.receiverForm.get("state").enable()
+					this.stateList = res.json()
+				})
 			})
-		})
+		}
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if(this.session.get("unitSelected") === "XOF") return
+
+		if(changes.country) {
+			if(this.country) {
+				this.receiverForm.get("country").setValue({name: this.country, isoCode: ""})
+			}
+		}
 	}
 
 	ngOnInit(): void {

@@ -6,7 +6,7 @@ import * as xml2js from 'xml2js';
 @Injectable()
 export class XmlParserService {
 	public parseXml(response: Response, key: string): Observable<any> {	
-		const body = response.text()
+		const body = response.text().replace(/&/g,"&amp;")
 		const parser = new xml2js.Parser({explicitArray: false})
 
 		return new Observable((observer) => {

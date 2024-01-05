@@ -203,7 +203,30 @@
 			<label for="phone" translate>PHONE</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-phone"></i></span>
-				<input appPhoneMask maxlength="20" type="text" formControlName="phone" name="phone" id="phone" class="form-control" placeholder="{{'PHONE' | translate}}">
+				<input 
+					*ngIf="receiverForm.get('country').value === 'BRAZIL EXPRESS'; else genericPhoneInput" 
+					appPhoneMask 
+					maxlength="20" 
+					type="text" 
+					formControlName="phone" 
+					name="phone" 
+					id="phone" 
+					class="form-control" 
+					placeholder="{{'PHONE' | translate}}"
+				>
+
+				<ng-template #genericPhoneInput>
+					<input
+					maxlength="20" 
+					type="number"
+					formControlName="phone" 
+					name="phone" 
+					id="phone" 
+					class="form-control" 
+					placeholder="{{'PHONE' | translate}}"
+				>
+				</ng-template>
+
 			</div>
 			<small 
 				*ngIf="receiverForm.get('phone').hasError('required') && receiverForm.get('phone').touched" 
@@ -292,7 +315,7 @@
 			<label for="branch" translate>BRANCH</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-home"></i></span>
-				<input type="number" formControlName="branch" name="branch" id="branch" class="form-control" placeholder="{{'BRANCH' | translate}}" autocomplete="off">
+				<input type="text" formControlName="branch" name="branch" id="branch" class="form-control" placeholder="{{'BRANCH' | translate}}" autocomplete="off">
 			</div>
 			<small 
 				*ngIf="receiverAccountForm.get('branch').hasError('required') && receiverAccountForm.get('branch').touched" 
@@ -322,7 +345,7 @@
 				<label for="pix" translate>PIX_KEY</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-home"></i></span>
-				<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="{{'PIX_KEY' | translate}}" autocomplete="off">
+				<input type="text" formControlName="pix" name="pix" id="pix" class="form-control" placeholder="{{'PIX_KEY' | translate}}" autocomplete="off" maxlength="46">
 			</div>
 			<small 
 				*ngIf="receiverAccountForm.get('pix').hasError('required') && receiverAccountForm.get('pix').touched" 

@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output
 import { FormBuilder, Validators } from "@angular/forms";
 import { TranslateService } from "@ngx-translate/core";
 import { State } from "app/services/geography/geography.service";
+import { SessionService } from "app/services/session/session.service";
 import { validCNPJ } from "app/shared/cnpj-validator";
 import { validate } from "gerador-validador-cpf";
 import { ToastrService } from "ngx-toastr";
@@ -29,23 +30,23 @@ export class GenericFormComponent implements OnInit, OnChanges {
 		city: ["", [Validators.required, Validators.maxLength(32)]],
 		state: ["", [Validators.required, Validators.maxLength(3)]],
 		zip: ["", [Validators.required, Validators.maxLength(10)]],
-		phone: ["", [Validators.required, Validators.minLength(19)]],
+		phone: ["", [Validators.required]],
 		email: ["", [Validators.required, Validators.email, Validators.maxLength(40)]],
 		kinship: ["", Validators.required]
 	})
 	receiverAccountForm = this.fb.group({
 		bankName: ["", Validators.required],
-		branch: ["", Validators.required],
+		branch: [""],
 		account: ["", Validators.required],
 		accountType: ["", Validators.required],
-		pix: ["", Validators.required]
+		pix: [""]
 	})
-	countryFlag = ""
 
 	constructor(
 		private fb: FormBuilder, 
 		private toastr: ToastrService,
 		private translate: TranslateService,
+		private session: SessionService
 	) {}
 
 	@HostListener("keydown.backspace", ["$event"])
@@ -81,6 +82,38 @@ export class GenericFormComponent implements OnInit, OnChanges {
 		return true
 	}
 
+	private handleValidators() {
+		const currentUnit = this.session.get("unitSelected")
+		if(currentUnit === "BRX") {
+			this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
+			this.receiverAccountForm.get("branch").updateValueAndValidity()
+			this.receiverForm.controls["phone"].setValidators([Validators.minLength(19)])
+			this.receiverForm.get("phone").updateValueAndValidity()
+
+			this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
+				if(val === "PIX") {
+					this.receiverAccountForm.controls["branch"].clearValidators()
+					this.receiverAccountForm.controls["account"].clearValidators()
+					this.receiverAccountForm.controls["accountType"].clearValidators()
+					this.receiverAccountForm.controls["pix"].setValidators([Validators.required])
+					this.receiverAccountForm.controls["branch"].setValue("")
+					this.receiverAccountForm.controls["account"].setValue("")
+					this.receiverAccountForm.controls["accountType"].setValue("C")
+				} else {
+					this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
+					this.receiverAccountForm.controls["account"].setValidators([Validators.required])
+					this.receiverAccountForm.controls["accountType"].setValidators([Validators.required])
+					this.receiverAccountForm.controls["pix"].clearValidators()
+					this.receiverAccountForm.controls["pix"].setValue("")
+				}
+				
+				this.receiverAccountForm.get("branch").updateValueAndValidity();
+				this.receiverAccountForm.get("account").updateValueAndValidity();
+				this.receiverAccountForm.get("pix").updateValueAndValidity();
+			})
+		}
+	}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		if(changes.country) {
 			if(this.country) {
@@ -90,26 +123,6 @@ export class GenericFormComponent implements OnInit, OnChanges {
 	}
 
 	ngOnInit(): void {
-		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
-			if(val === "PIX") {
-				this.receiverAccountForm.controls["branch"].clearValidators()
-				this.receiverAccountForm.controls["account"].clearValidators()
-				this.receiverAccountForm.controls["accountType"].clearValidators()
-				this.receiverAccountForm.controls["pix"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["branch"].setValue("")
-				this.receiverAccountForm.controls["account"].setValue("")
-				this.receiverAccountForm.controls["accountType"].setValue("C")
-			} else {
-				this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["account"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["accountType"].setValidators([Validators.required])
-				this.receiverAccountForm.controls["pix"].clearValidators()
-				this.receiverAccountForm.controls["pix"].setValue("")
-			}
-			
-			this.receiverAccountForm.get("branch").updateValueAndValidity();
-			this.receiverAccountForm.get("account").updateValueAndValidity();
-			this.receiverAccountForm.get("pix").updateValueAndValidity();
-		})
+		this.handleValidators()
 	}
 }

@@ -112,9 +112,9 @@ export class AmountComponent implements OnInit {
 
 	getNewSession() {
 		this.isLoading = true
-		const unit = this.units.find(item => item.showUnit === this.selectedUnit)
+		const lastUnitSelected = this.session.get("unitSelected")
     const lang = this.translate.currentLang || this.translate.defaultLang;
-    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, unit.unit)
+    this.loginService.login(this.session.get('lastEmail'), this.session.get('lastPassword'), lang, lastUnitSelected)
       .subscribe({
         next: (response: any) => {
 					this.handleSelectedUnitApiResponse(response)
@@ -214,6 +214,7 @@ export class AmountComponent implements OnInit {
 		} else {
 			this.selectedUnit = this.units[0].showUnit
 			this.selectedFlag = this.units[0].flag
+			this.session.set("unitSelected", this.units[0].unit)
 		}
 	}
 

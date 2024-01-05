@@ -44,10 +44,10 @@
 		
 				<div class="row">
 					<div class="col-md-12">
-						<h3 translate>Cash Payment Location</h3>
+						<h3 translate>PAYMENT_DETAILS</h3>
 					</div>
 					<div class="col-md-12 ident">
-						<div class="item"><strong translate>CITY</strong>: {{ payoutLocation.City }}</div>
+						<div class="item"><strong translate>CASH_PAYMENT</strong>: {{ payoutLocation.City }}</div>
 					</div>
 				</div>
 			</div>
@@ -60,6 +60,7 @@
       <div class="col-md-12 ident">
         <div class="item" *ngIf="currentLang == 'pt'">{{ purpose.PurposeNamePT }}</div>
         <div class="item" *ngIf="currentLang == 'en'">{{ purpose.PurposeNameUS }}</div>
+				<div class="item" *ngIf="currentLang == 'es'">{{ purpose.PurposeNameES }}</div>
       </div>
     </div>
 

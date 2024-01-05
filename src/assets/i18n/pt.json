@@ -266,9 +266,13 @@
 
 	"SELECT_PAYMENT_TYPE": "Selecione uma forma de pagamento",
 	"CASH": "Dinheiro",
-	"SELECT_CITY": "Selecione a cidade que dinheiro deve ser enviado",
+	"SELECT_PAYMENT_PREFERENCE": "Selecione sua preferência de pagamento",
 	"CODE": "Código",
 	"CORRESPONDENT": "Correspondente",
+	"PAYMENT_DETAILS": "Detalhes do pagamento",
+	"LOCATION": "Local",
+	"SEARCH": "Pesquisar",
+	"CASH_PAYMENT": "Pagamento em dinheiro",
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Deve ter no mínimo 10 caracteres",
 	"SHOULD_HAVE_UPPERCASE": "Deve ter uma letra maiúscula",

@@ -4,7 +4,7 @@
 		<img src="../../../assets/img/flags/{{currentUnit.slice(0,2)}}.png" alt="a country flag">
 	</div>
   <div class="card-block">
-		<form [formGroup]="receiverAccountForm" *ngIf="currentUnit === 'BRX'; else africanForm">
+		<form [formGroup]="receiverAccountForm" *ngIf="!isAfricanAccount; else africanForm">
 			<label for="bank" translate>Banco</label>
 			<div class="input-group mb-2">
 				<span class="input-group-addon"><i class="icon-organization"></i></span>

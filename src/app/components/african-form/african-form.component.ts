@@ -64,7 +64,7 @@ export class AfricanFormComponent implements OnInit, OnChanges {
 		city: ["", [Validators.required, Validators.maxLength(32)]],
 		state: ["", [Validators.required]],
 		zip: ["", [Validators.required, Validators.maxLength(10)]],
-		phone: ["", [Validators.required, Validators.minLength(8)]],
+		phone: ["", [Validators.required, Validators.minLength(6)]],
 		email: ["", [Validators.required, Validators.email, Validators.maxLength(40)]],
 		kinship: ["", Validators.required]
 	})

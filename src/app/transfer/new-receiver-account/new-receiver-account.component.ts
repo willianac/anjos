@@ -24,6 +24,7 @@ export class NewReceiverAccountComponent implements OnInit {
 		pix: ["", Validators.required]
 	})
 	currentUnit = "";
+	isAfricanAccount = false;
 	
 	constructor(
 		private bankService: BankInfoService, 
@@ -62,28 +63,27 @@ export class NewReceiverAccountComponent implements OnInit {
 				this.translate.instant("ACCOUNT_ALREADY_EXISTS_TITLE")
 			)
 		})
-		
 	}
 
-	ngOnInit(): void {
-		this.currentUnit = this.session.get("unitSelected")
-		this.bankService.getBanks(this.currentUnit).subscribe((res) => {
-			this.bankList = res.BANK
-		},
-		error => {
-			this.toastr.error(
-				this.translate.instant("SESSION_EXPIRED_TEXT"),
-				this.translate.instant("SESSION_EXPIRED_TITLE")
-			)
-		}
-		)
-		
-		this.receiverID = this.session.get("currentReceiver").ReceiverID
+	private checkIfIsAfricanAccount() {
+		const african = ["XOF", "KES", "GHS", "NGN", "UGX", "ZAR"]
 
+		african.forEach(unit => {
+			if(unit === this.currentUnit) {
+				this.isAfricanAccount = true
+			}
+		})
+	}
+
+	private handleValidators() {
 		if(this.currentUnit !== "BRX") {
-			this.receiverAccountForm.get("branch").disable()
+			this.receiverAccountForm.get("branch").clearValidators()
 			this.receiverAccountForm.get("pix").disable()
-			return this.receiverAccountForm.get("accountType").setValue("C")
+			this.receiverAccountForm.updateValueAndValidity()
+			if(this.isAfricanAccount) {
+				this.receiverAccountForm.get("accountType").setValue("C")
+			}
+			return
 		}
 
 		this.receiverAccountForm.get("bankName").valueChanges.subscribe((val) => {
@@ -107,5 +107,22 @@ export class NewReceiverAccountComponent implements OnInit {
 			this.receiverAccountForm.get("account").updateValueAndValidity();
 			this.receiverAccountForm.get("pix").updateValueAndValidity();
 		})
+	}
+
+	ngOnInit(): void {
+		this.currentUnit = this.session.get("unitSelected")
+		this.checkIfIsAfricanAccount()
+		this.handleValidators()
+		this.bankService.getBanks(this.currentUnit).subscribe((res) => {
+			this.bankList = res.BANK
+		},
+		error => {
+			this.toastr.error(
+				this.translate.instant("SESSION_EXPIRED_TEXT"),
+				this.translate.instant("SESSION_EXPIRED_TITLE")
+			)
+		}
+		)
+		this.receiverID = this.session.get("currentReceiver").ReceiverID
 	}
 }

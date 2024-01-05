@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 	public appSetup;
+	public currentYear;
 
   constructor(
     public loginSvc: LoginService,
@@ -161,6 +162,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.currentYear = new Date().getFullYear()
 		this.setupService.getSettings().subscribe((setup) => {
 			this.appSetup = setup
 		})

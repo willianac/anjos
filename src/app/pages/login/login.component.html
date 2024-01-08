@@ -57,13 +57,10 @@
                 </div>
                 <div class="row">
                   <div class="button-wrapper col-12">
-                    <input type="submit" class="btn btn-primary px-4" routerLinkActive="active" value="{{ 'LOGIN' | translate }}"/>
-										<button type="button" class="btn btn-primary" (click)="register()" translate>CREATE_ACCOUNT</button>
+                    <input type="submit" class="btn btn-primary px-4" [disabled]="!loginInputs.email || !loginInputs.password" routerLinkActive="active" value="{{ 'LOGIN' | translate }}"/>
+										<button type="button" class="btn btn-primary px-4" [disabled]="!loginInputs.email || !loginInputs.password" (click)="register()" translate>CREATE_ACCOUNT</button>
 										<button type="button" class="btn btn-link px-0" [routerLink]="['/recover']" translate>FORGOT_PASSWORD</button>
                   </div>
-                  <!-- <div class="col-6 text-right">
-                    <button type="button" class="btn btn-link px-0" [routerLink]="['/recover']" translate>FORGOT_PASSWORD</button>
-                  </div> -->
                 </div>
               </form>
             </div>

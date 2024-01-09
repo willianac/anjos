@@ -1,90 +1,99 @@
 <header class="mobile-brand-navbar">
 	<span class="mobile-text">{{appSetup?.clientName}}</span>
 </header>
-<div class="app align-items-center">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card-group mb-0">
-          <div class="card">
-            <div class="card-block">
-              <form (ngSubmit)="doLogin()" class="card-block">
-                <h1>{{ 'LOGIN' | translate }}</h1>
-                <p class="text-muted" translate>LOGIN_SUB</p>
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input 
-										name="email" 
-										[(ngModel)]="loginInputs.email" 
-										type="email" 
-										class="form-control" 
-										placeholder="{{ 'EMAIL' | translate }}" 
-										autocomplete="off"
-									>
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input 
-										name="password" 
-										[(ngModel)]="loginInputs.password" 
-										(input)="checkPassword()"
-										type="password" 
-										class="form-control" 
-										placeholder="{{ 'PASSWORD' | translate }}" 
-										#passwordInput 
-										autocomplete="off"
-									>
-									<i (click)="handlePassInputVisibility($event.target)" class="eye-toggle icon-eye"></i>
-                </div>
-								<div class="password-rules mb-3">
-									<span>
-										<i class="fa fa-times" #minLength></i>
-										{{'SHOULD_HAVE_MINIMUM_CHARACTERS' | translate}}
-									</span>
-									<span>
-										<i class="fa fa-times" #hasUppercase></i>
-										{{'SHOULD_HAVE_UPPERCASE' | translate}}
-									</span>
-									<span>
-										<i class="fa fa-times" #hasDigit></i>
-										{{'SHOULD_HAVE_DIGITS' | translate}}
-									</span>
-								</div>
-                <div class="row">
-                  <div class="col-12">
-                      <ngx-loading [show]="isLoading"></ngx-loading>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="button-wrapper col-12">
-                    <input type="submit" class="btn btn-primary px-4" [disabled]="!loginInputs.email || !loginInputs.password" routerLinkActive="active" value="{{ 'LOGIN' | translate }}"/>
-										<button type="button" class="btn btn-primary px-4" [disabled]="!loginInputs.email || !loginInputs.password" (click)="register()" translate>CREATE_ACCOUNT</button>
-										<button type="button" class="btn btn-link px-0" [routerLink]="['/recover']" translate>FORGOT_PASSWORD</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="card card-inverse card-primary py-5 d-md-down-none" style="width:44%">
-            <div class="card-block text-center">
-              <div>
-                <h2>{{appSetup?.clientName}}</h2>
-                <p class="copyright-label">{{appSetup?.copyright}} <span>2001-{{currentYear}}</span> </p>
-								<span class="brand-label">Powered by MoneyTransferSystem.com</span>
-              </div>
-            </div>
-          </div>
-          <div class="lang-bar card-footer text-center">
-            <language-list></language-list>
-          </div>
-        </div>
-      </div>	
-    </div>
-  </div>
-	<div class="mobile-label">
-		<a href="http://moneytransfersystem.com" target="_blank">Powered by MoneyTransferSystem.com</a>
-		<span>{{appSetup?.copyright}} 
-			<span>{{appSetup?.copyrightYear}}</span> 
-		</span>
+
+<!-- Reworked Layout -->
+<div class="cont">
+	<div class="form-wrapper">
+		<form (ngSubmit)="doLogin()">
+			<img class="logo-img" src="../../../assets/img/{{appSetup?.logo}}" alt="logo">
+			<h2>{{ 'LOGIN' | translate }}</h2>
+			<p class="text-muted" translate>LOGIN_SUB</p>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input 
+					name="email" 
+					[(ngModel)]="loginInputs.email" 
+					type="email" 
+					class="form-control form-control-lg" 
+					placeholder="{{ 'EMAIL' | translate }}" 
+					autocomplete="off"
+				>
+			</div>
+			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-lock"></i></span>
+				<input 
+					name="password" 
+					[(ngModel)]="loginInputs.password" 
+					(input)="checkPassword()"
+					type="password" 
+					class="form-control form-control-lg" 
+					placeholder="{{ 'PASSWORD' | translate }}" 
+					#passwordInput 
+					autocomplete="off"
+				>
+				<i (click)="handlePassInputVisibility($event.target)" class="eye-toggle icon-eye"></i>
+			</div>
+			<div class="password-rules mb-3">
+				<span>
+					<i class="fa fa-times" #minLength></i>
+					{{'SHOULD_HAVE_MINIMUM_CHARACTERS' | translate}}
+				</span>
+				<span>
+					<i class="fa fa-times" #hasUppercase></i>
+					{{'SHOULD_HAVE_UPPERCASE' | translate}}
+				</span>
+				<span>
+					<i class="fa fa-times" #hasDigit></i>
+					{{'SHOULD_HAVE_DIGITS' | translate}}
+				</span>
+			</div>
+			<div>
+				<div>
+						<ngx-loading [show]="isLoading"></ngx-loading>
+				</div>
+			</div>
+			<div>
+				<div class="button-wrapper">
+					<input 
+						type="submit" 
+						class="btn btn-primary btn-lg px-4" 
+						[disabled]="!loginInputs.email || !loginInputs.password" 
+						routerLinkActive="active" 
+						value="{{ 'LOGIN' | translate }}"
+					/>
+					<button 
+						type="button" 
+						class="btn btn-primary btn-lg px-4" 
+						[disabled]="!loginInputs.email || !loginInputs.password" 
+						(click)="register()" 
+						translate
+						>CREATE_ACCOUNT
+					</button>
+					<button 
+						type="button" 
+						class="btn btn-link btn-lg px-0" 
+						[routerLink]="['/recover']" 
+						translate
+						>FORGOT_PASSWORD
+					</button>
+				</div>
+			</div>
+		</form>
+		<div class="lang-bar card-footer text-center">
+			<language-list></language-list>
+		</div>
+	</div>
+	<div 
+		class="splash-container" 
+		[ngStyle]="{'background': 'linear-gradient( rgba(44, 170, 97, 0.5), rgba(44, 170, 97, 0.5) ), url(../../../assets/img/' + appSetup?.loginPageSplashImage + ')'}">
+		<div class="client-info-wrapper">
+			<h1><strong>{{appSetup?.clientName}}</strong></h1>
+			<p class="copyright-label">{{appSetup?.copyright}} <span>2001-{{currentYear}}</span> </p>
+			<div class="powered-by-box">
+				<span class="brand-label">Powered by </span>
+				<img src="../../../assets/img/xpresso-logo.jpeg" alt="">
+			</div>
+		</div>
 	</div>
 </div>

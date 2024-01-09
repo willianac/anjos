@@ -1,18 +1,8 @@
+@import "../../../scss/bootstrap-variables";
+
 .lang-bar {
-    width: 100%;
-}
-
-.container {
-	margin-top: 8rem;
-
-	@media screen and (max-width: 480px) {
-		margin-top: 4rem;
-	}
-}
-
-.card {
-    margin-bottom: 0;
-    border: none;
+  width: 100%;
+	background-color: #ffffff;
 }
 
 .copyright-label {
@@ -20,14 +10,15 @@
 }
 
 .brand-label {
-	background-color: #1d94c6;
-	padding: 0.6rem 1rem;
+	background-color: $brand-primary-darker;
+	padding: 0.6rem 2rem;
+	border-radius: 0.3rem;
 }
 
 .mobile-brand-navbar {
 	position: fixed;
 	width: 100%;
-	background-color: #20a8d8;
+	background-color: $brand-primary;
 	padding: 8px;
 	z-index: 9;
 
@@ -43,31 +34,6 @@
 	text-align: center;
 }
 
-.mobile-label {
-	margin-top: 1.5rem;
-
-	@media screen and (min-width: 991px) {
-		display: none;
-	}
-}
-
-.mobile-label {
-	a {
-		display: block;
-		text-align: center;
-		font-size: 12px;
-		margin-bottom: 10px;
-	}
-	
-
-	span {
-		display: block;
-		text-align: center;
-		color: #676d74;
-		font-size: 10px;
-	}
-}
-
 .button-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -80,8 +46,8 @@
 
 .eye-toggle {
 	position: absolute;
-	right: 8px;
-	top: 8px;
+	right: 14px;
+	top: 14px;
 	font-size: 18px;
 	z-index: 10;
 	cursor: pointer;
@@ -94,6 +60,7 @@
 .password-rules {
 	display: flex;
 	flex-direction: column;
+	color: #676d74;
 
 	.icon-check {
 		color: green;
@@ -101,5 +68,75 @@
 
 	.fa-times {
 		color: red;
+	}
+}
+
+// Reworked Page Styles
+
+.logo-img {
+	display: block;
+	margin: auto;
+	margin-bottom: 1rem;
+}
+
+.cont {
+	display: flex;
+	flex-direction: row-reverse;
+	background-color: #ffffff;
+	min-height: 100vh;
+
+	.form-wrapper {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		form {
+			margin-top:5.6rem;
+			padding-left: 12rem;
+			padding-right: 12rem;
+		}
+	}
+
+	.splash-container {
+		flex: 1;
+		
+		//background: linear-gradient( rgba(255, 15, 79, 0.7), rgba(255, 15, 79, 0.7) ), url("../../../assets/img/splash.png");
+
+		.client-info-wrapper {
+			margin-top: 8.6rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			color: #ffffff;
+		}
+
+		.powered-by-box {
+			display: flex;
+
+			img {
+				display: block;
+				max-width: 8rem;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.splash-container {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.form-wrapper form {
+		padding-left: 2rem !important;
+		padding-right: 2rem !important;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.logo-img {
+		width: 300px;
 	}
 }

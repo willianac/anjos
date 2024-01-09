@@ -10,6 +10,8 @@ import { SenderAccountService } from '../../services/sender-account/sender-accou
 import { SetupService } from 'app/services/setup/setup.service';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 
+const setupData = require("../../../assets/setup/setup.json")
+import { AppSetup } from 'assets/setup/setup';
 
 @Component({
   templateUrl: './login.component.html',
@@ -40,7 +42,10 @@ export class LoginComponent implements OnInit {
     public senderAccountSvc: SenderAccountService,
 		public setupService: SetupService,
 		public newSenderService: NewSenderService
-  ) { }
+  ) { 
+		const setup = setupData as AppSetup
+		this.appSetup = setup
+	}
 
   doLogin() {
     this.isLoading = true;
@@ -163,9 +168,9 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit() {
 		this.currentYear = new Date().getFullYear()
-		this.setupService.getSettings().subscribe((setup) => {
-			this.appSetup = setup
-		})
+		// this.setupService.getSettings().subscribe((setup) => {
+		// 	this.appSetup = setup
+		// })
 		this.setupService.getAPIRootSettings().subscribe({
 			next: (res) => this.session.set("rootInfo", JSON.stringify(res))
 		})

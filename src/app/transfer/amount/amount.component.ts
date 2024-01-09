@@ -206,11 +206,16 @@ export class AmountComponent implements OnInit {
 
 	private handleDefaultValues() {
 		const lastUnitSelected = this.session.get("unitSelected")
-
 		if(lastUnitSelected) {
 			const obj = this.units.find(item => item.unit === lastUnitSelected)
-			this.selectedUnit = obj.showUnit
-			this.selectedFlag = obj.flag
+			if(obj) {
+				this.selectedUnit = obj.showUnit
+				this.selectedFlag = obj.flag
+			} else {
+				this.selectedUnit = "BRL"
+				this.selectedFlag = "BR"
+				this.session.set("unitSelected", "BRX")
+			}
 		} else {
 			this.selectedUnit = this.units[0].showUnit
 			this.selectedFlag = this.units[0].flag

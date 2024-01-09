@@ -72,10 +72,10 @@ export class LoginComponent implements OnInit {
         this.session.set('lastPassword', this.loginInputs.password);
         this.senderAccountSvc.checkUser();
 
-				if(!response.MoneyReceivers.Receiver) {
-					this.session.set('receiverList', "undefined")
-					return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
-				}
+				// if(!response.MoneyReceivers.Receiver) {
+				// 	this.session.set('receiverList', "undefined")
+				// 	return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
+				// }
 
 				if(this.loginInputs.password.length < 10) {
 					this.router.navigate(['admin', 'changePassword']);

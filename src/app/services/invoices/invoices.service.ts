@@ -37,6 +37,9 @@ export class InvoicesService {
 		return this.http.post(this.url + "XpGetSenderHistoryById.cfm", xmlBody).switchMap((res) => {
 			return this.xmlParserService.parseXml(res, "SENDERHISTORY")
 				.map((val) => {
+					if(val.ERROR) {
+						return []
+					}
 					const fixedDatesInvoices = [...val.INVOICE].map((invoice) => {
 						const dt = new Date(invoice.DATE)
 						invoice.DATE = `${dt.getMonth() + 1}/${(dt.getDate() < 10 ? "0" : "") + dt.getDate()}/${dt.getFullYear()}`

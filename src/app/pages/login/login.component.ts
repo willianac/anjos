@@ -166,6 +166,18 @@ export class LoginComponent implements OnInit {
 		return hasUppercase && hasDigit && this.loginInputs.password.length >= minLength
 	}
 
+	// public checkIfInputHasSpecialCharacters(e: any) {
+	// 	const emailResult = validateInput(this.loginInputs.email)
+	// 	const passwordResult = validateInput(this.loginInputs.password)
+	// 	if(emailResult || passwordResult) {
+	// 		this.shouldButtonDisable = true
+	// 		this.message = "Special Characters are not allowed"
+	// 	} else {
+	// 		this.message = ""
+	// 		this.shouldButtonDisable = false
+	// 	}
+	// }
+
 	ngOnInit() {
 		this.currentYear = new Date().getFullYear()
 		// this.setupService.getSettings().subscribe((setup) => {

@@ -25,7 +25,14 @@ export class PaymentComponent implements AfterViewInit, OnDestroy {
 					"amount":${this.totalPayment},
 					"fee":"",
 					"feeType":"amount",
-					"contactInfo":{"name":"","email":"","phone":""}
+					"billingInfo":{
+						"country":"United States",
+						"address":"",
+						"address2":"",
+						"city":"",
+						"state":"",
+						"zip":""
+					}
 				};
 		
 				const l = function() {

@@ -88,12 +88,20 @@
 		class="splash-container" 
 		[ngStyle]="{'background': 'linear-gradient( rgba(44, 170, 97, 0.5), rgba(44, 170, 97, 0.5) ), url(../../../assets/img/' + appSetup?.loginPageSplashImage + ')'}">
 		<div class="client-info-wrapper">
-			<h1><strong>{{appSetup?.clientName}}</strong></h1>
-			<p class="copyright-label">{{appSetup?.copyright}} <span>2001-{{currentYear}}</span> </p>
+			<h1><strong>Boas-vindas a Transamericas</strong></h1>
+			<div class="welcome-wrapper">
+				<h3>Enviar dinheiro com a Transamericas é muito simples!</h3>
+				<h6><strong>Você já é cliente de uma de nossas lojas?</strong></h6>
+				<p style="margin-bottom: 16px;">Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta</p>
+
+				<h6><strong>Não é nosso cliente ainda?</strong></h6>
+				<p>Você poderá criar uma conta nova aqui e agora! Entre com o seu email no campo de login e informe uma senha segura.</p>
+			</div>
 			<div class="powered-by-box">
 				<span class="brand-label">Powered by </span>
 				<img src="../../../assets/img/xpresso-logo.jpeg" alt="">
 			</div>
+			<strong><p class="copyright-label">{{appSetup?.copyright}} <span>2001-{{currentYear}}</span> </p></strong>
 		</div>
 	</div>
 </div>

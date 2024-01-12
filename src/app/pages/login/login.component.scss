@@ -115,7 +115,7 @@
 			}
 		}
 
-		$brand-primary-with-opacity: rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.8);
+		$brand-primary-with-opacity: rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.6);
 		.welcome-wrapper {
 			background-color: $brand-primary-with-opacity;
 			padding: 1.6rem 2rem;

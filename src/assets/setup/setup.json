@@ -1,6 +1,6 @@
 {
 	"apiUrl": "https://api.moneytransmittersystem.com/mts/am/mobileApp/xpappstart.cfm",
-	"clientName": "Transamericas Services",
+	"clientName": "{Your Company}",
 	"copyright": "C&D International ©",
 	"poweredByLabel": "Powered By ",
 	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/extra/",

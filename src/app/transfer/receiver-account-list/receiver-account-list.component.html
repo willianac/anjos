@@ -1,4 +1,8 @@
 <div class="add-receiver-account-container">
+	<button type="button" class="btn btn-secondary go-back-btn" [routerLink]="['/admin', 'transfer', 'receiver']">
+		<i class="icon-arrow-left"></i>
+		<span translate>BACK</span>
+	</button>
 	<button [routerLink]="['/admin/transfer/new/receiver-account']" class="btn btn-primary">
 		<i class="fa fa-plus"></i>
 		<span translate>NEW_RECEIVER_ACCOUNT</span>

@@ -10,6 +10,8 @@ import { SenderAccountService } from '../../services/sender-account/sender-accou
 import { SetupService } from 'app/services/setup/setup.service';
 import { NewSenderService } from 'app/services/new-sender/new-sender.service';
 
+const setupData = require("../../../assets/setup/setup.json")
+import { AppSetup } from 'assets/setup/setup';
 
 @Component({
   templateUrl: './login.component.html',
@@ -40,7 +42,10 @@ export class LoginComponent implements OnInit {
     public senderAccountSvc: SenderAccountService,
 		public setupService: SetupService,
 		public newSenderService: NewSenderService
-  ) { }
+  ) { 
+		const setup = setupData as AppSetup
+		this.appSetup = setup
+	}
 
   doLogin() {
     this.isLoading = true;
@@ -72,10 +77,10 @@ export class LoginComponent implements OnInit {
         this.session.set('lastPassword', this.loginInputs.password);
         this.senderAccountSvc.checkUser();
 
-				if(!response.MoneyReceivers.Receiver) {
-					this.session.set('receiverList', "undefined")
-					return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
-				}
+				// if(!response.MoneyReceivers.Receiver) {
+				// 	this.session.set('receiverList', "undefined")
+				// 	return this.router.navigate(['admin', 'transfer', 'new', 'receiver']);
+				// }
 
 				if(this.loginInputs.password.length < 10) {
 					this.router.navigate(['admin', 'changePassword']);
@@ -161,11 +166,23 @@ export class LoginComponent implements OnInit {
 		return hasUppercase && hasDigit && this.loginInputs.password.length >= minLength
 	}
 
+	// public checkIfInputHasSpecialCharacters(e: any) {
+	// 	const emailResult = validateInput(this.loginInputs.email)
+	// 	const passwordResult = validateInput(this.loginInputs.password)
+	// 	if(emailResult || passwordResult) {
+	// 		this.shouldButtonDisable = true
+	// 		this.message = "Special Characters are not allowed"
+	// 	} else {
+	// 		this.message = ""
+	// 		this.shouldButtonDisable = false
+	// 	}
+	// }
+
 	ngOnInit() {
 		this.currentYear = new Date().getFullYear()
-		this.setupService.getSettings().subscribe((setup) => {
-			this.appSetup = setup
-		})
+		// this.setupService.getSettings().subscribe((setup) => {
+		// 	this.appSetup = setup
+		// })
 		this.setupService.getAPIRootSettings().subscribe({
 			next: (res) => this.session.set("rootInfo", JSON.stringify(res))
 		})

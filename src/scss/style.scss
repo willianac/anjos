@@ -87,6 +87,23 @@
 
 .active {
 	.send-money-icon {
-		color:#20a8d8;
+		color: $brand-primary;
+	}
+}
+
+.go-back-btn {
+	display: none;
+	position: relative;
+	margin-bottom: 10px;
+
+	@media screen and (max-width: 768px) {
+		display: block;
+		width: 100%;
+
+		i {
+			position: absolute;
+			left: 10px;
+			top: 11px;
+		}
 	}
 }

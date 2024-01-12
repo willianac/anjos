@@ -16,6 +16,7 @@ form {
 		position: absolute;
 		padding: 0 0.6rem;
 		min-width: 136px;
+		border-radius: 0.25rem;
 
 		img {
 			max-width: 48px;
@@ -43,6 +44,7 @@ form {
 	height: 48px;
 	min-width: 136px;
 	background-color: #e2e2e2;
+	border-radius: 0.25rem;
 	
 	#selectedLabel {
 		font-size: 15px;

@@ -16,6 +16,7 @@
 }
 
 .mobile-header {
+	display: none;
 	.head {
 		margin-bottom: 16px;
 	}
@@ -162,6 +163,10 @@
 		margin-top: 1.6rem !important;
 		padding-left: 1.4rem !important;
 		padding-right: 1.4rem !important;
+	}
+
+	.mobile-header {
+		display: block;
 	}
 }
 

@@ -15,23 +15,19 @@
 	border-radius: 0.3rem;
 }
 
-.mobile-brand-navbar {
-	position: fixed;
-	width: 100%;
-	background-color: $brand-primary;
-	padding: 8px;
-	z-index: 9;
-
-	@media screen and (min-width: 991px) {
-		display: none;
+.mobile-header {
+	.head {
+		margin-bottom: 16px;
 	}
-}
-
-.mobile-text {
-	color: #ffffff;
-	font-size: 22px;
-	display: block;
-	text-align: center;
+	
+	.subtitle {
+		color: #676d74;
+	}
+	
+	.paragraph {
+		font-size: 16px;
+		color: #676d74;
+	}
 }
 
 .button-wrapper {
@@ -94,8 +90,12 @@
 
 		form {
 			margin-top:5.6rem;
-			padding-left: 12rem;
+			padding-left: 11rem;
 			padding-right: 12rem;
+		}
+
+		.login-header {
+			margin-bottom: 0;
 		}
 	}
 
@@ -159,8 +159,9 @@
 
 @media screen and (max-width: 768px) {
 	.form-wrapper form {
-		padding-left: 2rem !important;
-		padding-right: 2rem !important;
+		margin-top: 1.6rem !important;
+		padding-left: 1.4rem !important;
+		padding-right: 1.4rem !important;
 	}
 }
 

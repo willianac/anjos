@@ -72,6 +72,12 @@
 	}
 }
 
+.hide-on-large {
+	@media screen and (min-width: 768px) {
+		display: none;
+	}
+}
+
 @media screen and (max-width: 480px) {
 	.order-by-container {
 		padding: 0;

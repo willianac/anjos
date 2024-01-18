@@ -276,5 +276,9 @@
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Debe tener al menos 10 caracteres",
 	"SHOULD_HAVE_UPPERCASE": "Debe tener mayúscula",
-	"SHOULD_HAVE_DIGITS": "Debe tener un dígito"
+	"SHOULD_HAVE_DIGITS": "Debe tener un dígito",
+
+	"CARDHOLDER_CONFIRM": "Confirmo que soy el titular de la tarjeta y acepto las",
+	"OF_USE": "de uso"
+
 }

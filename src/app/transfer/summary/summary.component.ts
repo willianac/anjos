@@ -37,6 +37,7 @@ export class SummaryComponent {
 
 	public rate;
 	public exchPercentage;
+	public userAcceptedCheckbox = false;
 
   constructor(
     public session: SessionService,

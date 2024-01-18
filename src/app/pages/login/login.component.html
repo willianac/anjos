@@ -1,13 +1,13 @@
-<header class="mobile-brand-navbar">
-	<span class="mobile-text">{{appSetup?.clientName}}</span>
-</header>
-
-<!-- Reworked Layout -->
 <div class="cont">
 	<div class="form-wrapper">
 		<form (ngSubmit)="doLogin()">
-			<img class="logo-img" src="../../../assets/img/{{appSetup?.logo}}" alt="logo">
-			<h2>{{ 'LOGIN' | translate }}</h2>
+			<img class="logo-img" src="../../../assets/img/generic-logo.jpeg" alt="logo">
+			<div class="mobile-header">
+				<h5 class="head"><strong>Boas-vindas a {{ '{company}' }}</strong></h5>
+				<h6 class="subtitle"><strong>Já é cliente de uma de nossas lojas?</strong></h6>
+				<p class="paragraph" style="margin-bottom: 16px;">Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta</p>
+			</div>
+			<h3 class="login-header">{{ 'LOGIN' | translate }}</h3>
 			<p class="text-muted" translate>LOGIN_SUB</p>
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
@@ -86,11 +86,11 @@
 	</div>
 	<div 
 		class="splash-container" 
-		[ngStyle]="{'background': 'linear-gradient( rgba(44, 170, 97, 0.5), rgba(44, 170, 97, 0.5) ), url(../../../assets/img/' + appSetup?.loginPageSplashImage + ')'}">
+		[ngStyle]="{'background': 'linear-gradient( rgba(99, 174, 255, 0.3), rgba(99, 174, 255, 0.3) ), url(../../../assets/img/' + appSetup?.loginPageSplashImage + ')'}">
 		<div class="client-info-wrapper">
-			<h1><strong>Boas-vindas a Transamericas</strong></h1>
+			<h1><strong>Boas-vindas a {{ '{company}' }}</strong></h1>
 			<div class="welcome-wrapper">
-				<h3>Enviar dinheiro com a Transamericas é muito simples!</h3>
+				<h3>Enviar dinheiro com a {{ '{company}' }} é muito simples!</h3>
 				<h6><strong>Você já é cliente de uma de nossas lojas?</strong></h6>
 				<p style="margin-bottom: 16px;">Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta</p>
 

@@ -276,5 +276,8 @@
 
 	"SHOULD_HAVE_MINIMUM_CHARACTERS": "Must be at least 10 characters long",
 	"SHOULD_HAVE_UPPERCASE": "Must have a capital letter",
-	"SHOULD_HAVE_DIGITS": "Must have one digit"
+	"SHOULD_HAVE_DIGITS": "Must have one digit",
+	
+	"CARDHOLDER_CONFIRM": "I confirm that I am the cardholder and agree to the",
+	"OF_USE": "of use."
 }

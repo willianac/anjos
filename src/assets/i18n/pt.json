@@ -279,5 +279,12 @@
 	"SHOULD_HAVE_DIGITS": "Deve ter um dígito",
 
 	"CARDHOLDER_CONFIRM": "Eu confirmo que sou o titular do cartão e concordo com os",
-	"OF_USE": "de uso."
+	"OF_USE": "de uso.",
+
+	"WELCOME_TO": "Boas-vindas a {company}",
+	"SEND_MONEY_IS_EASY": "Enviar dinheiro com a {company} é muito simples!",
+	"ALREADY_CUSTOMER": "Você já é cliente de uma de nossas lojas?",
+	"ALREADY_CUSTOMER_EXPLANATION": "Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta",
+	"NOT_OUR_CLIENT": "Não é nosso cliente ainda?",
+	"NOT_OUR_CLIENT_EXPLANATION": "Você poderá criar uma conta nova aqui e agora! Entre com o seu email no campo de login e informe uma senha."
 }

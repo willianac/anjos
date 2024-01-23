@@ -3,9 +3,9 @@
 		<form (ngSubmit)="doLogin()">
 			<img class="logo-img" src="../../../assets/img/generic-logo.jpeg" alt="logo">
 			<div class="mobile-header">
-				<h5 class="head"><strong>Boas-vindas a {{ '{company}' }}</strong></h5>
-				<h6 class="subtitle"><strong>Já é cliente de uma de nossas lojas?</strong></h6>
-				<p class="paragraph" style="margin-bottom: 16px;">Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta</p>
+				<h5 class="head"><strong translate>WELCOME_TO</strong></h5>
+				<h6 class="subtitle"><strong translate>ALREADY_CUSTOMER</strong></h6>
+				<p class="paragraph" style="margin-bottom: 16px;" translate>ALREADY_CUSTOMER_EXPLANATION</p>
 			</div>
 			<h3 class="login-header">{{ 'LOGIN' | translate }}</h3>
 			<p class="text-muted" translate>LOGIN_SUB</p>
@@ -88,14 +88,14 @@
 		class="splash-container" 
 		[ngStyle]="{'background': 'linear-gradient( rgba(99, 174, 255, 0.3), rgba(99, 174, 255, 0.3) ), url(../../../assets/img/' + appSetup?.loginPageSplashImage + ')'}">
 		<div class="client-info-wrapper">
-			<h1><strong>Boas-vindas a {{ '{company}' }}</strong></h1>
+			<h1><strong translate>WELCOME_TO</strong></h1>
 			<div class="welcome-wrapper">
-				<h3>Enviar dinheiro com a {{ '{company}' }} é muito simples!</h3>
-				<h6><strong>Você já é cliente de uma de nossas lojas?</strong></h6>
-				<p style="margin-bottom: 16px;">Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta</p>
+				<h3 translate>SEND_MONEY_IS_EASY</h3>
+				<h6><strong translate>ALREADY_CUSTOMER</strong></h6>
+				<p style="margin-bottom: 16px;" translate>ALREADY_CUSTOMER_EXPLANATION</p>
 
-				<h6><strong>Não é nosso cliente ainda?</strong></h6>
-				<p>Você poderá criar uma conta nova aqui e agora! Entre com o seu email no campo de login e informe uma senha segura.</p>
+				<h6><strong translate>NOT_OUR_CLIENT</strong></h6>
+				<p translate>NOT_OUR_CLIENT_EXPLANATION</p>
 			</div>
 			<div class="powered-by-box">
 				<span class="brand-label">Powered by </span>

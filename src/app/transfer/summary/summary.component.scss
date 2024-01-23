@@ -21,6 +21,30 @@ h3 {
     padding-left: 1.5rem;
 }
 
+.cardholder-checkbox {
+	display: flex;
+	column-gap: 0.4rem;
+	align-items: center;
+	margin-bottom: 0.6rem;
+
+	input[type="checkbox"] {
+		cursor: pointer;
+		width: 20px; 
+		height: 20px;
+
+		@media screen and (max-width: 480px) {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	label {
+		cursor: pointer;
+		margin: 0;
+		font-size: 16px;
+	}
+}
+
 
 //Overrides on mobiles
 

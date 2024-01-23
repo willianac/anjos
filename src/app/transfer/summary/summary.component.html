@@ -118,11 +118,25 @@
         </button>
       </div>
       <div class="modal-body">
+				<div class="cardholder-checkbox">
+					<input type="checkbox" [(ngModel)]="userAcceptedCheckbox" name="confirm-cardholder" id="confirm-cardholder">
+					<label for="confirm-cardholder">{{'CARDHOLDER_CONFIRM' | translate}}
+						<a href="http://moneytransfersystem.com/" target="_blank">{{'TERMS' | translate}} </a>
+						{{'OF_USE' | translate}}
+					</label>
+				</div>
         <p translate>CONFIRM_DO_TRANSFER_TEXT</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="modalConfirm.hide()" translate>BUTTON_CANCEL</button>
-        <button type="button" class="btn btn-primary" (click)="modalConfirm.hide(); checkGeolocation()" translate>BUTTON_DO_TRANSFER</button>
+        <button 
+					type="button" 
+					class="btn btn-primary" 
+					(click)="modalConfirm.hide(); checkGeolocation()" 
+					[disabled]="!userAcceptedCheckbox" 
+					translate
+					>BUTTON_DO_TRANSFER
+				</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

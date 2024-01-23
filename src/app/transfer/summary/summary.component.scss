@@ -21,6 +21,10 @@ h3 {
     padding-left: 1.5rem;
 }
 
+.modal-primary {
+	max-width: 700px;
+}
+
 .cardholder-checkbox {
 	display: flex;
 	column-gap: 0.4rem;
@@ -45,6 +49,11 @@ h3 {
 	}
 }
 
+
+.confirm-helper {
+	margin: 0;
+	color: #675865;
+}
 
 //Overrides on mobiles
 

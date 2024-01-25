@@ -282,8 +282,8 @@
 	"OF_USE": "de uso",
 
 	"WELCOME_TO": "Bienvenido a {empresa}",
-	"SEND_MONEY_IS_EASY": "Enviar dinheiro com a {company} é muito simples!",
-	"ALREADY_CUSTOMER": "¡Enviar dinero con {company} es muy sencillo!",
+	"SEND_MONEY_IS_EASY": "¡Enviar dinero con {company} es muy sencillo!",
+	"ALREADY_CUSTOMER": "¿Ya eres cliente de alguna de nuestras tiendas?",
 	"ALREADY_CUSTOMER_EXPLANATION": "No es necesario crear una cuenta nueva. Simplemente pídale a su agente preferido que active su cuenta.",
 	"NOT_OUR_CLIENT": "¿Aún no eres nuestro cliente?",
 	"NOT_OUR_CLIENT_EXPLANATION": "¡Puedes crear una nueva cuenta aquí y ahora! Ingrese su correo electrónico en el campo de inicio de sesión e ingrese una contraseña."

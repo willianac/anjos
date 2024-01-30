@@ -84,6 +84,7 @@ export class GenericFormComponent implements OnInit, OnChanges {
 
 	private handleValidators() {
 		const currentUnit = this.session.get("unitSelected")
+		//aqui seria interessante buscar formas de remover esse hardcode
 		if(currentUnit === "BRX") {
 			this.receiverAccountForm.controls["branch"].setValidators([Validators.required])
 			this.receiverAccountForm.get("branch").updateValueAndValidity()

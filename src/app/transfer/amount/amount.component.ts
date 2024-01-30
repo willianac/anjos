@@ -20,6 +20,7 @@ export class AmountComponent implements OnInit {
   public linkInfo;
   public message;
 
+	public rootStartUnit;
 	public units = [];
 	public showDropdown = false;
 
@@ -187,12 +188,12 @@ export class AmountComponent implements OnInit {
 		const units = (this.session.get("linkInfo").ListLandUnit as string).split(",")
 		const showUnit = (this.session.get("linkInfo").ListSendUnit as string).split(",")
 
-		//colocando BRX no inicio de units e BRL no inicio de showUnit
-		const index = units.indexOf("BRX")
+		//colocando StartUnit no inicio de units e BRL no inicio de showUnit
+		const index = units.indexOf(this.rootStartUnit)
 		units.splice(index, 1)
 		showUnit.splice(index, 1)
 
-		units.unshift("BRX")
+		units.unshift(this.rootStartUnit)
 		showUnit.unshift("BRL")
 
 		return units.map((unit, index) => {
@@ -214,7 +215,7 @@ export class AmountComponent implements OnInit {
 			} else {
 				this.selectedUnit = "BRL"
 				this.selectedFlag = "BR"
-				this.session.set("unitSelected", "BRX")
+				this.session.set("unitSelected", this.rootStartUnit)
 			}
 		} else {
 			this.selectedUnit = this.units[0].showUnit
@@ -231,6 +232,7 @@ export class AmountComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.rootStartUnit = JSON.parse(this.session.get("rootInfo")).StartUnit
 		this.units = this.createUnitsObject()
 		this.handleDefaultValues()
 		this.getNewSession()

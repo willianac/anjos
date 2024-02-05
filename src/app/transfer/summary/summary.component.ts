@@ -88,28 +88,31 @@ export class SummaryComponent {
 	private onGeolocationSuccess = (pos: any) => {
 		const latitude = pos.coords.latitude;
 		const longitude = pos.coords.longitude
-		this.geolocationService.checkIfUserIsInNewJersey(latitude, longitude).subscribe({
-			next: (res) => {
-				const rootInfo = JSON.parse(this.session.get("rootInfo"))
-				const validStates = rootInfo.ValidStates.split(",") as string[]
-				const userState = res.results[0].address_components[0].short_name
+		// this.geolocationService.checkIfUserIsInNewJersey(latitude, longitude).subscribe({
+		// 	next: (res) => {
+		// 		const rootInfo = JSON.parse(this.session.get("rootInfo"))
+		// 		const validStates = rootInfo.ValidStates.split(",") as string[]
+		// 		const userState = res.results[0].address_components[0].short_name
 
-				let isUserAllowedToTransfer = false;
+		// 		let isUserAllowedToTransfer = false;
 
-				for(let state of validStates) {
-					if(state === userState) {
-						isUserAllowedToTransfer = true
+		// 		for(let state of validStates) {
+		// 			if(state === userState) {
+		// 				isUserAllowedToTransfer = true
 
-						this.session.set("total", this.total)
-						this.router.navigate(['admin', 'transfer', 'payment']);		
-						break
-					}
-				}
-				if(!isUserAllowedToTransfer) {
-					this.toastr.error(this.translate.instant("GEOLOCATION_WARNING") + validStates, this.translate.instant("ERROR"))
-				}
-			}
-		})
+		// 				this.session.set("total", this.total)
+		// 				this.router.navigate(['admin', 'transfer', 'payment']);		
+		// 				break
+		// 			}
+		// 		}
+		// 		if(!isUserAllowedToTransfer) {
+		// 			this.toastr.error(this.translate.instant("GEOLOCATION_WARNING") + validStates, this.translate.instant("ERROR"))
+		// 		}
+		// 	}
+		// })
+
+		this.session.set("total", this.total)
+		this.router.navigate(['admin', 'transfer', 'payment']);		
 	}
 
 	private onGeolocationError = (err: any) => {

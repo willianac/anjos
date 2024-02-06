@@ -31,6 +31,8 @@ import { GeolocationService } from 'app/services/geolocation/geolocation.service
 import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 import { AfricanFormComponent } from 'app/components/african-form/african-form.component';
 import { GenericFormComponent } from 'app/components/generic-form/generic-form.component';
+import { QrBillComponent } from './qr-bill/qr-bill.component';
+import { QrBillService } from 'app/services/qr-bill/qr-bill.service';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { GenericFormComponent } from 'app/components/generic-form/generic-form.c
 		CashPaymentComponent,
 		Last4DigitsPipe,
 		AfricanFormComponent,
-		GenericFormComponent
+		GenericFormComponent,
+		QrBillComponent
   ],
   entryComponents: [
   ],
@@ -68,7 +71,8 @@ import { GenericFormComponent } from 'app/components/generic-form/generic-form.c
 		KinshipService,
 		BankInfoService,
 		GeographyService,
-		GeolocationService
+		GeolocationService,
+		QrBillService
   ]
 })
 export class TransferModule { }

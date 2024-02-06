@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
+import { QrBillService } from "app/services/qr-bill/qr-bill.service";
 const SwissQRBill = require("swissqrbill");
-import * as fs from "fs";
 
 @Component({
 	selector: "app-payment",
@@ -20,10 +21,12 @@ export class PaymentComponent {
 		number: [""]
 	})
 
+	constructor(private fb: FormBuilder, private router: Router, private qrBillService: QrBillService) {}
+
 	public data = {
 		amount: 300,
 		creditor: {
-			account: "CH18 3005 7072 9844 1020 4",
+			account: "CH1830057072984410204",
 			address: "Ettenbergstrasse",
 			buildingNumber: 44,
 			city: "Wettswil",
@@ -43,23 +46,21 @@ export class PaymentComponent {
 		reference: "00 00007 29844 10204 00232 47902"
 	}
 
-	public teste() {
+	public nextPage() {
 		const stream = SwissQRBill.BlobStream()
-		const pdf = new SwissQRBill.PDF(this.data, stream)
-
-		pdf.on("finish", () => {
-			const iframe = document.getElementById("iframe") as HTMLIFrameElement;
-			if(iframe){
-				iframe.src = stream.toBlobURL("application/pdf");
-				console.log("criado")
-			}
-			console.log("PDF has been successfully created.");
-		})
+		try {
+			const pdf = new SwissQRBill.PDF(this.data, stream)
+			pdf.on("finish", () => {
+				this.qrBillService.setBillSource(stream.toBlobURL("application/pdf"))
+				this.router.navigate(["admin", "transfer", "qr-bill"])
+			})
+		} catch (error) {
+			console.log("deu erro carai")
+			console.log(error.message)
+		}
 
 		// const svg = new SwissQRBill.SVG(this.data)
 		// const e = document.querySelector(".card-block") as HTMLDivElement
 		// e.innerHTML = svg
 	}
-
-	constructor(private fb: FormBuilder) {}
 }

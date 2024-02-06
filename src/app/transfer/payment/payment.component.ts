@@ -10,7 +10,7 @@ const SwissQRBill = require("swissqrbill");
 	styleUrls: ["./payment.component.scss"]
 })
 export class PaymentComponent {
-
+	public message = ""
 	receiverForm = this.fb.group({
 		name: [""],
 		iban: [""],
@@ -56,11 +56,18 @@ export class PaymentComponent {
 			})
 		} catch (error) {
 			console.log("deu erro carai")
-			console.log(error.message)
+			console.log(error)
+			this.handleBillGeneratorErrors(error.message)
 		}
 
 		// const svg = new SwissQRBill.SVG(this.data)
 		// const e = document.querySelector(".card-block") as HTMLDivElement
 		// e.innerHTML = svg
+	}
+
+	private handleBillGeneratorErrors(err: string) {
+		if(err.startsWith("The provided IBAN number")) {
+			this.message = "IBAN Invalido"
+		}
 	}
 }

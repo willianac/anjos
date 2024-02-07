@@ -53,6 +53,7 @@ import { InvoicesHistoryComponent } from './pages/invoices-history/invoices-hist
 import { InvoicesService } from './services/invoices/invoices.service';
 import { InvoicesResolver } from './shared/invoices.resolver';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { SenderAccountForm } from './components/sender-account-form/sender-account-form.component';
 
 @NgModule({
   imports: [
@@ -101,7 +102,8 @@ import { InvoiceComponent } from './pages/invoice/invoice.component';
     ChangePasswordComponent,
     SenderAccountListComponent,
 		InvoicesHistoryComponent,
-		InvoiceComponent
+		InvoiceComponent,
+		SenderAccountForm
   ],
   providers: [
     {

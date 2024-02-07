@@ -1,0 +1,59 @@
+.card-block {
+	display: flex;
+	gap: 1.8rem;
+	flex-wrap: wrap;
+}
+
+.account-container {
+	padding: 1rem;
+	background-color: #e9f2f0;
+	border-radius: 6px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+	.account-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 0.6rem;
+
+		h5 {
+			font-weight: bold;
+		}
+
+		img {
+			width: 32px;
+			position: relative;
+			bottom: 0.1rem;
+		}
+	}
+
+	.account-body {
+		height: 2.4rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		h6 {
+			
+			color: #615761;
+		}
+
+		i {
+			font-size: 24px;
+			color: green;
+			position: relative;
+			right: 0.3rem;
+		}
+	}
+}
+
+.button-container {
+	padding: 1.25rem;
+	.btn-primary {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		column-gap: 6px;
+		align-items: center;
+	}
+}

@@ -1,0 +1,54 @@
+<form>
+	<div class="mb-2">
+		<label for="name">Name</label>
+		<div class="input-group">
+			<span class="input-group-addon"><i class="icon-user"></i></span>
+			<input type="text" name="name" id="name" class="form-control" placeholder="Name">
+		</div>
+	</div>
+
+	<div class="inline-field-wrapper">
+		<div class="mb-2">
+			<label for="city" translate>CITY</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<select name="city" id="city" class="select">
+					<option value="" translate>PLEASE_SELECT</option>
+					<option 
+						*ngFor="let city of citiesList"
+						[value]="city.name"
+						>{{city.name}}
+					</option>
+				</select>
+			</div>
+
+		</div>
+		<div class="mb-2">
+			<label for="zipcode" translate>ZIPCODE</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
+			</div>
+		</div>
+	</div>
+	<div class="inline-field-wrapper">
+		<div class="mb-2">
+			<label for="address" translate>ADDRESS</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
+			</div>
+		</div>
+		<div class="mb-2">
+			<label for="buildingNumber">Building Number</label>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<input type="text" name="buildingNumber" id="buildingNumber" class="form-control" placeholder="Number">
+			</div>
+		</div>
+	</div>
+	<button class="btn btn-primary">
+		<i class="fa fa-plus"></i>
+		<span translate>Create</span>
+	</button>
+</form>

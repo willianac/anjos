@@ -1,5 +1,8 @@
-export class Account {
-  label: String = '';
-  aba: String = '';
-  account: String = '';
+export type Account = {
+  name: string
+	address: string
+	buildingNumber: string
+	city: string
+	zipcode: string
+	country: string
 }

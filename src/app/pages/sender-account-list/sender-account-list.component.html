@@ -1,20 +1,21 @@
 <div class="card">
   <div class="card-header" translate>SENDER_ACCOUNTS</div>
   <div class="card-block">
-		<div class="account-container">
+		<div *ngFor="let account of accountList" class="account-container">
 			<div class="account-head">
-				<h5>{{sample.name}}</h5>
+				<h5>{{account.name}}</h5>
 				<img src="../../../assets/img/flags/Switzerland.png" alt="">
 			</div>
 			<div class="account-body">
-				<h6>{{sample.city}}</h6>
+				<h6>{{account.city}}</h6>
 				<i class="icon-check"></i>
 			</div>
 			<div class="account-footer">
-				<span>{{sample.address}}</span>,
-				<span>{{sample.buildingNumber}}</span>
+				<span>{{account.address}}</span>,
+				<span>{{account.buildingNumber}}</span>
 			</div>
 		</div>
+		<h2 *ngIf="accountList?.length < 1">Você ainda não possui contas salvas</h2>
   </div>
 	<div class="button-container" *ngIf="!shouldDisplayForm">
 		<button class="btn btn-primary" (click)="shouldDisplayForm = true">
@@ -23,6 +24,6 @@
 		</button>
 	</div>
 	<div *ngIf="shouldDisplayForm" class="form-container">
-		<senderAccountForm></senderAccountForm>
+		<senderAccountForm (newAccountEvent)="refreshAccountList()"></senderAccountForm>
 	</div>
 </div>

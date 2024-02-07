@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SessionService } from 'app/services/session/session.service';
+import { Account } from './account';
 
 @Component({
   selector: 'app-sender-account-list',
   templateUrl: './sender-account-list.component.html',
   styleUrls: ['./sender-account-list.component.scss']
 })
-export class SenderAccountListComponent {
+export class SenderAccountListComponent implements OnInit {
 	shouldDisplayForm = false;
+	accountList: Account[] = [];
+	constructor(private session: SessionService) {}
 
 	public sample = {
 		address: "Sonnhaldenstrasse",
@@ -15,5 +19,13 @@ export class SenderAccountListComponent {
 		country: "CH",
 		name: "Alpha Rheintal Bank",
 		zip: 9435
+	}
+
+	public refreshAccountList() {
+		this.accountList = JSON.parse(this.session.get("senderAccounts"))
+	}
+
+	ngOnInit(): void {
+		this.accountList = JSON.parse(this.session.get("senderAccounts"))
 	}
 }

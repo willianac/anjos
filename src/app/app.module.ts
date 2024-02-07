@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -89,7 +89,8 @@ import { SenderAccountForm } from './components/sender-account-form/sender-accou
     }), // ToastrModule added
     TextMaskModule,
     PagesModule,
-    TransferModule
+    TransferModule,
+		ReactiveFormsModule
   ],
   declarations: [
     AppComponent,

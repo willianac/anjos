@@ -16,10 +16,13 @@
 			</div>
 		</div>
   </div>
-	<div class="button-container">
-		<button class="btn btn-primary">
+	<div class="button-container" *ngIf="!shouldDisplayForm">
+		<button class="btn btn-primary" (click)="shouldDisplayForm = true">
 			<i class="fa fa-plus"></i>
 			<span translate>Add new account</span>
 		</button>
+	</div>
+	<div *ngIf="shouldDisplayForm" class="form-container">
+		<senderAccountForm></senderAccountForm>
 	</div>
 </div>

@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./sender-account-list.component.scss']
 })
 export class SenderAccountListComponent {
+	shouldDisplayForm = false;
+
 	public sample = {
 		address: "Sonnhaldenstrasse",
 		buildingNumber: 19,

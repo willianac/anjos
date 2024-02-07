@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit {
 	public nextPage() {
 		const senderAccount = this.accountList.find(acc => acc.name === this.selectedAccountName) as Account
 		const data = {
-			amount: 300,
+			amount: Number(this.session.get("currentBase")),
 			creditor: {
 				account: this.appSetup.anjosAccount.account,
 				address: this.appSetup.anjosAccount.address,

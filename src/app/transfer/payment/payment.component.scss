@@ -1,21 +1,7 @@
-.card-block {
-	padding: 0.75rem 4rem 0.75rem 4rem;
-
-	@media screen and (max-width: 480px) {
-		padding: 1.25rem 1.75rem 1.25rem 1.75rem;
-	}
-}
-
-.inline-field-wrapper {
-
-	@media screen and (min-width: 768px) {
-		display: flex;
-		column-gap: 5rem;
-
-		div {
-			flex: 1;
-		}
-	}
+.accounts {
+	display: flex;
+	gap: 1.8rem;
+	flex-wrap: wrap;
 }
 
 .button-wrapper {
@@ -32,7 +18,49 @@
 	}
 }
 
-.message-container {
-	padding-left: 0;
-	padding-right: 0;
+.account-container {
+	cursor: pointer;
+	padding: 1rem;
+	background-color: #e9f2f0;
+	border-radius: 6px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+	.account-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 0.6rem;
+
+		h5 {
+			font-weight: bold;
+		}
+
+		img {
+			width: 32px;
+			position: relative;
+			bottom: 0.1rem;
+		}
+	}
+
+	.account-body {
+		height: 2.4rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		h6 {
+			color: #615761;
+		}
+
+		i {
+			font-size: 24px;
+			color: green;
+			position: relative;
+			right: 0.3rem;
+		}
+	}
+}
+
+.selected {
+	background-color: #5cb85c;
 }

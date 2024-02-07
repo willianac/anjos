@@ -1,62 +1,27 @@
 <div class="card">
   <div class="card-header">
-		<span translate>MAKE_PAYMENT</span>
+		<span>Select an account</span>
 	</div>
   <div class="card-block">
-    <form [formGroup]="receiverForm">
-			<div class="mb-2">
-				<label for="nameOrCompany" translate>Name or company*</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i class="icon-home"></i></span>
-					<input formControlName="name" type="text" name="nameOrCompany" id="nameOrCompany" class="form-control" placeholder="Name or company" autocomplete="off">
+		<div class="accounts">
+			<div *ngFor="let account of accountList" (click)="selectAccount(account)" [class.selected]="selectedAccountName === account.name" class="account-container">
+				<div class="account-head">
+					<h5>{{account.name}}</h5>
+					<img src="../../../assets/img/flags/Switzerland.png" alt="">
+				</div>
+				<div class="account-body">
+					<h6>{{account.city}}</h6>
+					<i class="icon-check"></i>
+				</div>
+				<div class="account-footer">
+					<span>{{account.address}}</span>,
+					<span>{{account.buildingNumber}}</span>
 				</div>
 			</div>
-			<div class="mb-2">
-				<label for="iban" translate>IBAN*</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i class="icon-home"></i></span>
-					<input formControlName="iban" type="text" name="iban" id="iban" class="form-control" placeholder="IBAN" autocomplete="off">
-				</div>
-			</div>
-			<div class="mb-2">
-				<label for="postcode" translate>Postcode</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i class="icon-home"></i></span>
-					<input formControlName="postcode" type="text" name="postcode" id="postcode" class="form-control" placeholder="Postcode" autocomplete="off">
-				</div>
-			</div>
-			<div class="mb-2">
-				<label for="town" translate>Town</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i class="icon-home"></i></span>
-					<input formControlName="town" type="text" name="town" id="town" class="form-control" placeholder="Town" autocomplete="off">
-				</div>
-			</div>
-			<div class="inline-field-wrapper">
-				<div class="mb-2">
-					<label for="street" translate>Street</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-home"></i></span>
-						<input formControlName="street" type="text" name="street" id="street" class="form-control" placeholder="Street" autocomplete="off">
-					</div>
-				</div>
-				<div class="mb-2">
-					<label for="number" translate>Number</label>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="icon-home"></i></span>
-						<input formControlName="number" type="text" name="number" id="number" class="form-control" placeholder="Number" autocomplete="off">
-					</div>
-				</div>
-			</div>
-			<div class="col-6 mt-2 message-container" *ngIf="message">
-				<div class="alert alert-danger" role="alert">
-					{{ message }}
-				</div>
-			</div>
-			<div class="button-wrapper">
-				<button type="button" [routerLink]="['/admin', 'transfer', 'summary']" class="btn btn-secondary" translate>BACK</button>
-				<button (click)="nextPage()" class="btn btn-primary" [disabled]="isLoading" translate>CONTINUE</button>
-			</div>
-		</form>
+		</div>
+		<div class="button-wrapper">
+			<button type="button" [routerLink]="['/admin', 'transfer', 'summary']" class="btn btn-secondary" translate>BACK</button>
+			<button (click)="nextPage()" class="btn btn-primary" [disabled]="!selectedAccountName" translate>Generate QR Bill</button>
+		</div>
   </div>
 </div>

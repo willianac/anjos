@@ -18,6 +18,13 @@ export class GeographyService {
 		this.apiKey = setup.geography_api_key
 	}
 
+	public getAllCitiesWithinCountry(country: string) {
+		const headers = new Headers()
+		headers.append("X-CSCAPI-KEY", this.apiKey)
+
+		return this.http.get(`https://api.countrystatecity.in/v1/countries/${country}/cities`, { headers })
+	}
+
 	public getStates(country: string) {
 		const headers = new Headers()
 		headers.append("X-CSCAPI-KEY", this.apiKey)

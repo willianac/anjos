@@ -1,9 +1,9 @@
-<form>
+<form [formGroup]="senderAccountForm">
 	<div class="mb-2">
 		<label for="name">Name</label>
 		<div class="input-group">
 			<span class="input-group-addon"><i class="icon-user"></i></span>
-			<input type="text" name="name" id="name" class="form-control" placeholder="Name">
+			<input type="text" name="name" id="name" class="form-control" placeholder="Name" formControlName="name">
 		</div>
 	</div>
 
@@ -12,7 +12,7 @@
 			<label for="city" translate>CITY</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<select name="city" id="city" class="select">
+				<select name="city" id="city" class="select" formControlName="city">
 					<option value="" translate>PLEASE_SELECT</option>
 					<option 
 						*ngFor="let city of citiesList"
@@ -27,7 +27,7 @@
 			<label for="zipcode" translate>ZIPCODE</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="{{'ZIPCODE' | translate}}">
+				<input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="{{'ZIPCODE' | translate}}" formControlName="zipcode">
 			</div>
 		</div>
 	</div>
@@ -36,19 +36,19 @@
 			<label for="address" translate>ADDRESS</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<input type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}">
+				<input type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}" formControlName="address">
 			</div>
 		</div>
 		<div class="mb-2">
 			<label for="buildingNumber">Building Number</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-user"></i></span>
-				<input type="text" name="buildingNumber" id="buildingNumber" class="form-control" placeholder="Number">
+				<input type="text" name="buildingNumber" id="buildingNumber" class="form-control" placeholder="Number" formControlName="buildingNumber">
 			</div>
 		</div>
 	</div>
-	<button class="btn btn-primary">
+	<button (click)="createAccount()" class="btn btn-primary">
 		<i class="fa fa-plus"></i>
-		<span translate>Create</span>
+		<span>Create</span>
 	</button>
 </form>

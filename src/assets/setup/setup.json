@@ -1,11 +1,20 @@
 {
-	"apiUrl": "https://api.moneytransmittersystem.com/mts/am/mobileApp/xpappstart.cfm",
+	"apiUrl": "https://api.moneytransmittersystem.com/mts/ae/mobileApp/xpappstart.cfm",
 	"clientName": "{Your Company}",
 	"copyright": "C&D International ©",
 	"poweredByLabel": "Powered By ",
-	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/extra/",
+	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/ae/extra/",
 	"google_maps_api_key": "AIzaSyD1tyIJwm0EKuzV-uwM-CTAiDqp-1G5Q_M",
 	"geography_api_key": "c3VESTdqc1lwVmdOVXlnaHh4QmNZeVZqZ09VZ2lReTYzUGNiSXlxRw==",
 	"loginPageSplashImage": "splash.png",
-	"logo": "logo.png"
+	"logo": "logo.png",
+	"anjosAccount": {
+		"account": "CH1830057072984410204",
+		"address": "Ettenbergstrasse",
+		"buildingNumber": 44,
+		"city": "Wettswil",
+		"country": "CH",
+		"name": "Anjos Express Imhof",
+		"zip": 8907
+	}
 }

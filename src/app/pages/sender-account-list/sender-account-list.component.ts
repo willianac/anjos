@@ -23,6 +23,7 @@ export class SenderAccountListComponent implements OnInit {
 
 	public refreshAccountList() {
 		this.accountList = JSON.parse(this.session.get("senderAccounts"))
+		this.shouldDisplayForm = false;
 	}
 
 	ngOnInit(): void {

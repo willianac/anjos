@@ -70,7 +70,7 @@ const routes: Routes = [
 				path: 'payment',
 				component: PaymentComponent,
 				data: {
-					title: 'PAYMENT'
+					title: 'Select an account'
 				}
 			},
 			{

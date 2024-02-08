@@ -286,5 +286,11 @@
 	"ALREADY_CUSTOMER": "Are you already a customer at one of our stores?",
 	"ALREADY_CUSTOMER_EXPLANATION": "You don't need to create a new account. Just ask your preferred agent to activate your account",
 	"NOT_OUR_CLIENT": "Not our client yet?",
-	"NOT_OUR_CLIENT_EXPLANATION": "You can create a new account here and now! Enter your email in the login field and enter a password."
+	"NOT_OUR_CLIENT_EXPLANATION": "You can create a new account here and now! Enter your email in the login field and enter a password.",
+
+	"ACCOUNT_NICKNAME": "Account Nickname",
+	"BUILDING_NUMBER": "Building Number",
+	"CREATE_BANK_ACCOUNT": "Create a bank account",
+	"CREATE_BANK_ACCOUNT_HELPER": "The account created here is used in creating the QR Bill.",
+	"CREATE": "Create"
 }

@@ -286,5 +286,11 @@
 	"ALREADY_CUSTOMER": "Você já é cliente de uma de nossas lojas?",
 	"ALREADY_CUSTOMER_EXPLANATION": "Você não precisa criar uma conta nova. Basta solicitar o seu atendente preferido que ative sua conta",
 	"NOT_OUR_CLIENT": "Não é nosso cliente ainda?",
-	"NOT_OUR_CLIENT_EXPLANATION": "Você poderá criar uma conta nova aqui e agora! Entre com o seu email no campo de login e informe uma senha."
+	"NOT_OUR_CLIENT_EXPLANATION": "Você poderá criar uma conta nova aqui e agora! Entre com o seu email no campo de login e informe uma senha.",
+
+	"ACCOUNT_NICKNAME": "Apelido da conta",
+	"BUILDING_NUMBER": "Número do edifício",
+	"CREATE_BANK_ACCOUNT": "Crie um conta bancária",
+	"CREATE_BANK_ACCOUNT_HELPER": "A conta criada aqui é usada na criação do QR Bill.",
+	"CREATE": "Criar"
 }

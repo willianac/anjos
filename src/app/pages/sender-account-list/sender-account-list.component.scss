@@ -52,8 +52,18 @@
 	}
 }
 
+.helper-text {
+	h4 {
+		font-weight: bold;
+	}
+
+	p {
+		color: #615761;
+	}
+}
+
 .button-container {
-	padding: 1.25rem;
+	padding: 0 1.25rem 1.25rem 1.25rem;
 	.btn-primary {
 		cursor: pointer;
 		display: flex;
@@ -64,5 +74,5 @@
 }
 
 .form-container {
-	padding: 1.25rem;
+	padding: 0 1.25rem 1.25rem 1.25rem;
 }

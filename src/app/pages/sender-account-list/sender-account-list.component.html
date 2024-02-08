@@ -16,14 +16,14 @@
 			</div>
 		</div>
 		<div *ngIf="accountList?.length < 1" class="helper-text">
-			<h4>Crie um conta bancária</h4>
-			<p>A conta criada aqui é usada na criação do QR Bill.</p>
+			<h4 translate>CREATE_BANK_ACCOUNT</h4>
+			<p translate>CREATE_BANK_ACCOUNT_HELPER</p>
 		</div>
   </div>
 	<div class="button-container" *ngIf="!shouldDisplayForm">
 		<button class="btn btn-primary" (click)="shouldDisplayForm = true">
 			<i class="fa fa-plus"></i>
-			<span translate>Add new account</span>
+			<span translate>NEW_RECEIVER_ACCOUNT</span>
 		</button>
 	</div>
 	<div *ngIf="shouldDisplayForm" class="form-container">

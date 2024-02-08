@@ -1,9 +1,9 @@
 <form [formGroup]="senderAccountForm">
 	<div class="mb-2">
-		<label for="accountName">Apelido da conta</label>
+		<label for="accountName" translate>ACCOUNT_NICKNAME</label>
 		<div class="input-group">
 			<span class="input-group-addon"><i class="icon-emotsmile"></i></span>
-			<input type="text" name="accountName" id="accountName" class="form-control" placeholder="Apelido da conta" formControlName="name">
+			<input type="text" name="accountName" id="accountName" class="form-control" placeholder="{{'ACCOUNT_NICKNAME' | translate}}" formControlName="name">
 		</div>
 	</div>
 
@@ -40,15 +40,15 @@
 			</div>
 		</div>
 		<div class="mb-2">
-			<label for="buildingNumber">Building Number</label>
+			<label for="buildingNumber" translate>BUILDING_NUMBER</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon-directions"></i></span>
-				<input type="text" name="buildingNumber" id="buildingNumber" class="form-control" placeholder="Number" formControlName="buildingNumber">
+				<input type="text" name="buildingNumber" id="buildingNumber" class="form-control" placeholder="{{'BUILDING_NUMBER' | translate}}" formControlName="buildingNumber">
 			</div>
 		</div>
 	</div>
 	<button (click)="createAccount()" class="btn btn-primary">
 		<i class="fa fa-plus"></i>
-		<span>Create</span>
+		<span translate>CREATE</span>
 	</button>
 </form>

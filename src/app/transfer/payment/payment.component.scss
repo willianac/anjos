@@ -64,3 +64,25 @@
 .selected {
 	background-color: #5cb85c;
 }
+
+.no-accounts-warning-container {
+	h4 {
+		font-weight: bold;
+	}
+
+	p {
+		color: #615761;
+	}
+
+	.new-account-btn > i {
+		position: relative;
+		left: 6px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.new-account-btn {
+		margin-bottom: 1.4rem;
+		width: 100%;
+	}
+}

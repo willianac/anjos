@@ -3,7 +3,7 @@
 		<span>Select an account</span>
 	</div>
   <div class="card-block">
-		<div class="accounts">
+		<div *ngIf="accountList.length > 0; else noAccountsWarning" class="accounts">
 			<div *ngFor="let account of accountList" (click)="selectAccount(account)" [class.selected]="selectedAccountName === account.name" class="account-container">
 				<div class="account-head">
 					<h5>{{account.name}}</h5>
@@ -25,3 +25,16 @@
 		</div>
   </div>
 </div>
+
+<ng-template #noAccountsWarning>
+	<div class="no-accounts-warning-container">
+		<h4>Você ainda não tem contas bancárias</h4>
+		<p>Por favor, adicione uma conta bancária antes de proceder com a criação do QR Bill.</p>
+		<div>
+			<button [routerLink]="['/admin', 'accounts']" class="btn btn-primary new-account-btn" >
+				<span>Add new account</span>
+				<i class="icon-arrow-right"></i>
+			</button>
+		</div>
+	</div>
+</ng-template>

@@ -1,9 +1,9 @@
 <form [formGroup]="senderAccountForm">
 	<div class="mb-2">
-		<label for="name">Name</label>
+		<label for="accountName">Apelido da conta</label>
 		<div class="input-group">
-			<span class="input-group-addon"><i class="icon-user"></i></span>
-			<input type="text" name="name" id="name" class="form-control" placeholder="Name" formControlName="name">
+			<span class="input-group-addon"><i class="icon-emotsmile"></i></span>
+			<input type="text" name="accountName" id="accountName" class="form-control" placeholder="Apelido da conta" formControlName="name">
 		</div>
 	</div>
 
@@ -11,7 +11,7 @@
 		<div class="mb-2">
 			<label for="city" translate>CITY</label>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<span class="input-group-addon"><i class="icon-map"></i></span>
 				<select name="city" id="city" class="select" formControlName="city">
 					<option value="" translate>PLEASE_SELECT</option>
 					<option 
@@ -26,7 +26,7 @@
 		<div class="mb-2">
 			<label for="zipcode" translate>ZIPCODE</label>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<span class="input-group-addon"><i class="icon-home"></i></span>
 				<input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="{{'ZIPCODE' | translate}}" formControlName="zipcode">
 			</div>
 		</div>
@@ -35,14 +35,14 @@
 		<div class="mb-2">
 			<label for="address" translate>ADDRESS</label>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<span class="input-group-addon"><i class="icon-location-pin"></i></span>
 				<input type="text" name="address" id="address" class="form-control" placeholder="{{'ADDRESS' | translate}}" formControlName="address">
 			</div>
 		</div>
 		<div class="mb-2">
 			<label for="buildingNumber">Building Number</label>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-user"></i></span>
+				<span class="input-group-addon"><i class="icon-directions"></i></span>
 				<input type="text" name="buildingNumber" id="buildingNumber" class="form-control" placeholder="Number" formControlName="buildingNumber">
 			</div>
 		</div>

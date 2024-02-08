@@ -74,9 +74,13 @@
 		color: #615761;
 	}
 
-	.new-account-btn > i {
-		position: relative;
-		left: 6px;
+	.new-account-btn {
+		cursor: pointer;
+
+		i {
+			position: relative;
+			left: 6px;
+		}
 	}
 }
 

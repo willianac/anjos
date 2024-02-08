@@ -10,20 +10,18 @@ import { Account } from './account';
 export class SenderAccountListComponent implements OnInit {
 	shouldDisplayForm = false;
 	accountList: Account[] = [];
-	constructor(private session: SessionService) {}
 
-	public sample = {
-		address: "Sonnhaldenstrasse",
-		buildingNumber: 19,
-		city: "Heerbrugg",
-		country: "CH",
-		name: "Alpha Rheintal Bank",
-		zip: 9435
-	}
+	constructor(private session: SessionService) {}
 
 	public refreshAccountList() {
 		this.accountList = JSON.parse(this.session.get("senderAccounts"))
 		this.shouldDisplayForm = false;
+	}
+
+	public removeAccount(accName: string) {
+		const updatedAccountList = this.accountList.filter(account => account.name !== accName)
+		this.accountList = updatedAccountList
+		this.session.set("senderAccounts", JSON.stringify(updatedAccountList))
 	}
 
 	ngOnInit(): void {

@@ -15,15 +15,22 @@
 		justify-content: space-between;
 		align-items: center;
 		column-gap: 0.6rem;
+		position: relative;
 
 		h5 {
 			font-weight: bold;
 		}
 
-		img {
-			width: 32px;
-			position: relative;
-			bottom: 0.1rem;
+		.icon-close {
+			position: absolute;
+			right: -20px;
+			top: -20px;
+			font-size: 22px;
+			cursor: pointer;
+		}
+
+		.icon-close:hover {
+			color: red;
 		}
 	}
 
@@ -31,18 +38,16 @@
 		height: 2.4rem;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		column-gap: 0.8rem;
 
 		h6 {
-			
 			color: #615761;
 		}
 
-		i {
-			font-size: 24px;
-			color: green;
+		img {
+			width: 24px;
 			position: relative;
-			right: 0.3rem;
+			bottom: 0.3rem;
 		}
 	}
 }

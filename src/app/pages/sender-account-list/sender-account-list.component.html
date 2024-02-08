@@ -4,11 +4,11 @@
 		<div *ngFor="let account of accountList" class="account-container">
 			<div class="account-head">
 				<h5>{{account.name}}</h5>
-				<img src="../../../assets/img/flags/Switzerland.png" alt="">
+				<i (click)="removeAccount(account.name)" class="icon-close"></i>
 			</div>
 			<div class="account-body">
 				<h6>{{account.city}}</h6>
-				<i class="icon-check"></i>
+				<img src="../../../assets/img/flags/Switzerland.png" alt="">
 			</div>
 			<div class="account-footer">
 				<span>{{account.address}}</span>,

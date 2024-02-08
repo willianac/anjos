@@ -27,8 +27,12 @@ export class QrBillComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 		if(!this.qrBillSource) return
 		
+		// const source = this.qrBillService.getBillSource()
+		// const iframe = this.elem.nativeElement.querySelector("#iframe")
+		// this.renderer.setAttribute(iframe, "src", source)
+		
 		const source = this.qrBillService.getBillSource()
-		const iframe = this.elem.nativeElement.querySelector("#iframe")
-		this.renderer.setAttribute(iframe, "src", source)
+		const iframe = this.elem.nativeElement.querySelector("#svg-container")
+		iframe.innerHTML = source
 	}
 }

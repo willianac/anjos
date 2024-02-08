@@ -53,13 +53,22 @@ export class PaymentComponent implements OnInit {
 			reference: "00 00000 00000 00100 00112 21007"
 		}
 			
-		const stream = SwissQRBill.BlobStream()
+		// const stream = SwissQRBill.BlobStream()
+		// try {
+		// 	const pdf = new SwissQRBill.PDF(data, stream)
+		// 	pdf.on("finish", () => {
+		// 		this.qrBillService.setBillSource(stream.toBlobURL("application/pdf"))
+		// 		this.router.navigate(["admin", "transfer", "qr-bill"])
+		// 	})
+		// } catch (error) {
+		// 	console.error(error)
+		// 	this.handleBillGeneratorErrors(error.message)
+		// }
+
 		try {
-			const pdf = new SwissQRBill.PDF(data, stream)
-			pdf.on("finish", () => {
-				this.qrBillService.setBillSource(stream.toBlobURL("application/pdf"))
-				this.router.navigate(["admin", "transfer", "qr-bill"])
-			})
+			const svg = new SwissQRBill.SVG(data)
+			this.qrBillService.setBillSource(svg)
+			this.router.navigate(["admin", "transfer", "qr-bill"])
 		} catch (error) {
 			console.error(error)
 			this.handleBillGeneratorErrors(error.message)

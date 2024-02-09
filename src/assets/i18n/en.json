@@ -292,5 +292,6 @@
 	"BUILDING_NUMBER": "Building Number",
 	"CREATE_BANK_ACCOUNT": "Create a bank account",
 	"CREATE_BANK_ACCOUNT_HELPER": "The account created here is used in creating the QR Bill.",
-	"CREATE": "Create"
+	"CREATE": "Create",
+	"GENERATE_QR_BILL": "Generate QR Bill"
 }

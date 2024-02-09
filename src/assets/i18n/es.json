@@ -292,5 +292,6 @@
 	"BUILDING_NUMBER": "Número de edificio",
 	"CREATE_BANK_ACCOUNT": "Crear una cuenta bancaria",
 	"CREATE_BANK_ACCOUNT_HELPER": "La cuenta creada aquí se utiliza para crear la factura QR.",
-	"CREATE": "Crear"
+	"CREATE": "Crear",
+	"GENERATE_QR_BILL": "Generar QR Bill"
 }

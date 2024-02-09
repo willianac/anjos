@@ -21,7 +21,10 @@
 		</div>
 		<div class="button-wrapper">
 			<button type="button" [routerLink]="['/admin', 'transfer', 'summary']" class="btn btn-secondary" translate>BACK</button>
-			<button (click)="nextPage()" class="btn btn-primary" [disabled]="!selectedAccountName" translate>Generate QR Bill</button>
+			<button (click)="nextPage()" class="btn btn-primary" [disabled]="!selectedAccountName">
+				<i class="fa fa-solid fa-qrcode"></i>
+				<span>Generate QR Bill</span>
+			</button>
 		</div>
   </div>
 </div>

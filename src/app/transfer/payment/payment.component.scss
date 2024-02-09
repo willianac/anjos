@@ -65,6 +65,13 @@
 	background-color: #5cb85c;
 }
 
+.button-wrapper > .btn-primary {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 0.6rem;
+}
+
 .no-accounts-warning-container {
 	h4 {
 		font-weight: bold;
@@ -88,5 +95,9 @@
 	.new-account-btn {
 		margin-bottom: 1.4rem;
 		width: 100%;
+	}
+
+	.accounts {
+		margin-bottom: 1rem;
 	}
 }

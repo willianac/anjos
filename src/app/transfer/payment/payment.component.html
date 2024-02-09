@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-		<span>Select an account</span>
+		<span translate>SELECT_AN_ACCOUNT</span>
 	</div>
   <div class="card-block">
 		<div *ngIf="accountList.length > 0; else noAccountsWarning" class="accounts">
@@ -11,7 +11,7 @@
 				</div>
 				<div class="account-body">
 					<h6>{{account.city}}</h6>
-					<i class="icon-check"></i>
+					<i *ngIf="selectedAccountName === account.name" class="icon-check"></i>
 				</div>
 				<div class="account-footer">
 					<span>{{account.address}}</span>,
@@ -23,7 +23,7 @@
 			<button type="button" [routerLink]="['/admin', 'transfer', 'summary']" class="btn btn-secondary" translate>BACK</button>
 			<button (click)="nextPage()" class="btn btn-primary" [disabled]="!selectedAccountName">
 				<i class="fa fa-solid fa-qrcode"></i>
-				<span>Generate QR Bill</span>
+				<span translate>GENERATE_QR_BILL</span>
 			</button>
 		</div>
   </div>

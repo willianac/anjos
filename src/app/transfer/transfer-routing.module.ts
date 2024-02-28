@@ -10,7 +10,6 @@ import { PaymentComponent } from './payment/payment.component';
 import { NewReceiverComponent } from './new-receiver/new-receiver.component';
 import { NewReceiverAccountComponent } from './new-receiver-account/new-receiver-account.component';
 import { CashPaymentComponent } from './cash-payment/cash-payment.component';
-import { QrBillComponent } from './qr-bill/qr-bill.component';
 
 const routes: Routes = [
   {
@@ -91,13 +90,6 @@ const routes: Routes = [
 						}
 					}
 				]
-			},
-			{
-				path: 'qr-bill',
-				component: QrBillComponent,
-				data: {
-					title: 'Qr Bill'
-				}
 			}
     ]
   }

@@ -31,8 +31,6 @@ import { GeolocationService } from 'app/services/geolocation/geolocation.service
 import { CashPaymentComponent } from './cash-payment/cash-payment.component';
 import { AfricanFormComponent } from 'app/components/african-form/african-form.component';
 import { GenericFormComponent } from 'app/components/generic-form/generic-form.component';
-import { QrBillComponent } from './qr-bill/qr-bill.component';
-import { QrBillService } from 'app/services/qr-bill/qr-bill.service';
 import { SenderService } from 'app/services/sender/sender.service';
 
 
@@ -60,8 +58,7 @@ import { SenderService } from 'app/services/sender/sender.service';
 		CashPaymentComponent,
 		Last4DigitsPipe,
 		AfricanFormComponent,
-		GenericFormComponent,
-		QrBillComponent
+		GenericFormComponent
   ],
   entryComponents: [
   ],
@@ -73,7 +70,6 @@ import { SenderService } from 'app/services/sender/sender.service';
 		BankInfoService,
 		GeographyService,
 		GeolocationService,
-		QrBillService,
 		SenderService
   ]
 })

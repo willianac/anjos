@@ -1,43 +1,48 @@
 <div class="card">
   <div class="card-header">
-		<span translate>SELECT_AN_ACCOUNT</span>
+		<span translate>Make payment</span>
 	</div>
-  <div class="card-block">
-		<div *ngIf="accountList.length > 0; else noAccountsWarning" class="accounts">
-			<div *ngFor="let account of accountList" (click)="selectAccount(account)" [class.selected]="selectedAccountName === account.name" class="account-container">
-				<div class="account-head">
-					<h5>{{account.name}}</h5>
-					<img src="../../../assets/img/flags/Switzerland.png" alt="">
+  <main class="card-block">
+		<div class="content">
+			<div class="content-header">
+				<h2>Pagar por transferência bancária</h2>
+				<p>
+					Conecte-se ao seu banco online ou entre em contato com o seu banco. Você poderá efetuar o pagamento em CHF.
+					<strong>Se você pagar em outra moeda, recusaremos a transação.</strong> Transfira exatamente quantia escolhida para a conta da Anjos Express.
+				</p>
+			</div>
+			<hr>
+			<div>
+				<div class="item">
+					<span><strong>Para:</strong></span>
+					<span>Anjos Express Imhof</span>
 				</div>
-				<div class="account-body">
-					<h6>{{account.city}}</h6>
-					<i *ngIf="selectedAccountName === account.name" class="icon-check"></i>
+				<div class="item-iban">
+					<div>
+						<span><strong>IBAN:</strong></span>
+						<span>CH1830057072984410204</span>
+					</div>
+					<button (click)="copyIBAN()" type="button" class="btn btn-link btn-sm">
+						<span>Copiar</span>
+						<i class="fa fa-solid fa-copy"></i>
+					</button>
 				</div>
-				<div class="account-footer">
-					<span>{{account.address}}</span>,
-					<span>{{account.buildingNumber}}</span>
+				<div class="item">
+					<span><strong>Referência do pagamento:</strong></span>
+					<span>00 00007 29844 10204 00232 47902</span>
 				</div>
 			</div>
+			<h6 class="scan-qr-helper"><strong>Ou scaneie o QR-Code ao lado:</strong></h6>
+			<h6 class="scan-qr-helper-mobile"><strong>Ou scaneie o QR-Code abaixo:</strong></h6>
 		</div>
-		<div class="button-wrapper">
-			<button type="button" [routerLink]="['/admin', 'transfer', 'summary']" class="btn btn-secondary" translate>BACK</button>
-			<button (click)="nextPage()" class="btn btn-primary" [disabled]="!selectedAccountName">
-				<i class="fa fa-solid fa-qrcode"></i>
-				<span translate>GENERATE_QR_BILL</span>
-			</button>
+		<div class="qr-code-wrapper">
+			<img src="../../../assets/img/qr-code.png" alt="">
 		</div>
-  </div>
-</div>
-
-<ng-template #noAccountsWarning>
-	<div class="no-accounts-warning-container">
-		<h4>Você ainda não tem contas bancárias</h4>
-		<p>Por favor, adicione uma conta bancária antes de proceder com a criação do QR Bill.</p>
-		<div>
-			<button [routerLink]="['/admin', 'accounts']" class="btn btn-primary new-account-btn" >
-				<span>Add new account</span>
-				<i class="icon-arrow-right"></i>
-			</button>
-		</div>
+  </main>
+	<div class="gen-qrbill-footer">
+		<p style="color: #727d86;">Alternativamente, você pode gerar um QR-Bill.</p>
+		<button (click)="generateQRBill()" type="button" class="btn btn-primary">
+			<span>Gerar QR-Bill</span>
+		</button>
 	</div>
-</ng-template>
+</div>

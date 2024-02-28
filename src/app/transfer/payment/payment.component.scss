@@ -1,16 +1,66 @@
-.accounts {
+.card-block {
 	display: flex;
-	gap: 1.8rem;
-	flex-wrap: wrap;
 }
 
-.button-wrapper {
-	display: flex;
-	gap: 1rem;
-	justify-content: right;
+.content {
+	width: 50%;
+}
 
-	@media screen and (max-width: 480px) {
-		flex-direction: column-reverse;
+.content-header {
+	h2 {
+		font-weight: 700;
+	}
+
+	p {
+		color: #463a41;
+		font-size: 15px;
+	}
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.6rem;
+	font-size: 15px;
+}
+
+.item-iban {
+	display: flex;
+	margin-bottom: 1.6rem;
+	column-gap: 1rem;
+	align-items: flex-end;
+
+	div {
+		display: flex;
+		flex-direction: column;
+	}
+
+	button {
+		position: relative;
+		top: 4px;
+		cursor: pointer;
+	}
+}
+
+.qr-code-wrapper {
+	width: 50%;
+	
+	img {
+		display: block;
+		max-width: 240px;
+		margin: auto;
+	}
+}
+
+.scan-qr-helper-mobile {
+	display: none;
+}
+
+.gen-qrbill-footer {
+	padding: 0 1.25rem 1.25rem 1.25rem;
+	
+	p {
+		margin-bottom: 0.6rem;
 	}
 
 	button {
@@ -18,87 +68,43 @@
 	}
 }
 
-.account-container {
-	cursor: pointer;
-	padding: 1rem;
-	background-color: #e9f2f0;
-	border-radius: 6px;
-	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+@media screen and (max-width: 768px) {
 
-	.account-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		column-gap: 0.6rem;
-
-		h5 {
-			font-weight: bold;
-		}
-
-		img {
-			width: 32px;
-			position: relative;
-			bottom: 0.1rem;
-		}
+	h2 {
+		font-size: 28px;
 	}
 
-	.account-body {
-		height: 2.4rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		column-gap: 0.6rem;
 
-		h6 {
-			color: #615761;
-			margin: 0;
-		}
-
-		i {
-			font-size: 24px;
-			color: green;
-			position: relative;
-		}
-	}
-}
-
-.selected {
-	background-color: #5cb85c;
-}
-
-.button-wrapper > .btn-primary {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	column-gap: 0.6rem;
-}
-
-.no-accounts-warning-container {
-	h4 {
-		font-weight: bold;
+	.card-block {
+		flex-direction: column;
 	}
 
-	p {
-		color: #615761;
-	}
-
-	.new-account-btn {
-		cursor: pointer;
-
-		i {
-			position: relative;
-			left: 6px;
-		}
-	}
-}
-
-@media screen and (max-width: 480px) {
-	.new-account-btn {
-		margin-bottom: 1.4rem;
+	.content {
 		width: 100%;
 	}
 
-	.accounts {
-		margin-bottom: 1rem;
+	.item-iban {
+		justify-content: space-between;
+	}
+
+	.qr-code-wrapper {
+		width: auto;
+	}
+
+	.scan-qr-helper {
+		display: none;
+	}
+
+	.scan-qr-helper-mobile {
+		display: block;
+		text-align: center;
+		margin-bottom: 1.4rem;
+		margin-top: 1rem;
+	}
+
+	.gen-qrbill-footer {
+		button {
+			width: 100%;
+		}
 	}
 }

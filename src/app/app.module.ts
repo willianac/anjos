@@ -40,7 +40,6 @@ import { LanguageService } from './services/language/language.service';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 import { LoginService } from './services/login/login.service';
-import { SenderAccountListComponent } from './pages/sender-account-list/sender-account-list.component';
 
 import { SenderAccountService } from './services/sender-account/sender-account.service';
 
@@ -53,7 +52,6 @@ import { InvoicesHistoryComponent } from './pages/invoices-history/invoices-hist
 import { InvoicesService } from './services/invoices/invoices.service';
 import { InvoicesResolver } from './shared/invoices.resolver';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
-import { SenderAccountForm } from './components/sender-account-form/sender-account-form.component';
 
 @NgModule({
   imports: [
@@ -101,10 +99,8 @@ import { SenderAccountForm } from './components/sender-account-form/sender-accou
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     ChangePasswordComponent,
-    SenderAccountListComponent,
 		InvoicesHistoryComponent,
 		InvoiceComponent,
-		SenderAccountForm
   ],
   providers: [
     {

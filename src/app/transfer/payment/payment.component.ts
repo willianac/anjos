@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Account } from "app/pages/sender-account-list/account";
 import { QrBillService } from "app/services/qr-bill/qr-bill.service";
 import { SessionService } from "app/services/session/session.service";
 const SwissQRBill = require("swissqrbill");
@@ -29,7 +28,7 @@ export class PaymentComponent implements OnInit {
 	}
 
 	public nextPage() {
-		const senderAccount = this.accountList.find(acc => acc.name === this.selectedAccountName) as Account
+		const senderAccount = this.accountList.find(acc => acc.name === this.selectedAccountName)
 		const data = {
 			amount: Number(this.session.get("currentBase")),
 			creditor: {

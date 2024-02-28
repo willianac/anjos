@@ -33,6 +33,7 @@ import { AfricanFormComponent } from 'app/components/african-form/african-form.c
 import { GenericFormComponent } from 'app/components/generic-form/generic-form.component';
 import { QrBillComponent } from './qr-bill/qr-bill.component';
 import { QrBillService } from 'app/services/qr-bill/qr-bill.service';
+import { SenderService } from 'app/services/sender/sender.service';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { QrBillService } from 'app/services/qr-bill/qr-bill.service';
 		BankInfoService,
 		GeographyService,
 		GeolocationService,
-		QrBillService
+		QrBillService,
+		SenderService
   ]
 })
 export class TransferModule { }

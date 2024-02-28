@@ -41,8 +41,9 @@
   </main>
 	<div class="gen-qrbill-footer">
 		<p style="color: #727d86;">Alternativamente, você pode gerar um QR-Bill.</p>
-		<button (click)="generateQRBill()" type="button" class="btn btn-primary">
+		<button (click)="generateQRBill()" type="button" class="btn btn-primary" [disabled]="isLoading">
 			<span>Gerar QR-Bill</span>
 		</button>
+		<ngx-loading [show]="isLoading"></ngx-loading>
 	</div>
 </div>

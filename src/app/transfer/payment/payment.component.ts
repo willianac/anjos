@@ -1,12 +1,11 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
 import { QrBillService } from "app/services/qr-bill/qr-bill.service";
 import { SenderService } from "app/services/sender/sender.service";
 import { SessionService } from "app/services/session/session.service";
 const SwissQRBill = require("swissqrbill");
-
 const setupData = require("../../../assets/setup/setup.json")
 import { AppSetup } from 'assets/setup/setup';
+import { ToastrService } from "ngx-toastr";
 import { Observable } from "rxjs";
 
 @Component({
@@ -16,8 +15,9 @@ import { Observable } from "rxjs";
 })
 export class PaymentComponent {
 	public appSetup: AppSetup;
+	public isLoading = false;
 
-	constructor(private session: SessionService, private senderService: SenderService) {
+	constructor(private session: SessionService, private senderService: SenderService, private toast: ToastrService) {
 		this.appSetup = setupData
 	}
 
@@ -30,6 +30,7 @@ export class PaymentComponent {
 	}
 
 	public generateQRBill() {
+		this.isLoading = true
 		this.getSender().subscribe({
 			next: (res) => {
 				const data = {
@@ -63,10 +64,17 @@ export class PaymentComponent {
 						downloadLink.download = "qr-bill.pdf"
 						downloadLink.click()
 					})
+					this.isLoading = false;
 				} catch (error) {
+					this.toast.error("Something happened.", "Unknown error")
 					console.error(error)
+					this.isLoading = false;
 				}
-			}
+			},
+			error: (err) => {
+				this.toast.error("Please, login again", err)
+				this.isLoading = false;
+			},
 		})
 	}
 }

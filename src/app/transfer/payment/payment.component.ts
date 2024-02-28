@@ -15,7 +15,7 @@ import { AppSetup } from 'assets/setup/setup';
 export class PaymentComponent {
 	public appSetup: AppSetup;
 
-	constructor(private router: Router, private qrBillService: QrBillService, private session: SessionService) {
+	constructor(private session: SessionService) {
 		this.appSetup = setupData
 	}
 
@@ -43,8 +43,11 @@ export class PaymentComponent {
 		try {
 			const pdf = new SwissQRBill.PDF(data, stream)
 			pdf.on("finish", () => {
-				this.qrBillService.setBillSource(stream.toBlobURL("application/pdf"))
-				this.router.navigate(["admin", "transfer", "qr-bill"])
+				const blob = stream.toBlobURL("application/pdf")
+				const downloadLink = document.createElement("a")
+				downloadLink.href = blob
+				downloadLink.download = "qr-bill.pdf"
+				downloadLink.click()
 			})
 		} catch (error) {
 			console.error(error)

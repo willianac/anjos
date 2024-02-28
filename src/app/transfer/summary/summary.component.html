@@ -91,15 +91,6 @@
         <div class="item total"><strong translate>TOTAL</strong> ({{ linkInfo.BaseUnit }}): {{ total }}</div>
       </div>
     </div>
-
-    <div class="col-12">
-      <div class="col-12">
-          <ngx-loading [show]="isLoading"></ngx-loading>
-      </div>
-      <div class="alert alert-danger" role="alert" *ngIf="message">
-        {{ message }}
-      </div>
-    </div>
 		<div class="row">
       <div class="col-md-12">
         <button type="button" class="btn btn-primary btn-desktop mt-3" (click)="modalConfirm.show()" translate>BUTTON_DO_TRANSFER</button>
@@ -133,7 +124,7 @@
         <button 
 					type="button" 
 					class="btn btn-primary" 
-					(click)="modalConfirm.hide(); checkGeolocation()" 
+					(click)="modalConfirm.hide(); nextPage()" 
 					[disabled]="!userAcceptedCheckbox" 
 					translate
 					>BUTTON_DO_TRANSFER

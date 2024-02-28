@@ -3,14 +3,6 @@ import { SessionService } from '../../services/session/session.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { TransferService } from '../../services/transfer/transfer.service';
-
-import { ToastrService } from 'ngx-toastr';
-
-import { SenderAccountService } from '../../services/sender-account/sender-account.service';
-import { GeolocationService } from 'app/services/geolocation/geolocation.service';
-
-
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -25,12 +17,8 @@ export class SummaryComponent {
   public linkInfo;
   public total;
   public senderAccount;
-  public isLoading: Boolean = false;
-  public message;
   public modalConfirm;
 	public receiveCountry = "";
-
-  public senderAccountPage = ['admin', 'senderAccount'];
 
 	public payoutOption = "";
 	public payoutLocation = {};
@@ -43,10 +31,6 @@ export class SummaryComponent {
     public session: SessionService,
     public router: Router,
     public translate: TranslateService,
-    public transfer: TransferService,
-    public toastr: ToastrService,
-    public senderAccSvc: SenderAccountService,
-		public geolocationService: GeolocationService
   ) {
     this.currentLang = this.translate.currentLang || this.translate.defaultLang;
     this.receiver = this.session.get('currentReceiver');
@@ -81,43 +65,8 @@ export class SummaryComponent {
 		}
 	}
 
-	public checkGeolocation() {
-		navigator.geolocation.getCurrentPosition(this.onGeolocationSuccess, this.onGeolocationError)
-	}
-
-	private onGeolocationSuccess = (pos: any) => {
-		const latitude = pos.coords.latitude;
-		const longitude = pos.coords.longitude
-		// this.geolocationService.checkIfUserIsInNewJersey(latitude, longitude).subscribe({
-		// 	next: (res) => {
-		// 		const rootInfo = JSON.parse(this.session.get("rootInfo"))
-		// 		const validStates = rootInfo.ValidStates.split(",") as string[]
-		// 		const userState = res.results[0].address_components[0].short_name
-
-		// 		let isUserAllowedToTransfer = false;
-
-		// 		for(let state of validStates) {
-		// 			if(state === userState) {
-		// 				isUserAllowedToTransfer = true
-
-		// 				this.session.set("total", this.total)
-		// 				this.router.navigate(['admin', 'transfer', 'payment']);		
-		// 				break
-		// 			}
-		// 		}
-		// 		if(!isUserAllowedToTransfer) {
-		// 			this.toastr.error(this.translate.instant("GEOLOCATION_WARNING") + validStates, this.translate.instant("ERROR"))
-		// 		}
-		// 	}
-		// })
-
+	public nextPage() {
 		this.session.set("total", this.total)
 		this.router.navigate(['admin', 'transfer', 'payment']);		
-	}
-
-	private onGeolocationError = (err: any) => {
-		if(err.code === 1) {
-			this.toastr.error(this.translate.instant("GEOLOCATION_DENIED"), this.translate.instant("ERROR"))
-		}
 	}
 }

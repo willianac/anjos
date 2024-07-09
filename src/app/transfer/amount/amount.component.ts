@@ -20,6 +20,7 @@ export class AmountComponent implements OnInit {
   public linkInfo;
   public message;
 
+  public baseUnitFlag
 	public rootStartUnit;
 	public units = [];
 	public showDropdown = false;
@@ -42,6 +43,7 @@ export class AmountComponent implements OnInit {
     public translate: TranslateService
   ) {
     this.linkInfo = this.session.get('linkInfo');
+    this.baseUnitFlag = this.linkInfo.BaseUnit.slice(0,2)
     this.transfer.base = this.session.get('currentBase') || 0;
     this.transfer.send = this.session.get('currentSend') || 0;
    }

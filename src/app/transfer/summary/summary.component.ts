@@ -26,6 +26,7 @@ export class SummaryComponent {
 	public rate;
 	public exchPercentage;
 	public userAcceptedCheckbox = false;
+  public baseUnitFlag;
 
   constructor(
     public session: SessionService,
@@ -52,6 +53,7 @@ export class SummaryComponent {
 		this.payoutOption = this.session.get("payoutOptionSelected")
 		this.payoutLocation = this.session.get("payoutLocationSelected")
 		this.receiveCountry = this.session.get("unitSelected").slice(0,2)
+    this.baseUnitFlag = this.session.get("linkInfo").BaseUnit.slice(0,2)
   }
 
 	private calculateTotal() {

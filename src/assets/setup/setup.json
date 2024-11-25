@@ -1,12 +1,12 @@
 {
-	"apiUrl": "https://api.moneytransmittersystem.com/mts/ae/mobileApp/xpappstart.cfm",
-	"clientName": "{Your Company}",
+	"apiUrl": "https://api.moneytransmittersystem.com/mts/am/mobileApp/xpappstart.cfm",
+	"clientName": "Mittere AG",
 	"copyright": "C&D International ©",
 	"poweredByLabel": "Powered By ",
-	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/ae/extra/",
+	"sampleApiCalls": "https://api.moneytransmittersystem.com/mts/am/extra/",
 	"google_maps_api_key": "0",
 	"geography_api_key": "c3VESTdqc1lwVmdOVXlnaHh4QmNZeVZqZ09VZ2lReTYzUGNiSXlxRw==",
-	"loginPageSplashImage": "splash2.jpg",
+	"loginPageSplashImage": "splash.png",
 	"logo": "logo.png",
 	"anjosAccount": {
 		"account": "CH1830057072984410204",
@@ -14,7 +14,7 @@
 		"buildingNumber": 44,
 		"city": "Wettswil",
 		"country": "CH",
-		"name": "Anjos Express Imhof",
+		"name": "Mittere AG",
 		"zip": 8907
 	}
 }

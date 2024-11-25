@@ -193,10 +193,10 @@ export class AmountComponent implements OnInit {
 		//colocando StartUnit no inicio de units e BRL no inicio de showUnit
 		const index = units.indexOf(this.rootStartUnit)
 		units.splice(index, 1)
-		showUnit.splice(index, 1)
+		const showUnitRemoved = showUnit.splice(index, 1)
 
 		units.unshift(this.rootStartUnit)
-		showUnit.unshift("BRL")
+		showUnit.unshift(showUnitRemoved[0])
 
 		return units.map((unit, index) => {
 			return {

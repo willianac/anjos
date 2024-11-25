@@ -4,6 +4,7 @@ import { SenderService } from "app/services/sender/sender.service";
 import { SessionService } from "app/services/session/session.service";
 import { TransferService } from "app/services/transfer/transfer.service";
 const SwissQRBill = require("swissqrbill");
+const utils = require("swissqrbill/lib/node/cjs/shared/utils")
 const setupData = require("../../../assets/setup/setup.json")
 import { AppSetup } from 'assets/setup/setup';
 import { ToastrService } from "ngx-toastr";
@@ -53,8 +54,7 @@ export class PaymentComponent implements AfterViewInit {
 						buildingNumber: this.appSetup.anjosAccount.buildingNumber,
 						city: this.appSetup.anjosAccount.city,
 						country: this.appSetup.anjosAccount.country,
-						name: this.appSetup.anjosAccount.name,
-						zip: this.appSetup.anjosAccount.zip
+						name: this.appSetup.anjosAccount.name
 					},
 					currency: 'CHF',
 					reference: "00 00007 29844 10204 00232 47902",
@@ -89,6 +89,7 @@ export class PaymentComponent implements AfterViewInit {
 			},
 		})
 	}
+  
 	
 	private createInvoice() {
 		this.transferService.doTransfer(
@@ -134,6 +135,8 @@ export class PaymentComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		this.createInvoice()
+		//this.createInvoice()
+    const checkSum = utils.calculateQRReferenceChecksum("00000000012")
+    console.log(checkSum)
 	}
 }
